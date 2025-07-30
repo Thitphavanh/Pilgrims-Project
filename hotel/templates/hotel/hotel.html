@@ -1,0 +1,721 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Guest Reviews - Project Pilgrims{% endblock %}
+
+{% block extra_css %}
+<style>
+    .hotel-card {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .hotel-card:hover {
+        transform: translateY(-8px) scale(1.02);
+    }
+    
+    .hotel-card:hover .hotel-image {
+        transform: scale(1.1);
+    }
+    
+    .hotel-image {
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .filter-dropdown {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+    }
+    
+    .filter-dropdown.open {
+        max-height: 300px;
+    }
+    
+    .fade-in {
+        animation: fadeInUp 0.6s ease-out forwards;
+    }
+    
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+    <!-- Header Section -->
+    <div class="bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 text-white">
+        <div class="container mx-auto px-4 py-8">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Discover Our Luxury Rooms</h1>
+                <p class="text-xl text-blue-100 mb-6">Experience comfort and elegance in every stay</p>
+                
+                <!-- Statistics -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                        <div class="text-3xl font-bold text-yellow-300">{{ room_stats.total_available }}</div>
+                        <div class="text-blue-100">Available Rooms</div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                        <div class="text-3xl font-bold text-yellow-300">{{ room_stats.room_types_count }}</div>
+                        <div class="text-blue-100">Room Types</div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                        <div class="text-3xl font-bold text-yellow-300">${{ room_stats.avg_price|floatformat:0 }}</div>
+                        <div class="text-blue-100">Average per Night</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Filters Sidebar -->
+            <div class="lg:w-80 flex-shrink-0">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden sticky top-4">
+                    <!-- Filter Header -->
+                    <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6">
+                        <h3 class="text-xl font-semibold flex items-center">
+                            <i class="fas fa-filter mr-3"></i>
+                            Filter Rooms
+                        </h3>
+                        <p class="text-blue-100 text-sm mt-1">Find your perfect stay</p>
+                    </div>
+
+                    <!-- Filter Form -->
+                    <form method="GET" class="p-6 space-y-6" id="filterForm">
+                        <!-- Search Input -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-search mr-2 text-gray-400"></i>Quick Search
+                            </label>
+                            <input type="text" id="searchInput" 
+                                   placeholder="Search rooms..." 
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors">
+                        </div>
+
+                        <!-- Room Type Filter -->
+                        <div>
+                            <label for="room_type" class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-bed mr-2 text-gray-400"></i>Room Type
+                            </label>
+                            <select name="room_type" id="room_type" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors">
+                                <option value="">All Types</option>
+                                {% for room_type in room_types %}
+                                    <option value="{{ room_type.id }}" 
+                                            {% if current_filters.room_type == room_type.id|stringformat:"s" %}selected{% endif %}>
+                                        {{ room_type.name }} (${{ room_type.price_per_night }})
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- Price Range -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-dollar-sign mr-2 text-gray-400"></i>Price Range
+                            </label>
+                            <div class="space-y-3">
+                                <div class="flex items-center space-x-3">
+                                    <input type="range" id="priceRange" min="{{ price_range.min_price }}" max="{{ price_range.max_price }}" 
+                                           value="{{ current_filters.max_price|default:price_range.max_price }}"
+                                           class="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider">
+                                </div>
+                                <div class="flex justify-between text-sm text-gray-600">
+                                    <span>${{ price_range.min_price }}</span>
+                                    <span id="currentPrice">${{ current_filters.max_price|default:price_range.max_price }}</span>
+                                    <span>${{ price_range.max_price }}</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <input type="number" name="min_price" placeholder="Min $" 
+                                           value="{{ current_filters.min_price }}"
+                                           class="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500">
+                                    <input type="number" name="max_price" id="maxPriceInput" placeholder="Max $" 
+                                           value="{{ current_filters.max_price }}"
+                                           class="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Capacity -->
+                        <div>
+                            <label for="capacity" class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-users mr-2 text-gray-400"></i>Minimum Guests
+                            </label>
+                            <select name="capacity" id="capacity" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option value="">Any</option>
+                                {% for cap_value, cap_label in capacity_choices %}
+                                    <option value="{{ cap_value }}"
+                                            {% if current_filters.capacity == cap_value|stringformat:"s" %}selected{% endif %}>
+                                        {{ cap_label }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- View Type -->
+                        <div>
+                            <label for="view_type" class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-eye mr-2 text-gray-400"></i>View Type
+                            </label>
+                            <div class="grid grid-cols-2 gap-2">
+                                {% for view_code, view_name in view_type_choices %}
+                                <label class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                                    <input type="radio" name="view_type" value="{{ view_code }}" 
+                                           {% if current_filters.view_type == view_code %}checked{% endif %}
+                                           class="sr-only peer">
+                                    <div class="w-4 h-4 border-2 border-gray-300 rounded-full peer-checked:border-blue-500 peer-checked:bg-blue-500 mr-2"></div>
+                                    <span class="text-sm peer-checked:text-blue-600 peer-checked:font-medium">{{ view_name }}</span>
+                                </label>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <!-- Amenities -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-star mr-2 text-gray-400"></i>Must-Have Amenities
+                            </label>
+                            <div class="space-y-2 max-h-40 overflow-y-auto">
+                                {% for amenity in available_amenities %}
+                                <label class="flex items-center p-2 hover:bg-gray-50 rounded cursor-pointer transition-colors">
+                                    <input type="checkbox" name="amenity" value="{{ amenity.id }}" 
+                                           {% if current_filters.amenity == amenity.id|stringformat:"s" %}checked{% endif %}
+                                           class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                                    <i class="{{ amenity.icon }} text-{{ amenity.icon_color }}-500 mx-2"></i>
+                                    <span class="text-sm">{{ amenity.name }}</span>
+                                    {% if amenity.is_premium %}
+                                    <span class="ml-auto text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">Premium</span>
+                                    {% endif %}
+                                </label>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <!-- Filter Buttons -->
+                        <div class="space-y-3 pt-4 border-t">
+                            <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-4 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 font-medium shadow-lg hover:shadow-xl">
+                                <i class="fas fa-search mr-2"></i>Apply Filters
+                            </button>
+                            <a href="{% url 'hotel-page' %}" class="block w-full text-center bg-gray-100 text-gray-700 py-3 px-4 rounded-lg hover:bg-gray-200 transition-colors font-medium">
+                                <i class="fas fa-times mr-2"></i>Clear All
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="flex-1">
+                <!-- Featured Rooms Section -->
+                {% if featured_rooms %}
+                <div class="mb-8">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold text-gray-900">
+                            <i class="fas fa-star text-yellow-500 mr-2"></i>Featured Rooms
+                        </h2>
+                        <span class="text-sm text-gray-500">Handpicked for you</span>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
+                        {% for room in featured_rooms %}
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border-2 border-yellow-200">
+                            <div class="relative">
+                                {% if room.room_images.all %}
+                                    <img src="{{ room.room_images.first.image.url }}" 
+                                         alt="{{ room.room_images.first.alt_text }}"
+                                         class="w-full h-48 object-cover">
+                                {% else %}
+                                    <div class="w-full h-48 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+                                        <i class="fas fa-image text-4xl text-gray-400"></i>
+                                    </div>
+                                {% endif %}
+                                
+                                <!-- Featured Badge -->
+                                <div class="absolute top-3 left-3">
+                                    <span class="bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900 px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                                        <i class="fas fa-crown mr-1"></i>FEATURED
+                                    </span>
+                                </div>
+                                
+                                <!-- Status Badge -->
+                                <div class="absolute top-3 right-3">
+                                    <span class="bg-green-500 text-white px-3 py-1 rounded-full text-xs font-medium shadow-lg">
+                                        {{ room.availability_status }}
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="p-6">
+                                <div class="flex justify-between items-start mb-3">
+                                    <h3 class="text-xl font-bold text-gray-900">{{ room.room_type.name }}</h3>
+                                    <span class="bg-blue-100 text-blue-800 text-sm px-2 py-1 rounded-lg font-medium">
+                                        Room {{ room.room_number }}
+                                    </span>
+                                </div>
+                                
+                                <p class="text-gray-600 mb-4 line-clamp-2">{{ room.room_type.description|truncatewords:15 }}</p>
+                                
+                                <!-- Room Details -->
+                                <div class="grid grid-cols-3 gap-4 mb-4 py-3 bg-gray-50 rounded-lg">
+                                    <div class="text-center">
+                                        <i class="fas fa-users text-blue-500 text-lg mb-1"></i>
+                                        <div class="text-sm font-medium">{{ room.room_type.capacity }}</div>
+                                        <div class="text-xs text-gray-500">Guests</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <i class="fas fa-expand-arrows-alt text-green-500 text-lg mb-1"></i>
+                                        <div class="text-sm font-medium">{{ room.room_type.size_sqm }}m²</div>
+                                        <div class="text-xs text-gray-500">Size</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <i class="fas fa-eye text-purple-500 text-lg mb-1"></i>
+                                        <div class="text-sm font-medium">{{ room.get_view_type_display|truncatewords:1 }}</div>
+                                        <div class="text-xs text-gray-500">View</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Price and CTA -->
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="text-2xl font-bold text-blue-600">${{ room.room_type.price_per_night }}</span>
+                                        <span class="text-gray-500">/night</span>
+                                    </div>
+                                    <button class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 font-medium shadow-lg hover:shadow-xl">
+                                        Book Now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Room List Header -->
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900">All Available Rooms</h2>
+                        <p class="text-gray-600">{{ rooms|length }} rooms found</p>
+                    </div>
+                    
+                    <!-- View Toggle & Sort -->
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm text-gray-600">View:</span>
+                            <div class="bg-gray-100 rounded-lg p-1 flex">
+                                <button id="gridViewBtn" class="px-3 py-1 rounded text-sm font-medium bg-white text-gray-700 shadow-sm">
+                                    <i class="fas fa-th-large mr-1"></i>Grid
+                                </button>
+                                <button id="listViewBtn" class="px-3 py-1 rounded text-sm font-medium text-gray-600 hover:text-gray-700">
+                                    <i class="fas fa-list mr-1"></i>List
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <select id="sortSelect" class="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500">
+                            <option value="price_asc">Price: Low to High</option>
+                            <option value="price_desc">Price: High to Low</option>
+                            <option value="capacity_asc">Capacity: Small to Large</option>
+                            <option value="capacity_desc">Capacity: Large to Small</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Room Grid -->
+                {% if rooms %}
+                <div id="roomsContainer" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" data-view="grid">
+                    {% for room in rooms %}
+                    <div class="room-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" 
+                         data-price="{{ room.room_type.price_per_night }}" 
+                         data-capacity="{{ room.room_type.capacity }}"
+                         data-room-type="{{ room.room_type.name|lower }}"
+                         data-amenities="{% for amenity in room.get_available_amenities %}{{ amenity.name|lower }} {% endfor %}">
+                        
+                        <div class="relative">
+                            {% if room.room_images.all %}
+                                <div class="relative group">
+                                    <img src="{{ room.room_images.first.image.url }}" 
+                                         alt="{{ room.room_images.first.alt_text }}"
+                                         class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
+                                </div>
+                            {% else %}
+                                <div class="w-full h-48 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+                                    <i class="fas fa-bed text-4xl text-gray-400"></i>
+                                </div>
+                            {% endif %}
+                            
+                            <!-- Status Badge -->
+                            <div class="absolute top-3 left-3">
+                                <span class="bg-green-500 text-white px-3 py-1 rounded-full text-xs font-medium shadow-lg">
+                                    {{ room.availability_status }}
+                                </span>
+                            </div>
+                            
+                            <!-- Room Number -->
+                            <div class="absolute top-3 right-3">
+                                <span class="bg-white/90 backdrop-blur-sm text-gray-700 px-3 py-1 rounded-full text-xs font-medium shadow-lg">
+                                    Room {{ room.room_number }}
+                                </span>
+                            </div>
+                            
+                            <!-- Favorite Button -->
+                            <button class="absolute bottom-3 right-3 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 hover:bg-white transition-all duration-200 shadow-lg">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="text-xl font-bold text-gray-900">{{ room.room_type.name }}</h3>
+                                <div class="text-right">
+                                    <div class="text-2xl font-bold text-blue-600">${{ room.room_type.price_per_night }}</div>
+                                    <div class="text-xs text-gray-500">per night</div>
+                                </div>
+                            </div>
+                            
+                            <p class="text-gray-600 mb-4 line-clamp-2">{{ room.room_type.description|truncatewords:12 }}</p>
+                            
+                            <!-- Room Features -->
+                            <div class="grid grid-cols-3 gap-4 mb-4 py-3 bg-gray-50 rounded-lg">
+                                <div class="text-center">
+                                    <i class="fas fa-users text-blue-500 text-lg mb-1"></i>
+                                    <div class="text-sm font-medium">{{ room.room_type.capacity }}</div>
+                                    <div class="text-xs text-gray-500">Guests</div>
+                                </div>
+                                <div class="text-center">
+                                    <i class="fas fa-expand-arrows-alt text-green-500 text-lg mb-1"></i>
+                                    <div class="text-sm font-medium">{{ room.room_type.size_sqm }}m²</div>
+                                    <div class="text-xs text-gray-500">Size</div>
+                                </div>
+                                <div class="text-center">
+                                    <i class="fas fa-eye text-purple-500 text-lg mb-1"></i>
+                                    <div class="text-sm font-medium text-xs">{{ room.get_view_type_display }}</div>
+                                    <div class="text-xs text-gray-500">View</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Amenities Preview -->
+                            <div class="mb-4">
+                                <div class="flex flex-wrap gap-1">
+                                    {% for amenity in room.get_available_amenities|slice:":3" %}
+                                        <span class="inline-flex items-center bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded-full">
+                                            <i class="{{ amenity.icon }} mr-1"></i>
+                                            {{ amenity.name }}
+                                        </span>
+                                    {% endfor %}
+                                    {% if room.get_available_amenities.count > 3 %}
+                                        <span class="inline-flex items-center bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">
+                                            +{{ room.get_available_amenities.count|add:"-3" }} more
+                                        </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                            <!-- Action Buttons -->
+                            <div class="space-y-2">
+                                <button class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-4 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 font-medium shadow-lg hover:shadow-xl">
+                                    <i class="fas fa-calendar-check mr-2"></i>Book Now
+                                </button>
+                                <button class="w-full bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors font-medium">
+                                    <i class="fas fa-eye mr-2"></i>View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <!-- No Results -->
+                <div class="text-center py-16">
+                    <div class="w-32 h-32 mx-auto mb-6 bg-gray-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-search text-4xl text-gray-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">No rooms found</h3>
+                    <p class="text-gray-600 mb-6 max-w-md mx-auto">We couldn't find any rooms matching your criteria. Try adjusting your filters or search terms.</p>
+                    <a href="{% url 'hotel-page' %}" class="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium">
+                        <i class="fas fa-refresh mr-2"></i>Clear All Filters
+                    </a>
+                </div>
+                {% endif %}
+
+                <!-- Load More Button -->
+                {% if rooms|length >= 12 %}
+                <div class="text-center mt-8">
+                    <button id="loadMoreBtn" class="bg-gray-100 text-gray-700 px-8 py-3 rounded-lg hover:bg-gray-200 transition-colors font-medium">
+                        <i class="fas fa-plus mr-2"></i>Load More Rooms
+                    </button>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Reviews Section -->
+        {% if reviews %}
+        <div class="mt-16 bg-white rounded-xl shadow-lg p-8">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-2">What Our Guests Say</h2>
+                <p class="text-gray-600">Real reviews from real guests</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% for review in reviews %}
+                <div class="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow duration-200">
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="font-semibold text-gray-900">{{ review.guest_name }}</h4>
+                        <span class="text-sm text-gray-500">{{ review.date_posted|date:"M d, Y" }}</span>
+                    </div>
+                    
+                    <p class="text-gray-600 mb-4">{{ review.comment|truncatewords:25 }}</p>
+                    
+                    <div class="flex items-center">
+                        <div class="flex text-yellow-400 mr-2">
+                            {% for i in "12345"|make_list %}
+                                {% if forloop.counter <= review.rating %}
+                                    <i class="fas fa-star"></i>
+                                {% else %}
+                                    <i class="far fa-star"></i>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <span class="text-sm text-gray-600">{{ review.rating }}/5</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Price Range Slider
+        const priceRange = document.getElementById('priceRange');
+        const currentPrice = document.getElementById('currentPrice');
+        const maxPriceInput = document.getElementById('maxPriceInput');
+
+        priceRange.addEventListener('input', function() {
+            currentPrice.textContent = '$' + this.value;
+            maxPriceInput.value = this.value;
+        });
+
+        // Search Functionality
+        const searchInput = document.getElementById('searchInput');
+        const roomCards = document.querySelectorAll('.room-card');
+
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            roomCards.forEach(card => {
+                const roomType = card.dataset.roomType;
+                const amenities = card.dataset.amenities;
+                const isVisible = roomType.includes(searchTerm) || amenities.includes(searchTerm);
+                
+                card.style.display = isVisible ? 'block' : 'none';
+            });
+        });
+
+        // View Toggle
+        const gridViewBtn = document.getElementById('gridViewBtn');
+        const listViewBtn = document.getElementById('listViewBtn');
+        const roomsContainer = document.getElementById('roomsContainer');
+
+        gridViewBtn.addEventListener('click', function() {
+            roomsContainer.className = 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6';
+            roomsContainer.dataset.view = 'grid';
+            this.classList.add('bg-white', 'text-gray-700', 'shadow-sm');
+            this.classList.remove('text-gray-600');
+            listViewBtn.classList.remove('bg-white', 'text-gray-700', 'shadow-sm');
+            listViewBtn.classList.add('text-gray-600');
+        });
+
+        listViewBtn.addEventListener('click', function() {
+            roomsContainer.className = 'space-y-6';
+            roomsContainer.dataset.view = 'list';
+            this.classList.add('bg-white', 'text-gray-700', 'shadow-sm');
+            this.classList.remove('text-gray-600');
+            gridViewBtn.classList.remove('bg-white', 'text-gray-700', 'shadow-sm');
+            gridViewBtn.classList.add('text-gray-600');
+            
+            // Modify room cards for list view
+            roomCards.forEach(card => {
+                if (roomsContainer.dataset.view === 'list') {
+                    card.classList.add('md:flex');
+                    const img = card.querySelector('img');
+                    if (img) {
+                        img.parentElement.classList.add('md:w-1/3');
+                    }
+                    const content = card.querySelector('.p-6');
+                    if (content) {
+                        content.classList.add('md:w-2/3');
+                    }
+                }
+            });
+        });
+
+        // Sort Functionality
+        const sortSelect = document.getElementById('sortSelect');
+        
+        sortSelect.addEventListener('change', function() {
+            const roomCardsArray = Array.from(roomCards);
+            const sortType = this.value;
+            
+            roomCardsArray.sort((a, b) => {
+                switch(sortType) {
+                    case 'price_asc':
+                        return parseFloat(a.dataset.price) - parseFloat(b.dataset.price);
+                    case 'price_desc':
+                        return parseFloat(b.dataset.price) - parseFloat(a.dataset.price);
+                    case 'capacity_asc':
+                        return parseInt(a.dataset.capacity) - parseInt(b.dataset.capacity);
+                    case 'capacity_desc':
+                        return parseInt(b.dataset.capacity) - parseInt(a.dataset.capacity);
+                    default:
+                        return 0;
+                }
+            });
+            
+            // Re-append sorted cards
+            roomCardsArray.forEach(card => {
+                roomsContainer.appendChild(card);
+            });
+        });
+
+        // Auto-submit form on filter change
+        const filterForm = document.getElementById('filterForm');
+        const filterInputs = filterForm.querySelectorAll('select, input[type="radio"]');
+        
+        filterInputs.forEach(input => {
+            input.addEventListener('change', function() {
+                // Auto-submit after short delay to allow for multiple quick changes
+                clearTimeout(window.filterTimeout);
+                window.filterTimeout = setTimeout(() => {
+                    filterForm.submit();
+                }, 500);
+            });
+        });
+
+        // Favorite functionality
+        document.querySelectorAll('.fas.fa-heart').forEach(heart => {
+            heart.addEventListener('click', function(e) {
+                e.preventDefault();
+                this.classList.toggle('text-red-500');
+                this.classList.toggle('text-gray-600');
+            });
+        });
+
+        // Load More functionality
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        if (loadMoreBtn) {
+            loadMoreBtn.addEventListener('click', function() {
+                // In a real application, this would load more rooms via AJAX
+                this.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Loading...';
+                
+                setTimeout(() => {
+                    this.style.display = 'none';
+                }, 1000);
+            });
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add loading states to buttons
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent.includes('Book Now')) {
+                button.addEventListener('click', function() {
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Processing...';
+                    this.disabled = true;
+                    
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.disabled = false;
+                    }, 2000);
+                });
+            }
+        });
+    </script>
+
+    <style>
+        /* Custom slider styles */
+        .slider {
+            background: linear-gradient(to right, #3b82f6 0%, #3b82f6 50%, #e5e7eb 50%, #e5e7eb 100%);
+        }
+        
+        .slider::-webkit-slider-thumb {
+            appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #1e40af;
+            cursor: pointer;
+            border: 2px solid #ffffff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+        
+        .slider::-moz-range-thumb {
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #1e40af;
+            cursor: pointer;
+            border: 2px solid #ffffff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        /* Line clamp utility */
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Smooth transitions */
+        * {
+            transition: all 0.2s ease-in-out;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+
+
+{% endblock %}

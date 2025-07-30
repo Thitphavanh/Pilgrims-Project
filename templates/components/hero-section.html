@@ -1,0 +1,174 @@
+{% load static %}
+
+<!-- Hero Section with Dynamic Backgrounds -->
+<section class="relative overflow-hidden">
+    <!-- Background Image Slideshow -->
+    <div class="bg-slideshow absolute inset-0">
+        <div class="bg-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1500 opacity-100 z-10" 
+             style="background-image: url('{% static 'images/pilgrims.jpg' %}');" data-slide-index="0"></div>
+        <div class="bg-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1500 opacity-0" 
+             style="background-image: url('{% static 'images/pilgrims-kitchen-views.jpg' %}');" data-slide-index="1"></div>
+        <div class="bg-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1500 opacity-0" 
+             style="background-image: url('{% static 'images/pilgrims-outside.jpg' %}');" data-slide-index="2"></div>
+        <div class="bg-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1500 opacity-0" 
+             style="background-image: url('{% static 'images/pilgrims-front-view.jpg' %}');" data-slide-index="3"></div>
+    </div>
+    
+    <!-- Overlay with custom gradient -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40 dark:from-black/70 dark:to-black/50"></div>
+    
+    <!-- Slide Navigation Dots -->
+    <div class="absolute bottom-6 left-0 right-0 flex justify-center z-20">
+        <div class="flex space-x-2 px-4 py-2 bg-black/20 backdrop-blur-sm rounded-full">
+            <button class="w-3 h-3 rounded-full bg-white opacity-100 focus:outline-none" data-index="0" aria-label="Show slide 1"></button>
+            <button class="w-3 h-3 rounded-full bg-white opacity-50 focus:outline-none" data-index="1" aria-label="Show slide 2"></button>
+            <button class="w-3 h-3 rounded-full bg-white opacity-50 focus:outline-none" data-index="2" aria-label="Show slide 3"></button>
+            <button class="w-3 h-3 rounded-full bg-white opacity-50 focus:outline-none" data-index="3" aria-label="Show slide 4"></button>
+        </div>
+    </div>
+    
+    <!-- Content -->
+    <div class="container mx-auto px-4 sm:px-6 h-screen min-h-[600px] flex items-center relative z-10">
+        <div class="max-w-2xl mx-auto md:mx-0 text-center md:text-left">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-playfair font-bold text-white leading-tight mb-4 md:mb-6 animate-fade-in">
+                A Peaceful Haven for <span class="text-secondary-light dark:text-secondary-dark">Weary Travelers</span>
+            </h1>
+            <p class="text-lg sm:text-xl text-white/90 mb-6 sm:mb-8 animate-fade-in-delayed max-w-xl mx-auto md:mx-0">
+                Experience unparalleled comfort and exceptional dining at Pilgrims Hotel & Restaurant, where tranquility meets luxury.
+            </p>
+            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center md:justify-start animate-fade-in-delayed-more">
+                <a href="{% url 'rooms-list-page' %}" class="bg-secondary-light dark:bg-secondary-dark hover:bg-secondary-dark-light dark:hover:bg-secondary-dark-dark text-white font-medium px-6 py-3 rounded-md md:rounded-lg text-center transition duration-300 shadow-lg transform hover:-translate-y-1">
+                    <i class="fas fa-calendar-check mr-2"></i> ຈອງທີ່ພັກຂອງທ່ານ
+                </a>
+                <a href="{% url 'menu-page' %}" class="bg-transparent hover:bg-white/10 border-2 border-white text-white hover:text-secondary-light dark:hover:text-secondary-dark font-medium px-6 py-3 rounded-md md:rounded-lg text-center transition duration-300 backdrop-blur-sm">
+                    <i class="fas fa-utensils mr-2"></i> ສຳຫຼວດເມນູຂອງພວກເຮົາ
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Down arrow for scrolling -->
+    <div class="absolute bottom-8 left-0 right-0 flex justify-center z-20 animate-bounce">
+        <a href="#welcome-section" class="text-white opacity-70 hover:opacity-100 transition duration-300 focus:outline-none" aria-label="Scroll down">
+            <i class="fas fa-chevron-down text-2xl"></i>
+        </a>
+    </div>
+</section>
+
+<!-- Add this to your CSS or as an inline style in the head -->
+<style>
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .animate-fade-in {
+        animation: fadeIn 0.8s ease-out forwards;
+    }
+    
+    .animate-fade-in-delayed {
+        animation: fadeIn 0.8s ease-out 0.3s forwards;
+        opacity: 0;
+    }
+    
+    .animate-fade-in-delayed-more {
+        animation: fadeIn 0.8s ease-out 0.6s forwards;
+        opacity: 0;
+    }
+    
+    .transition-opacity {
+        transition-property: opacity;
+    }
+    
+    .duration-1500 {
+        transition-duration: 1500ms;
+    }
+</style>
+
+<!-- Add this script to your page's JavaScript or include it in a script tag at the end of the body -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Background Slideshow
+        const slides = document.querySelectorAll('.bg-slide');
+        const dots = document.querySelectorAll('[data-index]');
+        let currentSlide = 0;
+        let slideInterval;
+        
+        function showSlide(index) {
+            // Hide all slides
+            slides.forEach(slide => {
+                slide.classList.remove('opacity-100', 'z-10');
+                slide.classList.add('opacity-0');
+            });
+            
+            // Show selected slide
+            slides[index].classList.remove('opacity-0');
+            slides[index].classList.add('opacity-100', 'z-10');
+            
+            // Update dots
+            dots.forEach(dot => {
+                dot.classList.remove('opacity-100');
+                dot.classList.add('opacity-50');
+            });
+            dots[index].classList.remove('opacity-50');
+            dots[index].classList.add('opacity-100');
+            
+            currentSlide = index;
+        }
+        
+        function nextSlide() {
+            let next = currentSlide + 1;
+            if (next >= slides.length) {
+                next = 0;
+            }
+            showSlide(next);
+        }
+        
+        // Handle dot clicks
+        dots.forEach(dot => {
+            dot.addEventListener('click', function() {
+                const slideIndex = parseInt(this.getAttribute('data-index'));
+                showSlide(slideIndex);
+                
+                // Reset interval timer when manually changing slides
+                clearInterval(slideInterval);
+                startSlideshow();
+            });
+        });
+        
+        // Start automatic slideshow
+        function startSlideshow() {
+            slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+        }
+        
+        // Initialize slideshow
+        startSlideshow();
+        
+        // Pause slideshow when user hovers over slideshow
+        const slideshow = document.querySelector('.bg-slideshow');
+        slideshow.addEventListener('mouseenter', function() {
+            clearInterval(slideInterval);
+        });
+        
+        slideshow.addEventListener('mouseleave', function() {
+            startSlideshow();
+        });
+        
+        // Handle smooth scroll for down arrow
+        const scrollDownArrow = document.querySelector('.animate-bounce a');
+        if (scrollDownArrow) {
+            scrollDownArrow.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        }
+    });
+</script>

@@ -1,0 +1,294 @@
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load humanize %}
+
+{% block title %}All Rooms & Suites - Hotel{% endblock %}
+
+{% block content %}
+<div class="bg-gray-50 dark:bg-neutral-dark min-h-screen">
+    
+    <!-- Page Header -->
+    <div class="relative py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-neutral-light via-blue-50 to-indigo-100 dark:from-neutral-dark dark:via-gray-900 dark:to-blue-900 transition-colors duration-500 overflow-hidden">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Filters -->
+        <div class="bg-white dark:bg-primary-dark-dark rounded-xl shadow-lg p-6 mb-8">
+            <form method="GET" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                
+                <!-- Room Type Filter -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Room Type</label>
+                    <select name="type" class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
+                        <option value="">All Types</option>
+                        {% for room_type in room_types %}
+                        <option value="{{ room_type.id }}" {% if current_filters.type == room_type.id|stringformat:"s" %}selected{% endif %}>
+                            {{ room_type.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <!-- Floor Filter -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Floor</label>
+                    <select name="floor" class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
+                        <option value="">All Floors</option>
+                        {% for floor in floors %}
+                        <option value="{{ floor }}" {% if current_filters.floor == floor|stringformat:"s" %}selected{% endif %}>
+                            Floor {{ floor }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <!-- Availability Filter -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Availability</label>
+                    <select name="available" class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
+                        <option value="">All Rooms</option>
+                        <option value="true" {% if current_filters.available == "true" %}selected{% endif %}>Available Only</option>
+                        <option value="false" {% if current_filters.available == "false" %}selected{% endif %}>Occupied Only</option>
+                    </select>
+                </div>
+                
+                <!-- Price Range -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Price Range</label>
+                    <div class="flex space-x-2">
+                        <input type="number" name="price_min" value="{{ current_filters.price_min }}" 
+                               placeholder="Min" 
+                               class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
+                        <input type="number" name="price_max" value="{{ current_filters.price_max }}" 
+                               placeholder="Max" 
+                               class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
+                    </div>
+                </div>
+                
+                <!-- Filter Buttons -->
+                <div class="flex space-x-2">
+                    <button type="submit" class="flex-1 bg-primary-light dark:bg-primary-dark text-white py-2 px-4 rounded-lg hover:bg-secondary-light dark:hover:bg-secondary-dark transition duration-300">
+                        <i class="fas fa-search mr-2"></i>Filter
+                    </button>
+                    <a href="{% url 'rooms-list-page' %}" class="flex-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 py-2 px-4 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition duration-300 text-center">
+                        Clear
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Results Summary -->
+        <div class="flex justify-between items-center mb-6">
+            <div class="text-gray-600 dark:text-gray-300">
+                Showing {{ page_obj|length }} of {{ page_obj.paginator.count }} rooms
+            </div>
+            
+            <!-- View Toggle -->
+            <div class="flex items-center space-x-2">
+                <button onclick="toggleView('grid')" id="gridViewBtn" class="p-2 rounded-lg bg-primary-light text-white">
+                    <i class="fas fa-th-large"></i>
+                </button>
+                <button onclick="toggleView('list')" id="listViewBtn" class="p-2 rounded-lg bg-gray-200 text-gray-600">
+                    <i class="fas fa-list"></i>
+                </button>
+            </div>
+        </div>
+
+         <!-- Room Grid -->
+        <div class="">
+            <!-- Section Header -->
+            <div class="text-center mb-10 sm:mb-14">
+                <!-- <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Experience the perfect blend of comfort and luxury in our thoughtfully designed rooms and suites.</p> -->
+            </div>
+            {% if page_obj %}
+                <div id="roomsContainer" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" data-view="grid">
+                    {% for room in page_obj %}
+                    <div class="room-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" 
+                        data-price="{{ room.room_type.price_per_night }}" 
+                        data-capacity="{{ room.room_type.capacity }}"
+                        data-room-type="{{ room.room_type.name|lower }}"
+                        data-amenities="{% for amenity in room.get_available_amenities %}{{ amenity.name|lower }} {% endfor %}">
+                        
+                        <div class="relative">
+                            {% if room.room_images.all %}
+                                <div class="relative group">
+                                    <img src="{{ room.room_images.first.image.url }}" 
+                                        alt="{{ room.room_images.first.alt_text }}"
+                                        class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
+                                </div>
+                            {% else %}
+                                <div class="w-full h-48 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+                                    <i class="fas fa-bed text-4xl text-gray-400"></i>
+                                </div>
+                            {% endif %}
+                            
+                            <!-- Status Badge -->
+                            <div class="absolute top-3 left-3">
+                                <span class="bg-green-500 text-white px-3 py-1 rounded-full text-xs font-medium shadow-lg">
+                                    {{ room.availability_status }}
+                                </span>
+                            </div>
+                            
+                            <!-- Room Number -->
+                            <div class="absolute top-3 right-3">
+                                <span class="bg-white/90 backdrop-blur-sm text-gray-700 px-3 py-1 rounded-full text-xs font-medium shadow-lg">
+                                    Room {{ room.room_number }}
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="text-xl font-bold text-gray-900">{{ room.room_type.name }}</h3>
+                                <div class="text-right">
+                                    <div class="text-2xl font-bold text-blue-600">{{ room.room_type.price_per_night|intcomma }} LAK</div>
+                                    <div class="text-xs text-gray-500">ຕໍ່ຄືນ</div>
+                                </div>
+                            </div>
+                            
+                            <p class="text-gray-600 mb-4 line-clamp-2">{{ room.room_type.description|truncatewords:12 }}</p>
+                            
+                            <!-- Room Features -->
+                            <div class="grid grid-cols-3 gap-4 mb-4 py-3 bg-gray-50 rounded-lg">
+                                <div class="text-center">
+                                    <i class="fas fa-users text-blue-500 text-lg mb-1"></i>
+                                    <div class="text-sm font-medium">{{ room.room_type.capacity }}</div>
+                                    <div class="text-xs text-gray-500">Guests</div>
+                                </div>
+                                <div class="text-center">
+                                    <i class="fas fa-expand-arrows-alt text-green-500 text-lg mb-1"></i>
+                                    <div class="text-sm font-medium">{{ room.room_type.size_sqm }}m²</div>
+                                    <div class="text-xs text-gray-500">Size</div>
+                                </div>
+                                <div class="text-center">
+                                    <i class="fas fa-eye text-purple-500 text-lg mb-1"></i>
+                                    <div class="text-sm font-medium text-xs">{{ room.get_view_type_display }}</div>
+                                    <div class="text-xs text-gray-500">View</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Amenities Preview -->
+                            <div class="mb-4">
+                                <div class="flex flex-wrap gap-1">
+                                    {% for amenity in room.get_available_amenities|slice:":3" %}
+                                        <span class="inline-flex items-center bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded-full">
+                                            <i class="{{ amenity.icon }} mr-1"></i>
+                                            {{ amenity.name }}
+                                        </span>
+                                    {% endfor %}
+                                    {% if room.get_available_amenities.count > 3 %}
+                                        <span class="inline-flex items-center bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">
+                                            +{{ room.get_available_amenities.count|add:"-3" }} more
+                                        </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                            <!-- Action Buttons -->
+                            <div class="space-y-2">
+                                <a href="{% url 'room-detail-page' room.pk %}">
+                                    <button class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-4 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 font-medium shadow-lg hover:shadow-xl">
+                                        ເບິ່ງລາຍລະອຽດ <i class="fas fa-eye ml-2"></i>
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+            <!-- No Results -->
+            <div class="text-center py-16">
+                <div class="w-32 h-32 mx-auto mb-6 bg-gray-100 rounded-full flex items-center justify-center">
+                    <i class="fas fa-search text-4xl text-gray-400"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">No rooms found</h3>
+                <p class="text-gray-600 mb-6 max-w-md mx-auto">We couldn't find any rooms matching your criteria. Try adjusting your filters or search terms.</p>
+                <a href="{% url 'hotel-page' %}" class="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium">
+                    <i class="fas fa-refresh mr-2"></i>Clear All Filters
+                </a>
+            </div>
+        {% endif %}   
+        </div>
+
+        <!-- Pagination -->
+        {% if page_obj.has_other_pages %}
+        <div class="flex justify-center mt-12">
+            <nav class="flex items-center space-x-2">
+                {% if page_obj.has_previous %}
+                <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ page_obj.previous_page_number }}" 
+                   class="px-4 py-2 bg-white dark:bg-primary-dark-dark text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                    <i class="fas fa-chevron-left mr-1"></i>Previous
+                </a>
+                {% endif %}
+                
+                {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                <span class="px-4 py-2 bg-primary-light dark:bg-primary-dark text-white rounded-lg font-medium">
+                    {{ num }}
+                </span>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ num }}" 
+                   class="px-4 py-2 bg-white dark:bg-primary-dark-dark text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                    {{ num }}
+                </a>
+                {% endif %}
+                {% endfor %}
+                
+                {% if page_obj.has_next %}
+                <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ page_obj.next_page_number }}" 
+                   class="px-4 py-2 bg-white dark:bg-primary-dark-dark text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                    Next<i class="fas fa-chevron-right ml-1"></i>
+                </a>
+                {% endif %}
+            </nav>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function toggleView(viewType) {
+        const container = document.getElementById('roomsContainer');
+        const gridBtn = document.getElementById('gridViewBtn');
+        const listBtn = document.getElementById('listViewBtn');
+        
+        if (viewType === 'grid') {
+            container.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6';
+            gridBtn.className = 'p-2 rounded-lg bg-primary-light text-white';
+            listBtn.className = 'p-2 rounded-lg bg-gray-200 text-gray-600';
+        } else {
+            container.className = 'space-y-4';
+            gridBtn.className = 'p-2 rounded-lg bg-gray-200 text-gray-600';
+            listBtn.className = 'p-2 rounded-lg bg-primary-light text-white';
+            
+            // Modify cards for list view
+            document.querySelectorAll('.room-card').forEach(card => {
+                card.className = card.className.replace('group', 'group flex flex-col md:flex-row');
+            });
+        }
+    }
+    
+    // Auto-submit form when filters change
+    document.querySelectorAll('select[name], input[name]').forEach(input => {
+        if (input.type !== 'submit') {
+            input.addEventListener('change', function() {
+                // Debounce for text inputs
+                if (this.type === 'number') {
+                    clearTimeout(this.debounceTimer);
+                    this.debounceTimer = setTimeout(() => {
+                        this.form.submit();
+                    }, 500);
+                } else {
+                    this.form.submit();
+                }
+            });
+        }
+    });
+</script>
+{% endblock %}

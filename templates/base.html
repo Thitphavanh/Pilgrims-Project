@@ -1,0 +1,350 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="{{ LANGUAGE_CODE }}" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Pilgrims Hotel & Restaurant{% endblock %}</title>
+
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': {
+                            light: '#1E3A8A', // Deep blue for brand (light mode)
+                            dark: '#3B82F6',  // Bright blue for brand (dark mode)
+                            DEFAULT: '#1E3A8A'
+                        },
+                        'primary-dark': {
+                            light: '#1E293B', // Darker shade for hover (light mode)
+                            dark: '#0F172A',  // Darker shade for hover (dark mode)
+                            DEFAULT: '#1E293B'
+                        },
+                        'secondary': {
+                            light: '#FBBF24', // Warm gold for accents (light mode)
+                            dark: '#F59E0B',  // Amber for accents (dark mode)
+                            DEFAULT: '#FBBF24'
+                        },
+                        'secondary-dark': {
+                            light: '#D97706', // Darker gold (light mode)
+                            dark: '#B45309',  // Darker amber (dark mode)
+                            DEFAULT: '#D97706'
+                        },
+                        'neutral': {
+                            light: '#F3F4F6', // Light gray for backgrounds (light mode)
+                            dark: '#1F2937',  // Dark gray for backgrounds (dark mode)
+                            DEFAULT: '#F3F4F6'
+                        },
+                        'neutral-content': {
+                            light: '#1F2937', // Content color for light mode
+                            dark: '#F9FAFB',  // Content color for dark mode
+                            DEFAULT: '#1F2937'
+                        }
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'playfair': ['Playfair Display', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom styles for dark mode -->
+    <style type="text/tailwind">
+        @layer utilities {
+            .dark .dark-shadow-lg {
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+            }
+            .dark .dark-shadow-md {
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+            }
+            .animate-fade-in {
+                animation: fadeIn 0.3s ease-in;
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+        }
+    </style>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    {% block extra_css %}{% endblock %}
+</head>
+<body class="bg-neutral-light dark:bg-neutral-dark font-inter flex flex-col min-h-screen antialiased text-neutral-content-light dark:text-neutral-content-dark transition-colors duration-300">
+    <!-- Header & Navigation -->
+    <header class="bg-white dark:bg-primary-dark-dark shadow-md dark:dark-shadow-md sticky top-0 z-50 transition-colors duration-300">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <a href="{% url 'home-page' %}" class="font-playfair text-2xl sm:text-3xl font-bold text-primary-light dark:text-secondary-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 ease-in-out">
+                    <img 
+                        src="{% static 'images/logo.jpeg' %}" 
+                        class="w-12 h-12 object-cover"
+                        loading="lazy"
+                    >
+                </a>
+            </div>
+
+          
+
+            <!-- Navigation Links -->
+            <div id="nav-content" class="hidden md:flex md:items-center md:w-auto w-full transition-all duration-300 ease-in-out">
+                <ul class="md:flex md:flex-row flex-col md:space-x-6 lg:space-x-10 mt-4 md:mt-0 text-base sm:text-lg font-medium">
+                    <li><a href="#" class="block py-2 md:py-0 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">About Us</a></li>
+                    <li><a href="{% url 'hotel-page' %}" class="block py-2 md:py-0 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">Reservation</a></li>
+                    <li><a href="{% url 'menu-page' %}" class="block py-2 md:py-0 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">Menu</a></li>
+                    <li><a href="{% url 'coffee_list' %}" class="block py-2 md:py-0 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">Coffee</a></li>
+                    <li><a href="{% url 'review-page' %}" class="block py-2 md:py-0 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">Review</a></li>
+                    <li><a href="#" class="block py-2 md:py-0 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Book Now Button -->
+            <!-- <div class="hidden md:block">
+                <a href="#" class="bg-secondary-light dark:bg-secondary-dark text-white px-4 sm:px-6 py-2 rounded-full hover:bg-secondary-dark-light dark:hover:bg-secondary-dark-dark transition duration-300 font-medium shadow-md dark:dark-shadow-md hover:shadow-lg transform hover:-translate-y-1">Book Now</a>
+            </div> -->
+
+            <div class="flex items-center space-x-2 sm:space-x-4">
+                <!-- Dark Mode Toggle -->
+                <button id="theme-toggle" class="p-2 rounded-full text-neutral-content-light dark:text-neutral-content-dark hover:bg-gray-100 dark:hover:bg-primary-dark focus:outline-none transition-colors duration-300">
+                    <svg id="theme-toggle-light-icon" class="hidden dark:block w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+                    </svg>
+                    <svg id="theme-toggle-dark-icon" class="block dark:hidden w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                </button>
+
+                <!-- Mobile menu button -->
+                <button id="mobile-menu-button" class="md:hidden text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light focus:outline-none" aria-label="Toggle navigation">
+                    <i class="fas fa-bars text-xl sm:text-2xl"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Messages/Alerts -->
+    {% if messages %}
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        {% for message in messages %}
+        <div class="{% if message.tags == 'success' %}bg-green-50 dark:bg-green-900 border-green-500 text-green-700 dark:text-green-200{% elif message.tags == 'error' %}bg-red-50 dark:bg-red-900 border-red-500 text-red-700 dark:text-red-200{% else %}bg-blue-50 dark:bg-blue-900 border-blue-500 text-blue-700 dark:text-blue-200{% endif %} px-4 sm:px-6 py-4 rounded-lg border-l-4 mb-4 shadow-md dark:dark-shadow-md relative transform transition-all duration-300 hover:shadow-lg">
+            <div class="flex items-center">
+                <div class="mr-3 sm:mr-4">
+                    {% if message.tags == 'success' %}
+                    <i class="fas fa-check-circle text-green-500 dark:text-green-300 text-lg sm:text-xl"></i>
+                    {% elif message.tags == 'error' %}
+                    <i class="fas fa-exclamation-circle text-red-500 dark:text-red-300 text-lg sm:text-xl"></i>
+                    {% else %}
+                    <i class="fas fa-info-circle text-blue-500 dark:text-blue-300 text-lg sm:text-xl"></i>
+                    {% endif %}
+                </div>
+                <span class="block text-sm sm:text-base">{{ message }}</span>
+            </div>
+            <button type="button" class="absolute top-0 bottom-0 right-0 px-3 sm:px-4 py-3 alert-close focus:outline-none">
+                <i class="fas fa-times text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-base sm:text-lg"></i>
+            </button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        {% block content %}
+        
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary-dark-light dark:bg-primary-dark-dark text-white py-12 sm:py-16 transition-colors duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12">
+                <!-- About Column -->
+                <div>
+                    <h3 class="text-xl sm:text-2xl font-playfair mb-4 sm:mb-6 font-bold text-secondary-light dark:text-secondary-dark">Pilgrims</h3>
+                    <p class="text-gray-200 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">A serene sanctuary offering luxurious accommodations and exceptional dining in a tranquil setting.</p>
+                    <div class="flex space-x-4 sm:space-x-6">
+                        <a href="#" class="text-gray-200 hover:text-secondary-light dark:hover:text-secondary-dark transition duration-300 transform hover:scale-110" aria-label="Facebook"><i class="fab fa-facebook-f text-lg sm:text-xl"></i></a>
+                        <a href="#" class="text-gray-200 hover:text-secondary-light dark:hover:text-secondary-dark transition duration-300 transform hover:scale-110" aria-label="Twitter"><i class="fab fa-twitter text-lg sm:text-xl"></i></a>
+                        <a href="#" class="text-gray-200 hover:text-secondary-light dark:hover:text-secondary-dark transition duration-300 transform hover:scale-110" aria-label="Instagram"><i class="fab fa-instagram text-lg sm:text-xl"></i></a>
+                        <a href="#" class="text-gray-200 hover:text-secondary-light dark:hover:text-secondary-dark transition duration-300 transform hover:scale-110" aria-label="Pinterest"><i class="fab fa-pinterest-p text-lg sm:text-xl"></i></a>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-xl sm:text-2xl font-playfair mb-4 sm:mb-6 font-bold text-secondary-light dark:text-secondary-dark">Contact Us</h3>
+                    <ul class="text-gray-200 space-y-3 sm:space-y-4 text-sm sm:text-base">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 sm:mr-4 text-secondary-light dark:text-secondary-dark"></i>
+                            <span>123 Serenity Road, Peaceful Valley, PV 12345</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-3 sm:mr-4 text-secondary-light dark:text-secondary-dark"></i>
+                            <span>(555) 123-4567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 sm:mr-4 text-secondary-light dark:text-secondary-dark"></i>
+                            <span>info@projectpilgrims.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-clock mr-3 sm:mr-4 text-secondary-light dark:text-secondary-dark"></i>
+                            <span>Reception: 24/7 | Restaurant: 7AM - 10PM</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-xl sm:text-2xl font-playfair mb-4 sm:mb-6 font-bold text-secondary-light dark:text-secondary-dark">Quick Links</h3>
+                    <ul class="text-gray-200 space-y-2 sm:space-y-3 text-sm sm:text-base">
+                        <li><a href="#" class="hover:text-secondary-light dark:hover:text-secondary-dark transition duration-300 inline-block py-1 hover:translate-x-2 transform">Our Rooms</a></li>
+                        <li><a href="{% url 'menu-page' %}" class="hover:text-secondary-light dark:hover:text-secondary-dark transition duration-300 inline-block py-1 hover:translate-x-2 transform">Dining Menu</a></li>
+                        <li><a href="#" class="hover:text-secondary-light dark:hover:text-secondary-dark transition duration-300 inline-block py-1 hover:translate-x-2 transform">Special Offers</a></li>
+                        <li><a href="#" class="hover:text-secondary-light dark:hover:text-secondary-dark transition duration-300 inline-block py-1 hover:translate-x-2 transform">Book a Stay</a></li>
+                        <li><a href="#" class="hover:text-secondary-light dark:hover:text-secondary-dark transition duration-300 inline-block py-1 hover:translate-x-2 transform">Our Story</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h3 class="text-xl sm:text-2xl font-playfair mb-4 sm:mb-6 font-bold text-secondary-light dark:text-secondary-dark">Newsletter</h3>
+                    <p class="text-gray-200 mb-4 sm:mb-6 text-sm sm:text-base">Subscribe for exclusive offers and updates.</p>
+                    <form class="flex flex-col sm:flex-row" id="newsletter-form">
+                        <input type="email" placeholder="Your email address" class="px-4 py-3 w-full sm:rounded-l-lg rounded-t-lg sm:rounded-tr-none mb-2 sm:mb-0 focus:outline-none focus:ring-2 focus:ring-secondary-light dark:focus:ring-secondary-dark text-gray-900 dark:text-gray-200 bg-gray-100 dark:bg-gray-700" required>
+                        <button type="submit" class="bg-secondary-light dark:bg-secondary-dark hover:bg-secondary-dark-light dark:hover:bg-secondary-dark-dark px-6 py-3 rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none transition duration-300 flex items-center justify-center">
+                            <i class="fas fa-paper-plane text-sm sm:text-base"></i>
+                        </button>
+                    </form>
+                    <p class="mt-3 text-xs sm:text-sm text-gray-400">By subscribing you agree to our <a href="#" class="underline hover:text-secondary-light dark:hover:text-secondary-dark">Privacy Policy</a>.</p>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="border-t border-gray-600 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center text-gray-400 text-sm">
+                <p>© {% now "Y" %} Pilgrims Hotel & Restaurant. All rights reserved.</p>
+                <div class="mt-3 flex flex-wrap justify-center space-x-4 sm:space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-secondary-light dark:hover:text-secondary-dark transition duration-300">Privacy</a>
+                    <a href="#" class="text-gray-400 hover:text-secondary-light dark:hover:text-secondary-dark transition duration-300">Terms</a>
+                    <a href="#" class="text-gray-400 hover:text-secondary-light dark:hover:text-secondary-dark transition duration-300">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="{% static 'js/main.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme toggle
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            if (themeToggleBtn) {
+                if (localStorage.getItem('color-theme') === 'dark' || 
+                    (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+
+                themeToggleBtn.addEventListener('click', function() {
+                    document.documentElement.classList.toggle('dark');
+                    localStorage.setItem('color-theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+                });
+            }
+
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const navContent = document.getElementById('nav-content');
+
+            if (mobileMenuButton && navContent) {
+                mobileMenuButton.addEventListener('click', function() {
+                    navContent.classList.toggle('hidden');
+                    // Toggle hamburger to X icon
+                    const icon = mobileMenuButton.querySelector('i');
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-times');
+                });
+            }
+
+            // Close mobile menu when clicking a nav link
+            const navLinks = document.querySelectorAll('#nav-content a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navContent.classList.add('hidden');
+                    const icon = mobileMenuButton.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
+
+            // Scroll effect for header
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 20) {
+                    header.classList.add('shadow-lg', 'dark:dark-shadow-lg');
+                    header.classList.remove('shadow-md', 'dark:dark-shadow-md');
+                } else {
+                    header.classList.add('shadow-md', 'dark:dark-shadow-md');
+                    header.classList.remove('shadow-lg', 'dark:dark-shadow-lg');
+                }
+            });
+
+            // Alert close buttons
+            const alertCloseButtons = document.querySelectorAll('.alert-close');
+            if (alertCloseButtons.length > 0) {
+                alertCloseButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const alert = this.closest('[role="alert"]');
+                        if (alert) {
+                            alert.classList.add('opacity-0');
+                            setTimeout(() => {
+                                alert.remove();
+                            }, 300);
+                        }
+                    });
+                });
+            }
+
+            // Newsletter form handling
+            const newsletterForm = document.getElementById('newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const emailInput = this.querySelector('input[type="email"]');
+                    if (emailInput && emailInput.value) {
+                        const formParent = this.parentElement;
+                        const successMessage = document.createElement('div');
+                        this.classList.add('hidden');
+                        successMessage.className = 'bg-green-100 dark:bg-green-800 text-green-800 dark:text-green-200 rounded-lg p-4 flex items-center justify-center animate-fade-in transition-all duration-300 text-sm sm:text-base';
+                        successMessage.innerHTML = '<i class="fas fa-check-circle mr-2"></i> Thank you for subscribing! Check your inbox soon.';
+                        formParent.appendChild(successMessage);
+                        setTimeout(() => {
+                            successMessage.classList.add('opacity-0');
+                            setTimeout(() => {
+                                successMessage.remove();
+                                this.classList.remove('hidden');
+                                emailInput.value = '';
+                            }, 300);
+                        }, 5000);
+                    }
+                });
+            }
+        });
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

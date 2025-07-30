@@ -1,0 +1,461 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block title %}{{ coffee.name }} - ຮ້ານກາເຟ{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Breadcrumb -->
+    <nav class="mb-8">
+        <ol class="flex items-center space-x-2 text-sm">
+            <li><a href="{% url 'home-page' %}" class="text-amber-600 hover:text-amber-700">ໜ້າຫຼັກ</a></li>
+            <li class="text-gray-400">/</li>
+            <li><a href="{% url 'coffee_list' %}" class="text-amber-600 hover:text-amber-700">ກາເຟທັງໝົດ</a></li>
+            <li class="text-gray-400">/</li>
+            <li class="text-gray-700">{{ coffee.name }}</li>
+        </ol>
+    </nav>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+        
+        <!-- Coffee Image Gallery -->
+        <div x-data="imageGallery()" class="space-y-4">
+            <!-- Main Image Display -->
+            <div class="aspect-square bg-gradient-to-br from-amber-200 to-amber-400 rounded-lg flex items-center justify-center relative overflow-hidden">
+                <!-- Show image if activeImage exists -->
+                <template x-if="activeImage">
+                    <img :src="activeImage" 
+                         alt="{{ coffee.name }}"
+                         class="w-full h-full object-cover">
+                </template>
+                
+                <!-- Fallback icon when no image -->
+                <template x-if="!activeImage">
+                    <i class="fas fa-coffee text-8xl text-amber-800 opacity-30"></i>
+                </template>
+                
+                <!-- Badges -->
+                <div class="absolute top-4 left-4 space-y-2">
+                    {% if coffee.is_fresh %}
+                    <div class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                        <i class="fas fa-leaf mr-1"></i>ສົດໃໝ່
+                    </div>
+                    {% endif %}
+                    
+                    {% if coffee.stock_quantity < 10 %}
+                    <div class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                        <i class="fas fa-exclamation-triangle mr-1"></i>ເຫຼືອໜ້ອຍ
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <!-- Rating Badge -->
+                {% if avg_rating > 0 %}
+                <div class="absolute top-4 right-4 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-sm font-semibold">
+                    <i class="fas fa-star mr-1"></i>{{ avg_rating|floatformat:1 }}
+                </div>
+                {% endif %}
+            </div>
+            
+            <!-- Thumbnail Gallery -->
+            <div class="grid grid-cols-4 gap-2">
+                <!-- Main product image thumbnail -->
+                {% if coffee.images %}
+                <div class="aspect-square bg-amber-100 rounded-lg overflow-hidden cursor-pointer hover:ring-2 hover:ring-amber-500 transition"
+                     :class="{ 'ring-2 ring-amber-600': activeImage === '{{ coffee.images.url }}' }"
+                     @click="setActiveImage('{{ coffee.images.url }}')">
+                    <img src="{{ coffee.images.url }}" 
+                         alt="{{ coffee.name }}"
+                         class="w-full h-full object-cover">
+                </div>
+                {% endif %}
+                
+                <!-- Gallery images thumbnails -->
+                {% for gallery_image in coffee.gallery_images.all %}
+                <div class="aspect-square bg-amber-100 rounded-lg overflow-hidden cursor-pointer hover:ring-2 hover:ring-amber-500 transition"
+                     :class="{ 'ring-2 ring-amber-600': activeImage === '{{ gallery_image.image.url }}' }"
+                     @click="setActiveImage('{{ gallery_image.image.url }}')">
+                    <img src="{{ gallery_image.image.url }}" 
+                         alt="{{ gallery_image.alt_text|default:coffee.name }}"
+                         class="w-full h-full object-cover">
+                </div>
+                {% endfor %}
+                
+                <!-- Calculate remaining slots and fill with placeholders -->
+                {% with total_images=coffee.gallery_images.count %}
+                    {% if coffee.images %}
+                        {% with used_slots=total_images|add:1 %}
+                            {% if used_slots < 4 %}
+                                {% for i in "123"|slice:":3" %}
+                                    {% if forloop.counter <= 4|add:used_slots %}
+                                    <div class="aspect-square bg-gray-100 rounded-lg flex items-center justify-center opacity-50">
+                                        <i class="fas fa-plus text-gray-400 text-xl"></i>
+                                    </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                    {% else %}
+                        {% if total_images < 4 %}
+                            {% for i in "1234"|slice:":4" %}
+                                {% if forloop.counter <= 4 %}
+                                <div class="aspect-square bg-gray-100 rounded-lg flex items-center justify-center opacity-50">
+                                    <i class="fas fa-plus text-gray-400 text-xl"></i>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+        
+        <!-- Coffee Details -->
+        <div class="space-y-6">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-900 mb-2">{{ coffee.name }}</h1>
+                <p class="text-lg text-gray-600">{{ coffee.coffee_bean.name }} ({{ coffee.coffee_bean.get_origin_display }})</p>
+            </div>
+            
+            <!-- Rating -->
+            <div class="flex items-center space-x-4">
+                <div class="flex items-center">
+                    {% for i in "12345" %}
+                        {% if forloop.counter <= avg_rating %}
+                        <i class="fas fa-star text-yellow-400"></i>
+                        {% else %}
+                        <i class="far fa-star text-gray-300"></i>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <span class="text-gray-600">{{ avg_rating|floatformat:1 }}/5.0 ({{ review_count }} ຣີວິວ)</span>
+            </div>
+            
+            <!-- Price -->
+            <div class="border-t border-gray-200 pt-6">
+                <div class="flex items-baseline space-x-4">
+                    <span class="text-4xl font-bold text-amber-600">{{ coffee.price|intcomma }} LAK</span>
+                    <span class="text-gray-500">{{ coffee.weight }}{{ coffee.weight_unit }}</span>
+                </div>
+                <p class="text-sm text-gray-500 mt-1">{{ coffee.price_per_unit|intcomma }} LAK/100g</p>
+            </div>
+            
+            <!-- Specifications -->
+            <div class="border-t border-gray-200 pt-6">
+                <h3 class="text-lg font-semibold mb-4">ລາຍລະອຽດຜະລິດຕະພັນ</h3>
+                <div class="grid grid-cols-2 gap-4 text-sm">
+                    <div>
+                        <span class="text-gray-600">ລະດັບການຄົ່ວ:</span>
+                        <p class="font-medium">{{ coffee.roast_level }}</p>
+                    </div>
+                    <div>
+                        <span class="text-gray-600">ປະເພດການບົດ:</span>
+                        <p class="font-medium">{{ coffee.get_grind_type_display }}</p>
+                    </div>
+                    <div>
+                        <span class="text-gray-600">ປະເທດຕົ້ນກຳເນີດ:</span>
+                        <p class="font-medium">{{ coffee.coffee_bean.country }}</p>
+                    </div>
+                    {% if coffee.coffee_bean.region %}
+                    <div>
+                        <span class="text-gray-600">ພາກພື້ນ:</span>
+                        <p class="font-medium">{{ coffee.coffee_bean.region }}</p>
+                    </div>
+                    {% endif %}
+                    {% if coffee.coffee_bean.altitude %}
+                    <div>
+                        <span class="text-gray-600">ຄວາມສູງ:</span>
+                        <p class="font-medium">{{ coffee.coffee_bean.altitude }} ແມັດ</p>
+                    </div>
+                    {% endif %}
+                    <div>
+                        <span class="text-gray-600">ຈຳນວນໃນສະຕັອກ:</span>
+                        <p class="font-medium {% if coffee.stock_quantity < 10 %}text-red-600{% endif %}">
+                            {{ coffee.stock_quantity }} ຖົງ
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Categories -->
+            {% if coffee.categories.exists %}
+            <div class="border-t border-gray-200 pt-6">
+                <h3 class="text-lg font-semibold mb-4">ໝວດໝູ່</h3>
+                <div class="flex flex-wrap gap-2">
+                    {% for category in coffee.categories.all %}
+                    <span class="bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-sm">
+                        {{ category.name }}
+                    </span>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            
+            <!-- Flavor Profile -->
+            <div class="border-t border-gray-200 pt-6">
+                <h3 class="text-lg font-semibold mb-4">ລົດຊາດແລະກິ່ນ</h3>
+                {% if coffee.coffee_bean.flavor_notes %}
+                <p class="text-gray-700 mb-4">{{ coffee.coffee_bean.flavor_notes }}</p>
+                {% endif %}
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <span class="text-gray-600 text-sm">ຄວາມສົ້ມ</span>
+                        <div class="flex items-center mt-1">
+                            {% for i in "12345" %}
+                                {% if forloop.counter <= coffee.coffee_bean.acidity_level %}
+                                <div class="w-4 h-4 bg-amber-400 rounded-full mr-1"></div>
+                                {% else %}
+                                <div class="w-4 h-4 bg-gray-200 rounded-full mr-1"></div>
+                                {% endif %}
+                            {% endfor %}
+                            <span class="ml-2 text-sm text-gray-600">{{ coffee.coffee_bean.acidity_level }}/5</span>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-gray-600 text-sm">ຄວາມເຂັ້ມຂຸ້ນ</span>
+                        <div class="flex items-center mt-1">
+                            {% for i in "12345" %}
+                                {% if forloop.counter <= coffee.coffee_bean.body_level %}
+                                <div class="w-4 h-4 bg-amber-600 rounded-full mr-1"></div>
+                                {% else %}
+                                <div class="w-4 h-4 bg-gray-200 rounded-full mr-1"></div>
+                                {% endif %}
+                            {% endfor %}
+                            <span class="ml-2 text-sm text-gray-600">{{ coffee.coffee_bean.body_level }}/5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Actions -->
+            <div class="border-t border-gray-200 pt-6 space-y-4">
+    
+                
+                <div class="flex space-x-4 text-sm">
+                    <button class="flex items-center text-gray-600 hover:text-amber-600 transition"
+                            onclick="shareProduct()">
+                        <i class="fas fa-share-alt mr-1"></i>ແຊຣ໌
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Tabs -->
+    <div x-data="{ activeTab: 'description' }" class="mb-12">
+        <div class="border-b border-gray-200">
+            <nav class="flex space-x-8">
+                <button @click="activeTab = 'description'" 
+                        :class="activeTab === 'description' ? 'border-amber-500 text-amber-600' : 'border-transparent text-gray-500 hover:text-gray-700'"
+                        class="py-2 px-1 border-b-2 font-medium text-sm transition">
+                    ຄຳອະທິບາຍ
+                </button>
+                <button @click="activeTab = 'brewing'" 
+                        :class="activeTab === 'brewing' ? 'border-amber-500 text-amber-600' : 'border-transparent text-gray-500 hover:text-gray-700'"
+                        class="py-2 px-1 border-b-2 font-medium text-sm transition">
+                    ວິທີການຊົງ
+                </button>
+                <button @click="activeTab = 'reviews'" 
+                        :class="activeTab === 'reviews' ? 'border-amber-500 text-amber-600' : 'border-transparent text-gray-500 hover:text-gray-700'"
+                        class="py-2 px-1 border-b-2 font-medium text-sm transition">
+                    ຣີວິວ ({{ review_count }})
+                </button>
+            </nav>
+        </div>
+        
+        <div class="mt-6">
+            <!-- Description Tab -->
+            <div x-show="activeTab === 'description'" class="prose max-w-none">
+                {% if coffee.description %}
+                <div class="text-gray-700">{{ coffee.description|linebreaks }}</div>
+                {% else %}
+                <div class="text-center py-8">
+                    <i class="fas fa-file-alt text-4xl text-gray-300 mb-4"></i>
+                    <p class="text-gray-500">ບໍ່ມີຄຳອະທິບາຍສຳລັບຜະລິດຕະພັນນີ້</p>
+                </div>
+                {% endif %}
+            </div>
+            
+            <!-- Brewing Tab -->
+            <div x-show="activeTab === 'brewing'" class="prose max-w-none">
+                {% if coffee.brewing_method %}
+                <div class="text-gray-700">{{ coffee.brewing_method|linebreaks }}</div>
+                {% else %}
+                <div class="bg-amber-50 p-6 rounded-lg">
+                    <h4 class="font-semibold mb-4">ຄຳແນະນຳທົ່ວໄປສຳລັບການຊົງກາເຟ</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h5 class="font-medium text-amber-800 mb-2">ສຳລັບການຊົງແບບດ້ຽງ (Drip)</h5>
+                            <ul class="space-y-1 text-gray-700 text-sm">
+                                <li>• ອັດຕາສ່ວນ: 1:15-1:17</li>
+                                <li>• ອຸນຫະພູມ: 90-95°C</li>
+                                <li>• ເວລາ: 4-6 ນາທີ</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 class="font-medium text-amber-800 mb-2">ສຳລັບເອສເປຣເຊົ</h5>
+                            <ul class="space-y-1 text-gray-700 text-sm">
+                                <li>• ອັດຕາສ່ວນ: 1:2</li>
+                                <li>• ອຸນຫະພູມ: 90-96°C</li>
+                                <li>• ເວລາ: 25-30 ວິນາທີ</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-amber-200">
+                        <p class="text-sm text-gray-600">
+                            <i class="fas fa-lightbulb text-amber-500 mr-1"></i>
+                            ແນະນຳໃຫ້ໃຊ້ນ້ຳສະອາດຄຸນນະພາບດີ ແລະ ບົດກາເຟໃໝ່ໆ ກ່ອນການຊົງ
+                        </p>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            
+            <!-- Reviews Tab -->
+            <div x-show="activeTab === 'reviews'">
+                
+                <!-- Add Review Form -->
+                <div class="bg-gray-50 p-6 rounded-lg mb-8">
+                    <h4 class="font-semibold mb-4">ຂຽນຣີວິວ</h4>
+                    <form method="POST" action="{% url 'add_review' coffee.slug %}" class="space-y-4">
+                        {% csrf_token %}
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">ຊື່ຂອງທ່ານ</label>
+                                <input type="text" name="reviewer_name" required
+                                       class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">ຄະແນນ</label>
+                                <select name="rating" required
+                                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
+                                    <option value="">ເລືອກຄະແນນ</option>
+                                    <option value="5">5 ດາວ - ຢອດຢ້ຽມ</option>
+                                    <option value="4">4 ດາວ - ດີຫຼາຍ</option>
+                                    <option value="3">3 ດາວ - ດີ</option>
+                                    <option value="2">2 ດາວ - ພໍດີ</option>
+                                    <option value="1">1 ດາວ - ພໍໃຊ້</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">ຄຳເຫັນ</label>
+                            <textarea name="comment" rows="4" required
+                                      placeholder="ບອກເລົ່າປະສົບການການດື່ມກາເຟນີ້..."
+                                      class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-amber-500 focus:border-amber-500"></textarea>
+                        </div>
+                        <button type="submit" 
+                                class="bg-amber-600 text-white px-6 py-2 rounded-lg hover:bg-amber-700 transition">
+                            ສົ່ງຣີວິວ
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Reviews List -->
+                <div class="space-y-6">
+                    {% for review in reviews %}
+                    <div class="border-b border-gray-200 pb-6">
+                        <div class="flex items-start justify-between mb-3">
+                            <div>
+                                <h5 class="font-semibold">{{ review.reviewer_name }}</h5>
+                                <div class="flex items-center mt-1">
+                                    {% for i in "12345" %}
+                                        {% if forloop.counter <= review.rating %}
+                                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                        {% else %}
+                                        <i class="far fa-star text-gray-300 text-sm"></i>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <span class="ml-2 text-sm text-gray-600">{{ review.rating }}/5</span>
+                                </div>
+                            </div>
+                            <span class="text-sm text-gray-500">{{ review.created_at|date:"d M Y" }}</span>
+                        </div>
+                        <p class="text-gray-700">{{ review.comment }}</p>
+                    </div>
+                    {% empty %}
+                    <div class="text-center py-8">
+                        <i class="fas fa-comments text-4xl text-gray-300 mb-4"></i>
+                        <p class="text-gray-500">ຍັງບໍ່ມີຣີວິວສຳລັບສິນຄ້ານີ້</p>
+                        <p class="text-gray-400 text-sm">ເປັນຄົນທຳອິດທີ່ໃຫ້ຣີວິວ!</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Similar Coffees -->
+    {% if similar_coffees %}
+    <div class="border-t border-gray-200 pt-12">
+        <h3 class="text-2xl font-bold text-gray-900 mb-8">ກາເຟທີ່ຄ້າຍຄືກັນ</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {% for similar_coffee in similar_coffees %}
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                <div class="h-40 bg-gradient-to-br from-amber-200 to-amber-400 flex items-center justify-center overflow-hidden">
+                    {% if similar_coffee.images %}
+                        <img src="{{ similar_coffee.images.url }}" 
+                             alt="{{ similar_coffee.name }}"
+                             class="w-full h-full object-cover">
+                    {% else %}
+                        <i class="fas fa-coffee text-4xl text-amber-800 opacity-30"></i>
+                    {% endif %}
+                </div>
+                <div class="p-4">
+                    <h4 class="font-semibold mb-2 line-clamp-2">{{ similar_coffee.name }}</h4>
+                    <p class="text-sm text-gray-600 mb-2">{{ similar_coffee.coffee_bean.name }}</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-lg font-bold text-amber-600">₭{{ similar_coffee.price|floatformat:0 }}</span>
+                        <a href="{% url 'coffee_detail' similar_coffee.pk %}" 
+                           class="text-amber-600 hover:text-amber-700 text-sm font-medium">
+                            ເບິ່ງລາຍລະອຽດ
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+// Alpine.js Image Gallery Component
+function imageGallery() {
+    return {
+        activeImage: {% if coffee.images %}'{{ coffee.images.url }}'{% else %}null{% endif %},
+        
+        setActiveImage(imageUrl) {
+            this.activeImage = imageUrl;
+            console.log('Image changed to:', imageUrl);
+        }
+    }
+}
+
+// Share functionality
+function shareProduct() {
+    if (navigator.share) {
+        navigator.share({
+            title: '{{ coffee.name }}',
+            text: '{{ coffee.description|truncatewords:20|default:"Check out this coffee!" }}',
+            url: window.location.href
+        }).catch(console.error);
+    } else {
+        // Fallback to copying URL
+        navigator.clipboard.writeText(window.location.href).then(() => {
+            alert('ລິ້ງໄດ້ຖືກຄັດລອກແລ້ວ!');
+        }).catch(() => {
+            alert('ບໍ່ສາມາດຄັດລອກລິ້ງໄດ້');
+        });
+    }
+}
+
+// Compare functionality placeholder
+function toggleCompare(coffeeId) {
+    console.log('Toggle compare for coffee:', coffeeId);
+    // Implement your compare logic here
+}
+</script>
+{% endblock %}

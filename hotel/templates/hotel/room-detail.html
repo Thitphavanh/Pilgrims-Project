@@ -1,0 +1,701 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load humanize %}
+
+{% block title %}{{ room.room_type.name }} - Room {{ room.room_number }} - Hotel{% endblock %}
+
+{% block extra_css %}
+<style>
+    .room-gallery {
+        position: relative;
+    }
+    
+    .amenity-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 0.75rem;
+    }
+    
+    .room-feature-card:hover {
+        transform: translateY(-2px);
+        transition: all 0.3s ease;
+    }
+    
+    .booking-card {
+        position: sticky;
+        top: 100px;
+    }
+    
+    .price-breakdown {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+    
+    .gallery-thumbnail {
+        transition: all 0.3s ease;
+    }
+    
+    .gallery-thumbnail:hover {
+        transform: scale(1.05);
+    }
+    
+    .gallery-thumbnail.active {
+        border: 3px solid #dabc94;
+    }
+    
+
+    .room-feature-card {
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .room-feature-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .amenity-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 0.75rem;
+        transition: all 0.3s ease;
+    }
+    
+    .room-feature-card:hover .amenity-icon {
+        transform: scale(1.1);
+    }
+</style>
+
+{% endblock %}
+
+{% block content %}
+<div class="bg-gray-50 dark:bg-neutral-dark min-h-screen">
+    
+    <!-- Breadcrumb -->
+    <nav class="bg-white dark:bg-primary-dark-dark shadow-sm">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <ol class="flex items-center space-x-2 text-sm">
+                <li><a href="{% url 'home-page' %}" class="text-primary-light dark:text-primary-dark hover:text-secondary-light">Home</a></li>
+                <li class="text-gray-400">/</li>
+                <li><a href="{% url 'rooms-list-page' %}" class="text-primary-light dark:text-primary-dark hover:text-secondary-light">Rooms</a></li>
+                <li class="text-gray-400">/</li>
+                <li class="text-gray-600 dark:text-gray-300">{{ room.room_type.name }}</li>
+            </ol>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Main Content -->
+            <div class="lg:col-span-2 space-y-8">
+                
+                <!-- Room Header -->
+                <!-- <div class="bg-white dark:bg-primary-dark-dark rounded-xl shadow-lg p-6">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                        <div>
+                            <h1 class="text-3xl font-playfair font-bold text-primary-light dark:text-white mb-2">
+                                {{ room.room_type.name }}
+                            </h1>
+                            <div class="flex items-center space-x-4 text-gray-600 dark:text-gray-300">
+                                <span class="flex items-center">
+                                    <i class="fas fa-door-open mr-2"></i>
+                                    Room {{ room.room_number }}
+                                </span>
+                                <span class="flex items-center">
+                                    <i class="fas fa-building mr-2"></i>
+                                    Floor {{ room.floor }}
+                                </span>
+                                <span class="flex items-center">
+                                    <i class="fas fa-users mr-2"></i>
+                                    Up to {{ room.room_type.capacity }} guests
+                                </span>
+                            </div>
+                        </div>
+                        
+                       
+                        <div class="mt-4 md:mt-0">
+                            {% if room.is_available %}
+                            <span class="inline-flex items-center bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-2 rounded-full text-sm font-medium">
+                                <i class="fas fa-check-circle mr-2"></i>
+                                Available
+                            </span>
+                            {% else %}
+                            <span class="inline-flex items-center bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 px-3 py-2 rounded-full text-sm font-medium">
+                                <i class="fas fa-times-circle mr-2"></i>
+                                Not Available
+                            </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                        {{ room.room_type.description }}
+                    </p>
+                </div> -->
+
+                <!-- Room Gallery -->
+                <!-- Room Gallery -->
+                <div class="bg-white dark:bg-primary-dark-dark rounded-xl shadow-lg overflow-hidden">
+                    <div class="room-gallery">
+                        <!-- Main Image -->
+                        <div class="relative h-96 overflow-hidden" id="mainImageContainer">
+                            {% if primary_image %}
+                            <img src="{{ primary_image.image.url }}" 
+                                alt="{{ primary_image.alt_text|default:room.room_type.name }}" 
+                                id="mainImage"
+                                class="w-full h-full object-cover">
+                            {% elif room.image %}
+                            <img src="{{ room.image.url }}" 
+                                alt="{{ room.room_type.name }}" 
+                                id="mainImage"
+                                class="w-full h-full object-cover">
+                            {% else %}
+                            <div class="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center">
+                                <div class="text-center">
+                                    <i class="fas fa-bed text-6xl text-gray-400 dark:text-gray-500 mb-4"></i>
+                                    <p class="text-gray-500 dark:text-gray-400">Room Image Coming Soon</p>
+                                </div>
+                            </div>
+                            {% endif %}
+                            
+                            <!-- Image Navigation -->
+                            {% if room_images.count > 1 or room.image and room_images.count > 0 %}
+                            <div class="absolute inset-0 flex items-center justify-between p-4">
+                                <button onclick="previousImage()" class="bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button onclick="nextImage()" class="bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                            {% endif %}
+                            
+                            <!-- Image Counter -->
+                            {% if room_images.count > 1 or room.image and room_images.count > 0 %}
+                            <div class="absolute bottom-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm">
+                                <span id="imageCounter">1</span> / <span id="totalImages">{{ room_images.count|default:1 }}</span>
+                            </div>
+                            {% endif %}
+                        </div>
+                        
+                        <!-- Thumbnail Gallery -->
+                        {% if room_images.count > 1 or room.image and room_images.count > 0 %}
+                        <div class="p-4">
+                            <div class="grid grid-cols-4 md:grid-cols-6 gap-2" id="thumbnailGallery">
+                                
+                                <!-- Room Images from RoomImage model -->
+                                {% for image in room_images %}
+                                <div class="gallery-thumbnail {% if forloop.first %}active{% endif %} cursor-pointer" 
+                                    onclick="setMainImage('{{ image.image.url }}', '{{ image.alt_text|default:room.room_type.name }}', {{ forloop.counter0 }}, this)">
+                                    <img src="{{ image.image.url }}" 
+                                        alt="{{ image.alt_text|default:'Room view'|add:' '|add:forloop.counter }}" 
+                                        class="w-full h-16 object-cover rounded-lg">
+                                    {% if image.is_primary %}
+                                    <div class="absolute top-1 right-1 bg-primary-light text-white text-xs px-1 rounded">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                {% endfor %}
+                                
+                                <!-- Fallback to single room.image if no RoomImages exist -->
+                                {% if not room_images.exists and room.image %}
+                                <div class="gallery-thumbnail active cursor-pointer" 
+                                    onclick="setMainImage('{{ room.image.url }}', '{{ room.room_type.name }}', 0, this)">
+                                    <img src="{{ room.image.url }}" 
+                                        alt="Room view" 
+                                        class="w-full h-16 object-cover rounded-lg">
+                                </div>
+                                {% endif %}
+                                
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+
+    
+                <!-- Room Features & Amenities -->
+                <div class="bg-white dark:bg-primary-dark-dark rounded-xl shadow-lg p-6">
+                    <h2 class="text-2xl font-playfair font-bold text-primary-light dark:text-white mb-6">ຄຸນສົມບັດ ແລະ ສິ່ງອໍານວຍຄວາມສະດວກຂອງຫ້ອງ</h2>
+                    
+                    {% if room_amenities_data %}
+                        <!-- Premium Amenities Section -->
+                        {% if premium_amenities_data %}
+                        <div class="mb-8">
+                            <h3 class="text-lg font-semibold text-primary-light dark:text-primary-dark mb-4 flex items-center">
+                                <i class="fas fa-crown mr-2"></i>
+                                Premium Features
+                            </h3>
+                            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                                {% for amenity_data in premium_amenities_data %}
+                                <div class="room-feature-card text-center p-4 rounded-lg bg-gradient-to-br from-{{ amenity_data.amenity.icon_color }}-50 to-{{ amenity_data.amenity.icon_color }}-100 dark:from-{{ amenity_data.amenity.icon_color }}-900 dark:to-{{ amenity_data.amenity.icon_color }}-800 border border-{{ amenity_data.amenity.icon_color }}-200 dark:border-{{ amenity_data.amenity.icon_color }}-700">
+                                    <div class="amenity-icon bg-{{ amenity_data.amenity.icon_color }}-100 dark:bg-{{ amenity_data.amenity.icon_color }}-900 text-{{ amenity_data.amenity.icon_color }}-600 dark:text-{{ amenity_data.amenity.icon_color }}-300 relative">
+                                        <i class="{{ amenity_data.amenity.icon }} text-xl"></i>
+                                        <div class="absolute -top-1 -right-1 w-4 h-4 bg-yellow-400 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-star text-xs text-yellow-800"></i>
+                                        </div>
+                                    </div>
+                                    <h4 class="font-semibold text-gray-800 dark:text-gray-200 mb-1">{{ amenity_data.amenity.name }}</h4>
+                                    <p class="text-xs text-gray-600 dark:text-gray-400">
+                                        {{ amenity_data.description }}
+                                    </p>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+                        
+                        <!-- Standard Amenities Section -->
+                        {% if standard_amenities_data %}
+                        <div>
+                            {% if premium_amenities_data %}
+                            <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4 flex items-center">
+                                <i class="fas fa-check-circle mr-2"></i>
+                                Standard Features
+                            </h3>
+                            {% endif %}
+                            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                                {% for amenity_data in standard_amenities_data %}
+                                <div class="room-feature-card text-center p-4 rounded-lg bg-gray-50 dark:bg-gray-800 hover:bg-{{ amenity_data.amenity.icon_color }}-50 dark:hover:bg-{{ amenity_data.amenity.icon_color }}-900 transition-colors duration-300">
+                                    <div class="amenity-icon bg-{{ amenity_data.amenity.icon_color }}-100 dark:bg-{{ amenity_data.amenity.icon_color }}-900 text-{{ amenity_data.amenity.icon_color }}-600 dark:text-{{ amenity_data.amenity.icon_color }}-300">
+                                        <i class="{{ amenity_data.amenity.icon }} text-xl"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-gray-800 dark:text-gray-200 mb-1">{{ amenity_data.amenity.name }}</h4>
+                                    <p class="text-xs text-gray-600 dark:text-gray-400">
+                                        {{ amenity_data.description }}
+                                    </p>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+                        
+                        <!-- Amenities Summary -->
+                        <div class="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400">
+                                <span>
+                                    <i class="fas fa-list-check mr-1"></i>
+                                    {{ room_amenities_data|length }} total amenities
+                                </span>
+                                {% if premium_amenities_data %}
+                                <span class="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-2 py-1 rounded-full text-xs">
+                                    <i class="fas fa-crown mr-1"></i>
+                                    {{ premium_amenities_data|length }} premium feature{{ premium_amenities_data|length|pluralize }}
+                                </span>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                    {% else %}
+                        <!-- Fallback for rooms without amenities -->
+                        <div class="text-center py-8">
+                            <i class="fas fa-info-circle text-4xl text-gray-400 dark:text-gray-500 mb-4"></i>
+                            <p class="text-gray-600 dark:text-gray-400">Amenity information will be updated soon.</p>
+                        </div>
+                    {% endif %}
+                </div>
+
+
+                
+
+                <!-- Room Policies -->
+                <!-- <div class="bg-white dark:bg-primary-dark-dark rounded-xl shadow-lg p-6">
+                    <h2 class="text-2xl font-playfair font-bold text-primary-light dark:text-white mb-6">Room Policies</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3 flex items-center">
+                                <i class="fas fa-clock text-primary-light dark:text-primary-dark mr-2"></i>
+                                Check-in & Check-out
+                            </h3>
+                            <ul class="space-y-2 text-gray-600 dark:text-gray-300 text-sm">
+                                <li class="flex items-center">
+                                    <i class="fas fa-sign-in-alt text-green-500 mr-2"></i>
+                                    Check-in: 3:00 PM onwards
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-sign-out-alt text-red-500 mr-2"></i>
+                                    Check-out: Until 11:00 AM
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-id-card text-blue-500 mr-2"></i>
+                                    Valid ID required
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3 flex items-center">
+                                <i class="fas fa-ban text-primary-light dark:text-primary-dark mr-2"></i>
+                                Restrictions
+                            </h3>
+                            <ul class="space-y-2 text-gray-600 dark:text-gray-300 text-sm">
+                                <li class="flex items-center">
+                                    <i class="fas fa-smoking-ban text-red-500 mr-2"></i>
+                                    Non-smoking room
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-paw text-orange-500 mr-2"></i>
+                                    Pets allowed (extra charge)
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-volume-down text-blue-500 mr-2"></i>
+                                    Quiet hours: 10 PM - 7 AM
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div> -->
+
+                <!-- Related Hotels -->
+                {% if related_hotels %}
+                <div class="bg-white dark:bg-primary-dark-dark rounded-xl shadow-lg p-6">
+                    <h2 class="text-2xl font-playfair font-bold text-primary-light dark:text-white mb-6">Related Properties</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {% for hotel in related_hotels %}
+                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:shadow-md transition-all">
+                            <div class="flex items-start space-x-4">
+                                {% if hotel.image %}
+                                <img src="{{ hotel.image.url }}" 
+                                     alt="{{ hotel.name }}" 
+                                     class="w-20 h-20 object-cover rounded-lg">
+                                {% else %}
+                                <div class="w-20 h-20 bg-gray-200 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-building text-gray-400"></i>
+                                </div>
+                                {% endif %}
+                                
+                                <div class="flex-1">
+                                    <h3 class="font-semibold text-gray-800 dark:text-gray-200 mb-1">{{ hotel.name }}</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">{{ hotel.description|truncatewords:10 }}</p>
+                                    <a href="#" class="text-primary-light dark:text-primary-dark text-sm hover:underline">
+                                        View Details <i class="fas fa-arrow-right ml-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Booking Sidebar -->
+            <div class="lg:col-span-1">
+                <div class="booking-card bg-white dark:bg-primary-dark-dark rounded-xl shadow-lg p-6 space-y-6">
+                    
+                    <!-- Price Display -->
+                    <div class="text-center border-b border-gray-200 dark:border-gray-700 pb-6">
+                        <div class="text-3xl font-bold text-primary-light dark:text-primary-dark mb-2">
+                            {{ room.room_type.price_per_night|intcomma }} LAK
+                        </div>
+                        <div class="text-gray-600 dark:text-gray-300 text-sm">per night</div>
+                        <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Taxes and fees included</div>
+                    </div>
+
+                    <div class="text-center border-b border-gray-200 dark:border-gray-700 pb-6">
+                        <div class="text-3xl font-bold text-primary-light dark:text-primary-dark mb-2">
+                            {{ room.room_type.name }}
+                        </div>
+                        <div class="text-gray-600 dark:text-gray-300 text-sm"> <i class="fas fa-door-open mr-2"></i> Room {{ room.room_number }}</div>
+                        <div class="text-xs text-gray-500 dark:text-gray-400 mt-1"> <i class="fas fa-building mr-2"></i> Floor {{ room.floor }}</div>
+                        <div class="text-xs text-gray-500 dark:text-gray-400 mt-1"> <i class="fas fa-users mr-2"></i> Up to {{ room.room_type.capacity }} guests</div>
+                    </div>
+
+                    <div class="text-center border-b border-gray-200 dark:border-gray-700 pb-6">
+                        <div class="text-3xl font-bold text-primary-light dark:text-primary-dark mb-2">
+                            ນະໂຍບາຍຂອງຫ້ອງ
+                        </div>
+                        <div class="text-lg font-semibold text-gray-800 dark:text-gray-200"> <i class="fas fa-clock text-primary-light dark:text-primary-dark mr-2"></i>
+                            Check-in & Check-out
+                        </div>
+                        <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">  <i class="fas fa-sign-in-alt text-green-500 mr-2"></i>
+                            Check-in: 3:00 PM onwards
+                        </div>
+                        <div class="text-xs text-gray-500 dark:text-gray-400 mt-1"> <i class="fas fa-sign-out-alt text-red-500 mr-2"></i>
+                            Check-out: Until 11:00 AM
+                        </div>
+                        <div class="text-xs text-gray-500 dark:text-gray-400 mt-1"> <i class="fas fa-id-card text-blue-500 mr-2"></i>
+                            Valid ID required
+                        </div>
+
+                        <div class="text-lg font-semibold text-gray-800 dark:text-gray-200"> <i class="fas fa-ban text-primary-light dark:text-primary-dark mr-2"></i>
+                            Restrictions
+                        </div>
+                        <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">   <i class="fas fa-smoking-ban text-red-500 mr-2"></i>
+                            Non-smoking room
+                        </div>
+                        <div class="text-xs text-gray-500 dark:text-gray-400 mt-1"> <i class="fas fa-paw text-orange-500 mr-2"></i>
+                            Pets allowed (extra charge)
+                        </div>
+                        <div class="text-xs text-gray-500 dark:text-gray-400 mt-1"> <i class="fas fa-volume-down text-blue-500 mr-2"></i>
+                            Quiet hours: 10 PM - 7 AM
+                        </div>
+                    </div>
+
+    
+
+                    <!-- Booking Form -->
+                    <form class="space-y-4" method="post" action="">
+                        {% csrf_token %}
+                        
+                        <!-- Check-in Date -->
+                        <!-- <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Check-in Date</label>
+                            <input type="date" 
+                                   name="check_in" 
+                                   required
+                                   class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark focus:border-transparent">
+                        </div> -->
+                        
+                        <!-- Check-out Date -->
+                        <!-- <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Check-out Date</label>
+                            <input type="date" 
+                                   name="check_out" 
+                                   required
+                                   class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark focus:border-transparent">
+                        </div> -->
+                        
+                        <!-- Guests -->
+                        <!-- <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Guests</label>
+                            <select name="guests" 
+                                    class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark focus:border-transparent">
+                                {% for i in "12345"|slice:":"|add:room.room_type %}
+                                <option value="{{ forloop.counter }}">{{ forloop.counter }} guest{{ forloop.counter|pluralize }}</option>
+                                {% endfor %}
+                            </select>
+                        </div> -->
+                        
+                        <!-- Special Requests -->
+                        <!-- <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Special Requests (Optional)</label>
+                            <textarea name="special_requests" 
+                                      rows="3" 
+                                      placeholder="Any special requirements or preferences..."
+                                      class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark focus:border-transparent resize-none"></textarea>
+                        </div> -->
+                        
+                        <!-- Price Breakdown -->
+                        <!-- <div class="price-breakdown rounded-lg p-4 space-y-2">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600 dark:text-gray-400">Room rate (per night)</span>
+                                <span class="font-medium">${{ room.room_type.price_per_night }}</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600 dark:text-gray-400">Service fee</span>
+                                <span class="font-medium">$15</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600 dark:text-gray-400">Taxes</span>
+                                <span class="font-medium">$12</span>
+                            </div>
+                            <hr class="border-gray-300 dark:border-gray-600">
+                            <div class="flex justify-between font-bold text-lg">
+                                <span>Total</span>
+                                <span class="text-primary-light dark:text-primary-dark">${{ room.room_type.price_per_night|add:"27" }}</span>
+                            </div>
+                        </div> -->
+                        
+                        <!-- Book Now Button -->
+                        <!-- {% if room.is_available %}
+                        <button type="submit" 
+                                class="w-full bg-primary-light dark:bg-primary-dark text-white py-3 px-6 rounded-lg hover:bg-secondary-light dark:hover:bg-secondary-dark transition duration-300 font-medium">
+                            <i class="fas fa-calendar-check mr-2"></i>
+                            Book This Room
+                        </button>
+                        {% else %}
+                        <button type="button" 
+                                disabled
+                                class="w-full bg-gray-400 dark:bg-gray-600 text-white py-3 px-6 rounded-lg cursor-not-allowed font-medium">
+                            <i class="fas fa-times-circle mr-2"></i>
+                            Room Not Available
+                        </button>
+                        {% endif %} -->
+                    </form>
+                    
+                    <!-- Contact Info -->
+                    <div class="">
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">Need help with your booking?</p>
+                        <div class="space-y-2">
+                            <a href="tel:+1234567890" class="flex items-center justify-center text-primary-light dark:text-primary-dark hover:text-secondary-light dark:hover:text-secondary-dark text-sm">
+                                <i class="fas fa-phone mr-2"></i>
+                                +1 (234) 567-8900
+                            </a>
+                            <a href="mailto:reservations@hotel.com" class="flex items-center justify-center text-primary-light dark:text-primary-dark hover:text-secondary-light dark:hover:text-secondary-dark text-sm">
+                                <i class="fas fa-envelope mr-2"></i>
+                                reservations@hotel.com
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Updated JavaScript Section -->
+<script>
+    // Gallery functionality with multiple images
+    let currentImageIndex = 0;
+    const images = [
+        {% for image in room_images %}
+        {
+            url: '{{ image.image.url }}',
+            alt: '{{ image.alt_text|default:room.room_type.name|escapejs }}'
+        }{% if not forloop.last %},{% endif %}
+        {% endfor %}
+        {% if not room_images.exists and room.image %}
+        {
+            url: '{{ room.image.url }}',
+            alt: '{{ room.room_type.name|escapejs }}'
+        }
+        {% endif %}
+    ];
+    
+    function setMainImage(imageUrl, altText, index, thumbnail) {
+        const mainImage = document.getElementById('mainImage');
+        mainImage.src = imageUrl;
+        mainImage.alt = altText;
+        
+        // Update current index
+        currentImageIndex = index;
+        
+        // Update counter
+        const counter = document.getElementById('imageCounter');
+        if (counter) {
+            counter.textContent = index + 1;
+        }
+        
+        // Update thumbnail active state
+        document.querySelectorAll('.gallery-thumbnail').forEach(thumb => {
+            thumb.classList.remove('active');
+        });
+        thumbnail.classList.add('active');
+    }
+    
+    function previousImage() {
+        if (images.length > 1) {
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            const image = images[currentImageIndex];
+            document.getElementById('mainImage').src = image.url;
+            document.getElementById('mainImage').alt = image.alt;
+            
+            // Update counter
+            const counter = document.getElementById('imageCounter');
+            if (counter) {
+                counter.textContent = currentImageIndex + 1;
+            }
+            
+            // Update thumbnail active state
+            const thumbnails = document.querySelectorAll('.gallery-thumbnail');
+            thumbnails.forEach(thumb => thumb.classList.remove('active'));
+            if (thumbnails[currentImageIndex]) {
+                thumbnails[currentImageIndex].classList.add('active');
+            }
+        }
+    }
+    
+    function nextImage() {
+        if (images.length > 1) {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            const image = images[currentImageIndex];
+            document.getElementById('mainImage').src = image.url;
+            document.getElementById('mainImage').alt = image.alt;
+            
+            // Update counter
+            const counter = document.getElementById('imageCounter');
+            if (counter) {
+                counter.textContent = currentImageIndex + 1;
+            }
+            
+            // Update thumbnail active state
+            const thumbnails = document.querySelectorAll('.gallery-thumbnail');
+            thumbnails.forEach(thumb => thumb.classList.remove('active'));
+            if (thumbnails[currentImageIndex]) {
+                thumbnails[currentImageIndex].classList.add('active');
+            }
+        }
+    }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowLeft') {
+            previousImage();
+        } else if (e.key === 'ArrowRight') {
+            nextImage();
+        }
+    });
+</script>
+<script>
+    // Gallery functionality
+    let currentImageIndex = 0;
+    const images = [
+        {% if room.image %}'{{ room.image.url }}'{% endif %}
+        // Add more images here as needed
+    ];
+    
+    function setMainImage(imageUrl, thumbnail) {
+        document.getElementById('mainImage').src = imageUrl;
+        
+        // Update thumbnail active state
+        document.querySelectorAll('.gallery-thumbnail').forEach(thumb => {
+            thumb.classList.remove('active');
+        });
+        thumbnail.classList.add('active');
+    }
+    
+    function previousImage() {
+        if (images.length > 1) {
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            document.getElementById('mainImage').src = images[currentImageIndex];
+        }
+    }
+    
+    function nextImage() {
+        if (images.length > 1) {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            document.getElementById('mainImage').src = images[currentImageIndex];
+        }
+    }
+    
+    // Date validation
+    document.addEventListener('DOMContentLoaded', function() {
+        const checkInInput = document.querySelector('input[name="check_in"]');
+        const checkOutInput = document.querySelector('input[name="check_out"]');
+        
+        // Set minimum date to today
+        const today = new Date().toISOString().split('T')[0];
+        checkInInput.min = today;
+        checkOutInput.min = today;
+        
+        // Update check-out minimum when check-in changes
+        checkInInput.addEventListener('change', function() {
+            const checkInDate = new Date(this.value);
+            checkInDate.setDate(checkInDate.getDate() + 1);
+            checkOutInput.min = checkInDate.toISOString().split('T')[0];
+            
+            // Clear check-out if it's before new minimum
+            if (checkOutInput.value && new Date(checkOutInput.value) <= new Date(this.value)) {
+                checkOutInput.value = '';
+            }
+        });
+    });
+</script>
+{% endblock %}

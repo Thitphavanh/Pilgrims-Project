@@ -1,0 +1,620 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Guest Reviews - Project Pilgrims{% endblock %}
+
+{% block extra_css %}
+<style>
+    .review-card {
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+    }
+    
+    .review-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        border-color: #dabc94;
+    }
+    
+    .platform-logo {
+        height: 40px;
+        width: auto;
+        object-fit: contain;
+    }
+    
+    .rating-stars {
+        background: linear-gradient(90deg, #ffc107 0%, #ff8f00 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    .animate-float {
+        animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+    }
+    
+    .gradient-bg {
+        background: linear-gradient(135deg, #dabc94 0%, #c4a676 100%);
+    }
+    
+    .glass-effect {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="relative gradient-bg">
+    <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+    <div class="container mx-auto px-4 py-20 relative z-10">
+        <div class="text-center max-w-4xl mx-auto">
+            <div class="animate-float mb-6">
+                <i class="fas fa-star text-6xl text-white opacity-80"></i>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-serif font-bold text-white leading-tight mb-6">
+                ຄໍາຄິດເຫັນ ແລະ ການຈັດອັນດັບຈາກແຂກ
+            </h1>
+            <p class="text-xl md:text-2xl text-white mb-8 opacity-90">
+                ເບິ່ງວ່າແຂກຂອງພວກເຮົາໄດ້ກ່າວຫຍັງກ່ຽວກັບປະສົບການຂອງພວກເຂົາທີ່ Pilgrims
+            </p>
+            <div class="flex justify-center items-center space-x-4 mb-8">
+                <div class="flex items-center bg-white bg-opacity-20 rounded-full px-6 py-3">
+                    <div class="rating-stars text-2xl mr-3">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="text-white font-bold text-xl">4.8/5</span>
+                </div>
+                <div class="text-white">
+                    <span class="text-lg opacity-80">Based on</span>
+                    <span class="font-bold text-xl">2,847</span>
+                    <span class="text-lg opacity-80">reviews</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Review Platforms Section -->
+<section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-serif font-bold text-primary-dark mb-4">
+                ອ່ານຄໍາວິຈານຂອງພວກເຮົາ
+            </h2>
+            <p class="text-gray-600 text-lg max-w-3xl mx-auto">
+                ບິ່ງວ່າແຂກຂອງພວກເຮົາໄດ້ກ່າວຫຍັງໃນ platforms ການທ່ອງທ່ຽວ ແລະ ການຈອງທີ່ພັກທີ່ໂດ່ງດັງຂອງໂລກ. ຄລິກເຂົ້າໄປທີ່ແຕ່ລະ platforms ເພື່ອອ່ານຄໍາວິຈານ ແລະ ການຈັດອັນດັບແບບລະອຽດ.
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
+            
+            <!-- Agoda Card -->
+            <div class="review-card glass-effect rounded-2xl p-8 text-center cursor-pointer" 
+                 onclick="openReviewPlatform('agoda')">
+                <div class="mb-6">
+                    <img src="https://i.pinimg.com/736x/a2/b0/5d/a2b05d6d5547345a295614f8ebe90c56.jpg" 
+                         alt="Agoda Logo" class="platform-logo mx-auto mb-4">
+                    <h3 class="text-2xl font-bold text-primary-dark">Agoda</h3>
+                </div>
+                
+                <!-- <div class="mb-6">
+                    <div class="rating-stars text-3xl mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="text-2xl font-bold text-primary-dark mb-1">4.7/5</div>
+                    <div class="text-gray-600">Based on 1,234 reviews</div>
+                </div> -->
+                
+                <!-- <div class="space-y-4 mb-6">
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Service</span>
+                        <div class="flex items-center">
+                            <div class="w-20 bg-gray-200 rounded-full h-2 mr-2">
+                                <div class="bg-primary h-2 rounded-full" style="width: 94%"></div>
+                            </div>
+                            <span class="text-sm font-medium">9.4</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Cleanliness</span>
+                        <div class="flex items-center">
+                            <div class="w-20 bg-gray-200 rounded-full h-2 mr-2">
+                                <div class="bg-primary h-2 rounded-full" style="width: 96%"></div>
+                            </div>
+                            <span class="text-sm font-medium">9.6</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Location</span>
+                        <div class="flex items-center">
+                            <div class="w-20 bg-gray-200 rounded-full h-2 mr-2">
+                                <div class="bg-primary h-2 rounded-full" style="width: 92%"></div>
+                            </div>
+                            <span class="text-sm font-medium">9.2</span>
+                        </div>
+                    </div>
+                </div>
+                 -->
+                <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                    <p class="text-gray-700 italic text-sm">
+                        "Exceptional stay with outstanding service. The restaurant exceeded our expectations!"
+                    </p>
+                    <div class="text-xs text-gray-500 mt-2">- Recent Guest Review</div>
+                </div>
+                
+                <button class="w-full bg-primary hover:bg-primary-dark text-white font-medium py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center">
+                    <i class="fas fa-external-link-alt mr-2"></i>
+                    Agoda Reviews
+                </button>
+            </div>
+            
+            <!-- Booking.com Card -->
+            <div class="review-card glass-effect rounded-2xl p-8 text-center cursor-pointer" 
+                 onclick="openReviewPlatform('booking')">
+                <div class="mb-6">
+                    <img src="https://i.pinimg.com/736x/17/dc/f4/17dcf4ba715b51b8c23baeb707c38ad7.jpg" 
+                         alt="Booking.com Logo" class="platform-logo mx-auto mb-4">
+                    <h3 class="text-2xl font-bold text-primary-dark">Booking.com</h3>
+                </div>
+                
+                <!-- <div class="mb-6">
+                    <div class="rating-stars text-3xl mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="text-2xl font-bold text-primary-dark mb-1">4.9/5</div>
+                    <div class="text-gray-600">Based on 896 reviews</div>
+                </div> -->
+<!--                 
+                <div class="space-y-4 mb-6">
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Staff</span>
+                        <div class="flex items-center">
+                            <div class="w-20 bg-gray-200 rounded-full h-2 mr-2">
+                                <div class="bg-primary h-2 rounded-full" style="width: 98%"></div>
+                            </div>
+                            <span class="text-sm font-medium">9.8</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Facilities</span>
+                        <div class="flex items-center">
+                            <div class="w-20 bg-gray-200 rounded-full h-2 mr-2">
+                                <div class="bg-primary h-2 rounded-full" style="width: 95%"></div>
+                            </div>
+                            <span class="text-sm font-medium">9.5</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Comfort</span>
+                        <div class="flex items-center">
+                            <div class="w-20 bg-gray-200 rounded-full h-2 mr-2">
+                                <div class="bg-primary h-2 rounded-full" style="width: 97%"></div>
+                            </div>
+                            <span class="text-sm font-medium">9.7</span>
+                        </div>
+                    </div>
+                </div> -->
+                
+                <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                    <p class="text-gray-700 italic text-sm">
+                        "Beautiful property with amazing dining options. Highly recommend the restaurant!"
+                    </p>
+                    <div class="text-xs text-gray-500 mt-2">- Verified Guest</div>
+                </div>
+                
+                <button class="w-full bg-primary hover:bg-primary-dark text-white font-medium py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center">
+                    <i class="fas fa-external-link-alt mr-2"></i>
+                    Reviews
+                </button>
+            </div>
+            
+            <!-- TripAdvisor Card -->
+            <div class="review-card glass-effect rounded-2xl p-8 text-center cursor-pointer" 
+                 onclick="openReviewPlatform('tripadvisor')">
+                <div class="mb-6">
+                    <img src="https://i.pinimg.com/736x/1e/9c/a2/1e9ca2f9f6d7ad09d565e26c7ad0178c.jpg" 
+                         alt="TripAdvisor Logo" class="platform-logo mx-auto mb-4">
+                    <h3 class="text-2xl font-bold text-primary-dark">TripAdvisor</h3>
+                </div>
+                
+                <!-- <div class="mb-6">
+                    <div class="rating-stars text-3xl mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="text-2xl font-bold text-primary-dark mb-1">4.8/5</div>
+                    <div class="text-gray-600">Based on 717 reviews</div>
+                </div> -->
+<!--                 
+                <div class="space-y-4 mb-6">
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Value</span>
+                        <div class="flex items-center">
+                            <div class="w-20 bg-gray-200 rounded-full h-2 mr-2">
+                                <div class="bg-primary h-2 rounded-full" style="width: 93%"></div>
+                            </div>
+                            <span class="text-sm font-medium">9.3</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Food Quality</span>
+                        <div class="flex items-center">
+                            <div class="w-20 bg-gray-200 rounded-full h-2 mr-2">
+                                <div class="bg-primary h-2 rounded-full" style="width: 96%"></div>
+                            </div>
+                            <span class="text-sm font-medium">9.6</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Atmosphere</span>
+                        <div class="flex items-center">
+                            <div class="w-20 bg-gray-200 rounded-full h-2 mr-2">
+                                <div class="bg-primary h-2 rounded-full" style="width: 94%"></div>
+                            </div>
+                            <span class="text-sm font-medium">9.4</span>
+                        </div>
+                    </div>
+                </div> -->
+                
+                <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                    <p class="text-gray-700 italic text-sm">
+                        "A culinary gem! The international menu is fantastic and the service impeccable."
+                    </p>
+                    <div class="text-xs text-gray-500 mt-2">- TripAdvisor Reviewer</div>
+                </div>
+                
+                <button class="w-full bg-primary hover:bg-primary-dark text-white font-medium py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center">
+                    <i class="fas fa-external-link-alt mr-2"></i>
+                     Reviews
+                </button>
+            </div>
+
+            <!-- Airbnb Card -->
+            <div class="review-card glass-effect rounded-2xl p-8 text-center cursor-pointer" 
+            onclick="openReviewPlatform('airbnb')">
+            <div class="mb-6">
+            <img src="https://a0.muscache.com/airbnb/static/logos/belo-200x200-4d851c5b28f61931bf1df28dd15e60ef.png" 
+                    alt="Airbnb Logo" class="platform-logo mx-auto mb-4">
+            <h3 class="text-2xl font-bold text-primary-dark">Airbnb</h3>
+            </div>
+
+            <!-- <div class="mb-6">
+            <div class="rating-stars text-3xl mb-2">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <div class="text-2xl font-bold text-primary-dark mb-1">4.9/5</div>
+            <div class="text-gray-600">Based on 342 reviews</div>
+            </div> -->
+
+            <!-- <div class="space-y-4 mb-6">
+            <div class="flex justify-between items-center">
+                <span class="text-gray-600">Check-in</span>
+                <div class="flex items-center">
+                    <div class="w-20 bg-gray-200 rounded-full h-2 mr-2">
+                        <div class="bg-primary h-2 rounded-full" style="width: 98%"></div>
+                    </div>
+                    <span class="text-sm font-medium">4.9</span>
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-gray-600">Communication</span>
+                <div class="flex items-center">
+                    <div class="w-20 bg-gray-200 rounded-full h-2 mr-2">
+                        <div class="bg-primary h-2 rounded-full" style="width: 96%"></div>
+                    </div>
+                    <span class="text-sm font-medium">4.8</span>
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-gray-600">Accuracy</span>
+                <div class="flex items-center">
+                    <div class="w-20 bg-gray-200 rounded-full h-2 mr-2">
+                        <div class="bg-primary h-2 rounded-full" style="width: 100%"></div>
+                    </div>
+                    <span class="text-sm font-medium">5.0</span>
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-gray-600">Location</span>
+                <div class="flex items-center">
+                    <div class="w-20 bg-gray-200 rounded-full h-2 mr-2">
+                        <div class="bg-primary h-2 rounded-full" style="width: 94%"></div>
+                    </div>
+                    <span class="text-sm font-medium">4.7</span>
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-gray-600">Value</span>
+                <div class="flex items-center">
+                    <div class="w-20 bg-gray-200 rounded-full h-2 mr-2">
+                        <div class="bg-primary h-2 rounded-full" style="width: 92%"></div>
+                    </div>
+                    <span class="text-sm font-medium">4.6</span>
+                </div>
+            </div>
+            </div> -->
+
+            <div class="bg-gray-50 rounded-lg p-4 mb-6">
+            <p class="text-gray-700 italic text-sm">
+                "Superhost exceeded all expectations! Beautiful property with amazing amenities. The restaurant on-site is world-class!"
+            </p>
+            <div class="text-xs text-gray-500 mt-2">- Verified Guest</div>
+            </div>
+
+
+            <button class="w-full bg-primary hover:bg-primary-dark text-white font-medium py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center">
+            <i class="fas fa-external-link-alt mr-2"></i>
+             Reviews
+            </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Recent Reviews Section -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-serif font-bold text-primary-dark mb-4">Recent Guest Feedback</h2>
+            <p class="text-gray-600 max-w-3xl mx-auto">
+                Here's what our recent guests have been saying across all platforms.
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {% for review in recent_reviews %}
+            <!-- Recent Review {{ forloop.counter }} -->
+            <div class="bg-white p-6 rounded-lg shadow-md border-l-4" 
+                 style="border-left-color: {{ review.platform.brand_color }};">
+                <div class="flex items-center mb-4">
+                    {% if review.platform.logo_url %}
+                    <img src="{{ review.platform.logo_url }}" 
+                         alt="{{ review.platform.display_name }}" class="w-8 h-8 mr-3 object-contain">
+                    {% else %}
+                    <div class="w-8 h-8 mr-3 rounded-full flex items-center justify-center text-white text-xs font-bold"
+                         style="background-color: {{ review.platform.brand_color }};">
+                        {{ review.platform.display_name|first }}
+                    </div>
+                    {% endif %}
+                    
+                    <div class="rating-stars text-yellow-500">
+                        {% for i in review.star_range %}
+                            {% if i <= review.full_stars %}
+                            <i class="fas fa-star"></i>
+                            {% elif i == review.full_stars|add:1 and review.has_half_star %}
+                            <i class="fas fa-star-half-alt"></i>
+                            {% else %}
+                            <i class="far fa-star"></i>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    
+                    {% if review.is_superhost_review %}
+                    <span class="ml-2 bg-gradient-to-r from-pink-500 to-red-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                        <i class="fas fa-medal mr-1"></i>Superhost
+                    </span>
+                    {% endif %}
+                    
+                    {% if review.is_verified %}
+                    <span class="ml-2 bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">
+                        <i class="fas fa-check-circle mr-1"></i>Verified
+                    </span>
+                    {% endif %}
+                </div>
+                
+                <p class="text-gray-700 mb-4 italic">
+                    "{{ review.review_text|truncatewords:25 }}"
+                </p>
+                
+                <div class="flex justify-between items-center">
+                    <div>
+                        <div class="font-medium text-primary-dark">{{ review.reviewer_name }}</div>
+                        <div class="text-sm text-gray-500">{{ review.get_trip_type_display }}</div>
+                    </div>
+                    <div class="text-sm text-gray-500">{{ review.days_ago }}</div>
+                </div>
+                
+                {% if review.helpful_count > 0 %}
+                <div class="mt-3 pt-3 border-t border-gray-100">
+                    <div class="text-xs text-gray-500">
+                        <i class="fas fa-thumbs-up mr-1"></i>{{ review.helpful_count }} found this helpful
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            {% empty %}
+            <!-- No Reviews Fallback -->
+            <div class="col-span-full text-center py-12">
+                <i class="fas fa-comments text-4xl text-gray-300 mb-4"></i>
+                <h3 class="text-xl font-semibold text-gray-700 mb-2">No Recent Reviews</h3>
+                <p class="text-gray-500">Check back soon for guest feedback!</p>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <!-- View All Reviews Button -->
+        {% if recent_reviews %}
+        <div class="text-center mt-12">
+            <a href="{% url 'review-page' %}" 
+               class="inline-flex items-center bg-primary hover:bg-primary-dark text-white font-medium px-8 py-3 rounded-lg transition duration-300">
+                <i class="fas fa-star mr-2"></i>
+                View All Reviews
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Review Statistics Section (Optional) -->
+{% if review_summary %}
+<section class="py-12 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto text-center">
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="text-3xl font-bold text-primary-dark mb-2">{{ review_summary.average_rating }}/5</div>
+                <div class="text-gray-600">Overall Rating</div>
+                <div class="text-sm text-gray-500 mt-1">{{ review_summary.total_reviews }} total reviews</div>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="text-3xl font-bold text-primary-dark mb-2">{{ review_summary.featured_stat_2_value }}</div>
+                <div class="text-gray-600">{{ review_summary.featured_stat_2_label }}</div>
+                <div class="text-sm text-gray-500 mt-1">Across all platforms</div>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="text-3xl font-bold text-primary-dark mb-2">{{ review_summary.featured_stat_3_value }}</div>
+                <div class="text-gray-600">{{ review_summary.featured_stat_3_label }}</div>
+                <div class="text-sm text-gray-500 mt-1">Return customers</div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+
+
+
+
+<!-- Call-to-Action Section -->
+<section class="py-16 bg-primary-dark text-white text-center">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-serif font-bold mb-6">Experience Project Pilgrims</h2>
+        <p class="text-xl mb-8 max-w-3xl mx-auto opacity-90">
+            Join thousands of satisfied guests who have experienced our exceptional hospitality and dining.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+            <a href="/restaurant/" class="inline-block bg-white hover:bg-gray-100 text-primary-dark font-medium px-8 py-4 rounded-md text-lg transition duration-300">
+                <i class="fas fa-utensils mr-2"></i> View Our Restaurant
+            </a>
+            <a href="/reservations/" class="inline-block bg-transparent hover:bg-white hover:text-primary-dark border-2 border-white text-white font-medium px-8 py-4 rounded-md text-lg transition duration-300">
+                <i class="fas fa-calendar-check mr-2"></i> Make a Reservation
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+
+<script>
+    // AJAX function to load more reviews
+    function loadMoreReviews(platform = null, limit = 5) {
+        fetch(`{% url 'review-api-page' %}?action=recent_reviews&platform=${platform || ''}&limit=${limit}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.reviews) {
+                    // Update review display
+                    console.log('Loaded reviews:', data.reviews);
+                    // You can implement dynamic review loading here
+                }
+            })
+            .catch(error => console.error('Error loading reviews:', error));
+    }
+    
+    // Function to mark review as helpful
+    function markHelpful(reviewId) {
+        // Implement AJAX call to mark review as helpful
+        fetch(`{% url 'review-api-page' %}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            },
+            body: JSON.stringify({
+                action: 'mark_helpful',
+                review_id: reviewId
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Update helpful count in UI
+                location.reload(); // Simple reload for now
+            }
+        });
+    }
+    </script>
+<script>
+    
+    function openReviewPlatform(platform) {
+        let url = '';
+        
+        switch(platform) {
+            case 'agoda':
+                // Replace with your actual Agoda property URL
+                url = 'https://www.agoda.com/pilgrims-kitchen-inn/hotel/savannakhet-la.html?countryId=190&finalPriceView=1&isShowMobileAppPrice=false&cid=-1&numberOfBedrooms=&familyMode=false&adults=1&children=0&rooms=1&maxRooms=0&checkIn=2025-07-3&isCalendarCallout=false&childAges=&numberOfGuest=0&missingChildAges=false&travellerType=0&showReviewSubmissionEntry=false&currencyCode=USD&isFreeOccSearch=false&tspTypes=16%2C-1&los=1&searchrequestid=c6c69fb5-8a6f-44a1-a432-dc0418c9a393&ds=eWKzGUSArxNLxVrp';
+                break;
+            case 'booking':
+                // Replace with your actual Booking.com property URL
+                url = 'https://www.booking.com/hotel/la/pilgrim-39-s-kitchen-amp-inn.html?aid=304142&label=gen173nr-1FCBkoggI46AdIM1gEaIEBiAEBmAExuAEHyAEM2AEB6AEB-AECiAIBqAIDuALH65LDBsACAdICJDhjNTU0OWM2LTM0YWMtNDBhNi04ZThkLWExODQwM2YxNGQwY9gCBeACAQ&sid=9b35241d3d42c34c66c1e205f6709641&checkin=2025-07-02&checkout=2025-08-04&dest_id=1668881&dest_type=hotel&dist=0&group_adults=2&group_children=0&hapos=1&hpos=1&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&soh=1&sr_order=popularity&srepoch=1751430651&srpvid=a91a5d5546be220aa7c21290647e010a&type=total&ucfs=1&#no_availability_msg';
+                break;
+            case 'tripadvisor':
+                // Replace with your actual Booking.com property URL
+                url = 'https://www.tripadvisor.com/Restaurant_Review-g811038-d8835073-Reviews-Pilgrim_s_Kitchen_Inn-Savannakhet_Savannakhet_Province.html';
+                break;
+            case 'airbnb':
+                // Replace with your actual Airbnb property URL
+                url = 'https://www.airbnb.com/rooms/your-property-id';
+                break;
+        }
+        
+        if (url) {
+            window.open(url, '_blank');
+        }
+    }
+    
+    // Add scroll animations
+    document.addEventListener('DOMContentLoaded', function() {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Animate review cards on scroll
+        document.querySelectorAll('.review-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    });
+</script>
+{% endblock %}

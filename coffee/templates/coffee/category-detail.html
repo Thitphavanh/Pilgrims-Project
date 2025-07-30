@@ -1,0 +1,256 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ category.name }} - ຮ້ານກາເຟ{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- Breadcrumb -->
+    <nav class="mb-8">
+        <ol class="flex items-center space-x-2 text-sm">
+            <li><a href="{% url 'home-page' %}" class="text-amber-600 hover:text-amber-700">ໜ້າຫຼັກ</a></li>
+            <li class="text-gray-400">/</li>
+            <li><a href="{% url 'coffee_list' %}" class="text-amber-600 hover:text-amber-700">ກາເຟທັງໝົດ</a></li>
+            <li class="text-gray-400">/</li>
+            <li class="text-gray-700">{{ category.name }}</li>
+        </ol>
+    </nav>
+    
+    <!-- Category Header -->
+    <div class="bg-gradient-to-r from-amber-50 to-amber-100 rounded-lg p-8 mb-12">
+        <div class="flex flex-col md:flex-row items-center">
+            <!-- Category Image/Icon -->
+            <div class="w-24 h-24 bg-amber-200 rounded-full flex items-center justify-center mb-6 md:mb-0 md:mr-8 overflow-hidden">
+                {% if category.image %}
+                    <img src="{{ category.image.url }}" 
+                         alt="{{ category.name }}"
+                         class="w-full h-full object-cover rounded-full">
+                {% else %}
+                    <i class="fas fa-coffee text-4xl text-amber-700"></i>
+                {% endif %}
+            </div>
+            
+            <!-- Category Info -->
+            <div class="text-center md:text-left flex-1">
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">{{ category.name }}</h1>
+                
+                {% if category.description %}
+                <p class="text-lg text-gray-700 mb-4 max-w-2xl">{{ category.description }}</p>
+                {% endif %}
+                
+                <div class="flex flex-wrap justify-center md:justify-start gap-4 text-sm">
+                    <span class="bg-white px-4 py-2 rounded-full text-amber-700 font-medium">
+                        <i class="fas fa-box mr-2"></i>{{ coffees.count }} ລາຍການ
+                    </span>
+                    {% if price_range.min_price and price_range.max_price %}
+                    <span class="bg-white px-4 py-2 rounded-full text-amber-700 font-medium">
+                        <i class="fas fa-money-bill-wave mr-2"></i>₭{{ price_range.min_price|floatformat:0 }} - ₭{{ price_range.max_price|floatformat:0 }}
+                    </span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Filter and Sort Bar -->
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 bg-white p-6 rounded-lg shadow-sm">
+        <div class="mb-4 md:mb-0">
+            <h3 class="text-lg font-semibold text-gray-900">ກາເຟໃນໝວດໝູ່ "{{ category.name }}"</h3>
+            <p class="text-gray-600">ພົບ {{ coffees.count }} ລາຍການ</p>
+        </div>
+        
+        <!-- Sort Options -->
+        <div class="flex space-x-4">
+            <select onchange="updateSort(this.value)" class="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
+                <option value="name" {% if current_sort == 'name' %}selected{% endif %}>ເລຽງຕາມຊື່</option>
+                <option value="price_low" {% if current_sort == 'price_low' %}selected{% endif %}>ລາຄາຕ່ຳ-ສູງ</option>
+                <option value="price_high" {% if current_sort == 'price_high' %}selected{% endif %}>ລາຄາສູງ-ຕ່ຳ</option>
+                <option value="newest" {% if current_sort == 'newest' %}selected{% endif %}>ໃໝ່ລ່າສຸດ</option>
+                <option value="rating" {% if current_sort == 'rating' %}selected{% endif %}>ຄະແນນສູງສຸດ</option>
+            </select>
+        </div>
+    </div>
+    
+    <!-- Coffee Grid -->
+    {% if coffees %}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
+        {% for coffee in coffees %}
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
+            <!-- Product Image -->
+            <div class="h-48 bg-gradient-to-br from-amber-200 to-amber-400 flex items-center justify-center relative overflow-hidden">
+                {% if coffee.images %}
+                    <img src="{{ coffee.images.url }}" 
+                         alt="{{ coffee.name }}"
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                {% else %}
+                    <i class="fas fa-coffee text-6xl text-amber-800 opacity-30"></i>
+                {% endif %}
+                
+                <!-- Badges -->
+                <div class="absolute top-2 left-2 space-y-1">
+                    {% if coffee.is_fresh %}
+                    <div class="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-semibold shadow-lg">
+                        <i class="fas fa-leaf mr-1"></i>ສົດໃໝ່
+                    </div>
+                    {% endif %}
+                    
+                    {% if coffee.stock_quantity < 10 %}
+                    <div class="bg-red-500 text-white px-2 py-1 rounded-full text-xs font-semibold shadow-lg">
+                        <i class="fas fa-exclamation-triangle mr-1"></i>ເຫຼືອໜ້ອຍ
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <!-- Quick View Button -->
+                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+                    <a href="{% url 'coffee_detail' coffee.pk %}" 
+                       class="bg-white text-amber-600 px-4 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 font-medium hover:bg-amber-50">
+                        <i class="fas fa-eye mr-2"></i>ເບິ່ງລາຍລະອຽດ
+                    </a>
+                </div>
+            </div>
+            
+            <div class="p-6">
+                <h3 class="text-lg font-semibold mb-2 line-clamp-2 hover:text-amber-600 transition-colors">
+                    <a href="{% url 'coffee_detail' coffee.pk %}">{{ coffee.name }}</a>
+                </h3>
+                
+                <div class="space-y-1 text-sm text-gray-600 mb-3">
+                    <p><i class="fas fa-seedling mr-1 text-green-600"></i>{{ coffee.coffee_bean.name }}</p>
+                    <p><i class="fas fa-fire mr-1 text-orange-500"></i>{{ coffee.roast_level }}</p>
+                    <p><i class="fas fa-weight mr-1 text-blue-500"></i>{{ coffee.weight }}{{ coffee.weight_unit }}</p>
+                </div>
+                
+                <!-- Rating -->
+                {% if coffee.avg_rating %}
+                <div class="flex items-center mb-3">
+                    <div class="flex items-center text-yellow-400 mr-2">
+                        {% for i in "12345" %}
+                            {% if forloop.counter <= coffee.avg_rating|floatformat:0 %}
+                            <i class="fas fa-star text-xs"></i>
+                            {% else %}
+                            <i class="far fa-star text-xs"></i>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <span class="text-xs text-gray-600">{{ coffee.avg_rating|floatformat:1 }} ({{ coffee.reviews.count }})</span>
+                </div>
+                {% endif %}
+                
+                <!-- Price -->
+                <div class="flex justify-between items-center mb-4">
+                    <div>
+                        <span class="text-xl font-bold text-amber-600">₭{{ coffee.price|floatformat:0 }}</span>
+                        <div class="text-xs text-gray-500">₭{{ coffee.price_per_unit|floatformat:0 }}/100g</div>
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="flex space-x-2">
+                    {% if coffee.is_available and coffee.stock_quantity > 0 %}
+                    <button class="flex-1 bg-amber-600 text-white py-2 px-3 rounded-lg hover:bg-amber-700 transition font-medium text-sm">
+                        <i class="fas fa-shopping-cart mr-1"></i>ເພີ່ມໃນຕະກຼ້າ
+                    </button>
+                    {% else %}
+                    <button disabled class="flex-1 bg-gray-400 text-white py-2 px-3 rounded-lg cursor-not-allowed font-medium text-sm">
+                        <i class="fas fa-times mr-1"></i>ຫມົດສະຕັອກ
+                    </button>
+                    {% endif %}
+                    
+                    <button onclick="toggleCompare({{ coffee.id }})" 
+                            data-coffee-id="{{ coffee.id }}"
+                            class="compare-btn bg-white text-amber-600 border border-amber-600 py-2 px-3 rounded-lg hover:bg-amber-50 transition"
+                            title="ເປີຍບທຽບ">
+                        <i class="fas fa-balance-scale"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <!-- Pagination -->
+    {% if page_obj.has_other_pages %}
+    <div class="flex justify-center">
+        <nav class="flex space-x-2">
+            {% if page_obj.has_previous %}
+            <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ page_obj.previous_page_number }}" 
+               class="px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                <i class="fas fa-chevron-left mr-1"></i>ກ່ອນໜ້າ
+            </a>
+            {% endif %}
+            
+            {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+            <span class="px-3 py-2 bg-amber-600 text-white rounded-lg font-medium">{{ num }}</span>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ num }}" 
+               class="px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                {{ num }}
+            </a>
+            {% endif %}
+            {% endfor %}
+            
+            {% if page_obj.has_next %}
+            <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ page_obj.next_page_number }}" 
+               class="px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                ຖັດໄປ<i class="fas fa-chevron-right ml-1"></i>
+            </a>
+            {% endif %}
+        </nav>
+    </div>
+    {% endif %}
+    
+    {% else %}
+    <!-- Empty State -->
+    <div class="text-center py-16">
+        <i class="fas fa-coffee text-6xl text-gray-300 mb-6"></i>
+        <h3 class="text-2xl font-semibold text-gray-700 mb-4">ບໍ່ມີກາເຟໃນໝວດໝູ່ນີ້</h3>
+        <p class="text-gray-500 mb-8">ກະລຸນາເລືອກໝວດໝູ່ອື່ນ ຫຼື ເບິ່ງກາເຟທັງໝົດ</p>
+        <div class="space-x-4">
+            <a href="{% url 'coffee_list' %}" 
+               class="inline-flex items-center bg-amber-600 text-white px-6 py-3 rounded-lg hover:bg-amber-700 transition">
+                <i class="fas fa-coffee mr-2"></i>ເບິ່ງກາເຟທັງໝົດ
+            </a>
+            <a href="{% url 'home-page' %}" 
+               class="inline-flex items-center bg-gray-200 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-300 transition">
+                <i class="fas fa-home mr-2"></i>ກັບໜ້າຫຼັກ
+            </a>
+        </div>
+    </div>
+    {% endif %}
+    
+    <!-- Related Categories -->
+    {% if related_categories %}
+    <div class="border-t border-gray-200 pt-12 mt-12">
+        <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">ໝວດໝູ່ອື່ນໆ</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {% for related_category in related_categories %}
+            <a href="{% url 'category_detail' related_category.slug %}" 
+               class="group text-center p-4 bg-gray-50 rounded-lg hover:bg-amber-50 transition">
+                <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-amber-200 transition">
+                    {% if related_category.image %}
+                        <img src="{{ related_category.image.url }}" 
+                             alt="{{ related_category.name }}"
+                             class="w-full h-full object-cover rounded-full">
+                    {% else %}
+                        <i class="fas fa-coffee text-lg text-gray-600 group-hover:text-amber-700"></i>
+                    {% endif %}
+                </div>
+                <h4 class="font-medium text-gray-900 group-hover:text-amber-700 transition">{{ related_category.name }}</h4>
+                <p class="text-xs text-gray-500 mt-1">{{ related_category.products_count|default:0 }} ລາຍການ</p>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+function updateSort(sortValue) {
+    const url = new URL(window.location);
+    url.searchParams.set('sort', sortValue);
+    window.location.href = url.toString();
+}
+</script>
+{% endblock %}

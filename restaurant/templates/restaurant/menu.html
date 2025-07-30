@@ -1,0 +1,1593 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% load humanize %}
+
+{% block title %}Restaurant & Dining - Project Pilgrims{% endblock %}
+
+{% block extra_css %}
+<style>
+    .category-tab.active {
+        background-color: #dabc94;
+        color: white;
+    }
+    
+    .menu-content {
+        display: none;
+    }
+    
+    .menu-content.active {
+        display: block;
+    }
+</style>
+
+
+{% endblock %}
+
+{% block content %}
+<!-- Restaurant Hero -->
+<section class="relative">
+    <div class="bg-cover bg-center h-96" style="background-image: url('{% static 'images/pilgrims-kitchen-views.jpg' %}');">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="container mx-auto px-4 h-full flex items-center justify-center relative z-10">
+            <div class="text-center max-w-3xl">
+                <h1 class="text-4xl md:text-5xl font-serif font-bold text-white leading-tight mb-4">
+                    **ການເດີນທາງດ້ານອາຫານ**
+                </h1>
+                <p class="text-xl text-white mb-8">
+                     ສຳຜັດຄວາມລ້ຳເລີດຂອງອາຫານໃນຮ້ານອາຫານສຸດຫຼູຂອງພວກເຮົາ ໃນທຸກໆຈານເຮົາໄດ້ໃສ່ເລື່ອງລາວເຂົ້າໄປ.
+                </p>
+                <a href="#menu" class="bg-primary hover:bg-primary-dark text-white font-medium px-6 py-3 rounded-md text-center transition duration-300">
+                    ເບິ່ງເມນູຂອງພວກເຮົາ
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Enhanced Beautiful Menu Section -->
+<section id="menu" class="py-16 md:py-24 bg-gradient-to-br from-gray-50 to-white">
+    <div class="container mx-auto px-4">
+        <!-- Animated section header with enhanced typography -->
+        <div class="text-center mb-12 md:mb-16 animate-on-scroll opacity-0 translate-y-8">
+            <div class="inline-block">
+                <span class="inline-block text-primary font-medium mb-2 tracking-wider text-sm uppercase">CULINARY DELIGHTS</span>
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-primary-dark mb-6 leading-tight">ເມນູຂອງພວກເຮົາ</h2>
+                <div class="w-32 h-1.5 bg-gradient-to-r from-primary to-primary-dark mx-auto mb-8 rounded-full"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
+                    ສຳຫຼວດເມນູອາຫານຫຼາກຫຼາຍຈາກທົ່ວໂລກ ທີ່ປຸງແຕ່ງດ້ວຍຄວາມຕັ້ງໃຈແລະວັດຖຸດິບຊັ້ນດີ
+                </p>
+            </div>
+        </div>
+        
+        <!-- Enhanced Menu Categories Navigation -->
+        <div class="mb-16">
+            <div class="relative mb-8">
+                <!-- Mobile scroll indicator -->
+                <div class="absolute -top-8 left-0 right-0 text-center text-sm text-gray-500 md:hidden">
+                    <span class="scroll-indicator">ເລື່ອນເບິ່ງເມນູເພີ່ມເຕີມ <i class="fas fa-arrow-right text-primary ml-2"></i></span>
+                </div>
+                
+                <!-- Enhanced menu tabs -->
+                <div class="flex overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-primary scrollbar-track-transparent gap-3">
+                    <div class="flex flex-nowrap gap-3 mx-auto min-w-max">
+                        <button class="category-tab active bg-gradient-to-br from-primary to-primary-dark text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl whitespace-nowrap hover:-translate-y-1" data-target="breakfast">
+                            <i class="fas fa-coffee mr-3 text-lg"></i>Breakfast
+                        </button>
+                        <button class="category-tab bg-white hover:bg-gradient-to-br hover:from-primary hover:to-primary-dark hover:text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 whitespace-nowrap text-gray-700 border border-gray-200" data-target="coffee">
+                            <i class="fas fa-mug-hot mr-3 text-lg"></i>Coffee
+                        </button>
+                        <button class="category-tab bg-white hover:bg-gradient-to-br hover:from-primary hover:to-primary-dark hover:text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 whitespace-nowrap text-gray-700 border border-gray-200" data-target="american">
+                            <i class="fas fa-hamburger mr-3 text-lg"></i>American
+                        </button>
+                        <button class="category-tab bg-white hover:bg-gradient-to-br hover:from-primary hover:to-primary-dark hover:text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 whitespace-nowrap text-gray-700 border border-gray-200" data-target="indian">
+                            <i class="fas fa-pepper-hot mr-3 text-lg"></i>Indian
+                        </button>
+                        <button class="category-tab bg-white hover:bg-gradient-to-br hover:from-primary hover:to-primary-dark hover:text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 whitespace-nowrap text-gray-700 border border-gray-200" data-target="mexican">
+                            <i class="fas fa-pepper-hot mr-3 text-lg"></i>Mexican
+                        </button>
+                        <button class="category-tab bg-white hover:bg-gradient-to-br hover:from-primary hover:to-primary-dark hover:text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 whitespace-nowrap text-gray-700 border border-gray-200" data-target="pizza">
+                            <i class="fas fa-pizza-slice mr-3 text-lg"></i>Pizza
+                        </button>
+                        <button class="category-tab bg-white hover:bg-gradient-to-br hover:from-primary hover:to-primary-dark hover:text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 whitespace-nowrap text-gray-700 border border-gray-200" data-target="local_food">
+                            <i class="fas fa-utensils mr-3 text-lg"></i>Local Specialties
+                        </button>
+                        <button class="category-tab bg-white hover:bg-gradient-to-br hover:from-primary hover:to-primary-dark hover:text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 whitespace-nowrap text-gray-700 border border-gray-200" data-target="soup_salad_mediterranean">
+                            <i class="fas fa-leaf mr-3 text-lg"></i>Soup & Salad
+                        </button>
+                        <button class="category-tab bg-white hover:bg-gradient-to-br hover:from-primary hover:to-primary-dark hover:text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 whitespace-nowrap text-gray-700 border border-gray-200" data-target="drinks">
+                            <i class="fas fa-glass-martini-alt mr-3 text-lg"></i>Drinks
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Enhanced Category descriptions -->
+            <div class="text-center my-8 min-h-16">
+                <div id="breakfast-description" class="category-desc active">
+                    <p class="text-gray-600 italic text-lg">ລີ່ມຕົ້ນວັນຂອງທ່ານດ້ວຍເມນູອາຫານເຊົ້າສຸດແຊບຂອງພວກເຮົາ</p>
+                </div>
+                <div id="coffee-description" class="category-desc hidden">
+                    <p class="text-gray-600 italic text-lg">ເຄື່ອງດື່ມກາເຟທີ່ຖືກຊົງແບບຊຳນານ ໂດຍໃຊ້ເມັດກາເຟຊັ່ນນຳຈາກທົ່ວໂລກ</p>
+                </div>
+                <div id="american-description" class="category-desc hidden">
+                    <p class="text-gray-600 italic text-lg">ອາຫານຄລາສສິກສະໄຕລ໌ອາເມຣິກາ ທີ່ຖືກປຸງແຕ່ງໂດຍພໍ່ຄົວຂອງເຮົາໃນແນວພິເສດ</p>
+                </div>
+                <div id="indian-description" class="category-desc hidden">
+                    <p class="text-gray-600 italic text-lg">ອາຫານອິນເດຍແບບດັ້ງເດີມ ທີ່ເຕັມໄປດ້ວຍກິ່ນຫອມຂອງເຄື່ອງເທດ ແລະວິທີປຸງແບບດັ້ງເດີມ</p>
+                </div>
+                <div id="mexican-description" class="category-desc hidden">
+                    <p class="text-gray-600 italic text-lg">ອາຫານແມັກຊິໂກທີ່ເຂັ້ມຂົ້ນ ແລະເຕັມໄປດ້ວຍລົດຊາດ ໃຊ້ວັດຖຸດິບສົດ ແລະສູດຕົ້ນສະບັບແທ້</p>
+                </div>
+                <div id="pizza-description" class="category-desc hidden">
+                    <p class="text-gray-600 italic text-lg">ພິຊຊ່າແຮນເມດ ຫນ້າຄຸນນະພາບ</p>
+                </div>
+                <div id="local_food-description" class="category-desc hidden">
+                    <p class="text-gray-600 italic text-lg">ອາຫານພື້ນເມືອງຈາກແຕ່ລະພາກ ທີ່ໂຊວເອກະລັກຂອງວັດຖຸດິບແລະປະເພນີທ້ອງຖິ່ນ</p>
+                </div>
+                <div id="soup_salad_mediterranean-description" class="category-desc hidden">
+                    <p class="text-gray-600 italic text-lg">ສະຫຼັດສົດ ແລະອາຫານຍອດນິຍົມຈາກພາກມະຕິເຕຣເນຍ ທີ່ເຕັມໄປດ້ວຍສິ່ງທີ່ມີປະໂຫຍດຕໍ່ສຸຂະພາບ</p>
+                </div>
+                <div id="drinks-description" class="category-desc hidden">
+                    <p class="text-gray-600 italic text-lg">ເຄື່ອງດື່ມທີ່ຊົດຊື່ນ, ຄອກແທວສະເພາະ ແລະເລືອກຄັດສັນແບບພິຖີພິຖັນ</p>
+                </div>
+            </div>
+            
+            <!-- Enhanced Menu Content with Modern Card Design -->
+            
+            <!-- Breakfast Menu -->
+            <div id="breakfast-menu" class="menu-content active grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {% for item in breakfast_items %}
+                <div class="menu-card bg-gradient-to-br from-white to-gray-50 border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
+                    <div class="relative overflow-hidden rounded-2xl mb-6">
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image transition-transform duration-300">
+                        {% else %}
+                        <div class="w-full h-48 bg-gradient-to-br from-primary-light to-primary flex items-center justify-center">
+                            <i class="fas fa-coffee text-4xl text-white opacity-50"></i>
+                        </div>
+                        {% endif %}
+                        
+                        <!-- Price Badge -->
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-gradient-to-br from-primary to-primary-dark text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                                {{ item.price|intcomma }} LAK
+                            </span>
+                        </div>
+                        
+                        <!-- Featured Badge -->
+                        {% if item.is_featured %}
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                <i class="fas fa-star mr-1"></i>Featured
+                            </span>
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <h3 class="text-2xl font-serif font-bold text-primary-dark group-hover:text-primary transition-colors">
+                            {{ item.name }}
+                        </h3>
+                        
+                        <p class="text-gray-600 description-text leading-relaxed line-clamp-2">
+                            {{ item.description }}
+                        </p>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-utensils mr-2"></i>
+                                <span>Breakfast Special</span>
+                                {% if item.is_featured %}
+                                <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
+                                <span>Chef's Choice</span>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="text-primary hover:text-primary-dark transition-colors">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-span-full bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-dashed border-primary rounded-3xl p-12 text-center">
+                    <div class="text-6xl text-primary mb-6"><i class="fas fa-coffee"></i></div>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4">ເມນູອາຫານເຊົ້າກຳລັງກະກຽມ</h3>
+                    <p class="text-gray-500 max-w-md mx-auto text-lg">
+                        ພວກເຮົາກຳລັງກະກຽມເມນູອາຫານເຊົ້າພິເສດ ຄອຍຕິດຕາມໃນໄວໆນີ້
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Coffee Menu -->
+            <div id="coffee-menu" class="menu-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {% for item in coffee_items %}
+                <div class="menu-card bg-gradient-to-br from-white to-gray-50 border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
+                    <div class="relative overflow-hidden rounded-2xl mb-6">
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image transition-transform duration-300">
+                        {% else %}
+                        <div class="w-full h-48 bg-gradient-to-br from-amber-200 to-amber-400 flex items-center justify-center">
+                            <i class="fas fa-mug-hot text-4xl text-white opacity-50"></i>
+                        </div>
+                        {% endif %}
+                        
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-gradient-to-br from-primary to-primary-dark text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                                {{ item.price|intcomma }} LAK
+                            </span>
+                        </div>
+                        
+                        {% if item.is_featured %}
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                <i class="fas fa-star mr-1"></i>Featured
+                            </span>
+                        </div>
+                        {% endif %}
+ 
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <h3 class="text-2xl font-serif font-bold text-primary-dark group-hover:text-primary transition-colors">
+                            {{ item.name }}
+                        </h3>
+                        
+                        <p class="text-gray-600 description-text leading-relaxed line-clamp-2">
+                            {{ item.description }}
+                        </p>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-mug-hot mr-2"></i>
+                                <span>Coffee Specialty</span>
+                                {% if item.is_featured %}
+                                <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
+                                <span>Barista's Choice</span>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="text-primary hover:text-primary-dark transition-colors">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-span-full bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-dashed border-primary rounded-3xl p-12 text-center">
+                    <div class="text-6xl text-primary mb-6"><i class="fas fa-mug-hot"></i></div>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4">ເມນູກາເຟກຳລັງກະກຽມ</h3>
+                    <p class="text-gray-500 max-w-md mx-auto text-lg">
+                        ເຮົາກຳລັງກະກຽມເມນູກາເຟພິເສດ ຄອຍຕິດຕາມໃນໄວໆນີ້
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- American Menu -->
+            <div id="american-menu" class="menu-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {% for item in american_items %}
+                <div class="menu-card bg-gradient-to-br from-white to-gray-50 border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
+                    <div class="relative overflow-hidden rounded-2xl mb-6">
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image transition-transform duration-300">
+                        {% else %}
+                        <div class="w-full h-48 bg-gradient-to-br from-red-200 to-blue-300 flex items-center justify-center">
+                            <i class="fas fa-hamburger text-4xl text-white opacity-50"></i>
+                        </div>
+                        {% endif %}
+                        
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-gradient-to-br from-primary to-primary-dark text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                                {{ item.price|intcomma }} LAK
+                            </span>
+                        </div>
+                        
+                        {% if item.is_featured %}
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                <i class="fas fa-star mr-1"></i>Featured
+                            </span>
+                        </div>
+                        {% endif %}
+   
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <h3 class="text-2xl font-serif font-bold text-primary-dark group-hover:text-primary transition-colors">
+                            {{ item.name }}
+                        </h3>
+                        
+                        <p class="text-gray-600 description-text leading-relaxed line-clamp-2">
+                            {{ item.description }}
+                        </p>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-hamburger mr-2"></i>
+                                <span>American Classic</span>
+                                {% if item.is_featured %}
+                                <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
+                                <span>Chef's Special</span>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="text-primary hover:text-primary-dark transition-colors">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-span-full bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-dashed border-primary rounded-3xl p-12 text-center">
+                    <div class="text-6xl text-primary mb-6"><i class="fas fa-hamburger"></i></div>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4">ເມນູອາຫານອາເມຣິກາກຳລັງກະກຽມ</h3>
+                    <p class="text-gray-500 max-w-md mx-auto text-lg">
+                        ອາຫານອາເມຣິກາຄລາສສິກກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Indian Menu -->
+            <div id="indian-menu" class="menu-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {% for item in indian_items %}
+                <div class="menu-card bg-gradient-to-br from-white to-gray-50 border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
+                    <div class="relative overflow-hidden rounded-2xl mb-6">
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image transition-transform duration-300">
+                        {% else %}
+                        <div class="w-full h-48 bg-gradient-to-br from-orange-200 to-red-300 flex items-center justify-center">
+                            <i class="fas fa-pepper-hot text-4xl text-white opacity-50"></i>
+                        </div>
+                        {% endif %}
+                        
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-gradient-to-br from-primary to-primary-dark text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                                {{ item.price|intcomma }} LAK
+                            </span>
+                        </div>
+                        
+                        {% if item.is_featured %}
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                <i class="fas fa-star mr-1"></i>Featured
+                            </span>
+                        </div>
+                        {% endif %}
+                        
+
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <h3 class="text-2xl font-serif font-bold text-primary-dark group-hover:text-primary transition-colors">
+                            {{ item.name }}
+                        </h3>
+                        
+                        <p class="text-gray-600 description-text leading-relaxed line-clamp-2">
+                            {{ item.description }}
+                        </p>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-pepper-hot mr-2"></i>
+                                <span>Indian Cuisine</span>
+                                {% if item.is_featured %}
+                                <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
+                                <span>Authentic Recipe</span>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="text-primary hover:text-primary-dark transition-colors">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-span-full bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-dashed border-primary rounded-3xl p-12 text-center">
+                    <div class="text-6xl text-primary mb-6"><i class="fas fa-pepper-hot"></i></div>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4">ເມນູອາຫານອິນເດຍກຳລັງກະກຽມ</h3>
+                    <p class="text-gray-500 max-w-md mx-auto text-lg">
+                        ອາຫານອິນເດຍແບບດັ້ງເດີມກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Mexican Menu -->
+            <div id="mexican-menu" class="menu-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {% for item in mexican_items %}
+                <div class="menu-card bg-gradient-to-br from-white to-gray-50 border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
+                    <div class="relative overflow-hidden rounded-2xl mb-6">
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image transition-transform duration-300">
+                        {% else %}
+                        <div class="w-full h-48 bg-gradient-to-br from-green-200 to-red-300 flex items-center justify-center">
+                            <i class="fas fa-pepper-hot text-4xl text-white opacity-50"></i>
+                        </div>
+                        {% endif %}
+                        
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-gradient-to-br from-primary to-primary-dark text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                                {{ item.price|intcomma }} LAK
+                            </span>
+                        </div>
+                        
+                        {% if item.is_featured %}
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                <i class="fas fa-star mr-1"></i>Featured
+                            </span>
+                        </div>
+                        {% endif %}
+                  
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <h3 class="text-2xl font-serif font-bold text-primary-dark group-hover:text-primary transition-colors">
+                            {{ item.name }}
+                        </h3>
+                        
+                        <p class="text-gray-600 description-text leading-relaxed line-clamp-2">
+                            {{ item.description }}
+                        </p>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-pepper-hot mr-2"></i>
+                                <span>Mexican Fiesta</span>
+                                {% if item.is_featured %}
+                                <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
+                                <span>Traditional Recipe</span>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="text-primary hover:text-primary-dark transition-colors">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-span-full bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-dashed border-primary rounded-3xl p-12 text-center">
+                    <div class="text-6xl text-primary mb-6"><i class="fas fa-pepper-hot"></i></div>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4">ເມນູອາຫານແມັກຊິໂກກຳລັງກະກຽມ</h3>
+                    <p class="text-gray-500 max-w-md mx-auto text-lg">
+                        ອາຫານແມັກຊິໂກກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Pizza Menu -->
+            <div id="pizza-menu" class="menu-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {% for item in pizza_items %}
+                <div class="menu-card bg-gradient-to-br from-white to-gray-50 border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
+                    <div class="relative overflow-hidden rounded-2xl mb-6">
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image transition-transform duration-300">
+                        {% else %}
+                        <div class="w-full h-48 bg-gradient-to-br from-yellow-200 to-red-300 flex items-center justify-center">
+                            <i class="fas fa-pizza-slice text-4xl text-white opacity-50"></i>
+                        </div>
+                        {% endif %}
+                        
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-gradient-to-br from-primary to-primary-dark text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                                {{ item.price|intcomma }} LAK
+                            </span>
+                        </div>
+                        
+                        {% if item.is_featured %}
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                <i class="fas fa-star mr-1"></i>Featured
+                            </span>
+                        </div>
+                        {% endif %}
+                        
+                
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <h3 class="text-2xl font-serif font-bold text-primary-dark group-hover:text-primary transition-colors">
+                            {{ item.name }}
+                        </h3>
+                        
+                        <p class="text-gray-600 description-text leading-relaxed line-clamp-2">
+                            {{ item.description }}
+                        </p>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-pizza-slice mr-2"></i>
+                                <span>Handmade Pizza</span>
+                                {% if item.is_featured %}
+                                <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
+                                <span>Signature Pizza</span>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="text-primary hover:text-primary-dark transition-colors">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-span-full bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-dashed border-primary rounded-3xl p-12 text-center">
+                    <div class="text-6xl text-primary mb-6"><i class="fas fa-pizza-slice"></i></div>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4">ເມນູພິຊຊ່າກຳລັງກະກຽມ</h3>
+                    <p class="text-gray-500 max-w-md mx-auto text-lg">
+                        ພິຊຊ່າສະເພາະກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Local Food Menu -->
+            <div id="local_food-menu" class="menu-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {% for item in local_food_items %}
+                <div class="menu-card bg-gradient-to-br from-white to-gray-50 border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
+                    <div class="relative overflow-hidden rounded-2xl mb-6">
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image transition-transform duration-300">
+                        {% else %}
+                        <div class="w-full h-48 bg-gradient-to-br from-green-200 to-yellow-300 flex items-center justify-center">
+                            <i class="fas fa-utensils text-4xl text-white opacity-50"></i>
+                        </div>
+                        {% endif %}
+                        
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-gradient-to-br from-primary to-primary-dark text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                                {{ item.price|intcomma }} LAK
+                            </span>
+                        </div>
+                        
+                        {% if item.is_featured %}
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                <i class="fas fa-star mr-1"></i>Featured
+                            </span>
+                        </div>
+                        {% endif %}
+                        
+                    
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <h3 class="text-2xl font-serif font-bold text-primary-dark group-hover:text-primary transition-colors">
+                            {{ item.name }}
+                        </h3>
+                        
+                        <p class="text-gray-600 description-text leading-relaxed line-clamp-2">
+                            {{ item.description }}
+                        </p>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-utensils mr-2"></i>
+                                <span>Local Specialty</span>
+                                {% if item.is_featured %}
+                                <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
+                                <span>Traditional</span>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="text-primary hover:text-primary-dark transition-colors">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-span-full bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-dashed border-primary rounded-3xl p-12 text-center">
+                    <div class="text-6xl text-primary mb-6"><i class="fas fa-utensils"></i></div>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4">ເມນູອາຫານພື້ນເມືອງກຳລັງກະກຽມ</h3>
+                    <p class="text-gray-500 max-w-md mx-auto text-lg">
+                        ອາຫານພື້ນເມືອງກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Soup & Salad Mediterranean Menu -->
+            <div id="soup_salad_mediterranean-menu" class="menu-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {% for item in soup_salad_mediterranean_items %}
+                <div class="menu-card bg-gradient-to-br from-white to-gray-50 border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
+                    <div class="relative overflow-hidden rounded-2xl mb-6">
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image transition-transform duration-300">
+                        {% else %}
+                        <div class="w-full h-48 bg-gradient-to-br from-green-200 to-blue-300 flex items-center justify-center">
+                            <i class="fas fa-leaf text-4xl text-white opacity-50"></i>
+                        </div>
+                        {% endif %}
+                        
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-gradient-to-br from-primary to-primary-dark text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                                {{ item.price|intcomma }} LAK
+                            </span>
+                        </div>
+                        
+                        {% if item.is_featured %}
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                <i class="fas fa-star mr-1"></i>Featured
+                            </span>
+                        </div>
+                        {% endif %}
+                        
+                  
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <h3 class="text-2xl font-serif font-bold text-primary-dark group-hover:text-primary transition-colors">
+                            {{ item.name }}
+                        </h3>
+                        
+                        <p class="text-gray-600 description-text leading-relaxed line-clamp-2">
+                            {{ item.description }}
+                        </p>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-leaf mr-2"></i>
+                                <span>Healthy Choice</span>
+                                {% if item.is_featured %}
+                                <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
+                                <span>Fresh & Nutritious</span>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="text-primary hover:text-primary-dark transition-colors">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-span-full bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-dashed border-primary rounded-3xl p-12 text-center">
+                    <div class="text-6xl text-primary mb-6"><i class="fas fa-leaf"></i></div>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4">ເມນູສະຫຼັດແລະແກງກຳລັງກະກຽມ</h3>
+                    <p class="text-gray-500 max-w-md mx-auto text-lg">
+                        ສະຫຼັດແລະແກງກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Drinks Menu -->
+            <div id="drinks-menu" class="menu-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {% for item in drinks_items %}
+                <div class="menu-card bg-gradient-to-br from-white to-gray-50 border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
+                    <div class="relative overflow-hidden rounded-2xl mb-6">
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image transition-transform duration-300">
+                        {% else %}
+                        <div class="w-full h-48 bg-gradient-to-br from-blue-200 to-purple-300 flex items-center justify-center">
+                            <i class="fas fa-glass-martini-alt text-4xl text-white opacity-50"></i>
+                        </div>
+                        {% endif %}
+                        
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-gradient-to-br from-primary to-primary-dark text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                                {{ item.price|intcomma }} LAK
+                            </span>
+                        </div>
+                        
+                        {% if item.is_featured %}
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                <i class="fas fa-star mr-1"></i>Featured
+                            </span>
+                        </div>
+                        {% endif %}
+                        
+                
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <h3 class="text-2xl font-serif font-bold text-primary-dark group-hover:text-primary transition-colors">
+                            {{ item.name }}
+                        </h3>
+                        
+                        <p class="text-gray-600 description-text leading-relaxed line-clamp-2">
+                            {{ item.description }}
+                        </p>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-glass-martini-alt mr-2"></i>
+                                <span>Refreshing Drink</span>
+                                {% if item.is_featured %}
+                                <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
+                                <span>Bartender's Choice</span>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="text-primary hover:text-primary-dark transition-colors">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-span-full bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-dashed border-primary rounded-3xl p-12 text-center">
+                    <div class="text-6xl text-primary mb-6"><i class="fas fa-glass-martini-alt"></i></div>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4">ເມນູເຄື່ອງດື່ມກຳລັງກະກຽມ</h3>
+                    <p class="text-gray-500 max-w-md mx-auto text-lg">
+                        ເຄື່ອງດື່ມພິເສດກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Restaurant Hours -->
+<section class="py-12 bg-primary bg-opacity-10">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-serif font-bold text-primary-dark mb-4">Opening Hours</h2>
+            <p class="text-gray-600 max-w-xl mx-auto">
+                Join us for breakfast, lunch, or dinner in our elegant dining room or on our terrace.
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <!-- Breakfast -->
+            <div class="text-center p-6 bg-white rounded-lg shadow-sm">
+                <div class="inline-block bg-primary bg-opacity-20 p-4 rounded-full mb-4">
+                    <i class="fas fa-coffee text-primary-dark text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-serif font-bold text-primary-dark mb-2">Breakfast</h3>
+                <p class="text-gray-600 mb-2">Monday - Friday</p>
+                <p class="text-primary-dark font-medium">6:30 AM - 10:30 AM</p>
+                <p class="text-gray-600 mb-2">Weekends & Holidays</p>
+                <p class="text-primary-dark font-medium">7:00 AM - 11:00 AM</p>
+            </div>
+            
+            <!-- Lunch -->
+            <div class="text-center p-6 bg-white rounded-lg shadow-sm">
+                <div class="inline-block bg-primary bg-opacity-20 p-4 rounded-full mb-4">
+                    <i class="fas fa-utensils text-primary-dark text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-serif font-bold text-primary-dark mb-2">Lunch</h3>
+                <p class="text-gray-600 mb-2">Monday - Friday</p>
+                <p class="text-primary-dark font-medium">11:30 AM - 2:30 PM</p>
+                <p class="text-gray-600 mb-2">Weekends & Holidays</p>
+                <p class="text-primary-dark font-medium">12:00 PM - 3:00 PM</p>
+            </div>
+            
+            <!-- Dinner -->
+            <div class="text-center p-6 bg-white rounded-lg shadow-sm">
+                <div class="inline-block bg-primary bg-opacity-20 p-4 rounded-full mb-4">
+                    <i class="fas fa-glass-cheers text-primary-dark text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-serif font-bold text-primary-dark mb-2">Dinner</h3>
+                <p class="text-gray-600 mb-2">Sunday - Thursday</p>
+                <p class="text-primary-dark font-medium">5:30 PM - 9:30 PM</p>
+                <p class="text-gray-600 mb-2">Friday & Saturday</p>
+                <p class="text-primary-dark font-medium">5:30 PM - 10:30 PM</p>
+            </div>
+        </div>
+        
+        <div class="text-center mt-8">
+            <p class="text-gray-600">
+                Reservations recommended for dinner. Please call (555) 123-4567 or use our online reservation system.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Menu Section with Enhanced Responsive Design -->
+<section id="menu" class="py-16 md:py-24 bg-white">
+    <div class="container mx-auto px-4">
+        <!-- Animated section header with enhanced typography -->
+        <div class="text-center mb-12 md:mb-16 animate-on-scroll opacity-0 translate-y-8">
+            <span class="inline-block text-primary font-medium mb-2 tracking-wider">CULINARY DELIGHTS</span>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-primary-dark mb-4 leading-tight">Our Menu</h2>
+            <div class="w-24 h-1 bg-primary mx-auto mb-6 rounded-full"></div>
+            <p class="text-gray-600 max-w-3xl mx-auto text-base md:text-lg leading-relaxed">
+                Explore our diverse selection of global cuisines and local favorites, crafted with care and the finest ingredients.
+            </p>
+        </div>
+        
+        <!-- Enhanced Menu Categories Navigation with scroll functionality for mobile -->
+        <div class="mb-12 md:mb-16">
+            <div class="relative">
+                <!-- Horizontal scroll indicator for mobile -->
+                <div class="absolute -top-6 left-0 right-0 text-center text-xs text-gray-500 md:hidden">
+                    <span>Swipe <i class="fas fa-arrow-right text-primary text-xs"></i> for more options</span>
+                </div>
+                
+                <!-- Scrollable menu tabs container -->
+                <div class="flex overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-primary scrollbar-track-transparent -mx-1 px-1">
+                    <div class="flex flex-nowrap gap-2 mx-auto">
+                        <button class="category-tab active whitespace-nowrap bg-primary text-white px-4 py-3 rounded-md font-medium transition duration-300 shadow-sm hover:shadow-md" data-target="breakfast">
+                            <i class="fas fa-coffee mr-2"></i>Breakfast
+                        </button>
+                        <button class="category-tab whitespace-nowrap bg-gray-100 hover:bg-primary hover:text-white px-4 py-3 rounded-md font-medium transition duration-300 shadow-sm hover:shadow-md" data-target="coffee">
+                            <i class="fas fa-mug-hot mr-2"></i>Coffee
+                        </button>
+                        <button class="category-tab whitespace-nowrap bg-gray-100 hover:bg-primary hover:text-white px-4 py-3 rounded-md font-medium transition duration-300 shadow-sm hover:shadow-md" data-target="american">
+                            <i class="fas fa-hamburger mr-2"></i>American
+                        </button>
+                        <button class="category-tab whitespace-nowrap bg-gray-100 hover:bg-primary hover:text-white px-4 py-3 rounded-md font-medium transition duration-300 shadow-sm hover:shadow-md" data-target="indian">
+                            <i class="fas fa-pepper-hot mr-2"></i>Indian
+                        </button>
+                        <button class="category-tab whitespace-nowrap bg-gray-100 hover:bg-primary hover:text-white px-4 py-3 rounded-md font-medium transition duration-300 shadow-sm hover:shadow-md" data-target="mexican">
+                            <i class="fas fa-pepper-hot mr-2"></i>Mexican
+                        </button>
+                        <button class="category-tab whitespace-nowrap bg-gray-100 hover:bg-primary hover:text-white px-4 py-3 rounded-md font-medium transition duration-300 shadow-sm hover:shadow-md" data-target="pizza">
+                            <i class="fas fa-pizza-slice mr-2"></i>Pizza
+                        </button>
+                        <button class="category-tab whitespace-nowrap bg-gray-100 hover:bg-primary hover:text-white px-4 py-3 rounded-md font-medium transition duration-300 shadow-sm hover:shadow-md" data-target="local_food">
+                            <i class="fas fa-utensils mr-2"></i>Local Specialties
+                        </button>
+                        <button class="category-tab whitespace-nowrap bg-gray-100 hover:bg-primary hover:text-white px-4 py-3 rounded-md font-medium transition duration-300 shadow-sm hover:shadow-md" data-target="soup_salad_mediterranean">
+                            <i class="fas fa-leaf mr-2"></i>Soup & Salad
+                        </button>
+                        <button class="category-tab whitespace-nowrap bg-gray-100 hover:bg-primary hover:text-white px-4 py-3 rounded-md font-medium transition duration-300 shadow-sm hover:shadow-md" data-target="drinks">
+                            <i class="fas fa-glass-martini-alt mr-2"></i>Drinks
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Category description - changes based on selected category -->
+            <div class="text-center my-8 category-description">
+                <div id="breakfast-description" class="category-desc active">
+                    <p class="text-gray-600 italic">Start your day with our delicious breakfast options. Available from 6:30 AM to 10:30 AM.</p>
+                </div>
+                <div id="coffee-description" class="category-desc hidden">
+                    <p class="text-gray-600 italic">Expertly crafted coffee beverages using premium beans from around the world.</p>
+                </div>
+                <div id="american-description" class="category-desc hidden">
+                    <p class="text-gray-600 italic">Classic American comfort food with our chef's special twist.</p>
+                </div>
+                <div id="indian-description" class="category-desc hidden">
+                    <p class="text-gray-600 italic">Authentic Indian dishes featuring fragrant spices and traditional cooking techniques.</p>
+                </div>
+                <div id="mexican-description" class="category-desc hidden">
+                    <p class="text-gray-600 italic">Bold and flavorful Mexican cuisine made with fresh ingredients and authentic recipes.</p>
+                </div>
+                <div id="pizza-description" class="category-desc hidden">
+                    <p class="text-gray-600 italic">Hand-crafted pizzas with homemade dough and premium toppings.</p>
+                </div>
+                <div id="local_food-description" class="category-desc hidden">
+                    <p class="text-gray-600 italic">Regional specialties showcasing the best local ingredients and traditions.</p>
+                </div>
+                <div id="soup_salad_mediterranean-description" class="category-desc hidden">
+                    <p class="text-gray-600 italic">Fresh salads, hearty soups, and Mediterranean favorites full of healthy ingredients.</p>
+                </div>
+                <div id="drinks-description" class="category-desc hidden">
+                    <p class="text-gray-600 italic">Refreshing beverages, specialty cocktails, and a thoughtfully curated wine selection.</p>
+                </div>
+            </div>
+            
+            <!-- Enhanced Menu Content with better responsive design -->
+            <!-- Breakfast Menu -->
+            <div id="breakfast-menu" class="menu-content active">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-10">
+                    {% for item in breakfast_items %}
+                    <div class="flex flex-col sm:flex-row bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
+                        {% if item.image %}
+                        <div class="sm:flex-shrink-0 w-full sm:w-28 h-28 mb-4 sm:mb-0 sm:mr-5">
+                            <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover rounded-md">
+                        </div>
+                        {% endif %}
+                        <div class="flex-grow">
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
+                                <h3 class="text-xl font-serif font-bold text-primary-dark mb-1 sm:mb-0">{{ item.name }}</h3>
+                                <span class="text-primary-dark font-medium text-lg sm:ml-4 mb-2 sm:mb-0">{{ item.price }} LAK</span>
+                            </div>
+                            <p class="text-gray-600 mb-3 line-clamp-2 hover:line-clamp-none transition-all duration-300">{{ item.description }}</p>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="col-span-full text-center py-12 bg-gray-50 rounded-lg">
+                        <div class="text-5xl text-gray-300 mb-4"><i class="fas fa-leaf"></i></div>
+                        <h3 class="text-xl font-medium text-gray-700 mb-2">Mediterranean Menu Coming Soon</h3>
+                        <p class="text-gray-500 max-w-md mx-auto">Our fresh salads and Mediterranean dishes are being prepared. Check back soon.</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div id="coffee-menu" class="menu-content hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-10">
+                    {% for item in coffee_items %}
+                    <div class="flex flex-col sm:flex-row bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
+                        {% if item.image %}
+                        <div class="sm:flex-shrink-0 w-full sm:w-28 h-28 mb-4 sm:mb-0 sm:mr-5">
+                            <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover rounded-md">
+                        </div>
+                        {% endif %}
+                        <div class="flex-grow">
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
+                                <h3 class="text-xl font-serif font-bold text-primary-dark mb-1 sm:mb-0">{{ item.name }}</h3>
+                                <span class="text-primary-dark font-medium text-lg sm:ml-4 mb-2 sm:mb-0">{{ item.price }} LAK</span>
+                            </div>
+                            <p class="text-gray-600 mb-3 line-clamp-2 hover:line-clamp-none transition-all duration-300">{{ item.description }}</p>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="col-span-full text-center py-12 bg-gray-50 rounded-lg">
+                        <div class="text-5xl text-gray-300 mb-4"><i class="fas fa-leaf"></i></div>
+                        <h3 class="text-xl font-medium text-gray-700 mb-2">Mediterranean Menu Coming Soon</h3>
+                        <p class="text-gray-500 max-w-md mx-auto">Our fresh salads and Mediterranean dishes are being prepared. Check back soon.</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div id="american-menu" class="menu-content hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-10">
+                    {% for item in american_items %}
+                    <div class="flex flex-col sm:flex-row bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
+                        {% if item.image %}
+                        <div class="sm:flex-shrink-0 w-full sm:w-28 h-28 mb-4 sm:mb-0 sm:mr-5">
+                            <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover rounded-md">
+                        </div>
+                        {% endif %}
+                        <div class="flex-grow">
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
+                                <h3 class="text-xl font-serif font-bold text-primary-dark mb-1 sm:mb-0">{{ item.name }}</h3>
+                                <span class="text-primary-dark font-medium text-lg sm:ml-4 mb-2 sm:mb-0">{{ item.price }} LAK</span>
+                            </div>
+                            <p class="text-gray-600 mb-3 line-clamp-2 hover:line-clamp-none transition-all duration-300">{{ item.description }}</p>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="col-span-full text-center py-12 bg-gray-50 rounded-lg">
+                        <div class="text-5xl text-gray-300 mb-4"><i class="fas fa-leaf"></i></div>
+                        <h3 class="text-xl font-medium text-gray-700 mb-2">Mediterranean Menu Coming Soon</h3>
+                        <p class="text-gray-500 max-w-md mx-auto">Our fresh salads and Mediterranean dishes are being prepared. Check back soon.</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div id="indian-menu" class="menu-content hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-10">
+                    {% for item in indian_items %}
+                    <div class="flex flex-col sm:flex-row bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
+                        {% if item.image %}
+                        <div class="sm:flex-shrink-0 w-full sm:w-28 h-28 mb-4 sm:mb-0 sm:mr-5">
+                            <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover rounded-md">
+                        </div>
+                        {% endif %}
+                        <div class="flex-grow">
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
+                                <h3 class="text-xl font-serif font-bold text-primary-dark mb-1 sm:mb-0">{{ item.name }}</h3>
+                                <span class="text-primary-dark font-medium text-lg sm:ml-4 mb-2 sm:mb-0">{{ item.price }} LAK</span>
+                            </div>
+                            <p class="text-gray-600 mb-3 line-clamp-2 hover:line-clamp-none transition-all duration-300">{{ item.description }}</p>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="col-span-full text-center py-12 bg-gray-50 rounded-lg">
+                        <div class="text-5xl text-gray-300 mb-4"><i class="fas fa-leaf"></i></div>
+                        <h3 class="text-xl font-medium text-gray-700 mb-2">Mediterranean Menu Coming Soon</h3>
+                        <p class="text-gray-500 max-w-md mx-auto">Our fresh salads and Mediterranean dishes are being prepared. Check back soon.</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div id="mexican-menu" class="menu-content hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-10">
+                    {% for item in mexican_items %}
+                    <div class="flex flex-col sm:flex-row bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
+                        {% if item.image %}
+                        <div class="sm:flex-shrink-0 w-full sm:w-28 h-28 mb-4 sm:mb-0 sm:mr-5">
+                            <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover rounded-md">
+                        </div>
+                        {% endif %}
+                        <div class="flex-grow">
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
+                                <h3 class="text-xl font-serif font-bold text-primary-dark mb-1 sm:mb-0">{{ item.name }}</h3>
+                                <span class="text-primary-dark font-medium text-lg sm:ml-4 mb-2 sm:mb-0">{{ item.price }} LAK</span>
+                            </div>
+                            <p class="text-gray-600 mb-3 line-clamp-2 hover:line-clamp-none transition-all duration-300">{{ item.description }}</p>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="col-span-full text-center py-12 bg-gray-50 rounded-lg">
+                        <div class="text-5xl text-gray-300 mb-4"><i class="fas fa-leaf"></i></div>
+                        <h3 class="text-xl font-medium text-gray-700 mb-2">Mediterranean Menu Coming Soon</h3>
+                        <p class="text-gray-500 max-w-md mx-auto">Our fresh salads and Mediterranean dishes are being prepared. Check back soon.</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+
+            <div id="pizza-menu" class="menu-content hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-10">
+                    {% for item in pizza_items %}
+                    <div class="flex flex-col sm:flex-row bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
+                        {% if item.image %}
+                        <div class="sm:flex-shrink-0 w-full sm:w-28 h-28 mb-4 sm:mb-0 sm:mr-5">
+                            <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover rounded-md">
+                        </div>
+                        {% endif %}
+                        <div class="flex-grow">
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
+                                <h3 class="text-xl font-serif font-bold text-primary-dark mb-1 sm:mb-0">{{ item.name }}</h3>
+                                <span class="text-primary-dark font-medium text-lg sm:ml-4 mb-2 sm:mb-0">{{ item.price }} LAK</span>
+                            </div>
+                            <p class="text-gray-600 mb-3 line-clamp-2 hover:line-clamp-none transition-all duration-300">{{ item.description }}</p>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="col-span-full text-center py-12 bg-gray-50 rounded-lg">
+                        <div class="text-5xl text-gray-300 mb-4"><i class="fas fa-leaf"></i></div>
+                        <h3 class="text-xl font-medium text-gray-700 mb-2">Mediterranean Menu Coming Soon</h3>
+                        <p class="text-gray-500 max-w-md mx-auto">Our fresh salads and Mediterranean dishes are being prepared. Check back soon.</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div id="local_food-menu" class="menu-content hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-10">
+                    {% for item in local_food_items %}
+                    <div class="flex flex-col sm:flex-row bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
+                        {% if item.image %}
+                        <div class="sm:flex-shrink-0 w-full sm:w-28 h-28 mb-4 sm:mb-0 sm:mr-5">
+                            <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover rounded-md">
+                        </div>
+                        {% endif %}
+                        <div class="flex-grow">
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
+                                <h3 class="text-xl font-serif font-bold text-primary-dark mb-1 sm:mb-0">{{ item.name }}</h3>
+                                <span class="text-primary-dark font-medium text-lg sm:ml-4 mb-2 sm:mb-0">${{ item.price }} LAK</span>
+                            </div>
+                            <p class="text-gray-600 mb-3 line-clamp-2 hover:line-clamp-none transition-all duration-300">{{ item.description }}</p>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="col-span-full text-center py-12 bg-gray-50 rounded-lg">
+                        <div class="text-5xl text-gray-300 mb-4"><i class="fas fa-leaf"></i></div>
+                        <h3 class="text-xl font-medium text-gray-700 mb-2">Mediterranean Menu Coming Soon</h3>
+                        <p class="text-gray-500 max-w-md mx-auto">Our fresh salads and Mediterranean dishes are being prepared. Check back soon.</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div id="soup_salad_mediterranean-menu" class="menu-content hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-10">
+                    {% for item in soup_salad_mediterranean_items %}
+                    <div class="flex flex-col sm:flex-row bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
+                        {% if item.image %}
+                        <div class="sm:flex-shrink-0 w-full sm:w-28 h-28 mb-4 sm:mb-0 sm:mr-5">
+                            <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover rounded-md">
+                        </div>
+                        {% endif %}
+                        <div class="flex-grow">
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
+                                <h3 class="text-xl font-serif font-bold text-primary-dark mb-1 sm:mb-0">{{ item.name }}</h3>
+                                <span class="text-primary-dark font-medium text-lg sm:ml-4 mb-2 sm:mb-0">{{ item.price }} LAK</span>
+                            </div>
+                            <p class="text-gray-600 mb-3 line-clamp-2 hover:line-clamp-none transition-all duration-300">{{ item.description }}</p>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="col-span-full text-center py-12 bg-gray-50 rounded-lg">
+                        <div class="text-5xl text-gray-300 mb-4"><i class="fas fa-leaf"></i></div>
+                        <h3 class="text-xl font-medium text-gray-700 mb-2">Mediterranean Menu Coming Soon</h3>
+                        <p class="text-gray-500 max-w-md mx-auto">Our fresh salads and Mediterranean dishes are being prepared. Check back soon.</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            
+            <!-- Drinks Menu -->
+            <div id="drinks-menu" class="menu-content hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-10">
+                    {% for item in drinks_items %}
+                    <div class="flex flex-col sm:flex-row bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
+                        {% if item.image %}
+                        <div class="sm:flex-shrink-0 w-full sm:w-28 h-28 mb-4 sm:mb-0 sm:mr-5">
+                            <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover rounded-md">
+                        </div>
+                        {% endif %}
+                        <div class="flex-grow">
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
+                                <h3 class="text-xl font-serif font-bold text-primary-dark mb-1 sm:mb-0">{{ item.name }}</h3>
+                                <span class="text-primary-dark font-medium text-lg sm:ml-4 mb-2 sm:mb-0">${{ item.price }} LAK</span>
+                            </div>
+                            <p class="text-gray-600 mb-3 line-clamp-2 hover:line-clamp-none transition-all duration-300">{{ item.description }}</p>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="col-span-full text-center py-12 bg-gray-50 rounded-lg">
+                        <div class="text-5xl text-gray-300 mb-4"><i class="fas fa-glass-martini-alt"></i></div>
+                        <h3 class="text-xl font-medium text-gray-700 mb-2">Drinks Menu Coming Soon</h3>
+                        <p class="text-gray-500 max-w-md mx-auto">Our bartenders are crafting the perfect drink selection. Check back soon.</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+
+<!-- Chef's Specials -->
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-serif font-bold text-primary-dark mb-4">Chef's Specials</h2>
+            <p class="text-gray-600 max-w-3xl mx-auto">
+                Each week, our chef creates unique dishes inspired by seasonal ingredients and global cuisines.
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Special 1 -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-md">
+                <div class="h-56 overflow-hidden">
+                    <img src="{% static 'images/special-1.jpg' %}" alt="Special Dish 1" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                </div>
+                <div class="p-6">
+                    <div class="text-sm text-primary mb-2">This Week's Special</div>
+                    <h3 class="text-xl font-serif font-bold text-primary-dark mb-2">Chef's Signature Dish</h3>
+                    <p class="text-gray-600 mb-4">A delectable creation showcasing the finest seasonal ingredients and culinary artistry.</p>
+                    <div class="text-primary-dark font-bold">$28</div>
+                </div>
+            </div>
+            
+            <!-- Special 2 -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-md">
+                <div class="h-56 overflow-hidden">
+                    <img src="{% static 'images/special-2.jpg' %}" alt="Special Dish 2" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                </div>
+                <div class="p-6">
+                    <div class="text-sm text-primary mb-2">Weekend Feature</div>
+                    <h3 class="text-xl font-serif font-bold text-primary-dark mb-2">Weekend Delight</h3>
+                    <p class="text-gray-600 mb-4">Available only on weekends, this special dish is a celebration of flavors and textures.</p>
+                    <div class="text-primary-dark font-bold">$32</div>
+                </div>
+            </div>
+            
+            <!-- Special 3 -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-md">
+                <div class="h-56 overflow-hidden">
+                    <img src="{% static 'images/special-3.jpg' %}" alt="Special Dish 3" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                </div>
+                <div class="p-6">
+                    <div class="text-sm text-primary mb-2">Guest Favorite</div>
+                    <h3 class="text-xl font-serif font-bold text-primary-dark mb-2">Seasonal Inspiration</h3>
+                    <p class="text-gray-600 mb-4">Our chef's creative interpretation of local seasonal produce in a delightful presentation.</p>
+                    <div class="text-primary-dark font-bold">$30</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Private Dining -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row-reverse items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0 md:pl-12">
+                <h2 class="text-3xl font-serif font-bold text-primary-dark mb-6">Private Dining Experience</h2>
+                <p class="text-gray-700 mb-6 leading-relaxed">
+                    Create memorable gatherings in our elegant private dining room, perfect for celebrations, business meetings, or special occasions.
+                </p>
+                <p class="text-gray-700 mb-6 leading-relaxed">
+                    Our private dining options include customized menus, dedicated staff, and a sophisticated ambiance. The space can accommodate up to 24 guests for a seated dinner or 40 for a standing reception.
+                </p>
+                <a href="#" class="inline-block bg-primary hover:bg-primary-dark text-white font-medium px-6 py-3 rounded-md transition duration-300">
+                    Inquire About Private Dining
+                </a>
+            </div>
+            <div class="md:w-1/2">
+                <img src="{% static 'images/pilgrims-kitchen-views.jpg' %}" alt="Private Dining Room" class="rounded-lg shadow-xl">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Dietary Preferences -->
+<!-- <section class="py-16 bg-primary bg-opacity-10">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-serif font-bold text-primary-dark mb-4">Dietary Options</h2>
+            <p class="text-gray-600 max-w-3xl mx-auto">
+                We cater to various dietary needs and preferences with our specially crafted menu options.
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+         
+            <div class="text-center p-6 bg-white rounded-lg shadow-sm">
+                <div class="inline-block bg-primary bg-opacity-20 p-4 rounded-full mb-4">
+                    <i class="fas fa-leaf text-primary-dark text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-serif font-bold text-primary-dark mb-2">Vegetarian</h3>
+                <p class="text-gray-600">A wide variety of delicious vegetarian options across all our menu categories.</p>
+            </div>
+            
+       
+            <div class="text-center p-6 bg-white rounded-lg shadow-sm">
+                <div class="inline-block bg-primary bg-opacity-20 p-4 rounded-full mb-4">
+                    <i class="fas fa-seedling text-primary-dark text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-serif font-bold text-primary-dark mb-2">Vegan</h3>
+                <p class="text-gray-600">Creative plant-based dishes that are full of flavor and beautifully presented.</p>
+            </div>
+            
+         
+            <div class="text-center p-6 bg-white rounded-lg shadow-sm">
+                <div class="inline-block bg-primary bg-opacity-20 p-4 rounded-full mb-4">
+                    <i class="fas fa-ban text-primary-dark text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-serif font-bold text-primary-dark mb-2">Gluten-Free</h3>
+                <p class="text-gray-600">Carefully prepared gluten-free options that don't compromise on taste or quality.</p>
+            </div>
+            
+         
+            <div class="text-center p-6 bg-white rounded-lg shadow-sm">
+                <div class="inline-block bg-primary bg-opacity-20 p-4 rounded-full mb-4">
+                    <i class="fas fa-utensils text-primary-dark text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-serif font-bold text-primary-dark mb-2">Special Requests</h3>
+                <p class="text-gray-600">Our chef is happy to accommodate special dietary requirements with advance notice.</p>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+<!-- Testimonials -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-serif font-bold text-primary-dark mb-4">Guest Reviews</h2>
+            <p class="text-gray-600 max-w-3xl mx-auto">
+                See what our diners have to say about their experience at Project Pilgrims Restaurant.
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <!-- Testimonial 1 -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="text-primary">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <p class="text-gray-700 mb-4 italic">"The international menu is a culinary journey! We tried dishes from the Indian and Mexican sections—every bite was authentic and delicious."</p>
+                <div class="font-medium text-primary-dark">Michael & Sarah</div>
+                <div class="text-sm text-gray-500">Local Diners</div>
+            </div>
+            
+            <!-- Testimonial 2 -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="text-primary">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <p class="text-gray-700 mb-4 italic">"As someone with dietary restrictions, I was impressed by how accommodating the staff was. The gluten-free pizza was absolutely amazing!"</p>
+                <div class="font-medium text-primary-dark">Jennifer R.</div>
+                <div class="text-sm text-gray-500">Hotel Guest</div>
+            </div>
+            
+            <!-- Testimonial 3 -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="text-primary">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                <p class="text-gray-700 mb-4 italic">"The coffee selection is exceptional—perfectly brewed and paired wonderfully with their breakfast menu. A great way to start our day during our stay."</p>
+                <div class="font-medium text-primary-dark">David & Emma</div>
+                <div class="text-sm text-gray-500">Weekend Visitors</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Reservation CTA -->
+<section class="py-16 bg-primary-dark text-white text-center">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-serif font-bold mb-6">Make a Reservation</h2>
+        <p class="text-xl mb-8 max-w-3xl mx-auto">
+            Join us for an unforgettable global dining experience at Project Pilgrims Restaurant.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+            <a href="tel:+15551234567" class="inline-block bg-white hover:bg-gray-100 text-primary-dark font-medium px-8 py-4 rounded-md text-lg transition duration-300">
+                <i class="fas fa-phone-alt mr-2"></i> (555) 123-4567
+            </a>
+            <a href="#" class="inline-block bg-transparent hover:bg-white hover:text-primary-dark border-2 border-white text-white font-medium px-8 py-4 rounded-md text-lg transition duration-300">
+                Book Online
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Menu tab functionality with enhanced animations
+        const categoryTabs = document.querySelectorAll('.category-tab');
+        const menuContents = document.querySelectorAll('.menu-content');
+        const categoryDescriptions = document.querySelectorAll('.category-desc');
+        
+        // Initialize animations for menu items
+        initializeMenuItemAnimations();
+        
+        categoryTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                console.log('Tab clicked:', this.getAttribute('data-target'));
+                
+                // Remove active class from all tabs
+                categoryTabs.forEach(t => {
+                    t.classList.remove('active');
+                    t.classList.remove('bg-gradient-to-br', 'from-primary', 'to-primary-dark', 'text-white');
+                    t.classList.add('bg-white', 'text-gray-700', 'border', 'border-gray-200');
+                });
+                
+                // Add active class to clicked tab
+                this.classList.add('active');
+                this.classList.remove('bg-white', 'text-gray-700', 'border', 'border-gray-200');
+                this.classList.add('bg-gradient-to-br', 'from-primary', 'to-primary-dark', 'text-white');
+                
+                // Hide all menu content
+                menuContents.forEach(content => {
+                    content.classList.remove('active');
+                    content.style.display = 'none';
+                });
+                
+                // Hide all category descriptions
+                categoryDescriptions.forEach(desc => {
+                    desc.classList.add('hidden');
+                    desc.classList.remove('active');
+                });
+                
+                // Show the corresponding menu content
+                const target = this.getAttribute('data-target');
+                const targetContent = document.getElementById(`${target}-menu`);
+                const targetDescription = document.getElementById(`${target}-description`);
+                
+                console.log('Target content found:', targetContent);
+                
+                if (targetContent) {
+                    setTimeout(() => {
+                        targetContent.style.display = 'grid';
+                        targetContent.classList.add('active');
+                        animateMenuItems(targetContent);
+                    }, 150);
+                }
+                
+                if (targetDescription) {
+                    targetDescription.classList.remove('hidden');
+                    targetDescription.classList.add('active');
+                }
+            });
+        });
+        
+        // Smooth scroll to menu section when clicking "View Our Menu" button
+        const viewMenuBtn = document.querySelector('a[href="#menu"]');
+        if (viewMenuBtn) {
+            viewMenuBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const menuSection = document.getElementById('menu');
+                if (menuSection) {
+                    const headerHeight = document.querySelector('header')?.offsetHeight || 0;
+                    const menuTop = menuSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                    window.scrollTo({
+                        top: menuTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        }
+        
+        // Handle horizontal scroll in menu tabs for mobile
+        const tabsContainer = document.querySelector('.overflow-x-auto');
+        if (tabsContainer) {
+            // Add visible scroll indicator on mobile
+            if (window.innerWidth < 768) {
+                setTimeout(() => {
+                    tabsContainer.scrollLeft = 10;
+                    setTimeout(() => {
+                        tabsContainer.scrollLeft = 0;
+                    }, 300);
+                }, 1000);
+            }
+        }
+        
+        // Initialize animations for menu items
+        function initializeMenuItemAnimations() {
+            // Get the first visible menu content
+            const activeMenu = document.querySelector('.menu-content.active');
+            if (activeMenu) {
+                animateMenuItems(activeMenu);
+            }
+            
+            // Animate section title
+            const sectionTitle = document.querySelector('.animate-on-scroll');
+            if (sectionTitle) {
+                setTimeout(() => {
+                    sectionTitle.classList.remove('opacity-0', 'translate-y-8');
+                }, 300);
+            }
+        }
+        
+        // Animate menu items appearance with staggered delay
+        function animateMenuItems(menuContainer) {
+            const items = menuContainer.querySelectorAll('.menu-card, .col-span-full');
+            items.forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(20px)';
+                item.style.transition = 'opacity 0.4s ease-out, transform 0.4s ease-out';
+                
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, 100 + (index * 50)); // Staggered delay based on index
+            });
+        }
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Menu tab functionality
+        const categoryTabs = document.querySelectorAll('.category-tab');
+        const menuContents = document.querySelectorAll('.menu-content');
+        
+        categoryTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs
+                categoryTabs.forEach(t => {
+                    t.classList.remove('active', 'bg-primary', 'text-white');
+                    t.classList.add('bg-gray-200', 'hover:bg-primary', 'hover:text-white');
+                });
+                
+                // Add active class to clicked tab
+                this.classList.add('active', 'bg-primary', 'text-white');
+                this.classList.remove('bg-gray-200', 'hover:bg-primary', 'hover:text-white');
+                
+                // Hide all menu content
+                menuContents.forEach(content => {
+                    content.classList.add('hidden');
+                    content.classList.remove('active');
+                });
+                
+                // Show the corresponding menu content
+                const target = this.getAttribute('data-target');
+                const targetContent = document.getElementById(`${target}-menu`);
+                if (targetContent) {
+                    targetContent.classList.remove('hidden');
+                    targetContent.classList.add('active');
+                }
+            });
+        });
+        
+        // Smooth scroll to menu section when clicking "View Our Menu" button
+        const viewMenuBtn = document.querySelector('a[href="#menu"]');
+        if (viewMenuBtn) {
+            viewMenuBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const menuSection = document.getElementById('menu');
+                if (menuSection) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const menuTop = menuSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                    window.scrollTo({
+                        top: menuTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        }
+    });
+</script>
+
+<!-- Enhanced CSS and JavaScript -->
+<style>
+    .menu-card {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .menu-card:hover {
+        transform: translateY(-8px) scale(1.02);
+    }
+    
+    .menu-card:hover .menu-image {
+        transform: scale(1.1);
+    }
+    
+    .menu-image {
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .category-tab.active {
+        transform: translateY(-2px);
+    }
+    
+    .menu-content {
+        display: none;
+        opacity: 0;
+        animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    
+    .menu-content.active {
+        display: grid;
+        opacity: 1;
+    }
+    
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .description-text {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    .menu-card:hover .description-text {
+        -webkit-line-clamp: 3;
+    }
+    
+    .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    .scroll-indicator {
+        animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+            transform: translateX(0);
+        }
+        40% {
+            transform: translateX(-10px);
+        }
+        60% {
+            transform: translateX(-5px);
+        }
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,443 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block title %}ລາຍການກາເຟທັງໝົດ - ຮ້ານກາເຟ{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+        <div>
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">ລາຍການກາເຟທັງໝົດ</h1>
+            <p class="text-gray-600">ພົບ {{ page_obj.paginator.count }} ລາຍການ</p>
+        </div>
+        
+        <!-- Sort -->
+        <div class="mt-4 md:mt-0">
+            <select onchange="updateSort(this.value)" class="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
+                <option value="name" {% if current_filters.sort == 'name' %}selected{% endif %}>ລຽງຕາມຊື່</option>
+                <option value="price_low" {% if current_filters.sort == 'price_low' %}selected{% endif %}>ລາຄາຕ່ຳ-ສູງ</option>
+                <option value="price_high" {% if current_filters.sort == 'price_high' %}selected{% endif %}>ລາຄາສູງ-ຕ່ຳ</option>
+                <option value="newest" {% if current_filters.sort == 'newest' %}selected{% endif %}>ໃໝ່ລ່າສຸດ</option>
+                <option value="rating" {% if current_filters.sort == 'rating' %}selected{% endif %}>ຄະແນນສູງສຸດ</option>
+            </select>
+        </div>
+    </div>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        
+        <!-- Filters Sidebar -->
+        <div class="lg:col-span-1">
+            <div class="bg-white rounded-lg shadow-lg p-6 sticky top-24">
+                <h3 class="text-lg font-semibold mb-4">ຕົວກອງ</h3>
+                
+                <form method="GET" id="filterForm" class="space-y-6">
+                    
+                    <!-- Search -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">ຄົ້ນຫາ</label>
+                        <input type="text" name="search" value="{{ current_filters.search|default:'' }}" 
+                               placeholder="ຊື່ກາເຟ, ເມັດ..."
+                               class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
+                    </div>
+                    
+                    <!-- Category -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">ໝວດໝູ່</label>
+                        <select name="category" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
+                            <option value="">ທັງໝົດ</option>
+                            {% for category in categories %}
+                            <option value="{{ category.id }}" {% if current_filters.category == category.id|stringformat:"s" %}selected{% endif %}>
+                                {{ category.name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <!-- Roast Level -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">ລະດັບການຄົ່ວ</label>
+                        <select name="roast" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
+                            <option value="">ທັງໝົດ</option>
+                            {% for roast in roast_levels %}
+                            <option value="{{ roast.id }}" {% if current_filters.roast == roast.id|stringformat:"s" %}selected{% endif %}>
+                                {{ roast }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <!-- Bean Type -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">ປະເພດເມັດ</label>
+                        <select name="bean" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
+                            <option value="">ທັງໝົດ</option>
+                            {% for bean_code, bean_name in bean_types %}
+                            <option value="{{ bean_code }}" {% if current_filters.bean == bean_code %}selected{% endif %}>
+                                {{ bean_name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <!-- Grind Type -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">ປະເພດການບົດ</label>
+                        <select name="grind" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
+                            <option value="">ທັງໝົດ</option>
+                            {% for grind_code, grind_name in grind_types %}
+                            <option value="{{ grind_code }}" {% if current_filters.grind == grind_code %}selected{% endif %}>
+                                {{ grind_name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <!-- Price Range -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">ຊ່ວງລາຄາ</label>
+                        <div class="space-y-3">
+                            <div class="flex space-x-2">
+                                <input type="number" name="min_price" value="{{ current_filters.min_price|default:'' }}" 
+                                       placeholder="ຕ່ຳສຸດ" min="0"
+                                       class="w-full border border-gray-300 rounded px-2 py-1 text-sm">
+                                <span class="self-center">-</span>
+                                <input type="number" name="max_price" value="{{ current_filters.max_price|default:'' }}" 
+                                       placeholder="ສູງສຸດ" min="0"
+                                       class="w-full border border-gray-300 rounded px-2 py-1 text-sm">
+                            </div>
+                            {% if current_filters.min_price or current_filters.max_price %}
+                            <div class="text-xs text-gray-500">
+                                {{ current_filters.min_price|default:"0" }} - {{ current_filters.max_price|default:"∞" }}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <!-- Buttons -->
+                    <div class="space-y-2">
+                        <button type="submit" 
+                                class="w-full bg-amber-600 text-white py-2 px-4 rounded-lg hover:bg-amber-700 transition">
+                            ຄົ້ນຫາ
+                        </button>
+                        <button type="button" onclick="clearFilters()" 
+                                class="w-full bg-gray-200 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-300 transition">
+                            ລ້າງຕົວກອງ
+                        </button>
+                    </div>
+                    
+                    <!-- Hidden sort field -->
+                    <input type="hidden" name="sort" value="{{ current_filters.sort|default:'name' }}">
+                </form>
+                
+                <!-- Active Filters Display -->
+                {% if current_filters.search or current_filters.category or current_filters.roast or current_filters.bean or current_filters.grind or current_filters.min_price or current_filters.max_price %}
+                <div class="mt-6 pt-6 border-t border-gray-200">
+                    <h4 class="text-sm font-medium text-gray-700 mb-3">ຕົວກອງທີ່ໃຊ້:</h4>
+                    <div class="space-y-2">
+                        {% if current_filters.search %}
+                        <div class="flex items-center justify-between bg-amber-50 px-3 py-2 rounded-lg">
+                            <span class="text-sm text-amber-800">ຄົ້ນຫາ: "{{ current_filters.search }}"</span>
+                            <button onclick="removeFilter('search')" class="text-amber-600 hover:text-amber-800">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        {% endif %}
+                        
+                        {% if current_filters.category %}
+                        <div class="flex items-center justify-between bg-amber-50 px-3 py-2 rounded-lg">
+                            <span class="text-sm text-amber-800">ໝວດໝູ່: {{ current_filters.category_name|default:"Selected" }}</span>
+                            <button onclick="removeFilter('category')" class="text-amber-600 hover:text-amber-800">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        {% endif %}
+                        
+                        {% if current_filters.min_price or current_filters.max_price %}
+                        <div class="flex items-center justify-between bg-amber-50 px-3 py-2 rounded-lg">
+                            <span class="text-sm text-amber-800">
+                                ລາຄາ: {{ current_filters.min_price|default:"0" }} - {{ current_filters.max_price|default:"∞" }}
+                            </span>
+                            <button onclick="removeFilter('price')" class="text-amber-600 hover:text-amber-800">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- Coffee Grid -->
+        <div class="lg:col-span-3">
+            {% if page_obj %}
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6">
+                {% for coffee in page_obj %}
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
+                    <!-- Product Image -->
+                    <div class="h-48 bg-gradient-to-br from-amber-200 to-amber-400 flex items-center justify-center relative overflow-hidden">
+                        {% if coffee.images %}
+                            <img src="{{ coffee.images.url }}" 
+                                 alt="{{ coffee.name }}"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        {% else %}
+                            <i class="fas fa-coffee text-6xl text-amber-800 opacity-30"></i>
+                        {% endif %}
+                        
+                        <!-- Badges -->
+                        <div class="absolute top-2 left-2 space-y-1">
+                            <!-- Freshness Badge -->
+                            {% if coffee.is_fresh %}
+                            <div class="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-semibold shadow-lg">
+                                <i class="fas fa-leaf mr-1"></i>ສົດໃໝ່
+                            </div>
+                            {% endif %}
+                            
+                            <!-- Stock Badge -->
+                            {% if coffee.stock_quantity < 10 %}
+                            <div class="bg-red-500 text-white px-2 py-1 rounded-full text-xs font-semibold shadow-lg">
+                                <i class="fas fa-exclamation-triangle mr-1"></i>ເຫຼືອໜ້ອຍ
+                            </div>
+                            {% endif %}
+                        </div>
+                        
+                        
+                        <!-- Categories -->
+                        {% if coffee.categories.exists %}
+                        <div class="absolute top-2 right-2">
+                            {% for category in coffee.categories.all|slice:":2" %}
+                            <span class="bg-amber-100 text-amber-800 px-2 py-1 rounded-full text-xs font-medium shadow-sm mb-1 block">
+                                {{ category.name }}
+                            </span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 line-clamp-2 hover:text-amber-600 transition-colors">
+                            <a href="{% url 'coffee_detail' coffee.slug %}">{{ coffee.name }}</a>
+                        </h3>
+                        
+                        <div class="space-y-1 text-sm text-gray-600 mb-3">
+                            <p><i class="fas fa-seedling mr-1 text-green-600"></i>{{ coffee.coffee_bean.name }}</p>
+                            <p><i class="fas fa-fire mr-1 text-orange-500"></i>{{ coffee.roast_level }}</p>
+                            <p><i class="fas fa-weight mr-1 text-blue-500"></i>{{ coffee.weight }}{{ coffee.weight_unit }}</p>
+                            {% if coffee.grind_type != 'whole_bean' %}
+                            <p><i class="fas fa-cogs mr-1 text-gray-500"></i>{{ coffee.get_grind_type_display }}</p>
+                            {% endif %}
+                        </div>
+                        
+                        <!-- Price and Rating Row -->
+                        <div class="flex justify-between items-center mb-4">
+                            <div>
+                                <span class="text-2xl font-bold text-amber-600">{{ coffee.price|intcomma }} LAK</span>
+                                <div class="text-xs text-gray-500">{{ coffee.price_per_unit|intcomma }} LAK/100g</div>
+                            </div>
+                            
+                            <!-- Rating -->
+                            <div class="text-right">
+                                {% if coffee.avg_rating %}
+                                <div class="flex items-center text-yellow-400 justify-end mb-1">
+                                    {% for i in "12345" %}
+                                        {% if forloop.counter <= coffee.avg_rating|intcomma %}
+                                        <i class="fas fa-star text-xs"></i>
+                                        {% else %}
+                                        <i class="far fa-star text-xs"></i>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <div class="text-xs text-gray-500">
+                                    {{ coffee.avg_rating|floatformat:1 }} ({{ coffee.reviews.count }} ຣີວິວ)
+                                </div>
+                                {% else %}
+                                <div class="flex items-center text-gray-300 justify-end mb-1">
+                                    {% for i in "12345" %}
+                                    <i class="far fa-star text-xs"></i>
+                                    {% endfor %}
+                                </div>
+                                <div class="text-xs text-gray-500">ຍັງບໍ່ມີຣີວິວ</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <!-- Flavor Notes -->
+                        {% if coffee.coffee_bean.flavor_notes %}
+                        <p class="text-sm text-gray-600 mb-4 line-clamp-2 italic">
+                            "{{ coffee.coffee_bean.flavor_notes }}"
+                        </p>
+                        {% endif %}
+  
+                        <!-- Action Buttons -->
+                        <div class="flex space-x-2">
+                            <button class="flex-1 bg-amber-600 text-white py-2 px-4 rounded-lg hover:bg-amber-700 transition font-medium">
+                                <a href="{% url 'coffee_detail' coffee.slug %}">
+                                    <i class="fas fa-eye mr-2"></i>ເບິ່ງລາຍລະອຽດ
+                                </a>
+                            </button>
+                            
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <!-- Pagination -->
+            {% if page_obj.has_other_pages %}
+            <div class="flex justify-center mt-8">
+                <nav class="flex space-x-2">
+                    {% if page_obj.has_previous %}
+                    <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ page_obj.previous_page_number }}" 
+                       class="px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                        <i class="fas fa-chevron-left mr-1"></i>ກ່ອນໜ້າ
+                    </a>
+                    {% endif %}
+                    
+                    {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                    <span class="px-3 py-2 bg-amber-600 text-white rounded-lg font-medium">{{ num }}</span>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ num }}" 
+                       class="px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                        {{ num }}
+                    </a>
+                    {% endif %}
+                    {% endfor %}
+                    
+                    {% if page_obj.has_next %}
+                    <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ page_obj.next_page_number }}" 
+                       class="px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                        ຖັດໄປ<i class="fas fa-chevron-right ml-1"></i>
+                    </a>
+                    {% endif %}
+                </nav>
+            </div>
+            {% endif %}
+            
+            {% else %}
+            <div class="text-center py-12">
+                <i class="fas fa-search text-6xl text-gray-300 mb-4"></i>
+                <h3 class="text-xl font-semibold text-gray-700 mb-2">ບໍ່ພົບກາເຟທີ່ຄົ້ນຫາ</h3>
+                <p class="text-gray-500 mb-6">ລອງປ່ຽນເງື່ອນໄຂການຄົ້ນຫາຫຼືລ້າງຕົວກອງ</p>
+                <button onclick="clearFilters()" 
+                        class="bg-amber-600 text-white px-6 py-3 rounded-lg hover:bg-amber-700 transition">
+                    ລ້າງຕົວກອງ
+                </button>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Compare Floating Button -->
+<div class="fixed bottom-6 right-6 z-40">
+    <button onclick="goToCompare()" 
+            id="compareButton"
+            class="bg-amber-600 text-white p-4 rounded-full shadow-lg hover:bg-amber-700 transition hidden">
+        <i class="fas fa-balance-scale mr-2"></i>
+        ເປີຍບທຽບ (<span id="compare-counter">0</span>)
+    </button>
+</div>
+
+<script>
+    function updateSort(sortValue) {
+        const form = document.getElementById('filterForm');
+        const sortInput = form.querySelector('input[name="sort"]');
+        sortInput.value = sortValue;
+        form.submit();
+    }
+    
+    function clearFilters() {
+        window.location.href = '{% url "coffee_list" %}';
+    }
+    
+    function removeFilter(filterType) {
+        const form = document.getElementById('filterForm');
+        
+        switch(filterType) {
+            case 'search':
+                form.querySelector('input[name="search"]').value = '';
+                break;
+            case 'category':
+                form.querySelector('select[name="category"]').value = '';
+                break;
+            case 'price':
+                form.querySelector('input[name="min_price"]').value = '';
+                form.querySelector('input[name="max_price"]').value = '';
+                break;
+        }
+        
+        form.submit();
+    }
+    
+    function goToCompare() {
+        if (typeof compareList === 'undefined' || compareList.length === 0) {
+            alert('ກະລຸນາເລືອກກາເຟທີ່ຕ້ອງການເປີຍບທຽບ');
+            return;
+        }
+        window.location.href = '/compare/?compare=' + compareList.join('&compare=');
+    }
+    
+    // Update compare button visibility
+    function updateCompareButtonVisibility() {
+        const button = document.getElementById('compareButton');
+        const counter = document.getElementById('compare-counter');
+        
+        if (typeof compareList !== 'undefined' && compareList.length > 0) {
+            button.classList.remove('hidden');
+            counter.textContent = compareList.length;
+        } else {
+            button.classList.add('hidden');
+        }
+    }
+    
+    // Initialize compare functionality
+    if (typeof compareList === 'undefined') {
+        var compareList = [];
+    }
+    
+    function toggleCompare(coffeeId) {
+        const index = compareList.indexOf(coffeeId);
+        if (index > -1) {
+            compareList.splice(index, 1);
+        } else {
+            if (compareList.length >= 4) {
+                alert('ທ່ານສາມາດເປີຍບທຽບໄດ້ສູງສຸດ 4 ລາຍການ');
+                return;
+            }
+            compareList.push(coffeeId);
+        }
+        
+        updateCompareButtonVisibility();
+        updateCompareButtons();
+    }
+    
+    function updateCompareButtons() {
+        const buttons = document.querySelectorAll('.compare-btn');
+        buttons.forEach(button => {
+            const coffeeId = parseInt(button.dataset.coffeeId);
+            if (compareList.includes(coffeeId)) {
+                button.classList.add('bg-amber-600', 'text-white');
+                button.classList.remove('bg-white', 'text-amber-600');
+            } else {
+                button.classList.remove('bg-amber-600', 'text-white');
+                button.classList.add('bg-white', 'text-amber-600');
+            }
+        });
+    }
+    
+    // Override the global updateCompareCounter function if it exists
+    if (typeof updateCompareCounter !== 'undefined') {
+        updateCompareCounter = updateCompareButtonVisibility;
+    }
+    
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        updateCompareButtons();
+        updateCompareButtonVisibility();
+    });
+</script>
+{% endblock %}
