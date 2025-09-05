@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load humanize %}
+
+{% block title %}Contact Us - Pilgrims Venture{% endblock %}
+
+{% block content %}
+<!-- Map Section (Placeholder) -->
+<section class="py-16 bg-white dark:bg-primary-dark-dark">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <section class="py-16 bg-white dark:bg-primary-dark-dark">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-playfair font-bold text-primary-light dark:text-secondary-light mb-6">
+                    ສະຖານທີ່
+                </h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    ຖະໜົນ ຄັນທະບູລີ, ບ້ານຈອມແກ້ວ, ເຮືອນເລກທີ 168
+                    ເມືອງໄກສອນພົມວິຫານ, ແຂວງສະຫວັນນະເຂດ, ສປປລາວ                
+                </p>
+            </div>
+
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-playfair font-bold text-primary-light dark:text-secondary-light mb-6">
+                    Our Location 
+                </h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    Pilgrim's Kitchen & Inn
+                    Khanthabouly Road, House No. 168
+                    Ban Chomkeo, Kaisone Phomvihane District 
+                    Savannakhet, Lao PDR       
+                </p>
+            </div>
+            
+            <div class="w-full relative">
+                <div class="w-full h-96 sm:h-[450px]">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4705.5373483380745!2d104.7421653!3d16.5673072!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x373354704522b235%3A0x6480e866488d3afa!2sPilgrim&#39;s%20Kitchen%20%26%20Inn!5e1!3m2!1sen!2sla!4v1756957192946!5m2!1sen!2sl" 
+                        width="100%" 
+                        height="100%" 
+                        class="border-0 rounded-none sm:rounded-lg shadow-lg dark:shadow-2xl"
+                        allowfullscreen="" 
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
+<!-- Contact Information Grid -->
+<section class="py-16 bg-white dark:bg-neutral-dark">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-playfair font-bold text-primary-light dark:text-primary-dark mb-6">
+                ຂໍ້ມູນຕິດຕໍ່
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12">
+            <!-- WhatsApp Card -->
+            <div class="bg-neutral-light dark:bg-primary-dark-dark rounded-2xl p-8 shadow-lg dark:dark-shadow-lg hover:shadow-xl dark:hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-green-500 dark:bg-green-600 rounded-full mb-6">
+                        <i class="fab fa-whatsapp text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-playfair font-bold text-primary-light dark:text-secondary-light mb-4">
+                        ຕິດຕໍ່ພວກເຮົາ
+                    </h3>
+                    <div class="space-y-3 text-gray-700 dark:text-gray-300">
+                        <p class="text-2xl font-bold text-primary-light dark:text-primary-dark">
+                            +856 20 22133733
+                        </p>
+                    </div>
+
+                    
+                    <!-- Alternative link for quick contact -->
+                    <div class="mt-4">
+                        <a href="https://wa.me/85620221333733" 
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-500 transition-colors duration-300 text-sm">
+                            <i class="fas fa-external-link-alt mr-2"></i>
+                            ເປີດ WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phone Card -->
+            <div class="bg-neutral-light dark:bg-primary-dark-dark rounded-2xl p-8 shadow-lg dark:dark-shadow-lg hover:shadow-xl dark:hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-secondary-light dark:bg-secondary-dark rounded-full mb-6">
+                        <i class="fas fa-phone-alt text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-playfair font-bold text-primary-light dark:text-secondary-light mb-4">
+                        ຕິດຕໍ່ພວກເຮົາ
+                    </h3>
+                    <div class="space-y-3 text-gray-700 dark:text-gray-300">
+                        <p class="text-2xl font-bold text-primary-light dark:text-primary-dark">
+                            +856 20 22133733
+                        </p>
+                    </div>
+                    <div class="mt-6">
+                        <a href="tel:+85620221333733" class="inline-flex items-center text-secondary-light dark:text-secondary-dark hover:text-secondary-dark-light dark:hover:text-secondary-dark-dark transition-colors duration-300">
+                            <i class="fas fa-phone mr-2"></i>
+                            ໂທຕອນນີ້
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email Card -->
+            <div class="bg-neutral-light dark:bg-primary-dark-dark rounded-2xl p-8 shadow-lg dark:dark-shadow-lg hover:shadow-xl dark:hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 md:col-span-2 lg:col-span-1">
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-500 dark:bg-secondary-light rounded-full mb-6">
+                        <i class="fas fa-envelope text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-playfair font-bold text-primary-light dark:text-secondary-light mb-4">
+                        ອີເມວຂອງພວກເຮົາ
+                    </h3>
+                    <div class="space-y-3 text-gray-700 dark:text-gray-300">
+                        <p class="text-2xl font-bold text-primary-light dark:text-primary-dark">
+                            pilgrimscontact@gmail.com
+                        </p>
+                    </div>
+                    <div class="mt-6">
+                        <a href="mailto:pilgrimscontact@gmail.com" class="inline-flex items-center text-blue-500 dark:text-secondary-dark hover:text-secondary-dark-light dark:hover:text-secondary-dark-dark transition-colors duration-300">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            ສົ່ງອີເມວ
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Operating Hours Section -->
+<section class="py-16 sm:py-24">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-playfair font-bold mb-6">
+                ເວລາເປີດ-ປິດ
+            </h2>
+        </div>
+
+        <div class="max-w-9xl mx-auto">
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                  
+                    <!-- Lao Hours -->
+                    <div class="p-8 sm:p-12 bg-gradient-to-br from-secondary-light to-secondary-dark-light dark:from-secondary-dark to-secondary-dark-dark text-white lg:border-l border-gray-200 dark:border-gray-600">
+                        <h3 class="text-2xl sm:text-3xl font-playfair font-bold mb-8 text-center">
+                            <i class="fas fa-clock mr-3"></i>
+                            ເວລາເປີດ-ປິດ
+                        </h3>
+                        <div class="space-y-6">
+                            <div class="flex justify-between items-center p-4 bg-white bg-opacity-20 rounded-xl backdrop-blur-sm">
+                                <span class="text-lg font-medium">ວັນຈັນ - ວັນເສົາ</span>
+                                <span class="text-lg font-bold">7:30 ເຊົ້າ - 9:00 ແລງ</span>
+                            </div>
+                            <div class="flex justify-between items-center p-4 bg-red-600 bg-opacity-30 rounded-xl border-l-4 border-red-300">
+                                <span class="text-lg font-medium">ວັນອາທິດ</span>
+                                <span class="text-lg font-bold">ປິດ</span>
+                            </div>
+                        </div>
+                    </div>   
+                    <!-- English Hours -->
+                    <div class="p-8 sm:p-12 bg-white dark:bg-primary-dark-dark">
+                        <h3 class="text-2xl sm:text-3xl font-playfair font-bold text-primary-light dark:text-secondary-light mb-8 text-center">
+                            <i class="fas fa-clock mr-3 text-secondary-light dark:text-secondary-dark"></i>
+                            Opening and closing times
+                        </h3>
+                        <div class="space-y-6">
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center p-4 bg-neutral-light dark:bg-neutral-dark rounded-xl">
+                                <span class="text-lg font-medium text-gray-800 dark:text-gray-200 mb-2 sm:mb-0">Monday - Saturday:</span>
+                                <span class="text-lg font-bold text-primary-light dark:text-primary-dark">7:30 AM - 9:00 PM</span>
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center p-4 bg-red-50 dark:bg-red-900 rounded-xl border-l-4 border-red-500">
+                                <span class="text-lg font-medium text-red-700 dark:text-red-200 mb-2 sm:mb-0">Sunday:</span>
+                                <span class="text-lg font-bold text-red-600 dark:text-red-300">Closed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
