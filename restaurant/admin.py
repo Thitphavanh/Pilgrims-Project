@@ -3,6 +3,8 @@ from .models import MenuItem
 from django.utils.html import format_html
 
 
+
+
 @admin.register(MenuItem)
 class MenuItemAdmin(admin.ModelAdmin):
     list_display = (

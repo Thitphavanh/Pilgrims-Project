@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% load i18n %}
+
 {% load humanize %}
 
 {% block title %}Pilgrims - Hotel & Fine Dining{% endblock %}
@@ -83,16 +85,16 @@
 {% include 'components/hero-section.html' %}
 
 <!-- Welcome Section -->
-<section class="py-16 md:py-24 bg-white">
+<section class="py-16 md:py-24 bg-gradient-to-br from-neutral-light">
     <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row items-center">
             <div class="md:w-1/2 mb-10 md:mb-0 md:pr-12">
-                <h2 class="text-3xl md:text-4xl font-serif font-bold text-primary-dark mb-6">Pilgrims Kitchen & Inn ຍິນດີຕ້ອນຮັບ </h2>
-                <p class="text-gray-700 mb-6 leading-relaxed">
-                    Nestled in the heart of Peaceful Valley, Pilgrims offers a unique blend of rustic charm and modern luxury. Our boutique hotel and restaurant is a sanctuary for those seeking tranquility and exceptional hospitality.
+                <h2 class="text-3xl md:text-4xl font-serif font-bold mb-6">Pilgrims Kitchen & Inn ຍິນດີຕ້ອນຮັບ </h2>
+                <p class=" mb-6 leading-relaxed">
+                    Nestle by the banks of the Mekong River with sweeping views across to Thailand, we bring together a cozy cafe, a vibrant multi-cuisine restaurant, a welcoming guesthouse, and our very own in-house coffee roastery - all under one roof. Our cafe is the perfect place to begin your day with a fresh cup of coffee while watching the river awaken, while our restaurant takes you on a journey of flavors from around the world - Mexican, Indian, American, Mediterranean, and Local Lao specialties.
                 </p>
-                <p class="text-gray-700 mb-8 leading-relaxed">
-                    From our elegantly appointed rooms to our farm-to-table restaurant, every aspect of Pilgrims is designed to provide our guests with an unforgettable experience that nourishes both body and soul.
+                <p class=" mb-8 leading-relaxed">
+                    For travelers, our guesthouse offers the comfort of 11 well-appointed rooms and 2 spacious suites, where you can rest, recharge, and wake up to the beauty of the Mekong sunrise. And for coffee lovers, our in-house roasting ensures every cup is crafted with passion, freshness, and care. Whether you are passing through, staying the night, or simply looking for a place to relax and connect, we invite you to discover comfort, flavor, and unforgettable riverside experiences with us.
                 </p>
                 <a href="#" class="inline-block bg-primary hover:bg-primary-dark text-white font-medium px-6 py-3 rounded-md transition duration-300">
                     Our Story
@@ -106,15 +108,15 @@
 </section>
 
 <!-- Menu Section with Enhanced Grid Design -->
-<section id="menu" class="py-16 md:py-24 bg-gradient-to-br from-white to-gray-50">
+<section id="menu" class="py-16 md:py-24">
     <div class="container mx-auto px-4">
         <!-- Animated section header -->
         <div class="text-center mb-12 md:mb-16 animate-on-scroll opacity-0 translate-y-8">
-            <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-primary-dark mb-6 leading-tight">
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 leading-tight">
                 ເມນູຂອງພວກເຮົາ
             </h2>
-            <div class="w-32 h-1.5 bg-gradient-to-r from-primary to-primary-dark mx-auto mb-8 rounded-full"></div>
-            <p class="text-gray-600 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
+            <div class="w-32 h-1.5 mx-auto mb-8 rounded-full"></div>
+            <p class="max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
                 ສຳຫຼວດເມນູອາຫານຫຼາກຫຼາຍຈາກທົ່ວໂລກ ທີ່ປຸງແຕ່ງດ້ວຍຄວາມຕັ້ງໃຈແລະວັດຖຸດິບຊັ້ນດີ
             </p>
         </div>
@@ -123,7 +125,7 @@
         <div class="mb-12 md:mb-16">
             <div class="relative mb-8">
                 <!-- Mobile scroll indicator -->
-                <div class="absolute -top-8 left-0 right-0 text-center text-sm text-gray-500 md:hidden">
+                <div class="absolute -top-8 left-0 right-0 text-center text-sm  md:hidden">
                     <span class="scroll-indicator">ເລື່ອນເບິ່ງເມນູເພີ່ມເຕີມ <i class="fas fa-arrow-right text-primary ml-2"></i></span>
                 </div>
                 
@@ -133,28 +135,28 @@
                         <button class="category-tab active bg-primary text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl whitespace-nowrap" data-target="breakfast">
                             <i class="fas fa-coffee mr-3 text-lg"></i>Breakfast
                         </button>
-                        <button class="category-tab bg-white hover:bg-primary hover:text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap text-gray-700" data-target="coffee">
+                        <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap " data-target="coffee">
                             <i class="fas fa-mug-hot mr-3 text-lg"></i>Coffee
                         </button>
-                        <button class="category-tab bg-white hover:bg-primary hover:text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap text-gray-700" data-target="american">
+                        <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap " data-target="american">
                             <i class="fas fa-hamburger mr-3 text-lg"></i>American
                         </button>
-                        <button class="category-tab bg-white hover:bg-primary hover:text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap text-gray-700" data-target="indian">
+                        <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap " data-target="indian">
                             <i class="fas fa-pepper-hot mr-3 text-lg"></i>Indian
                         </button>
-                        <button class="category-tab bg-white hover:bg-primary hover:text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap text-gray-700" data-target="mexican">
+                        <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap " data-target="mexican">
                             <i class="fas fa-pepper-hot mr-3 text-lg"></i>Mexican
                         </button>
-                        <button class="category-tab bg-white hover:bg-primary hover:text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap text-gray-700" data-target="pizza">
+                        <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap " data-target="pizza">
                             <i class="fas fa-pizza-slice mr-3 text-lg"></i>Pizza
                         </button>
-                        <button class="category-tab bg-white hover:bg-primary hover:text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap text-gray-700" data-target="local_food">
+                        <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap " data-target="local_food">
                             <i class="fas fa-utensils mr-3 text-lg"></i>Local Specialties
                         </button>
-                        <button class="category-tab bg-white hover:bg-primary hover:text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap text-gray-700" data-target="soup_salad_mediterranean">
+                        <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap " data-target="soup_salad_mediterranean">
                             <i class="fas fa-leaf mr-3 text-lg"></i>Soup & Salad
                         </button>
-                        <button class="category-tab bg-white hover:bg-primary hover:text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap text-gray-700" data-target="drinks">
+                        <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap " data-target="drinks">
                             <i class="fas fa-glass-martini-alt mr-3 text-lg"></i>Drinks
                         </button>
                     </div>
@@ -164,31 +166,31 @@
             <!-- Category descriptions -->
             <div class="text-center my-8 min-h-16">
                 <div id="breakfast-description" class="category-desc active">
-                    <p class="text-gray-600 italic text-lg">ລີ່ມຕົ້ນວັນຂອງທ່ານດ້ວຍເມນູອາຫານເຊົ້າສຸດແຊບຂອງພວກເຮົາ</p>
+                    <p class=" italic text-lg">ລີ່ມຕົ້ນວັນຂອງທ່ານດ້ວຍເມນູອາຫານເຊົ້າສຸດແຊບຂອງພວກເຮົາ</p>
                 </div>
                 <div id="coffee-description" class="category-desc hidden">
-                    <p class="text-gray-600 italic text-lg">ເຄື່ອງດື່ມກາເຟທີ່ຖືກຊົງແບບຊຳນານ ໂດຍໃຊ້ເມັດກາເຟຊັ່ນນຳຈາກທົ່ວໂລກ</p>
+                    <p class=" italic text-lg">ເຄື່ອງດື່ມກາເຟທີ່ຖືກຊົງແບບຊຳນານ ໂດຍໃຊ້ເມັດກາເຟຊັ່ນນຳຈາກທົ່ວໂລກ</p>
                 </div>
                 <div id="american-description" class="category-desc hidden">
-                    <p class="text-gray-600 italic text-lg">ອາຫານຄລາສສິກສະໄຕລ໌ອາເມຣິກາ ທີ່ຖືກປຸງແຕ່ງໂດຍພໍ່ຄົວຂອງເຮົາໃນແນວພິເສດ</p>
+                    <p class=" italic text-lg">ອາຫານຄລາສສິກສະໄຕລ໌ອາເມຣິກາ ທີ່ຖືກປຸງແຕ່ງໂດຍພໍ່ຄົວຂອງເຮົາໃນແນວພິເສດ</p>
                 </div>
                 <div id="indian-description" class="category-desc hidden">
-                    <p class="text-gray-600 italic text-lg">ອາຫານອິນເດຍແບບດັ້ງເດີມ ທີ່ເຕັມໄປດ້ວຍກິ່ນຫອມຂອງເຄື່ອງເທດ ແລະວິທີປຸງແບບດັ້ງເດີມ</p>
+                    <p class=" italic text-lg">ອາຫານອິນເດຍແບບດັ້ງເດີມ ທີ່ເຕັມໄປດ້ວຍກິ່ນຫອມຂອງເຄື່ອງເທດ ແລະວິທີປຸງແບບດັ້ງເດີມ</p>
                 </div>
                 <div id="mexican-description" class="category-desc hidden">
-                    <p class="text-gray-600 italic text-lg">ອາຫານແມັກຊິໂກທີ່ເຂັ້ມຂົ້ນ ແລະເຕັມໄປດ້ວຍລົດຊາດ ໃຊ້ວັດຖຸດິບສົດ ແລະສູດຕົ້ນສະບັບແທ້</p>
+                    <p class=" italic text-lg">ອາຫານແມັກຊິໂກທີ່ເຂັ້ມຂົ້ນ ແລະເຕັມໄປດ້ວຍລົດຊາດ ໃຊ້ວັດຖຸດິບສົດ ແລະສູດຕົ້ນສະບັບແທ້</p>
                 </div>
                 <div id="pizza-description" class="category-desc hidden">
-                    <p class="text-gray-600 italic text-lg">ພິຊຊ່າແຮນເມດ ຫນ້າຄຸນນະພາບ</p>
+                    <p class=" italic text-lg">ພິຊຊ່າແຮນເມດ ຫນ້າຄຸນນະພາບ</p>
                 </div>
                 <div id="local_food-description" class="category-desc hidden">
-                    <p class="text-gray-600 italic text-lg">ອາຫານພື້ນເມືອງຈາກແຕ່ລະພາກ ທີ່ໂຊວເອກະລັກຂອງວັດຖຸດິບແລະປະເພນີທ້ອງຖິ່ນ</p>
+                    <p class=" italic text-lg">ອາຫານພື້ນເມືອງຈາກແຕ່ລະພາກ ທີ່ໂຊວເອກະລັກຂອງວັດຖຸດິບແລະປະເພນີທ້ອງຖິ່ນ</p>
                 </div>
                 <div id="soup_salad_mediterranean-description" class="category-desc hidden">
-                    <p class="text-gray-600 italic text-lg">ສະຫຼັດສົດ ແລະອາຫານຍອດນິຍົມຈາກພາກມະຕິເຕຣເນຍ ທີ່ເຕັມໄປດ້ວຍສິ່ງທີ່ມີປະໂຫຍດຕໍ່ສຸຂະພາບ</p>
+                    <p class=" italic text-lg">ສະຫຼັດສົດ ແລະອາຫານຍອດນິຍົມຈາກພາກມະຕິເຕຣເນຍ ທີ່ເຕັມໄປດ້ວຍສິ່ງທີ່ມີປະໂຫຍດຕໍ່ສຸຂະພາບ</p>
                 </div>
                 <div id="drinks-description" class="category-desc hidden">
-                    <p class="text-gray-600 italic text-lg">ເຄື່ອງດື່ມທີ່ຊົດຊື່ນ, ຄອກແທວສະເພາະ ແລະເລືອກຄັດສັນແບບພິຖີພິຖັນ</p>
+                    <p class=" italic text-lg">ເຄື່ອງດື່ມທີ່ຊົດຊື່ນ, ຄອກແທວສະເພາະ ແລະເລືອກຄັດສັນແບບພິຖີພິຖັນ</p>
                 </div>
             </div>
             
@@ -198,7 +200,7 @@
             <div id="breakfast-menu" class="menu-content active grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {% for item in breakfast_items %}
                 <a href="{% url 'menu-item-detail-page' item.slug %}" class="group">
-                <div class="menu-card bg-gradient-to-br from-white to-gray-50 border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
+                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
                     <div class="relative overflow-hidden rounded-2xl mb-6">
                         {% if item.image %}
                         <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image">
@@ -221,11 +223,11 @@
                         {% endif %}
                     </div>
                     <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold text-primary-dark group-hover:text-primary transition-colors">{{ item.name }}</h3>
-                        <p class="text-gray-600 description-text leading-relaxed">
+                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">{{ item.name }}</h3>
+                        <p class=" description-text leading-relaxed">
                             {{ item.description }}
                         </p>
-                        <div class="flex items-center text-sm text-gray-500">
+                        <div class="flex items-center text-sm ">
                             <i class="fas fa-utensils mr-2"></i>
                             <span>Breakfast Special</span>
                             {% if item.is_featured %}
@@ -238,8 +240,8 @@
                 {% empty %}
                 <div class="col-span-full bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-dashed border-primary rounded-3xl p-12 text-center">
                     <div class="text-6xl text-primary mb-6"><i class="fas fa-coffee"></i></div>
-                    <h3 class="text-2xl font-semibold text-gray-700 mb-4">ເມນູອາຫານເຊົ້າກຳລັງກະກຽມ</h3>
-                    <p class="text-gray-500 max-w-md mx-auto text-lg">
+                    <h3 class="text-2xl font-semibold  mb-4">ເມນູອາຫານເຊົ້າກຳລັງກະກຽມ</h3>
+                    <p class=" max-w-md mx-auto text-lg">
                         ພວກເຮົາກຳລັງກະກຽມເມນູອາຫານເຊົ້າພິເສດ ຄອຍຕິດຕາມໃນໄວໆນີ້
                     </p>
                 </div>
@@ -251,7 +253,7 @@
             <div id="coffee-menu" class="menu-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {% for item in coffee_items %}
                 <a href="{% url 'menu-item-detail-page' item.slug %}" class="group">
-                <div class="menu-card bg-gradient-to-br from-white to-gray-50 border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
+                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
                     <div class="relative overflow-hidden rounded-2xl mb-6">
                         {% if item.image %}
                         <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image">
@@ -274,11 +276,11 @@
                         {% endif %}
                     </div>
                     <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold text-primary-dark group-hover:text-primary transition-colors">{{ item.name }}</h3>
-                        <p class="text-gray-600 description-text leading-relaxed">
+                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">{{ item.name }}</h3>
+                        <p class=" description-text leading-relaxed">
                             {{ item.description }}
                         </p>
-                        <div class="flex items-center text-sm text-gray-500">
+                        <div class="flex items-center text-sm ">
                             <i class="fas fa-mug-hot mr-2"></i>
                             <span>Coffee Specialty</span>
                             {% if item.is_featured %}
@@ -291,8 +293,8 @@
                 {% empty %}
                 <div class="col-span-full bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-dashed border-primary rounded-3xl p-12 text-center">
                     <div class="text-6xl text-primary mb-6"><i class="fas fa-mug-hot"></i></div>
-                    <h3 class="text-2xl font-semibold text-gray-700 mb-4">ເມນູກາເຟກຳລັງກະກຽມ</h3>
-                    <p class="text-gray-500 max-w-md mx-auto text-lg">
+                    <h3 class="text-2xl font-semibold  mb-4">ເມນູກາເຟກຳລັງກະກຽມ</h3>
+                    <p class=" max-w-md mx-auto text-lg">
                         ເຮົາກຳລັງກະກຽມເມນູກາເຟພິເສດ ຄອຍຕິດຕາມໃນໄວໆນີ້
                     </p>
                 </div>
@@ -304,7 +306,7 @@
             <div id="american-menu" class="menu-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {% for item in american_items %}
                 <a href="{% url 'menu-item-detail-page' item.slug %}" class="group">
-                <div class="menu-card bg-gradient-to-br from-white to-gray-50 border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
+                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
                     <div class="relative overflow-hidden rounded-2xl mb-6">
                         {% if item.image %}
                         <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image">
@@ -327,11 +329,11 @@
                         {% endif %}
                     </div>
                     <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold text-primary-dark group-hover:text-primary transition-colors">{{ item.name }}</h3>
-                        <p class="text-gray-600 description-text leading-relaxed">
+                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">{{ item.name }}</h3>
+                        <p class=" description-text leading-relaxed">
                             {{ item.description }}
                         </p>
-                        <div class="flex items-center text-sm text-gray-500">
+                        <div class="flex items-center text-sm ">
                             <i class="fas fa-hamburger mr-2"></i>
                             <span>American Classic</span>
                             {% if item.is_featured %}
@@ -344,8 +346,8 @@
                 {% empty %}
                 <div class="col-span-full bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-dashed border-primary rounded-3xl p-12 text-center">
                     <div class="text-6xl text-primary mb-6"><i class="fas fa-hamburger"></i></div>
-                    <h3 class="text-2xl font-semibold text-gray-700 mb-4">ເມນູອາຫານອາເມຣິກາກຳລັງກະກຽມ</h3>
-                    <p class="text-gray-500 max-w-md mx-auto text-lg">
+                    <h3 class="text-2xl font-semibold  mb-4">ເມນູອາຫານອາເມຣິກາກຳລັງກະກຽມ</h3>
+                    <p class=" max-w-md mx-auto text-lg">
                         ອາຫານອາເມຣິກາຄລາສສິກກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ
                     </p>
                 </div>
@@ -357,7 +359,7 @@
             <div id="indian-menu" class="menu-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {% for item in indian_items %}
                 <a href="{% url 'menu-item-detail-page' item.slug %}" class="group">
-                <div class="menu-card bg-gradient-to-br from-white to-gray-50 border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
+                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
                     <div class="relative overflow-hidden rounded-2xl mb-6">
                         {% if item.image %}
                         <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image">
@@ -380,11 +382,11 @@
                         {% endif %}
                     </div>
                     <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold text-primary-dark group-hover:text-primary transition-colors">{{ item.name }}</h3>
-                        <p class="text-gray-600 description-text leading-relaxed">
+                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">{{ item.name }}</h3>
+                        <p class=" description-text leading-relaxed">
                             {{ item.description }}
                         </p>
-                        <div class="flex items-center text-sm text-gray-500">
+                        <div class="flex items-center text-sm ">
                             <i class="fas fa-pepper-hot mr-2"></i>
                             <span>Indian Cuisine</span>
                             {% if item.is_featured %}
@@ -397,8 +399,8 @@
                 {% empty %}
                 <div class="col-span-full bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-dashed border-primary rounded-3xl p-12 text-center">
                     <div class="text-6xl text-primary mb-6"><i class="fas fa-pepper-hot"></i></div>
-                    <h3 class="text-2xl font-semibold text-gray-700 mb-4">ເມນູອາຫານອິນເດຍກຳລັງກະກຽມ</h3>
-                    <p class="text-gray-500 max-w-md mx-auto text-lg">
+                    <h3 class="text-2xl font-semibold  mb-4">ເມນູອາຫານອິນເດຍກຳລັງກະກຽມ</h3>
+                    <p class=" max-w-md mx-auto text-lg">
                         ອາຫານອິນເດຍແບບດັ້ງເດີມກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ
                     </p>
                 </div>
@@ -410,7 +412,7 @@
             <div id="mexican-menu" class="menu-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {% for item in mexican_items %}
                 <a href="{% url 'menu-item-detail-page' item.slug %}" class="group">
-                <div class="menu-card bg-gradient-to-br from-white to-gray-50 border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
+                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
                     <div class="relative overflow-hidden rounded-2xl mb-6">
                         {% if item.image %}
                         <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image">
@@ -433,11 +435,11 @@
                         {% endif %}
                     </div>
                     <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold text-primary-dark group-hover:text-primary transition-colors">{{ item.name }}</h3>
-                        <p class="text-gray-600 description-text leading-relaxed">
+                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">{{ item.name }}</h3>
+                        <p class=" description-text leading-relaxed">
                             {{ item.description }}
                         </p>
-                        <div class="flex items-center text-sm text-gray-500">
+                        <div class="flex items-center text-sm ">
                             <i class="fas fa-pepper-hot mr-2"></i>
                             <span>Mexican Fiesta</span>
                             {% if item.is_featured %}
@@ -450,8 +452,8 @@
                 {% empty %}
                 <div class="col-span-full bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-dashed border-primary rounded-3xl p-12 text-center">
                     <div class="text-6xl text-primary mb-6"><i class="fas fa-pepper-hot"></i></div>
-                    <h3 class="text-2xl font-semibold text-gray-700 mb-4">ເມນູອາຫານແມັກຊິໂກກຳລັງກະກຽມ</h3>
-                    <p class="text-gray-500 max-w-md mx-auto text-lg">
+                    <h3 class="text-2xl font-semibold  mb-4">ເມນູອາຫານແມັກຊິໂກກຳລັງກະກຽມ</h3>
+                    <p class=" max-w-md mx-auto text-lg">
                         ອາຫານແມັກຊິໂກກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ
                     </p>
                 </div>
@@ -463,7 +465,7 @@
             <div id="pizza-menu" class="menu-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {% for item in pizza_items %}
                 <a href="{% url 'menu-item-detail-page' item.slug %}" class="group">
-                <div class="menu-card bg-gradient-to-br from-white to-gray-50 border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
+                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
                     <div class="relative overflow-hidden rounded-2xl mb-6">
                         {% if item.image %}
                         <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image">
@@ -486,11 +488,11 @@
                         {% endif %}
                     </div>
                     <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold text-primary-dark group-hover:text-primary transition-colors">{{ item.name }}</h3>
-                        <p class="text-gray-600 description-text leading-relaxed">
+                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">{{ item.name }}</h3>
+                        <p class=" description-text leading-relaxed">
                             {{ item.description }}
                         </p>
-                        <div class="flex items-center text-sm text-gray-500">
+                        <div class="flex items-center text-sm ">
                             <i class="fas fa-pizza-slice mr-2"></i>
                             <span>Handmade Pizza</span>
                             {% if item.is_featured %}
@@ -503,8 +505,8 @@
                 {% empty %}
                 <div class="col-span-full bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-dashed border-primary rounded-3xl p-12 text-center">
                     <div class="text-6xl text-primary mb-6"><i class="fas fa-pizza-slice"></i></div>
-                    <h3 class="text-2xl font-semibold text-gray-700 mb-4">ເມນູພິຊຊ່າກຳລັງກະກຽມ</h3>
-                    <p class="text-gray-500 max-w-md mx-auto text-lg">
+                    <h3 class="text-2xl font-semibold  mb-4">ເມນູພິຊຊ່າກຳລັງກະກຽມ</h3>
+                    <p class=" max-w-md mx-auto text-lg">
                         ພິຊຊ່າສະເພາະກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ
                     </p>
                 </div>
@@ -516,7 +518,7 @@
             <div id="local_food-menu" class="menu-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {% for item in local_food_items %}
                 <a href="{% url 'menu-item-detail-page' item.slug %}" class="group">
-                <div class="menu-card bg-gradient-to-br from-white to-gray-50 border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
+                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
                     <div class="relative overflow-hidden rounded-2xl mb-6">
                         {% if item.image %}
                         <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image">
@@ -539,11 +541,11 @@
                         {% endif %}
                     </div>
                     <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold text-primary-dark group-hover:text-primary transition-colors">{{ item.name }}</h3>
-                        <p class="text-gray-600 description-text leading-relaxed">
+                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">{{ item.name }}</h3>
+                        <p class=" description-text leading-relaxed">
                             {{ item.description }}
                         </p>
-                        <div class="flex items-center text-sm text-gray-500">
+                        <div class="flex items-center text-sm ">
                             <i class="fas fa-utensils mr-2"></i>
                             <span>Local Specialty</span>
                             {% if item.is_featured %}
@@ -556,8 +558,8 @@
                 {% empty %}
                 <div class="col-span-full bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-dashed border-primary rounded-3xl p-12 text-center">
                     <div class="text-6xl text-primary mb-6"><i class="fas fa-utensils"></i></div>
-                    <h3 class="text-2xl font-semibold text-gray-700 mb-4">ເມນູອາຫານພື້ນເມືອງກຳລັງກະກຽມ</h3>
-                    <p class="text-gray-500 max-w-md mx-auto text-lg">
+                    <h3 class="text-2xl font-semibold  mb-4">ເມນູອາຫານພື້ນເມືອງກຳລັງກະກຽມ</h3>
+                    <p class=" max-w-md mx-auto text-lg">
                         ອາຫານພື້ນເມືອງກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ
                     </p>
                 </div>
@@ -569,7 +571,7 @@
             <div id="soup_salad_mediterranean-menu" class="menu-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {% for item in soup_salad_mediterranean_items %}
                 <a href="{% url 'menu-item-detail-page' item.slug %}" class="group">
-                <div class="menu-card bg-gradient-to-br from-white to-gray-50 border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
+                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
                     <div class="relative overflow-hidden rounded-2xl mb-6">
                         {% if item.image %}
                         <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image">
@@ -592,11 +594,11 @@
                         {% endif %}
                     </div>
                     <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold text-primary-dark group-hover:text-primary transition-colors">{{ item.name }}</h3>
-                        <p class="text-gray-600 description-text leading-relaxed">
+                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">{{ item.name }}</h3>
+                        <p class=" description-text leading-relaxed">
                             {{ item.description }}
                         </p>
-                        <div class="flex items-center text-sm text-gray-500">
+                        <div class="flex items-center text-sm ">
                             <i class="fas fa-leaf mr-2"></i>
                             <span>Healthy Choice</span>
                             {% if item.is_featured %}
@@ -609,8 +611,8 @@
                 {% empty %}
                 <div class="col-span-full bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-dashed border-primary rounded-3xl p-12 text-center">
                     <div class="text-6xl text-primary mb-6"><i class="fas fa-leaf"></i></div>
-                    <h3 class="text-2xl font-semibold text-gray-700 mb-4">ເມນູສະຫຼັດແລະແກງກຳລັງກະກຽມ</h3>
-                    <p class="text-gray-500 max-w-md mx-auto text-lg">
+                    <h3 class="text-2xl font-semibold  mb-4">ເມນູສະຫຼັດແລະແກງກຳລັງກະກຽມ</h3>
+                    <p class=" max-w-md mx-auto text-lg">
                         ສະຫຼັດແລະແກງກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ
                     </p>
                 </div>
@@ -622,7 +624,7 @@
             <div id="drinks-menu" class="menu-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {% for item in drinks_items %}
                 <a href="{% url 'menu-item-detail-page' item.slug %}" class="group">
-                <div class="menu-card bg-gradient-to-br from-white to-gray-50 border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
+                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
                     <div class="relative overflow-hidden rounded-2xl mb-6">
                         {% if item.image %}
                         <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image">
@@ -645,11 +647,11 @@
                         {% endif %}
                     </div>
                     <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold text-primary-dark group-hover:text-primary transition-colors">{{ item.name }}</h3>
-                        <p class="text-gray-600 description-text leading-relaxed">
+                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">{{ item.name }}</h3>
+                        <p class=" description-text leading-relaxed">
                             {{ item.description }}
                         </p>
-                        <div class="flex items-center text-sm text-gray-500">
+                        <div class="flex items-center text-sm ">
                             <i class="fas fa-glass-martini-alt mr-2"></i>
                             <span>Refreshing Drink</span>
                             {% if item.is_featured %}
@@ -662,8 +664,8 @@
                 {% empty %}
                 <div class="col-span-full bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-dashed border-primary rounded-3xl p-12 text-center">
                     <div class="text-6xl text-primary mb-6"><i class="fas fa-glass-martini-alt"></i></div>
-                    <h3 class="text-2xl font-semibold text-gray-700 mb-4">ເມນູເຄື່ອງດື່ມກຳລັງກະກຽມ</h3>
-                    <p class="text-gray-500 max-w-md mx-auto text-lg">
+                    <h3 class="text-2xl font-semibold  mb-4">ເມນູເຄື່ອງດື່ມກຳລັງກະກຽມ</h3>
+                    <p class=" max-w-md mx-auto text-lg">
                         ເຄື່ອງດື່ມພິເສດກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ
                     </p>
                 </div>
@@ -690,15 +692,15 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div class="p-6">
                 <div class="text-4xl font-bold text-amber-600 mb-2">{{ stats.total_products }}</div>
-                <div class="text-gray-600">ຜະລິດຕະພັນກາເຟ</div>
+                <div class="">ຜະລິດຕະພັນກາເຟ</div>
             </div>
             <div class="p-6">
                 <div class="text-4xl font-bold text-amber-600 mb-2">{{ stats.total_beans }}</div>
-                <div class="text-gray-600">ຊະນິດເມັດກາເຟ</div>
+                <div class="">ຊະນິດເມັດກາເຟ</div>
             </div>
             <div class="p-6">
                 <div class="text-4xl font-bold text-amber-600 mb-2">{{ stats.total_categories }}</div>
-                <div class="text-gray-600">ໝວດໝູ່</div>
+                <div class="">ໝວດໝູ່</div>
             </div>
         </div>
     </div>
@@ -707,16 +709,16 @@
 
 
 <!-- Featured Coffees -->
-<section class="py-16 bg-amber-50">
+<section class="py-16 bg-primary bg-opacity-10">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">ກາເຟແນະນຳ</h2>
-            <p class="text-gray-600">ກາເຟຄຸນນະພາບສູງທີ່ຄັດສັນມາເປັນພິເສດ</p>
+            <h2 class="text-3xl font-bold mb-4">ກາເຟແນະນຳ</h2>
+            <p class="">ກາເຟຄຸນນະພາບສູງທີ່ຄັດສັນມາເປັນພິເສດ</p>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {% for coffee in featured_coffees %}
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
+            <div class="rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
                 <!-- Coffee Image -->
                 <div class="h-48 bg-gradient-to-br from-amber-200 to-amber-400 flex items-center justify-center relative overflow-hidden">
                     {% if coffee.images %}
@@ -758,7 +760,7 @@
                             <a href="{% url 'coffee_detail' coffee.slug %}">{{ coffee.name }}</a>
                         </h3>
                         
-                        <div class="space-y-1 text-sm text-gray-600">
+                        <div class="space-y-1 text-sm ">
                             <p><i class="fas fa-seedling mr-2 text-green-600"></i>{{ coffee.coffee_bean.name }} ({{ coffee.coffee_bean.get_origin_display }})</p>
                             <p><i class="fas fa-fire mr-2 text-orange-500"></i>{{ coffee.roast_level }}</p>
                             <p><i class="fas fa-weight mr-2 text-blue-500"></i>{{ coffee.weight }}{{ coffee.weight_unit }}</p>
@@ -777,13 +779,13 @@
                                 {% endif %}
                             {% endfor %}
                         </div>
-                        <span class="text-sm text-gray-600">{{ coffee.avg_rating|floatformat:1 }} ({{ coffee.reviews.count }} ຣີວິວ)</span>
+                        <span class="text-sm ">{{ coffee.avg_rating|floatformat:1 }} ({{ coffee.reviews.count }} ຣີວິວ)</span>
                     </div>
                     {% endif %}
                     
                     <!-- Flavor Notes Preview -->
                     {% if coffee.coffee_bean.flavor_notes %}
-                    <p class="text-sm text-gray-600 mb-4 line-clamp-2 italic">
+                    <p class="text-sm  mb-4 line-clamp-2 italic">
                         "{{ coffee.coffee_bean.flavor_notes|truncatewords:8 }}"
                     </p>
                     {% endif %}
@@ -791,10 +793,10 @@
                     <!-- Price -->
                     <div class="flex justify-between items-center mb-4">
                         <div>
-                            <span class="text-2xl font-bold text-amber-600">₭{{ coffee.price|intcomma }}</span>
-                            <div class="text-xs text-gray-500">₭{{ coffee.price_per_unit|intcomma }}/100g</div>
+                            <span class="text-2xl font-bold text-amber-600">{{ coffee.price|intcomma }} LAK</span>
+                            <div class="text-xs ">{{ coffee.price_per_unit|intcomma }} LAK/100g</div>
                         </div>
-                        <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded">{{ coffee.weight }}{{ coffee.weight_unit }}</span>
+                        <span class="text-sm  bg-gray-100 px-2 py-1 rounded">{{ coffee.weight }}{{ coffee.weight_unit }}</span>
                     </div>
                     
                     <!-- Action Buttons -->
@@ -811,7 +813,7 @@
             {% empty %}
             <div class="col-span-full text-center py-12">
                 <i class="fas fa-star text-4xl text-gray-300 mb-4"></i>
-                <p class="text-gray-500 text-lg">ບໍ່ມີກາເຟແນະນຳໃນຂະນະນີ້</p>
+                <p class=" text-lg">ບໍ່ມີກາເຟແນະນຳໃນຂະນະນີ້</p>
                 <p class="text-gray-400 text-sm mt-2">ກະລຸນາກັບມາໃໝ່ໃນໄວໆນີ້</p>
             </div>
             {% endfor %}
@@ -834,8 +836,8 @@
 <!-- <section class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">ໝວດໝູ່ກາເຟ</h2>
-            <p class="text-gray-600">ເລືອກກາເຟຕາມປະເພດທີ່ທ່ານມັກ</p>
+            <h2 class="text-3xl font-bold mb-4">ໝວດໝູ່ກາເຟ</h2>
+            <p class="">ເລືອກກາເຟຕາມປະເພດທີ່ທ່ານມັກ</p>
         </div>
         
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -845,14 +847,14 @@
                 <div class="w-16 h-16 bg-amber-200 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-amber-300 transition">
                     <i class="fas fa-coffee text-2xl text-amber-700"></i>
                 </div>
-                <h3 class="font-semibold text-gray-900">{{ category.name }}</h3>
+                <h3 class="font-semibold">{{ category.name }}</h3>
                 {% if category.description %}
-                <p class="text-sm text-gray-600 mt-2">{{ category.description|truncatewords:10 }}</p>
+                <p class="text-sm  mt-2">{{ category.description|truncatewords:10 }}</p>
                 {% endif %}
             </a>
             {% empty %}
             <div class="col-span-full text-center py-12">
-                <p class="text-gray-500">ບໍ່ມີໝວດໝູ່ໃນຂະນະນີ້</p>
+                <p class="">ບໍ່ມີໝວດໝູ່ໃນຂະນະນີ້</p>
             </div>
             {% endfor %}
         </div>
@@ -862,8 +864,8 @@
 <section class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">ໝວດໝູ່ກາເຟ</h2>
-            <p class="text-gray-600">ເລືອກກາເຟຕາມປະເພດທີ່ທ່ານມັກ</p>
+            <h2 class="text-3xl font-bold mb-4">ໝວດໝູ່ກາເຟ</h2>
+            <p class="">ເລືອກກາເຟຕາມປະເພດທີ່ທ່ານມັກ</p>
         </div>
         
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -883,12 +885,12 @@
                 </div>
                 
              
-                <h3 class="font-semibold text-gray-900 group-hover:text-amber-700 transition-colors mb-2">
+                <h3 class="font-semibold group-hover:text-amber-700 transition-colors mb-2">
                     {{ category.name }}
                 </h3>
                 
                 {% if category.description %}
-                <p class="text-sm text-gray-600 mt-2 line-clamp-2">
+                <p class="text-sm  mt-2 line-clamp-2">
                     {{ category.description|truncatewords:10 }}
                 </p>
                 {% endif %}
@@ -906,7 +908,7 @@
             {% empty %}
             <div class="col-span-full text-center py-12">
                 <i class="fas fa-tags text-4xl text-gray-300 mb-4"></i>
-                <p class="text-gray-500 text-lg">ບໍ່ມີໝວດໝູ່ໃນຂະນະນີ້</p>
+                <p class=" text-lg">ບໍ່ມີໝວດໝູ່ໃນຂະນະນີ້</p>
                 <p class="text-gray-400 text-sm mt-2">ກະລຸນາກັບມາໃໝ່ໃນໄວໆນີ້</p>
             </div>
             {% endfor %}
@@ -933,12 +935,12 @@
     {% if featured_rooms %}
     <div class="container mx-auto px-4 sm:px-6 mx-auto">
         <div class="flex items-center justify-between mb-6">
-            <h2 class="text-2xl font-bold text-gray-900">
+            <h2 class="text-2xl font-bold">
                 <i class="fas fa-star text-yellow-500 mr-2"></i>ຫ້ອງແນະນຳ
             </h2>
-            <span class="text-sm text-gray-500"><!-- View All Rooms Button -->
+            <span class="text-sm "><!-- View All Rooms Button -->
                 <div class="mt-10 sm:mt-12 text-center">
-                   <a href="#" class="inline-flex items-center bg-transparent border-2 border-primary-light dark:border-primary-dark text-primary-light dark:text-primary-dark hover:bg-primary-light hover:text-white dark:hover:bg-primary-dark dark:hover:text-white px-6 py-3 rounded-lg transition duration-300 font-medium">
+                   <a href="#" class="inline-flex items-center bg-transparent border-2 border-primary-light dark:border-primary-dark dark hover:bg-primary-light hover:text-white dark:hover:bg-primary-dark dark:hover:text-white px-6 py-3 rounded-lg transition duration-300 font-medium">
                        ເບິ່ງທີ່ພັກທັງໝົດ
                        <i class="fas fa-chevron-right ml-2"></i>
                    </a>
@@ -948,7 +950,7 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
             {% for room in featured_rooms %}
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border-2 border-yellow-200">
+            <div class="rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border-2 border-yellow-200">
                 <div class="relative">
                     {% if room.room_images.all %}
                         <img src="{{ room.room_images.first.image.url }}" 
@@ -977,30 +979,30 @@
                 
                 <div class="p-6">
                     <div class="flex justify-between items-start mb-3">
-                        <h3 class="text-xl font-bold text-gray-900">{{ room.room_type.name }}</h3>
+                        <h3 class="text-xl font-bold">{{ room.room_type.name }}</h3>
                         <span class="bg-blue-100 text-blue-800 text-sm px-2 py-1 rounded-lg font-medium">
                             Room {{ room.room_number }}
                         </span>
                     </div>
                     
-                    <p class="text-gray-600 mb-4 line-clamp-2">{{ room.room_type.description|truncatewords:15 }}</p>
+                    <p class=" mb-4 line-clamp-2">{{ room.room_type.description|truncatewords:15 }}</p>
                     
                     <!-- Room Details -->
-                    <div class="grid grid-cols-3 gap-4 mb-4 py-3 bg-gray-50 rounded-lg">
+                    <div class="grid grid-cols-3 gap-4 mb-4 py-3 rounded-lg">
                         <div class="text-center">
                             <i class="fas fa-users text-blue-500 text-lg mb-1"></i>
                             <div class="text-sm font-medium">{{ room.room_type.capacity }}</div>
-                            <div class="text-xs text-gray-500">Guests</div>
+                            <div class="text-xs ">Guests</div>
                         </div>
                         <div class="text-center">
                             <i class="fas fa-expand-arrows-alt text-green-500 text-lg mb-1"></i>
                             <div class="text-sm font-medium">{{ room.room_type.size_sqm }}m²</div>
-                            <div class="text-xs text-gray-500">Size</div>
+                            <div class="text-xs ">Size</div>
                         </div>
                         <div class="text-center">
                             <i class="fas fa-eye text-purple-500 text-lg mb-1"></i>
                             <div class="text-sm font-medium">{{ room.get_view_type_display|truncatewords:1 }}</div>
-                            <div class="text-xs text-gray-500">View</div>
+                            <div class="text-xs ">View</div>
                         </div>
                     </div>
                     
@@ -1008,7 +1010,7 @@
                     <div class="flex justify-between items-center">
                         <div>
                             <span class="text-2xl font-bold text-blue-600">{{ room.room_type.price_per_night|intcomma }} LAK</span>
-                            <span class="text-gray-500">/ຕໍ່ຄືນ</span>
+                            <span class="">/ຕໍ່ຄືນ</span>
                         </div>
                         <a href="{% url 'room-detail-page' room.id %}" class="inline-flex items-center bg-primary-light dark:bg-secondary-dark text-white px-4 py-2 rounded-lg hover:bg-secondary-light dark:hover:bg-secondary-dark-dark transition duration-300 text-sm font-medium">
                             ເບິ່ງລາຍລະອຽດ
@@ -1027,14 +1029,14 @@
  <div class="relative py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-neutral-light via-blue-50 to-indigo-100 dark:from-neutral-dark dark:via-gray-900 dark:to-blue-900 transition-colors duration-500 overflow-hidden">
     <!-- Section Header -->
     <div class="text-center mb-10 sm:mb-14">
-        <h2 class="text-3xl sm:text-4xl font-playfair font-bold text-primary-light dark:text-primary-dark mb-4">ຫ້ອງພັກທີ່ມີຢູ່</h2>
-        <!-- <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Experience the perfect blend of comfort and luxury in our thoughtfully designed rooms and suites.</p> -->
+        <h2 class="text-3xl sm:text-4xl font-playfair font-bold mb-4">ຫ້ອງພັກທີ່ມີຢູ່</h2>
+        <!-- <p class=" dark:text-gray-300 max-w-2xl mx-auto">Experience the perfect blend of comfort and luxury in our thoughtfully designed rooms and suites.</p> -->
     </div>
     {% if rooms %}
     <div class="container mx-auto px-4 sm:px-6 mx-auto">
         <div id="roomsContainer" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" data-view="grid">
             {% for room in rooms %}
-            <div class="room-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" 
+            <div class="room-card rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" 
                 data-price="{{ room.room_type.price_per_night }}" 
                 data-capacity="{{ room.room_type.capacity }}"
                 data-room-type="{{ room.room_type.name|lower }}"
@@ -1063,7 +1065,7 @@
                     
                     <!-- Room Number -->
                     <div class="absolute top-3 right-3">
-                        <span class="bg-white/90 backdrop-blur-sm text-gray-700 px-3 py-1 rounded-full text-xs font-medium shadow-lg">
+                        <span class="backdrop-blur-sm  px-3 py-1 rounded-full text-xs font-medium shadow-lg">
                             Room {{ room.room_number }}
                         </span>
                     </div>
@@ -1071,31 +1073,31 @@
                 
                 <div class="p-6">
                     <div class="flex justify-between items-start mb-3">
-                        <h3 class="text-xl font-bold text-gray-900">{{ room.room_type.name }}</h3>
+                        <h3 class="text-xl font-bold">{{ room.room_type.name }}</h3>
                         <div class="text-right">
                             <div class="text-2xl font-bold text-blue-600">{{ room.room_type.price_per_night|intcomma }} LAK</div>
-                            <div class="text-xs text-gray-500">ຕໍ່ຄືນ</div>
+                            <div class="text-xs ">ຕໍ່ຄືນ</div>
                         </div>
                     </div>
                     
-                    <p class="text-gray-600 mb-4 line-clamp-2">{{ room.room_type.description|truncatewords:12 }}</p>
+                    <p class=" mb-4 line-clamp-2">{{ room.room_type.description|truncatewords:12 }}</p>
                     
                     <!-- Room Features -->
-                    <div class="grid grid-cols-3 gap-4 mb-4 py-3 bg-gray-50 rounded-lg">
+                    <div class="grid grid-cols-3 gap-4 mb-4 py-3 rounded-lg">
                         <div class="text-center">
                             <i class="fas fa-users text-blue-500 text-lg mb-1"></i>
                             <div class="text-sm font-medium">{{ room.room_type.capacity }}</div>
-                            <div class="text-xs text-gray-500">Guests</div>
+                            <div class="text-xs ">Guests</div>
                         </div>
                         <div class="text-center">
                             <i class="fas fa-expand-arrows-alt text-green-500 text-lg mb-1"></i>
                             <div class="text-sm font-medium">{{ room.room_type.size_sqm }}m²</div>
-                            <div class="text-xs text-gray-500">Size</div>
+                            <div class="text-xs ">Size</div>
                         </div>
                         <div class="text-center">
                             <i class="fas fa-eye text-purple-500 text-lg mb-1"></i>
                             <div class="text-sm font-medium text-xs">{{ room.get_view_type_display }}</div>
-                            <div class="text-xs text-gray-500">View</div>
+                            <div class="text-xs ">View</div>
                         </div>
                     </div>
                     
@@ -1109,8 +1111,8 @@
                                 </span>
                             {% endfor %}
                             {% if room.get_available_amenities.count > 3 %}
-                                <span class="inline-flex items-center bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">
-                                    +{{ room.get_available_amenities.count|add:"-3" }} more
+                                <span class="inline-flex items-center bg-gray-100 text-blue-700 text-xs px-2 py-1 rounded-full">
+                                    +{{ room.get_available_amenities.count|add:"-3" }} ອື່ນໆ
                                 </span>
                             {% endif %}
                         </div>
@@ -1134,8 +1136,8 @@
         <div class="w-32 h-32 mx-auto mb-6 bg-gray-100 rounded-full flex items-center justify-center">
             <i class="fas fa-search text-4xl text-gray-400"></i>
         </div>
-        <h3 class="text-2xl font-bold text-gray-900 mb-2">No rooms found</h3>
-        <p class="text-gray-600 mb-6 max-w-md mx-auto">We couldn't find any rooms matching your criteria. Try adjusting your filters or search terms.</p>
+        <h3 class="text-2xl font-bold mb-2">No rooms found</h3>
+        <p class=" mb-6 max-w-md mx-auto">We couldn't find any rooms matching your criteria. Try adjusting your filters or search terms.</p>
         <a href="{% url 'hotel-page' %}" class="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium">
             <i class="fas fa-refresh mr-2"></i>Clear All Filters
         </a>
@@ -1144,7 +1146,7 @@
 {% endif %}   
  <!-- View All Rooms Button -->
  <div class="m-10 sm:mt-12 text-center">
-    <a href="#" class="inline-flex items-center bg-transparent border-2 border-primary-light dark:border-primary-dark text-primary-light dark:text-primary-dark hover:bg-primary-light hover:text-white dark:hover:bg-primary-dark dark:hover:text-white px-6 py-3 rounded-lg transition duration-300 font-medium">
+    <a href="#" class="inline-flex items-center bg-transparent border-2 border-primary-light dark:border-primary-dark hover:bg-primary-light dark:hover:bg-primary-dark dark:hover:text-white px-6 py-3 rounded-lg transition duration-300 font-medium">
         ເບິ່ງທີ່ພັກທັງໝົດ
         <i class="fas fa-chevron-right ml-2"></i>
     </a>
@@ -1152,50 +1154,50 @@
 </div>
 
 <!-- Amenities -->
-<section class="py-16 md:py-24 bg-white">
+<section class="py-16 md:py-24 bg-gradient-to-br from-neutral-light">
     <div class="container mx-auto px-4">
         <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-serif font-bold text-primary-dark mb-4">ສິ່ງອຳນວຍຄວາມສະດວກຂອງພວກເຮົາ</h2>
-            <!-- <p class="text-gray-600 max-w-3xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">ສິ່ງອຳນວຍຄວາມສະດວກຂອງພວກເຮົາ</h2>
+            <!-- <p class=" max-w-3xl mx-auto">
                 Enhancing your stay with thoughtful services and comforts.
             </p> -->
         </div>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <!-- Amenity 1 -->
-            <div class="text-center p-6">
+            <div class="text-center p-6 bg-primary-light bg-opacity-20">
                 <div class="inline-block bg-primary bg-opacity-20 p-4 rounded-full mb-4">
-                    <i class="fas fa-wifi text-primary-dark text-3xl"></i>
+                    <i class="fas fa-wifi text-3xl"></i>
                 </div>
-                <h3 class="text-xl font-serif font-bold text-primary-dark mb-2">Free Wi-Fi</h3>
-                <p class="text-gray-600">Stay connected with high-speed internet throughout the property.</p>
+                <h3 class="text-xl font-serif font-bold mb-2">ອິນເຕີເນັດ Wi-Fi ຟຣີ</h3>
+                <p class="">“ມີອິນເຕີເນັດຄວາມໄວສູງ ໃຫ້ບໍລິການຄອບຄຸມທົ່ວພື້ນທີ່.”</p>
             </div>
             
             <!-- Amenity 2 -->
-            <div class="text-center p-6">
+            <div class="text-center p-6 bg-primary-light bg-opacity-20">
                 <div class="inline-block bg-primary-light bg-opacity-20 p-4 rounded-full mb-4">
-                    <i class="fas fa-laptop-code text-primary-dark-light text-3xl"></i>
+                    <i class="fas fa-laptop-code text-3xl"></i>
                 </div>
-                <h3 class="text-xl font-serif font-bold text-primary-dark mb-2">Co-working Space</h3>
-                <p class="text-gray-600">Boost productivity in our modern, fully-equipped co-working environment.</p>
+                <h3 class="text-xl font-serif font-bold mb-2">ພື້ນທີ່ Co-working</h3>
+                <p class="">ຊ່ວຍໃຫ້ພວກທ່ານມີຄວາມສະດວກໃນການເຮັດວຽກ.</p>
             </div>
             
             <!-- Amenity 3 -->
-            <div class="text-center p-6">
+            <div class="text-center p-6 bg-primary-light bg-opacity-20">
                 <div class="inline-block bg-primary-light bg-opacity-20 p-4 rounded-full mb-4">
-                    <i class="fas fa-child-reaching text-primary-dark-light text-3xl"></i>
+                    <i class="fas fa-child-reaching text-3xl"></i>
                 </div>
-                <h3 class="text-xl font-serif font-bold text-primary-dark mb-2">Children's Playground</h3>
-                <p class="text-gray-600">Let your kids enjoy safe, fun-filled adventures in our vibrant playground.</p>
+                <h3 class="text-xl font-serif font-bold mb-2">ສະໜາມເດັກຫຼິ້ນ</h3>
+                <p class="">ໃຫ້ລູກຂອງທ່ານ ເພີດເພີນກັບການຜະຈົນໄພທີ່ປອດໄພ ແລະ ເຕັມໄປດ້ວຍຄວາມມ່ວນຊື່ນ.</p>
             </div>
             
             <!-- Amenity 4 -->
-            <div class="text-center p-6">
+            <div class="text-center p-6 bg-primary-light bg-opacity-20">
                 <div class="inline-block bg-primary bg-opacity-20 p-4 rounded-full mb-4">
-                    <i class="fas fa-parking text-primary-dark text-3xl"></i>
+                    <i class="fas fa-parking text-3xl"></i>
                 </div>
-                <h3 class="text-xl font-serif font-bold text-primary-dark mb-2">Free Parking</h3>
-                <p class="text-gray-600">Complimentary parking for all guests during their stay.</p>
+                <h3 class="text-xl font-serif font-bold mb-2">ຈອດລົດຟຣີ</h3>
+                <p class="">ບໍລິການຈອດລົດຟຣີ ສຳລັບແຂກທຸກຄົນ.</p>
             </div>
         </div>
     </div>
@@ -1206,67 +1208,24 @@
     <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row-reverse items-center">
             <div class="md:w-1/2 mb-10 md:mb-0 md:pl-12">
-                <h2 class="text-3xl md:text-4xl font-serif font-bold mb-6">Fine Dining Experience</h2>
+                <h2 class="text-3xl md:text-4xl font-serif font-bold mb-6">Riverside Experience</h2>
                 <p class="mb-6 leading-relaxed">
-                    Our restaurant celebrates the bounty of the season with a menu that highlights fresh, locally-sourced ingredients prepared with creativity and care.
+                    Our riverside retreat offers more than just a place to stay — it’s a complete experience by the banks of the Mekong, with sweeping views of Thailand. From freshly roasted coffee at our café to global flavors at our multi-cuisine restaurant, every detail is designed to delight your senses.
                 </p>
                 <p class="mb-8 leading-relaxed">
-                    From hearty breakfasts to elegant dinners, our culinary team is dedicated to providing a memorable dining experience that complements your stay at Pilgrims.
+                    Whether you’re here for a hearty breakfast, a leisurely riverside lunch, or a romantic sunset dinner, our team is dedicated to making every moment memorable. Paired with the comfort of our guesthouse and the aroma of coffee roasted in-house, your time with us is crafted to be both relaxing and unforgettable.
                 </p>
                 <a href="{% url 'menu-page' %}" class="inline-block bg-primary hover:bg-primary-dark text-white font-medium px-6 py-3 rounded-md transition duration-300">
                     Explore Our Menu
                 </a>
             </div>
             <div class="md:w-1/2">
-                <img src="{% static 'images/pilgrims.jpg' %}" alt="Restaurant" class="rounded-lg shadow-xl">
+                <img src="{% static 'images/pilgrims-kitchen-views.jpg' %}" alt="Restaurant" class="rounded-lg shadow-xl">
             </div>
         </div>
     </div>
 </section>
 
-
-<!-- Testimonials -->
-<section class="py-16 md:py-24 bg-gray-50">
-    <div class="container mx-auto px-4">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-serif font-bold text-primary-dark mb-4">Guest Reviews</h2>
-            <p class="text-gray-600 max-w-3xl mx-auto">
-                Read what our guests have to say about their experience at Pilgrims.
-            </p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {% for review in reviews %}
-            <div class="bg-white p-6 rounded-lg shadow">
-                <div class="flex items-center mb-4">
-                    <div class="text-primary">
-                        {% for i in "12345" %}
-                            {% if forloop.counter <= review.rating %}
-                                <i class="fas fa-star"></i>
-                            {% else %}
-                                <i class="far fa-star"></i>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                </div>
-                <p class="text-gray-700 mb-4">"{{ review.comment|truncatewords:30 }}"</p>
-                <div class="font-medium text-primary-dark">{{ review.name }}</div>
-                <div class="text-sm text-gray-500">{{ review.date_posted|date:"F Y" }}</div>
-            </div>
-            {% empty %}
-            <div class="col-span-3 text-center py-8">
-                <p class="text-gray-500">No reviews available at the moment. Be the first to share your experience!</p>
-            </div>
-            {% endfor %}
-        </div>
-        
-        <div class="text-center mt-10">
-            <a href="{% url 'review-page' %}" class="inline-block bg-primary hover:bg-primary-dark text-white font-medium px-6 py-3 rounded-md transition duration-300">
-                Write a Review
-            </a>
-        </div>
-    </div>
-</section>
 
 
 <script>
@@ -1296,12 +1255,12 @@
                 categoryTabs.forEach(t => {
                     t.classList.remove('active');
                     t.classList.remove('bg-gradient-to-br', 'from-primary', 'to-primary-dark', 'text-white');
-                    t.classList.add('bg-white', 'text-gray-700', 'border', 'border-gray-200');
+                    t.classList.add('bg-white', 'bg-gray-700', 'border', 'border-gray-200');
                 });
                 
                 // Add active state to clicked tab
                 this.classList.add('active');
-                this.classList.remove('bg-white', 'text-gray-700', 'border', 'border-gray-200');
+                this.classList.remove('bg-white', 'bg-gray-700', 'border', 'border-gray-200');
                 this.classList.add('bg-gradient-to-br', 'from-primary', 'to-primary-dark', 'text-white');
                 
                 // Hide all menu content and descriptions

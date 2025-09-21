@@ -1,0 +1,102 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-10 00:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: pilgrims/settings.py:126
+msgid "English"
+msgstr ""
+
+#: pilgrims/settings.py:127
+msgid "ລາວ"
+msgstr ""
+
+#: templates/base.html:108
+msgid "About Us"
+msgstr "About Us"
+
+#: templates/base.html:109
+msgid "Reservation"
+msgstr "Reservation"
+
+#: templates/base.html:110
+msgid "Menu"
+msgstr "Menu"
+
+#: templates/base.html:111
+msgid "Coffee"
+msgstr "Coffee"
+
+#: templates/base.html:112
+msgid "Review"
+msgstr "Review"
+
+#: templates/base.html:113
+msgid "Contact"
+msgstr "Contact"
+
+#: templates/base.html:212
+msgid "Contact Us"
+msgstr "Contact Us"
+
+#: templates/base.html:225
+msgid "Tel"
+msgstr "Tel"
+
+#: templates/base.html:236
+msgid "Email"
+msgstr "Email"
+
+#: templates/base.html:250
+msgid "Stay Connected"
+msgstr "Stay Connected"
+
+#: templates/base.html:255
+msgid "Follow us on social media channels"
+msgstr "Follow us on social media channels"
+
+#: templates/base.html:290
+msgid "Timings"
+msgstr "Timings"
+
+#: templates/base.html:295
+msgid "Monday – Saturday"
+msgstr "Monday – Saturday"
+
+#: templates/base.html:302
+msgid "Sunday"
+msgstr "Sunday"
+
+#: templates/base.html:303
+msgid "Closed"
+msgstr "Closed"
+
+#: templates/base.html:312
+msgid "All rights reserved"
+msgstr "All rights reserved"
+
+#: templates/base.html:314
+msgid "Privacy"
+msgstr "Privacy"
+
+#: templates/base.html:315
+msgid "Terms"
+msgstr "Terms"
+
+#: templates/base.html:316
+msgid "Sitemap"
+msgstr "Sitemap"

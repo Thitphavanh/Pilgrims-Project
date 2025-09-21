@@ -1,0 +1,103 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-10 00:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: lo\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: pilgrims/settings.py:126
+msgid "English"
+msgstr ""
+
+#: pilgrims/settings.py:127
+msgid "ລາວ"
+msgstr ""
+
+#: templates/base.html:108
+msgid "About Us"
+msgstr "ກ່ຽວກັບພວກເຮົາ"
+
+#: templates/base.html:109
+msgid "Reservation"
+msgstr "ການຈອງ"
+
+#: templates/base.html:110
+msgid "Menu"
+msgstr "ເມນູ"
+
+#: templates/base.html:111
+msgid "Coffee"
+msgstr "ກາເຟ"
+
+#: templates/base.html:112
+msgid "Review"
+msgstr "ຣີວິວ"
+
+#: templates/base.html:113
+msgid "Contact"
+msgstr "ຕິດຕໍ່"
+
+#: templates/base.html:212
+msgid "Contact Us"
+msgstr "ຕິດຕໍ່ພວກເຮົາ"
+
+#: templates/base.html:225
+msgid "Tel"
+msgstr "ໂທ"
+
+#: templates/base.html:236
+msgid "Email"
+msgstr "ອີເມວ"
+
+#: templates/base.html:250
+msgid "Stay Connected"
+msgstr "ຮັກສາການເຊື່ອມຕໍ່"
+
+#: templates/base.html:255
+msgid "Follow us on social media channels"
+msgstr "ຕິດຕາມພວກເຮົາໃນສື່ສັງຄົມ"
+
+#: templates/base.html:290
+msgid "Timings"
+msgstr "ເວລາເປີດປິດ"
+
+#: templates/base.html:295
+msgid "Monday – Saturday"
+msgstr "ວັນຈັນ - ວັນເສົາ"
+
+#: templates/base.html:302
+msgid "Sunday"
+msgstr "ວັນອາທິດ"
+
+#: templates/base.html:303
+msgid "Closed"
+msgstr "ປິດ"
+
+#: templates/base.html:312
+msgid "All rights reserved"
+msgstr "ສະຫງວນລິຂະສິດທັງໝົດ"
+
+#: templates/base.html:314
+msgid "Privacy"
+msgstr "ຄວາມເປັນສ່ວນຕົວ"
+
+#: templates/base.html:315
+msgid "Terms"
+msgstr "ເງື່ອນໄຂ"
+
+#: templates/base.html:316
+msgid "Sitemap"
+msgstr "ແຜນທີ່ເວັບໄຊ"

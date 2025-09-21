@@ -10,16 +10,16 @@
 <!-- Breadcrumb Navigation -->
 <nav class="">
     <div class="container mx-auto px-4 py-4">
-        <div class="flex items-center space-x-2 text-sm text-gray-600">
-            <a href="{% url 'menu-page' %}" class="hover:text-primary transition-colors">
+        <div class="flex items-center space-x-2 text-sm ">
+            <a href="{% url 'menu-page' %}" class="transition-colors">
                 <i class="fas fa-home"></i> ໜ້າຫຼັກ
             </a>
             <i class="fas fa-chevron-right text-xs"></i>
-            <a href="{% url 'menu-by-category-page' menu_item.category %}" class="hover:text-primary transition-colors">
+            <a href="{% url 'menu-by-category-page' menu_item.category %}" class="transition-colors">
                 {{ category_display }}
             </a>
             <i class="fas fa-chevron-right text-xs"></i>
-            <span class="text-primary-dark font-medium">{{ menu_item.name }}</span>
+            <span class="font-medium">{{ menu_item.name }}</span>
         </div>
     </div>
 </nav>
@@ -29,14 +29,6 @@
     <div class="container mx-auto px-4">
         <div class="max-w-9xl mx-auto">
             
-            <!-- Back Button -->
-            <div class="mb-8">
-                <a href="{% url 'menu-by-category-page' menu_item.category %}" 
-                   class="inline-flex items-center text-primary hover:text-primary-dark transition-colors">
-                    <i class="fas fa-arrow-left mr-2"></i>
-                    ກັບໄປເມນູ {{ category_display }}
-                </a>
-            </div>
 
             <!-- Main Content Grid -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
@@ -50,7 +42,7 @@
                                  class="w-full h-96 lg:h-[500px] object-cover transition-transform duration-500 group-hover:scale-105">
                         {% else %}
                             <div class="w-full h-96 lg:h-[500px] bg-gradient-to-br from-primary-light to-primary flex items-center justify-center">
-                                <i class="fas fa-utensils text-6xl text-white opacity-50"></i>
+                                <i class="fas fa-utensils text-6xl opacity-50"></i>
                             </div>
                         {% endif %}
                         
@@ -65,7 +57,7 @@
                         
                         <!-- Price Badge -->
                         <div class="absolute top-6 right-6">
-                            <span class="bg-gradient-to-br from-primary to-primary-dark text-white px-6 py-3 rounded-full text-xl font-bold shadow-lg">
+                            <span class="bg-gradient-to-br text-white from-primary to-primary-dark px-6 py-3 rounded-full text-xl font-bold shadow-lg">
                                 {{ menu_item.price|intcomma }} LAK
                             </span>
                         </div>
@@ -78,7 +70,7 @@
                     <!-- Header -->
                     <div class="space-y-4">
                         <div class="flex items-center space-x-3">
-                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
+                            <span class="px-3 py-1 rounded-full text-sm font-medium">
                                 {{ category_display }}
                             </span>
                             {% if menu_item.is_featured %}
@@ -88,11 +80,11 @@
                             {% endif %}
                         </div>
                         
-                        <h1 class="text-4xl md:text-5xl font-serif font-bold text-primary-dark leading-tight">
+                        <h1 class="text-4xl md:text-5xl font-serif font-bold leading-tight">
                             {{ menu_item.name }}
                         </h1>
                         
-                        <div class="flex items-center space-x-4 text-gray-600">
+                        <div class="flex items-center space-x-4 ">
                             <div class="flex items-center">
                                 <i class="fas fa-clock mr-2 text-primary"></i>
                                 <span>ສັ່ງໄດ້ຕະຫຼອດມື້</span>
@@ -106,45 +98,36 @@
 
                     <!-- Description -->
                     <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-semibold text-primary-dark">ລາຍລະອຽດ</h3>
-                        <p class="text-gray-700 text-lg leading-relaxed">
+                        <h3 class="text-2xl font-serif font-semibold">ລາຍລະອຽດ</h3>
+                        <p class="text-lg leading-relaxed">
                             {{ menu_item.description }}
                         </p>
                     </div>
 
                     <!-- Price and Actions -->
-                    <div class="space-y-6 p-6 bg-white rounded-2xl shadow-lg border border-gray-100">
+                    <div class="space-y-6 p-6 rounded-2xl shadow-lg border border-gray-100">
                         <div class="flex items-center justify-between">
                             <div>
-                                <p class="text-sm text-gray-600 mb-1">ລາຄາ</p>
-                                <p class="text-3xl font-bold text-primary-dark">
-                                    {{ menu_item.price|intcomma }} <span class="text-lg text-gray-600">LAK</span>
+                                <p class="text-sm  mb-1">ລາຄາ</p>
+                                <p class="text-3xl font-bold">
+                                    {{ menu_item.price|intcomma }} <span class="text-lg ">LAK</span>
                                 </p>
                             </div>
                             <div class="text-right">
-                                <p class="text-sm text-gray-600 mb-1">ໝວດໝູ່</p>
+                                <p class="text-sm  mb-1">ໝວດໝູ່</p>
                                 <p class="text-lg font-semibold text-primary">{{ category_display }}</p>
                             </div>
                         </div>
                         
-                        <!-- Action Buttons -->
-                        <!-- <div class="flex flex-col sm:flex-row gap-4">
-                            <button class="flex-1 bg-gradient-to-r from-primary to-primary-dark text-white py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-                                <i class="fas fa-leaf text-2xl text-green-500 mr-2"></i>ວັດຖຸດິບສົດ
-                            </button>
-                            <button class="flex-1 bg-white border-2 border-primary text-primary py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-300 hover:bg-primary hover:text-white">
-                                <i class="fas fa-award text-2xl text-yellow-500 mr-2"></i>ຄຸນນະພາບສູງ
-                            </button>
-                        </div> -->
                         <!-- Additional Info -->
                         <div class="grid grid-cols-2 gap-4">
-                            <div class="bg-gray-50 p-4 rounded-xl text-center">
+                            <div class="border p-4 rounded-xl text-center">
                                 <i class="fas fa-leaf text-2xl text-green-500 mb-2"></i>
-                                <p class="text-sm font-medium text-gray-700">ວັດຖຸດິບສົດ</p>
+                                <p class="text-sm font-medium">ວັດຖຸດິບສົດ</p>
                             </div>
-                            <div class="bg-gray-50 p-4 rounded-xl text-center">
+                            <div class="border p-4 rounded-xl text-center">
                                 <i class="fas fa-award text-2xl text-yellow-500 mb-2"></i>
-                                <p class="text-sm font-medium text-gray-700">ຄຸນນະພາບສູງ</p>
+                                <p class="text-sm font-medium">ຄຸນນະພາບສູງ</p>
                             </div>
                         </div>
                     </div>
@@ -155,7 +138,7 @@
             {% if related_items %}
             <div class="mb-16">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-primary-dark mb-4">
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">
                         ເມນູອື່ນໃນໝວດ {{ category_display }}
                     </h2>
                     <div class="w-24 h-1 bg-primary mx-auto rounded-full"></div>
@@ -171,24 +154,24 @@
                                  class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
                             {% else %}
                             <div class="w-full h-48 bg-gradient-to-br from-primary-light to-primary flex items-center justify-center">
-                                <i class="fas fa-utensils text-2xl text-white opacity-50"></i>
+                                <i class="fas fa-utensils text-2xl opacity-50"></i>
                             </div>
                             {% endif %}
                             <div class="absolute top-3 right-3">
-                                <span class="bg-white/90 text-primary-dark px-3 py-1 rounded-full text-sm font-semibold">
+                                <span class="bg-white/90 px-3 py-1 rounded-full text-sm font-semibold">
                                     {{ item.price|intcomma }} LAK
                                 </span>
                             </div>
                         </div>
                         <div class="p-5">
-                            <h3 class="font-serif font-bold text-lg text-primary-dark mb-2 line-clamp-1">
+                            <h3 class="font-serif font-bold text-lg mb-2 line-clamp-1">
                                 {{ item.name }}
                             </h3>
-                            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+                            <p class=" text-sm mb-4 line-clamp-2">
                                 {{ item.description }}
                             </p>
                             <a href="{% url 'menu-item-detail-page' item.slug %}" 
-                               class="block w-full text-center bg-primary hover:bg-primary-dark text-white py-2 px-4 rounded-lg transition-colors">
+                               class="block w-full text-center bg-primary hover:bg-primary-dark py-2 px-4 rounded-lg transition-colors">
                                 ເບິ່ງລາຍລະອຽດ
                             </a>
                         </div>
@@ -202,7 +185,7 @@
             {% if featured_items %}
             <div>
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-primary-dark mb-4">
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">
                         ເມນູແນະນຳພິເສດ
                     </h2>
                     <div class="w-24 h-1 bg-primary mx-auto rounded-full"></div>
@@ -210,7 +193,7 @@
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {% for item in featured_items %}
-                    <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
+                    <div class="rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
                         <div class="relative">
                             {% if item.image %}
                             <img src="{{ item.image.url }}" 
@@ -218,7 +201,7 @@
                                  class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
                             {% else %}
                             <div class="w-full h-48 bg-gradient-to-br from-primary-light to-primary flex items-center justify-center">
-                                <i class="fas fa-utensils text-2xl text-white opacity-50"></i>
+                                <i class="fas fa-utensils text-2xl opacity-50"></i>
                             </div>
                             {% endif %}
                             <div class="absolute top-3 left-3">
@@ -227,20 +210,20 @@
                                 </span>
                             </div>
                             <div class="absolute top-3 right-3">
-                                <span class="bg-white/90 text-primary-dark px-3 py-1 rounded-full text-sm font-semibold">
+                                <span class="bg-yellow-400 text-white px-3 py-1 rounded-full text-sm font-semibold">
                                     {{ item.price|intcomma }} LAK
                                 </span>
                             </div>
                         </div>
                         <div class="p-5">
-                            <h3 class="font-serif font-bold text-lg text-primary-dark mb-2">
+                            <h3 class="font-serif font-bold text-lg mb-2">
                                 {{ item.name }}
                             </h3>
-                            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+                            <p class=" text-sm mb-4 line-clamp-2">
                                 {{ item.description }}
                             </p>
                             <a href="{% url 'menu-item-detail-page' item.slug %}" 
-                               class="block w-full text-center bg-primary hover:bg-primary-dark text-white py-2 px-4 rounded-lg transition-colors">
+                               class="block w-full text-white text-center bg-primary hover:bg-primary-dark py-2 px-4 rounded-lg">
                                 ເບິ່ງລາຍລະອຽດ
                             </a>
                         </div>

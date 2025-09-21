@@ -74,11 +74,11 @@
 
 {% block content %}
 <!-- Navigation Breadcrumb -->
-<nav class="bg-white shadow-sm border-b border-gray-200">
+<nav class="shadow-sm border-b border-gray-200">
     <div class="container mx-auto px-4 py-4">
         <div class="flex items-center justify-between">
             <!-- Breadcrumbs -->
-            <div class="flex items-center space-x-2 text-sm text-gray-600">
+            <div class="flex items-center space-x-2 text-sm ">
                 <a href="{% url 'home-page' %}" class="hover:text-primary transition-colors">
                     <i class="fas fa-home"></i> ໜ້າຫຼັກ
                 </a>
@@ -91,11 +91,11 @@
             <!-- Quick Actions -->
             <div class="flex items-center space-x-4">
                 <a href="{% url 'menu-search-page' %}" 
-                   class="text-gray-600 hover:text-primary transition-colors">
+                   class=" hover:text-primary transition-colors">
                     <i class="fas fa-search"></i>
                 </a>
                 <a href="{% url 'featured-menu-page' %}" 
-                   class="text-gray-600 hover:text-primary transition-colors">
+                   class=" hover:text-primary transition-colors">
                     <i class="fas fa-star"></i>
                 </a>
             </div>
@@ -110,30 +110,30 @@
             <!-- Category Icon -->
             <div class="mb-6">
                 {% if category == 'breakfast' %}
-                    <i class="fas fa-coffee text-6xl text-primary"></i>
+                    <i class="fas fa-coffee text-6xl"></i>
                 {% elif category == 'coffee' %}
-                    <i class="fas fa-mug-hot text-6xl text-primary"></i>
+                    <i class="fas fa-mug-hot text-6xl"></i>
                 {% elif category == 'american' %}
-                    <i class="fas fa-hamburger text-6xl text-primary"></i>
+                    <i class="fas fa-hamburger text-6xl"></i>
                 {% elif category == 'indian' %}
-                    <i class="fas fa-pepper-hot text-6xl text-primary"></i>
+                    <i class="fas fa-pepper-hot text-6xl"></i>
                 {% elif category == 'mexican' %}
-                    <i class="fas fa-pepper-hot text-6xl text-primary"></i>
+                    <i class="fas fa-pepper-hot text-6xl"></i>
                 {% elif category == 'pizza' %}
-                    <i class="fas fa-pizza-slice text-6xl text-primary"></i>
+                    <i class="fas fa-pizza-slice text-6xl"></i>
                 {% elif category == 'local_food' %}
-                    <i class="fas fa-utensils text-6xl text-primary"></i>
+                    <i class="fas fa-utensils text-6xl"></i>
                 {% elif category == 'soup_salad_mediterranean' %}
-                    <i class="fas fa-leaf text-6xl text-primary"></i>
+                    <i class="fas fa-leaf text-6xl"></i>
                 {% elif category == 'drinks' %}
-                    <i class="fas fa-glass-martini-alt text-6xl text-primary"></i>
+                    <i class="fas fa-glass-martini-alt text-6xl"></i>
                 {% else %}
-                    <i class="fas fa-utensils text-6xl text-primary"></i>
+                    <i class="fas fa-utensils text-6xl"></i>
                 {% endif %}
             </div>
             
             <!-- Category Title -->
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-primary-dark mb-6 leading-tight fade-in">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 leading-tight fade-in">
                 {{ category_display }}
             </h1>
             
@@ -143,43 +143,43 @@
             <!-- Category Description -->
             <div class="fade-in">
                 {% if category == 'breakfast' %}
-                    <p class="text-gray-600 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
+                    <p class=" text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
                         ລີ່ມຕົ້ນວັນຂອງທ່ານດ້ວຍເມນູອາຫານເຊົ້າສຸດແຊບຂອງພວກເຮົາ ທີ່ປຸງສົດໃໝ່ທຸກວັນ
                     </p>
                 {% elif category == 'coffee' %}
-                    <p class="text-gray-600 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
+                    <p class=" text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
                         ເຄື່ອງດື່ມກາເຟທີ່ຖືກຊົງແບບຊຳນານ ໂດຍໃຊ້ເມັດກາເຟຊັ່ນນຳຈາກທົ່ວໂລກ
                     </p>
                 {% elif category == 'american' %}
-                    <p class="text-gray-600 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
+                    <p class=" text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
                         ອາຫານຄລາສສິກສະໄຕລ໌ອາເມຣິກາ ທີ່ຖືກປຸງແຕ່ງໂດຍພໍ່ຄົວຂອງເຮົາໃນແນວພິເສດ
                     </p>
                 {% elif category == 'indian' %}
-                    <p class="text-gray-600 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
+                    <p class=" text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
                         ອາຫານອິນເດຍແບບດັ້ງເດີມ ທີ່ເຕັມໄປດ້ວຍກິ່ນຫອມຂອງເຄື່ອງເທດ ແລະວິທີປຸງແບບດັ້ງເດີມ
                     </p>
                 {% elif category == 'mexican' %}
-                    <p class="text-gray-600 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
+                    <p class=" text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
                         ອາຫານແມັກຊິໂກທີ່ເຂັ້ມຂົ້ນ ແລະເຕັມໄປດ້ວຍລົດຊາດ ໃຊ້ວັດຖຸດິບສົດ ແລະສູດຕົ້ນສະບັບແທ້
                     </p>
                 {% elif category == 'pizza' %}
-                    <p class="text-gray-600 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
+                    <p class=" text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
                         ພິຊຊ່າແຮນເມດ ຫນ້າຄຸນນະພາບ ທີ່ປຸງສົດໃໝ່ດ້ວຍສ່ວນປະສົມແບບດັ້ງເດີມ
                     </p>
                 {% elif category == 'local_food' %}
-                    <p class="text-gray-600 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
+                    <p class=" text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
                         ອາຫານພື້ນເມືອງຈາກແຕ່ລະພາກ ທີ່ໂຊວເອກະລັກຂອງວັດຖຸດິບແລະປະເພນີທ້ອງຖິ່ນ
                     </p>
                 {% elif category == 'soup_salad_mediterranean' %}
-                    <p class="text-gray-600 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
+                    <p class=" text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
                         ສະຫຼັດສົດ ແລະອາຫານຍອດນິຍົມຈາກພາກມະຕິເຕຣເນຍ ທີ່ເຕັມໄປດ້ວຍສິ່ງທີ່ມີປະໂຫຍດຕໍ່ສຸຂະພາບ
                     </p>
                 {% elif category == 'drinks' %}
-                    <p class="text-gray-600 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
+                    <p class=" text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
                         ເຄື່ອງດື່ມທີ່ຊົດຊື່ນ, ຄອກແທວສະເພາະ ແລະເລືອກຄັດສັນແບບພິຖີພິຖັນ
                     </p>
                 {% else %}
-                    <p class="text-gray-600 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
+                    <p class=" text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
                         ສຳຫຼວດເມນູພິເສດຂອງພວກເຮົາ ທີ່ປຸງແຕ່ງດ້ວຍຄວາມຕັ້ງໃຈແລະວັດຖຸດິບຊັ້ນດີ
                     </p>
                 {% endif %}
@@ -188,13 +188,13 @@
             <!-- Stats -->
             <div class="flex justify-center items-center space-x-8 mt-8 fade-in">
                 <div class="text-center">
-                    <div class="text-2xl font-bold text-primary-dark">{{ total_items }}</div>
-                    <div class="text-sm text-gray-600">ລາຍການ</div>
+                    <div class="text-2xl font-bold">{{ total_items }}</div>
+                    <div class="text-sm ">ລາຍການ</div>
                 </div>
                 {% if featured_items %}
                 <div class="text-center">
-                    <div class="text-2xl font-bold text-primary-dark">{{ featured_items|length }}</div>
-                    <div class="text-sm text-gray-600">ແນະນຳພິເສດ</div>
+                    <div class="text-2xl font-bold">{{ featured_items|length }}</div>
+                    <div class="text-sm ">ແນະນຳພິເສດ</div>
                 </div>
                 {% endif %}
             </div>
@@ -203,7 +203,7 @@
 </section>
 
 <!-- Category Filters & Sorting -->
-<section class="bg-white border-b border-gray-200">
+<section class="border-b border-gray-200">
     <div class="container mx-auto px-4 py-6">
         <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <!-- View Options -->
@@ -212,12 +212,12 @@
             
             <!-- Quick Category Navigation -->
             <div class="hidden md:flex items-center space-x-2">
-                <span class="text-gray-600 text-sm">ໝວດອື່ນໆ:</span>
+                <span class=" text-sm">ໝວດອື່ນໆ:</span>
                 <div class="flex space-x-2">
                     {% for cat_key, cat_name in categories %}
                     {% if cat_key != category %}
                     <a href="{% url 'menu-by-category-page' cat_key %}" 
-                       class="bg-gray-100 hover:bg-primary hover:text-white text-gray-600 px-3 py-1 rounded-full text-sm transition-colors">
+                       class="bg-red-100 text-gray-700 px-3 py-1 rounded-full text-sm transition-colors">
                         {{ cat_name }}
                     </a>
                     {% endif %}
@@ -226,7 +226,7 @@
             </div>
             
             <!-- Results Count -->
-            <div class="text-sm text-gray-600">
+            <div class="text-sm ">
                 ສະແດງ {{ menu_items|length }} ຈາກທັງໝົດ {{ total_items }} ລາຍການ
             </div>
         </div>
@@ -238,7 +238,7 @@
 <section class="py-12 bg-gradient-to-br from-primary/5 to-primary-dark/5">
     <div class="container mx-auto px-4">
         <div class="text-center mb-8">
-            <h2 class="text-2xl md:text-3xl font-serif font-bold text-primary-dark mb-4">
+            <h2 class="text-2xl md:text-3xl font-serif font-bold mb-4">
                 <i class="fas fa-star text-yellow-500 mr-2"></i>ແນະນຳພິເສດໃນໝວດນີ້
             </h2>
             <div class="w-16 h-1 bg-primary mx-auto rounded-full"></div>
@@ -246,40 +246,42 @@
         
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-9xl mx-auto">
             {% for item in featured_items %}
-            <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
-                <div class="relative">
-                    {% if item.image %}
-                    <img src="{{ item.image.url }}" 
-                         alt="{{ item.name }}" 
-                         class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300">
-                    {% else %}
-                    <div class="w-full h-40 bg-gradient-to-br from-primary-light to-primary flex items-center justify-center">
-                        <i class="fas fa-utensils text-2xl text-white opacity-50"></i>
+            <a href="{% url 'menu-item-detail-page' item.slug %}">
+                <div class="rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
+                    <div class="relative">
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" 
+                            alt="{{ item.name }}" 
+                            class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300">
+                        {% else %}
+                        <div class="w-full h-40 bg-gradient-to-br from-primary-light to-primary flex items-center justify-center">
+                            <i class="fas fa-utensils text-2xl text-white opacity-50"></i>
+                        </div>
+                        {% endif %}
+                        <div class="absolute top-3 left-3">
+                            <span class="bg-red-500 text-white px-2 py-1 rounded-full text-xs font-semibold">
+                                <i class="fas fa-star mr-1"></i>Featured
+                            </span>
+                        </div>
+                        <div class="absolute top-3 right-3">
+                            <span class="bg-white/90 text-primary-dark px-3 py-1 rounded-full text-sm font-semibold">
+                                {{ item.price|intcomma }} LAK
+                            </span>
+                        </div>
                     </div>
-                    {% endif %}
-                    <div class="absolute top-3 left-3">
-                        <span class="bg-red-500 text-white px-2 py-1 rounded-full text-xs font-semibold">
-                            <i class="fas fa-star mr-1"></i>Featured
-                        </span>
-                    </div>
-                    <div class="absolute top-3 right-3">
-                        <span class="bg-white/90 text-primary-dark px-3 py-1 rounded-full text-sm font-semibold">
-                            {{ item.price|intcomma }} LAK
-                        </span>
+                    <div class="p-4">
+                        <h3 class="font-serif font-bold text-lg mb-2">
+                            
+                                {{ item.name }}
+                    
+                        </h3>
+                        <p class=" text-sm mb-3 line-clamp-2">
+                            {{ item.description }}
+                        </p>
                     </div>
                 </div>
-                <div class="p-4">
-                    <h3 class="font-serif font-bold text-lg text-primary-dark mb-2">
-                        <a href="{% url 'menu-item-detail-page' item.slug %}" class="hover:text-primary transition-colors">
-                            {{ item.name }}
-                        </a>
-                    </h3>
-                    <p class="text-gray-600 text-sm mb-3 line-clamp-2">
-                        {{ item.description }}
-                    </p>
-                </div>
-            </div>
             {% endfor %}
+            </a>
         </div>
     </div>
 </section>
@@ -291,7 +293,7 @@
             <!-- Menu Items Grid -->
             <div id="menu-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 stagger-animation">
                 {% for item in menu_items %}
-                <div class="menu-card bg-gradient-to-br from-white to-gray-50 border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
+                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
                     <div class="relative overflow-hidden rounded-2xl mb-6">
                         {% if item.image %}
                         <img src="{{ item.image.url }}" 
@@ -300,32 +302,32 @@
                         {% else %}
                         <div class="w-full h-48 bg-gradient-to-br from-primary-light to-primary flex items-center justify-center">
                             {% if category == 'breakfast' %}
-                                <i class="fas fa-coffee text-4xl text-white opacity-50"></i>
+                                <i class="fas fa-coffee text-4xl opacity-50"></i>
                             {% elif category == 'coffee' %}
-                                <i class="fas fa-mug-hot text-4xl text-white opacity-50"></i>
+                                <i class="fas fa-mug-hot text-4xl opacity-50"></i>
                             {% elif category == 'american' %}
-                                <i class="fas fa-hamburger text-4xl text-white opacity-50"></i>
+                                <i class="fas fa-hamburger text-4xl opacity-50"></i>
                             {% elif category == 'indian' %}
-                                <i class="fas fa-pepper-hot text-4xl text-white opacity-50"></i>
+                                <i class="fas fa-pepper-hot text-4xl opacity-50"></i>
                             {% elif category == 'mexican' %}
-                                <i class="fas fa-pepper-hot text-4xl text-white opacity-50"></i>
+                                <i class="fas fa-pepper-hot text-4xl opacity-50"></i>
                             {% elif category == 'pizza' %}
-                                <i class="fas fa-pizza-slice text-4xl text-white opacity-50"></i>
+                                <i class="fas fa-pizza-slice text-4xl opacity-50"></i>
                             {% elif category == 'local_food' %}
-                                <i class="fas fa-utensils text-4xl text-white opacity-50"></i>
+                                <i class="fas fa-utensils text-4xl opacity-50"></i>
                             {% elif category == 'soup_salad_mediterranean' %}
-                                <i class="fas fa-leaf text-4xl text-white opacity-50"></i>
+                                <i class="fas fa-leaf text-4xl opacity-50"></i>
                             {% elif category == 'drinks' %}
-                                <i class="fas fa-glass-martini-alt text-4xl text-white opacity-50"></i>
+                                <i class="fas fa-glass-martini-alt text-4xl opacity-50"></i>
                             {% else %}
-                                <i class="fas fa-utensils text-4xl text-white opacity-50"></i>
+                                <i class="fas fa-utensils text-4xl opacity-50"></i>
                             {% endif %}
                         </div>
                         {% endif %}
                         
                         <!-- Price Badge -->
                         <div class="absolute top-4 right-4">
-                            <span class="bg-gradient-to-br from-primary to-primary-dark text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                            <span class="bg-gradient-to-br from-primary to-primary-dark px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
                                 {{ item.price|intcomma }} LAK
                             </span>
                         </div>
@@ -333,7 +335,7 @@
                         <!-- Featured Badge -->
                         {% if item.is_featured %}
                         <div class="absolute top-4 left-4">
-                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            <span class="bg-red-500 px-3 py-1 rounded-full text-sm font-semibold">
                                 <i class="fas fa-star mr-1"></i>Featured
                             </span>
                         </div>
@@ -343,13 +345,11 @@
                     </div>
                     
                     <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold text-primary-dark group-hover:text-primary transition-colors">
-                            <a href="{% url 'menu-item-detail-page' item.slug %}" class="hover:underline">
-                                {{ item.name }}
-                            </a>
+                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">
+                            {{ item.name }}
                         </h3>
                         
-                        <p class="text-gray-600 description-text leading-relaxed">
+                        <p class=" description-text leading-relaxed">
                             {{ item.description }}
                         </p>
                         
@@ -379,7 +379,7 @@
                 <nav class="flex items-center space-x-2">
                     {% if menu_items.has_previous %}
                         <a href="?page={{ menu_items.previous_page_number }}" 
-                           class="bg-white border border-gray-300 text-gray-500 hover:bg-gray-50 hover:text-gray-700 px-4 py-2 rounded-lg transition-colors">
+                           class="border border-gray-300 text-gray-500 hover:bg-gray-50 hover:text-gray-700 px-4 py-2 rounded-lg transition-colors">
                             <i class="fas fa-chevron-left mr-2"></i>ກ່ອນໜ້າ
                         </a>
                     {% endif %}
@@ -389,7 +389,7 @@
                             <span class="bg-primary text-white px-4 py-2 rounded-lg font-semibold">{{ num }}</span>
                         {% else %}
                             <a href="?page={{ num }}" 
-                               class="bg-white border border-gray-300 text-gray-500 hover:bg-gray-50 hover:text-gray-700 px-4 py-2 rounded-lg transition-colors">
+                               class="border border-gray-300 text-gray-500 hover:bg-gray-50 hover:text-gray-700 px-4 py-2 rounded-lg transition-colors">
                                 {{ num }}
                             </a>
                         {% endif %}
@@ -397,7 +397,7 @@
                     
                     {% if menu_items.has_next %}
                         <a href="?page={{ menu_items.next_page_number }}" 
-                           class="bg-white border border-gray-300 text-gray-500 hover:bg-gray-50 hover:text-gray-700 px-4 py-2 rounded-lg transition-colors">
+                           class="border border-gray-300 text-gray-500 hover:bg-gray-50 hover:text-gray-700 px-4 py-2 rounded-lg transition-colors">
                             ຕໍ່ໄປ<i class="fas fa-chevron-right ml-2"></i>
                         </a>
                     {% endif %}
@@ -443,7 +443,7 @@
                         </a>
                         <br>
                         <a href="{% url 'featured-menu-page' %}" 
-                           class="inline-block bg-white border-2 border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 rounded-xl font-semibold transition-colors">
+                           class="inline-block border-2 border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 rounded-xl font-semibold transition-colors">
                             <i class="fas fa-star mr-2"></i>ເບິ່ງເມນູແນະນຳ
                         </a>
                     </div>
@@ -465,11 +465,11 @@
             </p>
             <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
                 <a href="tel:+856XXXXXXXX" 
-                   class="bg-white text-primary hover:bg-primary-light hover:text-primary-dark px-8 py-4 rounded-xl font-semibold text-lg transition-colors">
+                   class="text-primary hover:bg-primary-light hover:text-primary-dark px-8 py-4 rounded-xl font-semibold text-lg transition-colors">
                     <i class="fas fa-phone mr-2"></i>ສັ່ງອາຫານດຽວນີ້
                 </a>
                 <a href="{% url 'menu-search-page' %}" 
-                   class="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-4 rounded-xl font-semibold text-lg transition-colors">
+                   class="border-2 border-white text-white hover:hover:text-primary px-8 py-4 rounded-xl font-semibold text-lg transition-colors">
                     <i class="fas fa-search mr-2"></i>ຄົ້ນຫາເມນູ
                 </a>
             </div>
@@ -490,17 +490,17 @@ document.addEventListener('DOMContentLoaded', function() {
         listViewBtn.addEventListener('click', function() {
             menuGrid.className = 'grid grid-cols-1 gap-4 stagger-animation';
             gridViewBtn.classList.remove('bg-primary', 'text-white');
-            gridViewBtn.classList.add('bg-gray-200', 'text-gray-600');
+            gridViewBtn.classList.add('bg-gray-200', 'text-gray-700');
             listViewBtn.classList.add('bg-primary', 'text-white');
-            listViewBtn.classList.remove('bg-gray-200', 'text-gray-600');
+            listViewBtn.classList.remove('bg-gray-200', 'text-gray-700');
         });
         
         gridViewBtn.addEventListener('click', function() {
             menuGrid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 stagger-animation';
             listViewBtn.classList.remove('bg-primary', 'text-white');
-            listViewBtn.classList.add('bg-gray-200', 'text-gray-600');
+            listViewBtn.classList.add('bg-gray-200', 'text-gray-700');
             gridViewBtn.classList.add('bg-primary', 'text-white');
-            gridViewBtn.classList.remove('bg-gray-200', 'text-gray-600');
+            gridViewBtn.classList.remove('bg-gray-200', 'text-gray-700');
         });
     }
     

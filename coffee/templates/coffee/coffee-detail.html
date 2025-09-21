@@ -10,10 +10,10 @@
     <nav class="mb-8">
         <ol class="flex items-center space-x-2 text-sm">
             <li><a href="{% url 'home-page' %}" class="text-amber-600 hover:text-amber-700">ໜ້າຫຼັກ</a></li>
-            <li class="text-gray-400">/</li>
+            <li class="">/</li>
             <li><a href="{% url 'coffee_list' %}" class="text-amber-600 hover:text-amber-700">ກາເຟທັງໝົດ</a></li>
-            <li class="text-gray-400">/</li>
-            <li class="text-gray-700">{{ coffee.name }}</li>
+            <li class="">/</li>
+            <li class="">{{ coffee.name }}</li>
         </ol>
     </nav>
     
@@ -32,19 +32,19 @@
                 
                 <!-- Fallback icon when no image -->
                 <template x-if="!activeImage">
-                    <i class="fas fa-coffee text-8xl text-amber-800 opacity-30"></i>
+                    <i class="fas fa-coffee text-8xl opacity-30"></i>
                 </template>
                 
                 <!-- Badges -->
                 <div class="absolute top-4 left-4 space-y-2">
                     {% if coffee.is_fresh %}
-                    <div class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                    <div class="bg-green-500 px-3 py-1 rounded-full text-sm font-semibold">
                         <i class="fas fa-leaf mr-1"></i>ສົດໃໝ່
                     </div>
                     {% endif %}
                     
                     {% if coffee.stock_quantity < 10 %}
-                    <div class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                    <div class="bg-red-500 px-3 py-1 rounded-full text-sm font-semibold">
                         <i class="fas fa-exclamation-triangle mr-1"></i>ເຫຼືອໜ້ອຍ
                     </div>
                     {% endif %}
@@ -90,7 +90,7 @@
                                 {% for i in "123"|slice:":3" %}
                                     {% if forloop.counter <= 4|add:used_slots %}
                                     <div class="aspect-square bg-gray-100 rounded-lg flex items-center justify-center opacity-50">
-                                        <i class="fas fa-plus text-gray-400 text-xl"></i>
+                                        <i class="fas fa-plus  text-xl"></i>
                                     </div>
                                     {% endif %}
                                 {% endfor %}
@@ -101,7 +101,7 @@
                             {% for i in "1234"|slice:":4" %}
                                 {% if forloop.counter <= 4 %}
                                 <div class="aspect-square bg-gray-100 rounded-lg flex items-center justify-center opacity-50">
-                                    <i class="fas fa-plus text-gray-400 text-xl"></i>
+                                    <i class="fas fa-plus  text-xl"></i>
                                 </div>
                                 {% endif %}
                             {% endfor %}
@@ -114,8 +114,8 @@
         <!-- Coffee Details -->
         <div class="space-y-6">
             <div>
-                <h1 class="text-3xl font-bold text-gray-900 mb-2">{{ coffee.name }}</h1>
-                <p class="text-lg text-gray-600">{{ coffee.coffee_bean.name }} ({{ coffee.coffee_bean.get_origin_display }})</p>
+                <h1 class="text-3xl font-bold mb-2">{{ coffee.name }}</h1>
+                <p class="text-lg">{{ coffee.coffee_bean.name }} ({{ coffee.coffee_bean.get_origin_display }})</p>
             </div>
             
             <!-- Rating -->
@@ -129,7 +129,7 @@
                         {% endif %}
                     {% endfor %}
                 </div>
-                <span class="text-gray-600">{{ avg_rating|floatformat:1 }}/5.0 ({{ review_count }} ຣີວິວ)</span>
+                <span class="">{{ avg_rating|floatformat:1 }}/5.0 ({{ review_count }} ຣີວິວ)</span>
             </div>
             
             <!-- Price -->
@@ -146,31 +146,31 @@
                 <h3 class="text-lg font-semibold mb-4">ລາຍລະອຽດຜະລິດຕະພັນ</h3>
                 <div class="grid grid-cols-2 gap-4 text-sm">
                     <div>
-                        <span class="text-gray-600">ລະດັບການຄົ່ວ:</span>
+                        <span class="">ລະດັບການຄົ່ວ:</span>
                         <p class="font-medium">{{ coffee.roast_level }}</p>
                     </div>
                     <div>
-                        <span class="text-gray-600">ປະເພດການບົດ:</span>
+                        <span class="">ປະເພດການບົດ:</span>
                         <p class="font-medium">{{ coffee.get_grind_type_display }}</p>
                     </div>
                     <div>
-                        <span class="text-gray-600">ປະເທດຕົ້ນກຳເນີດ:</span>
+                        <span class="">ປະເທດຕົ້ນກຳເນີດ:</span>
                         <p class="font-medium">{{ coffee.coffee_bean.country }}</p>
                     </div>
                     {% if coffee.coffee_bean.region %}
                     <div>
-                        <span class="text-gray-600">ພາກພື້ນ:</span>
+                        <span class="">ພາກພື້ນ:</span>
                         <p class="font-medium">{{ coffee.coffee_bean.region }}</p>
                     </div>
                     {% endif %}
                     {% if coffee.coffee_bean.altitude %}
                     <div>
-                        <span class="text-gray-600">ຄວາມສູງ:</span>
+                        <span class="">ຄວາມສູງ:</span>
                         <p class="font-medium">{{ coffee.coffee_bean.altitude }} ແມັດ</p>
                     </div>
                     {% endif %}
                     <div>
-                        <span class="text-gray-600">ຈຳນວນໃນສະຕັອກ:</span>
+                        <span class="">ຈຳນວນໃນສະຕັອກ:</span>
                         <p class="font-medium {% if coffee.stock_quantity < 10 %}text-red-600{% endif %}">
                             {{ coffee.stock_quantity }} ຖົງ
                         </p>
@@ -184,7 +184,7 @@
                 <h3 class="text-lg font-semibold mb-4">ໝວດໝູ່</h3>
                 <div class="flex flex-wrap gap-2">
                     {% for category in coffee.categories.all %}
-                    <span class="bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-sm">
+                    <span class="bg-amber-100 px-3 py-1 rounded-full text-sm">
                         {{ category.name }}
                     </span>
                     {% endfor %}
@@ -196,12 +196,12 @@
             <div class="border-t border-gray-200 pt-6">
                 <h3 class="text-lg font-semibold mb-4">ລົດຊາດແລະກິ່ນ</h3>
                 {% if coffee.coffee_bean.flavor_notes %}
-                <p class="text-gray-700 mb-4">{{ coffee.coffee_bean.flavor_notes }}</p>
+                <p class=" mb-4">{{ coffee.coffee_bean.flavor_notes }}</p>
                 {% endif %}
                 
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <span class="text-gray-600 text-sm">ຄວາມສົ້ມ</span>
+                        <span class=" text-sm">ຄວາມສົ້ມ</span>
                         <div class="flex items-center mt-1">
                             {% for i in "12345" %}
                                 {% if forloop.counter <= coffee.coffee_bean.acidity_level %}
@@ -210,11 +210,11 @@
                                 <div class="w-4 h-4 bg-gray-200 rounded-full mr-1"></div>
                                 {% endif %}
                             {% endfor %}
-                            <span class="ml-2 text-sm text-gray-600">{{ coffee.coffee_bean.acidity_level }}/5</span>
+                            <span class="ml-2 text-sm ">{{ coffee.coffee_bean.acidity_level }}/5</span>
                         </div>
                     </div>
                     <div>
-                        <span class="text-gray-600 text-sm">ຄວາມເຂັ້ມຂຸ້ນ</span>
+                        <span class=" text-sm">ຄວາມເຂັ້ມຂຸ້ນ</span>
                         <div class="flex items-center mt-1">
                             {% for i in "12345" %}
                                 {% if forloop.counter <= coffee.coffee_bean.body_level %}
@@ -223,7 +223,7 @@
                                 <div class="w-4 h-4 bg-gray-200 rounded-full mr-1"></div>
                                 {% endif %}
                             {% endfor %}
-                            <span class="ml-2 text-sm text-gray-600">{{ coffee.coffee_bean.body_level }}/5</span>
+                            <span class="ml-2 text-sm ">{{ coffee.coffee_bean.body_level }}/5</span>
                         </div>
                     </div>
                 </div>
@@ -234,7 +234,7 @@
     
                 
                 <div class="flex space-x-4 text-sm">
-                    <button class="flex items-center text-gray-600 hover:text-amber-600 transition"
+                    <button class="flex items-center  hover:text-amber-600 transition"
                             onclick="shareProduct()">
                         <i class="fas fa-share-alt mr-1"></i>ແຊຣ໌
                     </button>
@@ -248,17 +248,17 @@
         <div class="border-b border-gray-200">
             <nav class="flex space-x-8">
                 <button @click="activeTab = 'description'" 
-                        :class="activeTab === 'description' ? 'border-amber-500 text-amber-600' : 'border-transparent text-gray-500 hover:text-gray-700'"
+                        :class="activeTab === 'description' ? 'border-amber-500 text-amber-600' : 'border-transparent text-gray-500 hover:'"
                         class="py-2 px-1 border-b-2 font-medium text-sm transition">
                     ຄຳອະທິບາຍ
                 </button>
                 <button @click="activeTab = 'brewing'" 
-                        :class="activeTab === 'brewing' ? 'border-amber-500 text-amber-600' : 'border-transparent text-gray-500 hover:text-gray-700'"
+                        :class="activeTab === 'brewing' ? 'border-amber-500 text-amber-600' : 'border-transparent text-gray-500 hover:'"
                         class="py-2 px-1 border-b-2 font-medium text-sm transition">
                     ວິທີການຊົງ
                 </button>
                 <button @click="activeTab = 'reviews'" 
-                        :class="activeTab === 'reviews' ? 'border-amber-500 text-amber-600' : 'border-transparent text-gray-500 hover:text-gray-700'"
+                        :class="activeTab === 'reviews' ? 'border-amber-500 text-amber-600' : 'border-transparent text-gray-500 hover:'"
                         class="py-2 px-1 border-b-2 font-medium text-sm transition">
                     ຣີວິວ ({{ review_count }})
                 </button>
@@ -269,7 +269,7 @@
             <!-- Description Tab -->
             <div x-show="activeTab === 'description'" class="prose max-w-none">
                 {% if coffee.description %}
-                <div class="text-gray-700">{{ coffee.description|linebreaks }}</div>
+                <div class="">{{ coffee.description|linebreaks }}</div>
                 {% else %}
                 <div class="text-center py-8">
                     <i class="fas fa-file-alt text-4xl text-gray-300 mb-4"></i>
@@ -281,22 +281,22 @@
             <!-- Brewing Tab -->
             <div x-show="activeTab === 'brewing'" class="prose max-w-none">
                 {% if coffee.brewing_method %}
-                <div class="text-gray-700">{{ coffee.brewing_method|linebreaks }}</div>
+                <div class="">{{ coffee.brewing_method|linebreaks }}</div>
                 {% else %}
                 <div class="bg-amber-50 p-6 rounded-lg">
                     <h4 class="font-semibold mb-4">ຄຳແນະນຳທົ່ວໄປສຳລັບການຊົງກາເຟ</h4>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <h5 class="font-medium text-amber-800 mb-2">ສຳລັບການຊົງແບບດ້ຽງ (Drip)</h5>
-                            <ul class="space-y-1 text-gray-700 text-sm">
+                            <h5 class="font-medium mb-2">ສຳລັບການຊົງແບບດ້ຽງ (Drip)</h5>
+                            <ul class="space-y-1  text-sm">
                                 <li>• ອັດຕາສ່ວນ: 1:15-1:17</li>
                                 <li>• ອຸນຫະພູມ: 90-95°C</li>
                                 <li>• ເວລາ: 4-6 ນາທີ</li>
                             </ul>
                         </div>
                         <div>
-                            <h5 class="font-medium text-amber-800 mb-2">ສຳລັບເອສເປຣເຊົ</h5>
-                            <ul class="space-y-1 text-gray-700 text-sm">
+                            <h5 class="font-medium mb-2">ສຳລັບເອສເປຣເຊົ</h5>
+                            <ul class="space-y-1  text-sm">
                                 <li>• ອັດຕາສ່ວນ: 1:2</li>
                                 <li>• ອຸນຫະພູມ: 90-96°C</li>
                                 <li>• ເວລາ: 25-30 ວິນາທີ</li>
@@ -304,7 +304,7 @@
                         </div>
                     </div>
                     <div class="mt-4 pt-4 border-t border-amber-200">
-                        <p class="text-sm text-gray-600">
+                        <p class="text-sm ">
                             <i class="fas fa-lightbulb text-amber-500 mr-1"></i>
                             ແນະນຳໃຫ້ໃຊ້ນ້ຳສະອາດຄຸນນະພາບດີ ແລະ ບົດກາເຟໃໝ່ໆ ກ່ອນການຊົງ
                         </p>
@@ -323,12 +323,12 @@
                         {% csrf_token %}
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">ຊື່ຂອງທ່ານ</label>
+                                <label class="block text-sm font-medium  mb-2">ຊື່ຂອງທ່ານ</label>
                                 <input type="text" name="reviewer_name" required
                                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">ຄະແນນ</label>
+                                <label class="block text-sm font-medium  mb-2">ຄະແນນ</label>
                                 <select name="rating" required
                                         class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
                                     <option value="">ເລືອກຄະແນນ</option>
@@ -341,13 +341,13 @@
                             </div>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">ຄຳເຫັນ</label>
+                            <label class="block text-sm font-medium  mb-2">ຄຳເຫັນ</label>
                             <textarea name="comment" rows="4" required
                                       placeholder="ບອກເລົ່າປະສົບການການດື່ມກາເຟນີ້..."
                                       class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-amber-500 focus:border-amber-500"></textarea>
                         </div>
                         <button type="submit" 
-                                class="bg-amber-600 text-white px-6 py-2 rounded-lg hover:bg-amber-700 transition">
+                                class="bg-amber-600 px-6 py-2 rounded-lg hover:bg-amber-700 transition">
                             ສົ່ງຣີວິວ
                         </button>
                     </form>
@@ -368,18 +368,18 @@
                                         <i class="far fa-star text-gray-300 text-sm"></i>
                                         {% endif %}
                                     {% endfor %}
-                                    <span class="ml-2 text-sm text-gray-600">{{ review.rating }}/5</span>
+                                    <span class="ml-2 text-sm ">{{ review.rating }}/5</span>
                                 </div>
                             </div>
                             <span class="text-sm text-gray-500">{{ review.created_at|date:"d M Y" }}</span>
                         </div>
-                        <p class="text-gray-700">{{ review.comment }}</p>
+                        <p class="">{{ review.comment }}</p>
                     </div>
                     {% empty %}
                     <div class="text-center py-8">
                         <i class="fas fa-comments text-4xl text-gray-300 mb-4"></i>
                         <p class="text-gray-500">ຍັງບໍ່ມີຣີວິວສຳລັບສິນຄ້ານີ້</p>
-                        <p class="text-gray-400 text-sm">ເປັນຄົນທຳອິດທີ່ໃຫ້ຣີວິວ!</p>
+                        <p class=" text-sm">ເປັນຄົນທຳອິດທີ່ໃຫ້ຣີວິວ!</p>
                     </div>
                     {% endfor %}
                 </div>
@@ -390,7 +390,7 @@
     <!-- Similar Coffees -->
     {% if similar_coffees %}
     <div class="border-t border-gray-200 pt-12">
-        <h3 class="text-2xl font-bold text-gray-900 mb-8">ກາເຟທີ່ຄ້າຍຄືກັນ</h3>
+        <h3 class="text-2xl font-bold mb-8">ກາເຟທີ່ຄ້າຍຄືກັນ</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {% for similar_coffee in similar_coffees %}
             <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
@@ -400,12 +400,12 @@
                              alt="{{ similar_coffee.name }}"
                              class="w-full h-full object-cover">
                     {% else %}
-                        <i class="fas fa-coffee text-4xl text-amber-800 opacity-30"></i>
+                        <i class="fas fa-coffee text-4xl opacity-30"></i>
                     {% endif %}
                 </div>
                 <div class="p-4">
                     <h4 class="font-semibold mb-2 line-clamp-2">{{ similar_coffee.name }}</h4>
-                    <p class="text-sm text-gray-600 mb-2">{{ similar_coffee.coffee_bean.name }}</p>
+                    <p class="text-sm  mb-2">{{ similar_coffee.coffee_bean.name }}</p>
                     <div class="flex justify-between items-center">
                         <span class="text-lg font-bold text-amber-600">₭{{ similar_coffee.price|floatformat:0 }}</span>
                         <a href="{% url 'coffee_detail' similar_coffee.pk %}" 

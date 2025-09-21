@@ -1,0 +1,29 @@
+# Step 1: Navigate to your Django project directory
+cd /path/to/your/django/project
+
+# Step 2: Create locale directory (if it doesn't exist)
+mkdir -p locale
+
+# Step 3: Generate translation files for Lao language
+python manage.py makemessages -l lo
+
+# Step 4: Generate translation files for JavaScript (if you have translatable JS)
+python manage.py makemessages -l lo -d djangojs
+
+# Step 5: Edit the generated .po files with your translations
+# Open locale/lo/LC_MESSAGES/django.po in a text editor
+
+# Step 6: Compile the translation files
+python manage.py compilemessages
+
+# Step 7: Restart your Django development server
+python manage.py runserver
+
+# Optional: Generate messages for all defined languages
+python manage.py makemessages --all
+
+# Optional: Update existing translations (run after adding new {% trans %} tags)
+python manage.py makemessages -l lo --no-obsolete
+
+# Optional: Check for translation coverage
+python manage.py makemessages -l lo --dry-run

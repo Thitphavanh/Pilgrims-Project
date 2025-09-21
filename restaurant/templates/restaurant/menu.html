@@ -21,6 +21,36 @@
         display: block;
     }
 </style>
+<!-- Alternative: Larger Image Tabs -->
+<style>
+    /* Enhanced tab styling for better image display */
+    .category-tab-large {
+        min-height: 80px;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .category-tab-large img {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 8px;
+        margin-right: 0;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .category-tab img {
+            width: 6px;
+            height: 6px;
+        }
+        
+        .category-tab-large img {
+            width: 32px;
+            height: 32px;
+        }
+    }
+    </style>
+    
 
 
 {% endblock %}
@@ -32,13 +62,13 @@
         <div class="absolute inset-0 bg-black bg-opacity-50"></div>
         <div class="container mx-auto px-4 h-full flex items-center justify-center relative z-10">
             <div class="text-center max-w-3xl">
-                <h1 class="text-4xl md:text-5xl font-serif font-bold text-white leading-tight mb-4">
+                <h1 class="text-4xl md:text-5xl font-serif font-bold  leading-tight mb-4">
                     **ການເດີນທາງດ້ານອາຫານ**
                 </h1>
-                <p class="text-xl text-white mb-8">
+                <p class="text-xl  mb-8">
                      ສຳຜັດຄວາມລ້ຳເລີດຂອງອາຫານໃນຮ້ານອາຫານສຸດຫຼູຂອງພວກເຮົາ ໃນທຸກໆຈານເຮົາໄດ້ໃສ່ເລື່ອງລາວເຂົ້າໄປ.
                 </p>
-                <a href="#menu" class="bg-primary hover:bg-primary-dark text-white font-medium px-6 py-3 rounded-md text-center transition duration-300">
+                <a href="#menu" class="bg-primary hover:bg-primary-dark  font-medium px-6 py-3 rounded-md text-center transition duration-300">
                     ເບິ່ງເມນູຂອງພວກເຮົາ
                 </a>
             </div>
@@ -47,15 +77,15 @@
 </section>
 
 <!-- Enhanced Beautiful Menu Section -->
-<section id="menu" class="py-16 md:py-24 bg-gradient-to-br from-gray-50 to-white">
+<section id="menu" class="py-16 md:py-24">
     <div class="container mx-auto px-4">
         <!-- Animated section header with enhanced typography -->
         <div class="text-center mb-12 md:mb-16 animate-on-scroll opacity-0 translate-y-8">
             <div class="inline-block">
                 <span class="inline-block text-primary font-medium mb-2 tracking-wider text-sm uppercase">CULINARY DELIGHTS</span>
-                <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-primary-dark mb-6 leading-tight">ເມນູຂອງພວກເຮົາ</h2>
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 leading-tight">ເມນູຂອງພວກເຮົາ</h2>
                 <div class="w-32 h-1.5 bg-gradient-to-r from-primary to-primary-dark mx-auto mb-8 rounded-full"></div>
-                <p class="text-gray-600 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
+                <p class="max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
                     ສຳຫຼວດເມນູອາຫານຫຼາກຫຼາຍຈາກທົ່ວໂລກ ທີ່ປຸງແຕ່ງດ້ວຍຄວາມຕັ້ງໃຈແລະວັດຖຸດິບຊັ້ນດີ
                 </p>
             </div>
@@ -69,36 +99,136 @@
                     <span class="scroll-indicator">ເລື່ອນເບິ່ງເມນູເພີ່ມເຕີມ <i class="fas fa-arrow-right text-primary ml-2"></i></span>
                 </div>
                 
-                <!-- Enhanced menu tabs -->
-                <div class="flex overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-primary scrollbar-track-transparent gap-3">
+                <!-- Enhanced Menu Tabs Template -->
+                <div class="flex overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-primary-light scrollbar-track-transparent gap-3">
                     <div class="flex flex-nowrap gap-3 mx-auto min-w-max">
-                        <button class="category-tab active bg-gradient-to-br from-primary to-primary-dark text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl whitespace-nowrap hover:-translate-y-1" data-target="breakfast">
-                            <i class="fas fa-coffee mr-3 text-lg"></i>Breakfast
+                        
+                        <!-- Breakfast Tab -->
+                        <button class="category-tab active group bg-gradient-to-br from-primary-light to-primary-dark-light dark:from-secondary-dark dark:to-secondary-light  px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl whitespace-nowrap hover:-translate-y-1" data-target="breakfast">
+                            <div class="flex items-center">
+                                {% if category_menus.breakfast.image %}
+                                <img src="{{ category_menus.breakfast.image.url }}" 
+                                    alt="Breakfast" 
+                                    class="w-8 h-8 rounded-full object-cover mr-3 border-2 border-white/50 group-hover:border-white transition-all">
+                                {% else %}
+                                <i class="fas fa-coffee mr-3 text-lg"></i>
+                                {% endif %}
+                                <span>Breakfast</span>
+                            </div>
                         </button>
-                        <button class="category-tab bg-white hover:bg-gradient-to-br hover:from-primary hover:to-primary-dark hover:text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 whitespace-nowrap text-gray-700 border border-gray-200" data-target="coffee">
-                            <i class="fas fa-mug-hot mr-3 text-lg"></i>Coffee
+                        
+                        <!-- Coffee Tab -->
+                        <button class="category-tab group bg-white dark:bg-primary-dark-dark hover:bg-gradient-to-br hover:from-primary-light hover:to-primary-dark-light dark:hover:from-secondary-dark dark:hover:to-secondary-light px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 whitespace-nowrap text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-600" data-target="coffee">
+                            <div class="flex items-center">
+                                {% if category_menus.coffee.image %}
+                                <img src="{{ category_menus.coffee.image.url }}" 
+                                    alt="Coffee" 
+                                    class="w-8 h-8 rounded-full object-cover mr-3 border-2 border-gray-300 group-hover:border-white transition-all">
+                                {% else %}
+                                <i class="fas fa-mug-hot mr-3 text-lg"></i>
+                                {% endif %}
+                                <span>Coffee</span>
+                            </div>
                         </button>
-                        <button class="category-tab bg-white hover:bg-gradient-to-br hover:from-primary hover:to-primary-dark hover:text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 whitespace-nowrap text-gray-700 border border-gray-200" data-target="american">
-                            <i class="fas fa-hamburger mr-3 text-lg"></i>American
+                        
+                        <!-- Pizza Tab -->
+                        <button class="category-tab group bg-white dark:bg-primary-dark-dark hover:bg-gradient-to-br hover:from-primary-light hover:to-primary-dark-light dark:hover:from-secondary-dark dark:hover:to-secondary-light px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 whitespace-nowrap text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-600" data-target="pizza">
+                            <div class="flex items-center">
+                                {% if category_menus.pizza.image %}
+                                <img src="{{ category_menus.pizza.image.url }}" 
+                                    alt="Pizza" 
+                                    class="w-8 h-8 rounded-full object-cover mr-3 border-2 border-gray-300 group-hover:border-white transition-all">
+                                {% else %}
+                                <i class="fas fa-pizza-slice mr-3 text-lg"></i>
+                                {% endif %}
+                                <span>Pizza</span>
+                            </div>
                         </button>
-                        <button class="category-tab bg-white hover:bg-gradient-to-br hover:from-primary hover:to-primary-dark hover:text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 whitespace-nowrap text-gray-700 border border-gray-200" data-target="indian">
-                            <i class="fas fa-pepper-hot mr-3 text-lg"></i>Indian
+                        
+                        <!-- American Tab -->
+                        <button class="category-tab group bg-white dark:bg-primary-dark-dark hover:bg-gradient-to-br hover:from-primary-light hover:to-primary-dark-light dark:hover:from-secondary-dark dark:hover:to-secondary-light px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 whitespace-nowrap text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-600" data-target="american">
+                            <div class="flex items-center">
+                                {% if category_menus.american.image %}
+                                <img src="{{ category_menus.american.image.url }}" 
+                                    alt="American" 
+                                    class="w-8 h-8 rounded-full object-cover mr-3 border-2 border-gray-300 group-hover:border-white transition-all">
+                                {% else %}
+                                <i class="fas fa-hamburger mr-3 text-lg"></i>
+                                {% endif %}
+                                <span>American</span>
+                            </div>
                         </button>
-                        <button class="category-tab bg-white hover:bg-gradient-to-br hover:from-primary hover:to-primary-dark hover:text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 whitespace-nowrap text-gray-700 border border-gray-200" data-target="mexican">
-                            <i class="fas fa-pepper-hot mr-3 text-lg"></i>Mexican
+                        
+                        <!-- Indian Tab -->
+                        <button class="category-tab group bg-white dark:bg-primary-dark-dark hover:bg-gradient-to-br hover:from-primary-light hover:to-primary-dark-light dark:hover:from-secondary-dark dark:hover:to-secondary-light px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 whitespace-nowrap text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-600" data-target="indian">
+                            <div class="flex items-center">
+                                {% if category_menus.indian.image %}
+                                <img src="{{ category_menus.indian.image.url }}" 
+                                    alt="Indian" 
+                                    class="w-8 h-8 rounded-full object-cover mr-3 border-2 border-gray-300 group-hover:border-white transition-all">
+                                {% else %}
+                                <i class="fas fa-pepper-hot mr-3 text-lg"></i>
+                                {% endif %}
+                                <span>Indian</span>
+                            </div>
                         </button>
-                        <button class="category-tab bg-white hover:bg-gradient-to-br hover:from-primary hover:to-primary-dark hover:text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 whitespace-nowrap text-gray-700 border border-gray-200" data-target="pizza">
-                            <i class="fas fa-pizza-slice mr-3 text-lg"></i>Pizza
+                        
+                        <!-- Mexican Tab -->
+                        <button class="category-tab group bg-white dark:bg-primary-dark-dark hover:bg-gradient-to-br hover:from-primary-light hover:to-primary-dark-light dark:hover:from-secondary-dark dark:hover:to-secondary-light px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 whitespace-nowrap text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-600" data-target="mexican">
+                            <div class="flex items-center">
+                                {% if category_menus.mexican.image %}
+                                <img src="{{ category_menus.mexican.image.url }}" 
+                                    alt="Mexican" 
+                                    class="w-8 h-8 rounded-full object-cover mr-3 border-2 border-gray-300 group-hover:border-white transition-all">
+                                {% else %}
+                                <i class="fas fa-pepper-hot mr-3 text-lg"></i>
+                                {% endif %}
+                                <span>Mexican</span>
+                            </div>
                         </button>
-                        <button class="category-tab bg-white hover:bg-gradient-to-br hover:from-primary hover:to-primary-dark hover:text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 whitespace-nowrap text-gray-700 border border-gray-200" data-target="local_food">
-                            <i class="fas fa-utensils mr-3 text-lg"></i>Local Specialties
+                        
+                        <!-- Local Food Tab -->
+                        <button class="category-tab group bg-white dark:bg-primary-dark-dark hover:bg-gradient-to-br hover:from-primary-light hover:to-primary-dark-light dark:hover:from-secondary-dark dark:hover:to-secondary-light px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 whitespace-nowrap text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-600" data-target="local_food">
+                            <div class="flex items-center">
+                                {% if category_menus.local_food.image %}
+                                <img src="{{ category_menus.local_food.image.url }}" 
+                                    alt="Local Food" 
+                                    class="w-8 h-8 rounded-full object-cover mr-3 border-2 border-gray-300 group-hover:border-white transition-all">
+                                {% else %}
+                                <i class="fas fa-utensils mr-3 text-lg"></i>
+                                {% endif %}
+                                <span>Local Specialties</span>
+                            </div>
                         </button>
-                        <button class="category-tab bg-white hover:bg-gradient-to-br hover:from-primary hover:to-primary-dark hover:text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 whitespace-nowrap text-gray-700 border border-gray-200" data-target="soup_salad_mediterranean">
-                            <i class="fas fa-leaf mr-3 text-lg"></i>Soup & Salad
+                        
+                        <!-- Soup & Salad Tab -->
+                        <button class="category-tab group bg-white dark:bg-primary-dark-dark hover:bg-gradient-to-br hover:from-primary-light hover:to-primary-dark-light dark:hover:from-secondary-dark dark:hover:to-secondary-light px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 whitespace-nowrap text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-600" data-target="soup_salad_mediterranean">
+                            <div class="flex items-center">
+                                {% if category_menus.soup_salad_mediterranean.image %}
+                                <img src="{{ category_menus.soup_salad_mediterranean.image.url }}" 
+                                    alt="Soup & Salad" 
+                                    class="w-8 h-8 rounded-full object-cover mr-3 border-2 border-gray-300 group-hover:border-white transition-all">
+                                {% else %}
+                                <i class="fas fa-leaf mr-3 text-lg"></i>
+                                {% endif %}
+                                <span>Soup & Salad</span>
+                            </div>
                         </button>
-                        <button class="category-tab bg-white hover:bg-gradient-to-br hover:from-primary hover:to-primary-dark hover:text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 whitespace-nowrap text-gray-700 border border-gray-200" data-target="drinks">
-                            <i class="fas fa-glass-martini-alt mr-3 text-lg"></i>Drinks
+                        
+                        <!-- Drinks Tab -->
+                        <button class="category-tab group bg-white dark:bg-primary-dark-dark hover:bg-gradient-to-br hover:from-primary-light hover:to-primary-dark-light dark:hover:from-secondary-dark dark:hover:to-secondary-light px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 whitespace-nowrap text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-600" data-target="drinks">
+                            <div class="flex items-center">
+                                {% if category_menus.drinks.image %}
+                                <img src="{{ category_menus.drinks.image.url }}" 
+                                    alt="Drinks" 
+                                    class="w-8 h-8 rounded-full object-cover mr-3 border-2 border-gray-300 group-hover:border-white transition-all">
+                                {% else %}
+                                <i class="fas fa-glass-martini-alt mr-3 text-lg"></i>
+                                {% endif %}
+                                <span>Drinks</span>
+                            </div>
                         </button>
+                        
                     </div>
                 </div>
             </div>
@@ -106,31 +236,31 @@
             <!-- Enhanced Category descriptions -->
             <div class="text-center my-8 min-h-16">
                 <div id="breakfast-description" class="category-desc active">
-                    <p class="text-gray-600 italic text-lg">ລີ່ມຕົ້ນວັນຂອງທ່ານດ້ວຍເມນູອາຫານເຊົ້າສຸດແຊບຂອງພວກເຮົາ</p>
+                    <p class="italic text-lg">ລີ່ມຕົ້ນວັນຂອງທ່ານດ້ວຍເມນູອາຫານເຊົ້າສຸດແຊບຂອງພວກເຮົາ</p>
                 </div>
                 <div id="coffee-description" class="category-desc hidden">
-                    <p class="text-gray-600 italic text-lg">ເຄື່ອງດື່ມກາເຟທີ່ຖືກຊົງແບບຊຳນານ ໂດຍໃຊ້ເມັດກາເຟຊັ່ນນຳຈາກທົ່ວໂລກ</p>
+                    <p class="italic text-lg">ເຄື່ອງດື່ມກາເຟທີ່ຖືກຊົງແບບຊຳນານ ໂດຍໃຊ້ເມັດກາເຟຊັ່ນນຳຈາກທົ່ວໂລກ</p>
                 </div>
                 <div id="american-description" class="category-desc hidden">
-                    <p class="text-gray-600 italic text-lg">ອາຫານຄລາສສິກສະໄຕລ໌ອາເມຣິກາ ທີ່ຖືກປຸງແຕ່ງໂດຍພໍ່ຄົວຂອງເຮົາໃນແນວພິເສດ</p>
+                    <p class="italic text-lg">ອາຫານຄລາສສິກສະໄຕລ໌ອາເມຣິກາ ທີ່ຖືກປຸງແຕ່ງໂດຍພໍ່ຄົວຂອງເຮົາໃນແນວພິເສດ</p>
                 </div>
                 <div id="indian-description" class="category-desc hidden">
-                    <p class="text-gray-600 italic text-lg">ອາຫານອິນເດຍແບບດັ້ງເດີມ ທີ່ເຕັມໄປດ້ວຍກິ່ນຫອມຂອງເຄື່ອງເທດ ແລະວິທີປຸງແບບດັ້ງເດີມ</p>
+                    <p class="italic text-lg">ອາຫານອິນເດຍແບບດັ້ງເດີມ ທີ່ເຕັມໄປດ້ວຍກິ່ນຫອມຂອງເຄື່ອງເທດ ແລະວິທີປຸງແບບດັ້ງເດີມ</p>
                 </div>
                 <div id="mexican-description" class="category-desc hidden">
-                    <p class="text-gray-600 italic text-lg">ອາຫານແມັກຊິໂກທີ່ເຂັ້ມຂົ້ນ ແລະເຕັມໄປດ້ວຍລົດຊາດ ໃຊ້ວັດຖຸດິບສົດ ແລະສູດຕົ້ນສະບັບແທ້</p>
+                    <p class="italic text-lg">ອາຫານແມັກຊິໂກທີ່ເຂັ້ມຂົ້ນ ແລະເຕັມໄປດ້ວຍລົດຊາດ ໃຊ້ວັດຖຸດິບສົດ ແລະສູດຕົ້ນສະບັບແທ້</p>
                 </div>
                 <div id="pizza-description" class="category-desc hidden">
-                    <p class="text-gray-600 italic text-lg">ພິຊຊ່າແຮນເມດ ຫນ້າຄຸນນະພາບ</p>
+                    <p class="italic text-lg">ພິຊຊ່າແຮນເມດ ຫນ້າຄຸນນະພາບ</p>
                 </div>
                 <div id="local_food-description" class="category-desc hidden">
-                    <p class="text-gray-600 italic text-lg">ອາຫານພື້ນເມືອງຈາກແຕ່ລະພາກ ທີ່ໂຊວເອກະລັກຂອງວັດຖຸດິບແລະປະເພນີທ້ອງຖິ່ນ</p>
+                    <p class="italic text-lg">ອາຫານພື້ນເມືອງຈາກແຕ່ລະພາກ ທີ່ໂຊວເອກະລັກຂອງວັດຖຸດິບແລະປະເພນີທ້ອງຖິ່ນ</p>
                 </div>
                 <div id="soup_salad_mediterranean-description" class="category-desc hidden">
-                    <p class="text-gray-600 italic text-lg">ສະຫຼັດສົດ ແລະອາຫານຍອດນິຍົມຈາກພາກມະຕິເຕຣເນຍ ທີ່ເຕັມໄປດ້ວຍສິ່ງທີ່ມີປະໂຫຍດຕໍ່ສຸຂະພາບ</p>
+                    <p class="italic text-lg">ສະຫຼັດສົດ ແລະອາຫານຍອດນິຍົມຈາກພາກມະຕິເຕຣເນຍ ທີ່ເຕັມໄປດ້ວຍສິ່ງທີ່ມີປະໂຫຍດຕໍ່ສຸຂະພາບ</p>
                 </div>
                 <div id="drinks-description" class="category-desc hidden">
-                    <p class="text-gray-600 italic text-lg">ເຄື່ອງດື່ມທີ່ຊົດຊື່ນ, ຄອກແທວສະເພາະ ແລະເລືອກຄັດສັນແບບພິຖີພິຖັນ</p>
+                    <p class="italic text-lg">ເຄື່ອງດື່ມທີ່ຊົດຊື່ນ, ຄອກແທວສະເພາະ ແລະເລືອກຄັດສັນແບບພິຖີພິຖັນ</p>
                 </div>
             </div>
             
@@ -139,19 +269,19 @@
             <!-- Breakfast Menu -->
             <div id="breakfast-menu" class="menu-content active grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {% for item in breakfast_items %}
-                <div class="menu-card bg-gradient-to-br from-white to-gray-50 border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
+                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
                     <div class="relative overflow-hidden rounded-2xl mb-6">
                         {% if item.image %}
                         <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image transition-transform duration-300">
                         {% else %}
                         <div class="w-full h-48 bg-gradient-to-br from-primary-light to-primary flex items-center justify-center">
-                            <i class="fas fa-coffee text-4xl text-white opacity-50"></i>
+                            <i class="fas fa-coffee text-4xl  opacity-50"></i>
                         </div>
                         {% endif %}
                         
                         <!-- Price Badge -->
                         <div class="absolute top-4 right-4">
-                            <span class="bg-gradient-to-br from-primary to-primary-dark text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                            <span class="bg-gradient-to-br from-primary to-primary-dark  px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
                                 {{ item.price|intcomma }} LAK
                             </span>
                         </div>
@@ -159,7 +289,7 @@
                         <!-- Featured Badge -->
                         {% if item.is_featured %}
                         <div class="absolute top-4 left-4">
-                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            <span class="bg-red-500  px-3 py-1 rounded-full text-sm font-semibold">
                                 <i class="fas fa-star mr-1"></i>Featured
                             </span>
                         </div>
@@ -167,11 +297,11 @@
                     </div>
                     
                     <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold text-primary-dark group-hover:text-primary transition-colors">
+                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">
                             {{ item.name }}
                         </h3>
                         
-                        <p class="text-gray-600 description-text leading-relaxed line-clamp-2">
+                        <p class="description-text leading-relaxed line-clamp-2">
                             {{ item.description }}
                         </p>
                         
@@ -185,7 +315,7 @@
                                 {% endif %}
                             </div>
                             
-                            <div class="text-primary hover:text-primary-dark transition-colors">
+                            <div class="text-primary hover transition-colors">
                                 <i class="fas fa-arrow-right"></i>
                             </div>
                         </div>
@@ -205,25 +335,25 @@
             <!-- Coffee Menu -->
             <div id="coffee-menu" class="menu-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {% for item in coffee_items %}
-                <div class="menu-card bg-gradient-to-br from-white to-gray-50 border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
+                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
                     <div class="relative overflow-hidden rounded-2xl mb-6">
                         {% if item.image %}
                         <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image transition-transform duration-300">
                         {% else %}
                         <div class="w-full h-48 bg-gradient-to-br from-amber-200 to-amber-400 flex items-center justify-center">
-                            <i class="fas fa-mug-hot text-4xl text-white opacity-50"></i>
+                            <i class="fas fa-mug-hot text-4xl  opacity-50"></i>
                         </div>
                         {% endif %}
                         
                         <div class="absolute top-4 right-4">
-                            <span class="bg-gradient-to-br from-primary to-primary-dark text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                            <span class="bg-gradient-to-br from-primary to-primary-dark  px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
                                 {{ item.price|intcomma }} LAK
                             </span>
                         </div>
                         
                         {% if item.is_featured %}
                         <div class="absolute top-4 left-4">
-                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            <span class="bg-red-500  px-3 py-1 rounded-full text-sm font-semibold">
                                 <i class="fas fa-star mr-1"></i>Featured
                             </span>
                         </div>
@@ -232,11 +362,11 @@
                     </div>
                     
                     <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold text-primary-dark group-hover:text-primary transition-colors">
+                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">
                             {{ item.name }}
                         </h3>
                         
-                        <p class="text-gray-600 description-text leading-relaxed line-clamp-2">
+                        <p class="description-text leading-relaxed line-clamp-2">
                             {{ item.description }}
                         </p>
                         
@@ -250,7 +380,7 @@
                                 {% endif %}
                             </div>
                             
-                            <div class="text-primary hover:text-primary-dark transition-colors">
+                            <div class="text-primary hover transition-colors">
                                 <i class="fas fa-arrow-right"></i>
                             </div>
                         </div>
@@ -270,25 +400,25 @@
             <!-- American Menu -->
             <div id="american-menu" class="menu-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {% for item in american_items %}
-                <div class="menu-card bg-gradient-to-br from-white to-gray-50 border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
+                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
                     <div class="relative overflow-hidden rounded-2xl mb-6">
                         {% if item.image %}
                         <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image transition-transform duration-300">
                         {% else %}
                         <div class="w-full h-48 bg-gradient-to-br from-red-200 to-blue-300 flex items-center justify-center">
-                            <i class="fas fa-hamburger text-4xl text-white opacity-50"></i>
+                            <i class="fas fa-hamburger text-4xl  opacity-50"></i>
                         </div>
                         {% endif %}
                         
                         <div class="absolute top-4 right-4">
-                            <span class="bg-gradient-to-br from-primary to-primary-dark text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                            <span class="bg-gradient-to-br from-primary to-primary-dark  px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
                                 {{ item.price|intcomma }} LAK
                             </span>
                         </div>
                         
                         {% if item.is_featured %}
                         <div class="absolute top-4 left-4">
-                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            <span class="bg-red-500  px-3 py-1 rounded-full text-sm font-semibold">
                                 <i class="fas fa-star mr-1"></i>Featured
                             </span>
                         </div>
@@ -297,11 +427,11 @@
                     </div>
                     
                     <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold text-primary-dark group-hover:text-primary transition-colors">
+                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">
                             {{ item.name }}
                         </h3>
                         
-                        <p class="text-gray-600 description-text leading-relaxed line-clamp-2">
+                        <p class="description-text leading-relaxed line-clamp-2">
                             {{ item.description }}
                         </p>
                         
@@ -315,7 +445,7 @@
                                 {% endif %}
                             </div>
                             
-                            <div class="text-primary hover:text-primary-dark transition-colors">
+                            <div class="text-primary hover transition-colors">
                                 <i class="fas fa-arrow-right"></i>
                             </div>
                         </div>
@@ -335,25 +465,25 @@
             <!-- Indian Menu -->
             <div id="indian-menu" class="menu-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {% for item in indian_items %}
-                <div class="menu-card bg-gradient-to-br from-white to-gray-50 border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
+                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
                     <div class="relative overflow-hidden rounded-2xl mb-6">
                         {% if item.image %}
                         <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image transition-transform duration-300">
                         {% else %}
                         <div class="w-full h-48 bg-gradient-to-br from-orange-200 to-red-300 flex items-center justify-center">
-                            <i class="fas fa-pepper-hot text-4xl text-white opacity-50"></i>
+                            <i class="fas fa-pepper-hot text-4xl  opacity-50"></i>
                         </div>
                         {% endif %}
                         
                         <div class="absolute top-4 right-4">
-                            <span class="bg-gradient-to-br from-primary to-primary-dark text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                            <span class="bg-gradient-to-br from-primary to-primary-dark  px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
                                 {{ item.price|intcomma }} LAK
                             </span>
                         </div>
                         
                         {% if item.is_featured %}
                         <div class="absolute top-4 left-4">
-                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            <span class="bg-red-500  px-3 py-1 rounded-full text-sm font-semibold">
                                 <i class="fas fa-star mr-1"></i>Featured
                             </span>
                         </div>
@@ -363,11 +493,11 @@
                     </div>
                     
                     <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold text-primary-dark group-hover:text-primary transition-colors">
+                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">
                             {{ item.name }}
                         </h3>
                         
-                        <p class="text-gray-600 description-text leading-relaxed line-clamp-2">
+                        <p class="description-text leading-relaxed line-clamp-2">
                             {{ item.description }}
                         </p>
                         
@@ -381,7 +511,7 @@
                                 {% endif %}
                             </div>
                             
-                            <div class="text-primary hover:text-primary-dark transition-colors">
+                            <div class="text-primary hover transition-colors">
                                 <i class="fas fa-arrow-right"></i>
                             </div>
                         </div>
@@ -401,25 +531,25 @@
             <!-- Mexican Menu -->
             <div id="mexican-menu" class="menu-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {% for item in mexican_items %}
-                <div class="menu-card bg-gradient-to-br from-white to-gray-50 border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
+                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
                     <div class="relative overflow-hidden rounded-2xl mb-6">
                         {% if item.image %}
                         <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image transition-transform duration-300">
                         {% else %}
                         <div class="w-full h-48 bg-gradient-to-br from-green-200 to-red-300 flex items-center justify-center">
-                            <i class="fas fa-pepper-hot text-4xl text-white opacity-50"></i>
+                            <i class="fas fa-pepper-hot text-4xl  opacity-50"></i>
                         </div>
                         {% endif %}
                         
                         <div class="absolute top-4 right-4">
-                            <span class="bg-gradient-to-br from-primary to-primary-dark text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                            <span class="bg-gradient-to-br from-primary to-primary-dark  px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
                                 {{ item.price|intcomma }} LAK
                             </span>
                         </div>
                         
                         {% if item.is_featured %}
                         <div class="absolute top-4 left-4">
-                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            <span class="bg-red-500  px-3 py-1 rounded-full text-sm font-semibold">
                                 <i class="fas fa-star mr-1"></i>Featured
                             </span>
                         </div>
@@ -428,11 +558,11 @@
                     </div>
                     
                     <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold text-primary-dark group-hover:text-primary transition-colors">
+                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">
                             {{ item.name }}
                         </h3>
                         
-                        <p class="text-gray-600 description-text leading-relaxed line-clamp-2">
+                        <p class="description-text leading-relaxed line-clamp-2">
                             {{ item.description }}
                         </p>
                         
@@ -446,7 +576,7 @@
                                 {% endif %}
                             </div>
                             
-                            <div class="text-primary hover:text-primary-dark transition-colors">
+                            <div class="text-primary hover transition-colors">
                                 <i class="fas fa-arrow-right"></i>
                             </div>
                         </div>
@@ -466,25 +596,25 @@
             <!-- Pizza Menu -->
             <div id="pizza-menu" class="menu-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {% for item in pizza_items %}
-                <div class="menu-card bg-gradient-to-br from-white to-gray-50 border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
+                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
                     <div class="relative overflow-hidden rounded-2xl mb-6">
                         {% if item.image %}
                         <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image transition-transform duration-300">
                         {% else %}
                         <div class="w-full h-48 bg-gradient-to-br from-yellow-200 to-red-300 flex items-center justify-center">
-                            <i class="fas fa-pizza-slice text-4xl text-white opacity-50"></i>
+                            <i class="fas fa-pizza-slice text-4xl  opacity-50"></i>
                         </div>
                         {% endif %}
                         
                         <div class="absolute top-4 right-4">
-                            <span class="bg-gradient-to-br from-primary to-primary-dark text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                            <span class="bg-gradient-to-br from-primary to-primary-dark  px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
                                 {{ item.price|intcomma }} LAK
                             </span>
                         </div>
                         
                         {% if item.is_featured %}
                         <div class="absolute top-4 left-4">
-                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            <span class="bg-red-500  px-3 py-1 rounded-full text-sm font-semibold">
                                 <i class="fas fa-star mr-1"></i>Featured
                             </span>
                         </div>
@@ -494,11 +624,11 @@
                     </div>
                     
                     <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold text-primary-dark group-hover:text-primary transition-colors">
+                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">
                             {{ item.name }}
                         </h3>
                         
-                        <p class="text-gray-600 description-text leading-relaxed line-clamp-2">
+                        <p class="description-text leading-relaxed line-clamp-2">
                             {{ item.description }}
                         </p>
                         
@@ -512,7 +642,7 @@
                                 {% endif %}
                             </div>
                             
-                            <div class="text-primary hover:text-primary-dark transition-colors">
+                            <div class="text-primary hover transition-colors">
                                 <i class="fas fa-arrow-right"></i>
                             </div>
                         </div>
@@ -532,25 +662,25 @@
             <!-- Local Food Menu -->
             <div id="local_food-menu" class="menu-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {% for item in local_food_items %}
-                <div class="menu-card bg-gradient-to-br from-white to-gray-50 border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
+                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
                     <div class="relative overflow-hidden rounded-2xl mb-6">
                         {% if item.image %}
                         <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image transition-transform duration-300">
                         {% else %}
                         <div class="w-full h-48 bg-gradient-to-br from-green-200 to-yellow-300 flex items-center justify-center">
-                            <i class="fas fa-utensils text-4xl text-white opacity-50"></i>
+                            <i class="fas fa-utensils text-4xl  opacity-50"></i>
                         </div>
                         {% endif %}
                         
                         <div class="absolute top-4 right-4">
-                            <span class="bg-gradient-to-br from-primary to-primary-dark text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                            <span class="bg-gradient-to-br from-primary to-primary-dark  px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
                                 {{ item.price|intcomma }} LAK
                             </span>
                         </div>
                         
                         {% if item.is_featured %}
                         <div class="absolute top-4 left-4">
-                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            <span class="bg-red-500  px-3 py-1 rounded-full text-sm font-semibold">
                                 <i class="fas fa-star mr-1"></i>Featured
                             </span>
                         </div>
@@ -560,11 +690,11 @@
                     </div>
                     
                     <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold text-primary-dark group-hover:text-primary transition-colors">
+                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">
                             {{ item.name }}
                         </h3>
                         
-                        <p class="text-gray-600 description-text leading-relaxed line-clamp-2">
+                        <p class="description-text leading-relaxed line-clamp-2">
                             {{ item.description }}
                         </p>
                         
@@ -578,7 +708,7 @@
                                 {% endif %}
                             </div>
                             
-                            <div class="text-primary hover:text-primary-dark transition-colors">
+                            <div class="text-primary hover transition-colors">
                                 <i class="fas fa-arrow-right"></i>
                             </div>
                         </div>
@@ -598,25 +728,25 @@
             <!-- Soup & Salad Mediterranean Menu -->
             <div id="soup_salad_mediterranean-menu" class="menu-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {% for item in soup_salad_mediterranean_items %}
-                <div class="menu-card bg-gradient-to-br from-white to-gray-50 border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
+                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
                     <div class="relative overflow-hidden rounded-2xl mb-6">
                         {% if item.image %}
                         <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image transition-transform duration-300">
                         {% else %}
                         <div class="w-full h-48 bg-gradient-to-br from-green-200 to-blue-300 flex items-center justify-center">
-                            <i class="fas fa-leaf text-4xl text-white opacity-50"></i>
+                            <i class="fas fa-leaf text-4xl  opacity-50"></i>
                         </div>
                         {% endif %}
                         
                         <div class="absolute top-4 right-4">
-                            <span class="bg-gradient-to-br from-primary to-primary-dark text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                            <span class="bg-gradient-to-br from-primary to-primary-dark  px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
                                 {{ item.price|intcomma }} LAK
                             </span>
                         </div>
                         
                         {% if item.is_featured %}
                         <div class="absolute top-4 left-4">
-                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            <span class="bg-red-500  px-3 py-1 rounded-full text-sm font-semibold">
                                 <i class="fas fa-star mr-1"></i>Featured
                             </span>
                         </div>
@@ -626,11 +756,11 @@
                     </div>
                     
                     <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold text-primary-dark group-hover:text-primary transition-colors">
+                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">
                             {{ item.name }}
                         </h3>
                         
-                        <p class="text-gray-600 description-text leading-relaxed line-clamp-2">
+                        <p class="description-text leading-relaxed line-clamp-2">
                             {{ item.description }}
                         </p>
                         
@@ -644,7 +774,7 @@
                                 {% endif %}
                             </div>
                             
-                            <div class="text-primary hover:text-primary-dark transition-colors">
+                            <div class="text-primary hover transition-colors">
                                 <i class="fas fa-arrow-right"></i>
                             </div>
                         </div>
@@ -664,25 +794,25 @@
             <!-- Drinks Menu -->
             <div id="drinks-menu" class="menu-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {% for item in drinks_items %}
-                <div class="menu-card bg-gradient-to-br from-white to-gray-50 border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
+                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
                     <div class="relative overflow-hidden rounded-2xl mb-6">
                         {% if item.image %}
                         <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image transition-transform duration-300">
                         {% else %}
                         <div class="w-full h-48 bg-gradient-to-br from-blue-200 to-purple-300 flex items-center justify-center">
-                            <i class="fas fa-glass-martini-alt text-4xl text-white opacity-50"></i>
+                            <i class="fas fa-glass-martini-alt text-4xl  opacity-50"></i>
                         </div>
                         {% endif %}
                         
                         <div class="absolute top-4 right-4">
-                            <span class="bg-gradient-to-br from-primary to-primary-dark text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                            <span class="bg-gradient-to-br from-primary to-primary-dark  px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
                                 {{ item.price|intcomma }} LAK
                             </span>
                         </div>
                         
                         {% if item.is_featured %}
                         <div class="absolute top-4 left-4">
-                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            <span class="bg-red-500  px-3 py-1 rounded-full text-sm font-semibold">
                                 <i class="fas fa-star mr-1"></i>Featured
                             </span>
                         </div>
@@ -692,11 +822,11 @@
                     </div>
                     
                     <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold text-primary-dark group-hover:text-primary transition-colors">
+                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">
                             {{ item.name }}
                         </h3>
                         
-                        <p class="text-gray-600 description-text leading-relaxed line-clamp-2">
+                        <p class="description-text leading-relaxed line-clamp-2">
                             {{ item.description }}
                         </p>
                         
@@ -710,7 +840,7 @@
                                 {% endif %}
                             </div>
                             
-                            <div class="text-primary hover:text-primary-dark transition-colors">
+                            <div class="text-primary hover transition-colors">
                                 <i class="fas fa-arrow-right"></i>
                             </div>
                         </div>
@@ -869,12 +999,12 @@
                 // Remove active class from all tabs
                 categoryTabs.forEach(t => {
                     t.classList.remove('active', 'bg-primary', 'text-white');
-                    t.classList.add('bg-gray-200', 'hover:bg-primary', 'hover:text-white');
+                    t.classList.add('bg-gray-200', 'hover:bg-primary', ');
                 });
                 
                 // Add active class to clicked tab
                 this.classList.add('active', 'bg-primary', 'text-white');
-                this.classList.remove('bg-gray-200', 'hover:bg-primary', 'hover:text-white');
+                this.classList.remove('bg-gray-200', 'hover:bg-primary', ');
                 
                 // Hide all menu content
                 menuContents.forEach(content => {

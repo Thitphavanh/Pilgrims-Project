@@ -19,7 +19,7 @@ class MenuItem(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     price = models.DecimalField(max_digits=8, decimal_places=2)
-    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
+    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, null=True, blank=True)
     is_featured = models.BooleanField(default=False)
     image = models.ImageField(upload_to="menu_items/", null=True, blank=True)
     slug = models.SlugField(unique=True, null=True, blank=True)

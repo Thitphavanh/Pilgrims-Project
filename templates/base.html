@@ -1,4 +1,6 @@
 {% load static %}
+{% load i18n %}
+
 <!DOCTYPE html>
 
 <html lang="{{ LANGUAGE_CODE }}" class="h-full">
@@ -100,25 +102,57 @@
             </div>
 
           
-
             <!-- Navigation Links -->
             <div id="nav-content" class="hidden md:flex md:items-center md:w-auto w-full transition-all duration-300 ease-in-out">
                 <ul class="md:flex md:flex-row flex-col md:space-x-6 lg:space-x-10 mt-4 md:mt-0 text-base sm:text-lg font-medium">
-                    <li><a href="{% url 'about-page' %}" class="block py-2 md:py-0 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">About Us</a></li>
-                    <li><a href="{% url 'hotel-page' %}" class="block py-2 md:py-0 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">Reservation</a></li>
-                    <li><a href="{% url 'menu-page' %}" class="block py-2 md:py-0 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">Menu</a></li>
-                    <li><a href="{% url 'coffee_list' %}" class="block py-2 md:py-0 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">Coffee</a></li>
-                    <li><a href="{% url 'review-page' %}" class="block py-2 md:py-0 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">Review</a></li>
-                    <li><a href="{% url 'contact-page' %}" class="block py-2 md:py-0 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">Contact</a></li>
+                    <li><a href="{% url 'about-page' %}" class="block py-2 md:py-0 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">{% trans "About Us" %}</a></li>
+                    <li><a href="{% url 'rooms-list-page' %}" class="block py-2 md:py-0 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">{% trans "Reservation" %}</a></li>
+                    <li><a href="{% url 'menu-page' %}" class="block py-2 md:py-0 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">{% trans "Menu" %}</a></li>
+                    <li><a href="{% url 'coffee_list' %}" class="block py-2 md:py-0 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">{% trans "Coffee" %}</a></li>
+                    <li><a href="{% url 'review-page' %}" class="block py-2 md:py-0 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">{% trans "Review" %}</a></li>
+                    <li><a href="{% url 'contact-page' %}" class="block py-2 md:py-0 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">{% trans "Contact" %}</a></li>
                 </ul>
             </div>
 
-            <!-- Book Now Button -->
-            <!-- <div class="hidden md:block">
-                <a href="#" class="bg-secondary-light dark:bg-secondary-dark text-white px-4 sm:px-6 py-2 rounded-full hover:bg-secondary-dark-light dark:hover:bg-secondary-dark-dark transition duration-300 font-medium shadow-md dark:dark-shadow-md hover:shadow-lg transform hover:-translate-y-1">Book Now</a>
-            </div> -->
-
             <div class="flex items-center space-x-2 sm:space-x-4">
+                <!-- Language Toggle -->
+                <!-- Language Toggle (Fixed Version) -->
+                <div class="relative">
+                    <button id="language-toggle" class="flex items-center p-2 rounded-full text-neutral-content-light dark:text-neutral-content-dark hover:bg-gray-100 dark:hover:bg-primary-dark focus:outline-none transition-colors duration-300" aria-label="Change language">
+                        <i class="fas fa-globe text-lg sm:text-xl mr-1"></i>
+                        <span class="text-sm font-medium">{{ LANGUAGE_CODE|upper }}</span>
+                        <i class="fas fa-chevron-down text-xs ml-1 transition-transform duration-200" id="chevron-icon"></i>
+                    </button>
+                    
+                    <!-- Language Dropdown -->
+                    <div id="language-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-primary-dark-dark rounded-lg shadow-lg dark:dark-shadow-lg border border-gray-200 dark:border-gray-600 z-50 opacity-0 transform scale-95 transition-all duration-200">
+                        <div class="py-1">
+                            <form action="{% url 'set_language' %}" method="post" class="inline">
+                                {% csrf_token %}
+                                <input name="next" type="hidden" value="{{ request.get_full_path }}" />
+                                <button type="submit" name="language" value="lo" class="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-primary-dark flex items-center transition-colors duration-200">
+                                    <img src="https://flagcdn.com/w20/la.png" alt="ລາວ" class="w-5 h-3 mr-3 rounded">
+                                    <span>ລາວ (Lao)</span>
+                                    {% if LANGUAGE_CODE == 'lo' %}
+                                        <i class="fas fa-check ml-auto text-secondary-light"></i>
+                                    {% endif %}
+                                </button>
+                            </form>
+                            <form action="{% url 'set_language' %}" method="post" class="inline">
+                                {% csrf_token %}
+                                <input name="next" type="hidden" value="{{ request.get_full_path }}" />
+                                <button type="submit" name="language" value="en" class="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-primary-dark flex items-center transition-colors duration-200">
+                                    <img src="https://flagcdn.com/w20/us.png" alt="English" class="w-5 h-3 mr-3 rounded">
+                                    <span>English</span>
+                                    {% if LANGUAGE_CODE == 'en' %}
+                                        <i class="fas fa-check ml-auto text-secondary-light"></i>
+                                    {% endif %}
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Dark Mode Toggle -->
                 <button id="theme-toggle" class="p-2 rounded-full text-neutral-content-light dark:text-neutral-content-dark hover:bg-gray-100 dark:hover:bg-primary-dark focus:outline-none transition-colors duration-300">
                     <svg id="theme-toggle-light-icon" class="hidden dark:block w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -175,20 +209,20 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12">
                 <!-- Contact Info -->
                 <div>
-                    <h3 class="text-xl sm:text-2xl font-playfair mb-4 sm:mb-6 font-bold text-secondary-light dark:text-secondary-dark">Contact Us</h3>
+                    <h3 class="text-xl sm:text-2xl font-playfair mb-4 sm:mb-6 font-bold text-secondary-light dark:text-secondary-dark">{% trans "Contact Us" %}</h3>
                     <ul class="text-gray-200 space-y-3 sm:space-y-4 text-sm sm:text-base">
                         <li class="flex items-start">
                             <i class="fas fa-map-marker-alt mt-1 mr-3 sm:mr-4 text-secondary-light dark:text-secondary-dark flex-shrink-0"></i>
                             <div class="leading-relaxed">
-                                <span class="block">Khanthabouly Road, House No. 168</span>
-                                <span class="block">Ban Chomkeo, Kaisone Phomvihane District</span>
-                                <span class="block">Savannakhet, Lao PDR</span>
+                                <span class="block">{% trans "Khanthabouly Road, House No. 168" %}</span>
+                                <span class="block">{% trans "Ban Chomkeo, Kaisone Phomvihane District" %}</span>
+                                <span class="block">{% trans "Savannakhet, Lao PDR" %}</span>
                             </div>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-phone-alt mr-3 sm:mr-4 text-secondary-light dark:text-secondary-dark flex-shrink-0"></i>
                             <div>
-                                <span class="block">Tel: 
+                                <span class="block">{% trans "Tel" %}: 
                                     <a href="tel:+8562022133733" 
                                     class="hover:text-secondary-light dark:hover:text-secondary-dark transition-colors duration-300 underline">
                                         +856 20 22133733
@@ -199,7 +233,7 @@
                         <li class="flex items-center">
                             <i class="fas fa-envelope mr-3 sm:mr-4 text-secondary-light dark:text-secondary-dark flex-shrink-0"></i>
                             <div>
-                                <span class="block">Email: 
+                                <span class="block">{% trans "Email" %}: 
                                     <a href="mailto:pilgrimscontact@gmail.com" 
                                     class="hover:text-secondary-light dark:hover:text-secondary-dark transition-colors duration-300 underline break-all">
                                         pilgrimscontact@gmail.com
@@ -213,12 +247,12 @@
     
                 <!-- Quick Links -->
                 <div>
-                    <h3 class="text-xl sm:text-2xl font-playfair mb-4 sm:mb-6 font-bold text-secondary-light dark:text-secondary-dark">Stay Connected</h3>
+                    <h3 class="text-xl sm:text-2xl font-playfair mb-4 sm:mb-6 font-bold text-secondary-light dark:text-secondary-dark">{% trans "Stay Connected" %}</h3>
                     <ul class="text-gray-200 space-y-2 sm:space-y-3 text-sm sm:text-base">
                         <li>
                             <a href="#" class="hover:text-secondary-light dark:hover:text-secondary-dark transition duration-300 inline-block py-1 hover:translate-x-2 transform">
                                 <i class="fas fa-share-alt mr-2"></i>
-                                Follow us on social media channels
+                                {% trans "Follow us on social media channels" %}
                             </a>
                         </li>
                         <li>
@@ -239,60 +273,38 @@
                                 Instagram
                             </a>
                         </li>
-                        <li>
-                            <a href="https://wa.me/8562022133733?text=Hello%20Pilgrim's%20Kitchen%20%26%20Inn%2C%20I%20would%20like%20to%20make%20an%20inquiry" 
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="hover:text-secondary-light dark:hover:text-secondary-dark transition duration-300 inline-flex items-center py-1 hover:translate-x-2 transform group">
-                                <i class="fab fa-whatsapp mr-3 text-green-500 group-hover:text-green-400 transition-colors duration-300 bg-gradient-to-br from-green-500 to-green-500 bg-clip-text text-transparent"></i>
-                                WhatsApp
-                            </a>
-                        </li>
         
                     </ul>
                 </div>
                   <!-- Timings -->
                 <div>
-                    <h3 class="text-xl sm:text-2xl font-playfair mb-4 sm:mb-6 font-bold text-secondary-light dark:text-secondary-dark">Timings</h3>
+                    <h3 class="text-xl sm:text-2xl font-playfair mb-4 sm:mb-6 font-bold text-secondary-light dark:text-secondary-dark">{% trans "Timings" %}</h3>
                     <ul class="text-gray-200 space-y-3 sm:space-y-4 text-sm sm:text-base">
                         <li class="flex items-center">
                             <i class="fas fa-clock mr-3 sm:mr-4 text-secondary-light dark:text-secondary-dark flex-shrink-0"></i>
                             <div>
-                                <span class="block font-medium">Monday – Saturday:</span>
+                                <span class="block font-medium">{% trans "Monday – Saturday" %}:</span>
                                 <span class="block text-gray-300 dark:text-gray-400">7:30 AM – 9:00 PM</span>
                             </div>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-times-circle mr-3 sm:mr-4 text-red-400 dark:text-red-500 flex-shrink-0"></i>
                             <div>
-                                <span class="block font-medium">Sunday:</span>
-                                <span class="block text-red-300 dark:text-red-400">Closed</span>
+                                <span class="block font-medium">{% trans "Sunday" %}:</span>
+                                <span class="block text-red-300 dark:text-red-400">{% trans "Closed" %}</span>
                             </div>
                         </li>
                     </ul>
                 </div>
-
-                <!-- Newsletter -->
-                <!-- <div>
-                    <h3 class="text-xl sm:text-2xl font-playfair mb-4 sm:mb-6 font-bold text-secondary-light dark:text-secondary-dark">Newsletter</h3>
-                    <p class="text-gray-200 mb-4 sm:mb-6 text-sm sm:text-base">Subscribe for exclusive offers and updates.</p>
-                    <form class="flex flex-col sm:flex-row" id="newsletter-form">
-                        <input type="email" placeholder="Your email address" class="px-4 py-3 w-full sm:rounded-l-lg rounded-t-lg sm:rounded-tr-none mb-2 sm:mb-0 focus:outline-none focus:ring-2 focus:ring-secondary-light dark:focus:ring-secondary-dark text-gray-900 dark:text-gray-200 bg-gray-100 dark:bg-gray-700" required>
-                        <button type="submit" class="bg-secondary-light dark:bg-secondary-dark hover:bg-secondary-dark-light dark:hover:bg-secondary-dark-dark px-6 py-3 rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none transition duration-300 flex items-center justify-center">
-                            <i class="fas fa-paper-plane text-sm sm:text-base"></i>
-                        </button>
-                    </form>
-                    <p class="mt-3 text-xs sm:text-sm text-gray-400">By subscribing you agree to our <a href="#" class="underline hover:text-secondary-light dark:hover:text-secondary-dark">Privacy Policy</a>.</p>
-                </div> -->
             </div>
 
             <!-- Copyright -->
             <div class="border-t border-gray-600 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center text-gray-400 text-sm">
-                <p>© {% now "Y" %} Pilgrims Hotel & Restaurant. All rights reserved.</p>
+                <p>© {% now "Y" %} Pilgrims Kitchen & Inn. {% trans "All rights reserved" %}.</p>
                 <div class="mt-3 flex flex-wrap justify-center space-x-4 sm:space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-secondary-light dark:hover:text-secondary-dark transition duration-300">Privacy</a>
-                    <a href="#" class="text-gray-400 hover:text-secondary-light dark:hover:text-secondary-dark transition duration-300">Terms</a>
-                    <a href="#" class="text-gray-400 hover:text-secondary-light dark:hover:text-secondary-dark transition duration-300">Sitemap</a>
+                    <a href="#" class="text-gray-400 hover:text-secondary-light dark:hover:text-secondary-dark transition duration-300">{% trans "Privacy" %}</a>
+                    <a href="#" class="text-gray-400 hover:text-secondary-light dark:hover:text-secondary-dark transition duration-300">{% trans "Terms" %}</a>
+                    <a href="#" class="text-gray-400 hover:text-secondary-light dark:hover:text-secondary-dark transition duration-300">{% trans "Sitemap" %}</a>
                 </div>
             </div>
         </div>
@@ -397,6 +409,65 @@
             }
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Language toggle functionality
+            const languageToggle = document.getElementById('language-toggle');
+            const languageDropdown = document.getElementById('language-dropdown');
+            const chevronIcon = document.getElementById('chevron-icon');
+        
+            if (languageToggle && languageDropdown) {
+                languageToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const isHidden = languageDropdown.classList.contains('hidden');
+                    
+                    if (isHidden) {
+                        // Show dropdown
+                        languageDropdown.classList.remove('hidden');
+                        setTimeout(() => {
+                            languageDropdown.classList.remove('opacity-0', 'scale-95');
+                            languageDropdown.classList.add('opacity-100', 'scale-100');
+                        }, 10);
+                        chevronIcon.style.transform = 'rotate(180deg)';
+                    } else {
+                        // Hide dropdown
+                        languageDropdown.classList.remove('opacity-100', 'scale-100');
+                        languageDropdown.classList.add('opacity-0', 'scale-95');
+                        setTimeout(() => {
+                            languageDropdown.classList.add('hidden');
+                        }, 200);
+                        chevronIcon.style.transform = 'rotate(0deg)';
+                    }
+                });
+        
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!languageToggle.contains(e.target) && !languageDropdown.contains(e.target)) {
+                        languageDropdown.classList.remove('opacity-100', 'scale-100');
+                        languageDropdown.classList.add('opacity-0', 'scale-95');
+                        setTimeout(() => {
+                            languageDropdown.classList.add('hidden');
+                        }, 200);
+                        chevronIcon.style.transform = 'rotate(0deg)';
+                    }
+                });
+        
+                // Close dropdown when pressing Escape key
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && !languageDropdown.classList.contains('hidden')) {
+                        languageDropdown.classList.remove('opacity-100', 'scale-100');
+                        languageDropdown.classList.add('opacity-0', 'scale-95');
+                        setTimeout(() => {
+                            languageDropdown.classList.add('hidden');
+                        }, 200);
+                        chevronIcon.style.transform = 'rotate(0deg)';
+                    }
+                });
+            }
+        });
+        </script>
     {% block extra_js %}{% endblock %}
 </body>
 </html>

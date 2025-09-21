@@ -5,3 +5,4 @@ django-tailwind==4.0.1
 pillow==11.2.1
 sqlparse==0.5.3
 whitenoise==6.9.0
+python-dotenv==1.0.0

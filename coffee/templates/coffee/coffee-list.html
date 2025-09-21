@@ -10,8 +10,8 @@
     <!-- Header -->
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
         <div>
-            <h1 class="text-3xl font-bold text-gray-900 mb-2">ລາຍການກາເຟທັງໝົດ</h1>
-            <p class="text-gray-600">ພົບ {{ page_obj.paginator.count }} ລາຍການ</p>
+            <h1 class="text-3xl font-bold mb-2">ລາຍການກາເຟທັງໝົດ</h1>
+            <p class="">ພົບ {{ page_obj.paginator.count }} ລາຍການ</p>
         </div>
         
         <!-- Sort -->
@@ -32,7 +32,7 @@
             {% if page_obj %}
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6">
                 {% for coffee in page_obj %}
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
+                <div class="rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
                     <!-- Product Image -->
                     <div class="h-48 bg-gradient-to-br from-amber-200 to-amber-400 flex items-center justify-center relative overflow-hidden">
                         {% if coffee.images %}
@@ -40,7 +40,7 @@
                                  alt="{{ coffee.name }}"
                                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
                         {% else %}
-                            <i class="fas fa-coffee text-6xl text-amber-800 opacity-30"></i>
+                            <i class="fas fa-coffee text-6xl opacity-30"></i>
                         {% endif %}
                         
                         <!-- Badges -->
@@ -65,7 +65,7 @@
                         {% if coffee.categories.exists %}
                         <div class="absolute top-2 right-2">
                             {% for category in coffee.categories.all|slice:":2" %}
-                            <span class="bg-amber-100 text-amber-800 px-2 py-1 rounded-full text-xs font-medium shadow-sm mb-1 block">
+                            <span class="bg-amber-100 px-2 py-1 rounded-full text-xs font-medium shadow-sm mb-1 block">
                                 {{ category.name }}
                             </span>
                             {% endfor %}
@@ -74,11 +74,11 @@
                     </div>
                     
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 line-clamp-2 hover:text-amber-600 transition-colors">
+                        <h3 class="text-xl font-semibold mb-2 line-clamp-2 transition-colors">
                             <a href="{% url 'coffee_detail' coffee.slug %}">{{ coffee.name }}</a>
                         </h3>
                         
-                        <div class="space-y-1 text-sm text-gray-600 mb-3">
+                        <div class="space-y-1 text-sm  mb-3">
                             <p><i class="fas fa-seedling mr-1 text-green-600"></i>{{ coffee.coffee_bean.name }}</p>
                             <p><i class="fas fa-fire mr-1 text-orange-500"></i>{{ coffee.roast_level }}</p>
                             <p><i class="fas fa-weight mr-1 text-blue-500"></i>{{ coffee.weight }}{{ coffee.weight_unit }}</p>
@@ -122,7 +122,7 @@
                         
                         <!-- Flavor Notes -->
                         {% if coffee.coffee_bean.flavor_notes %}
-                        <p class="text-sm text-gray-600 mb-4 line-clamp-2 italic">
+                        <p class="text-sm  mb-4 line-clamp-2 italic">
                             "{{ coffee.coffee_bean.flavor_notes }}"
                         </p>
                         {% endif %}

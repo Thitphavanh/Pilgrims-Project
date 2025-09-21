@@ -525,21 +525,59 @@
                             <i class="fas fa-times-circle mr-2"></i>
                             Room Not Available
                         </button>
-                        {% endif %} -->
+                        {% endif %}  -->
                     </form>
                     
                     <!-- Contact Info -->
-                    <div class="">
-                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">Need help with your booking?</p>
+                    <div class="text-center border-b border-gray-200 dark:border-gray-700 pb-6">
+                        <div class="text-3xl font-bold text-primary-light dark:text-primary-dark mb-2">
+                            ຈອງ
+                        </div>
                         <div class="space-y-2">
-                            <a href="tel:+1234567890" class="flex items-center justify-center text-primary-light dark:text-primary-dark hover:text-secondary-light dark:hover:text-secondary-dark text-sm">
-                                <i class="fas fa-phone mr-2"></i>
-                                +1 (234) 567-8900
-                            </a>
-                            <a href="mailto:reservations@hotel.com" class="flex items-center justify-center text-primary-light dark:text-primary-dark hover:text-secondary-light dark:hover:text-secondary-dark text-sm">
+                              
+                             <!-- Agoda Card -->
+                            <div class="" onclick="openReviewPlatform('agoda')">
+                                <button class="w-full bg-primary-light dark:bg-primary-dark text-white py-3 px-6 rounded-lg transition duration-300 font-medium flex items-center justify-center">
+                                    <!-- Booking.com SVG Logo -->
+                                    <img src="https://i.pinimg.com/736x/a2/b0/5d/a2b05d6d5547345a295614f8ebe90c56.jpg"
+                                    class="w-8 h-8 mr-2 rounded-full object-cover" 
+                                    alt="Agoda Logo">
+                                    Agoda 
+                                </button>
+                            </div>
+                            
+                            <!-- <a href="mailto:reservations@hotel.com" class="flex items-center justify-center text-primary-light dark:text-primary-dark hover:text-secondary-light dark:hover:text-secondary-dark text-sm">
                                 <i class="fas fa-envelope mr-2"></i>
                                 reservations@hotel.com
-                            </a>
+                            </a> -->
+                            <!-- Booking.com Card -->
+                            <div class="" onclick="openReviewPlatform('booking')">
+                                <button class="w-full bg-primary-light dark:bg-primary-dark text-white py-3 px-6 rounded-lg transition duration-300 font-medium flex items-center justify-center">
+                                    <!-- Booking.com SVG Logo -->
+                                    <img src="https://i.pinimg.com/736x/2f/f7/ee/2ff7ee806d977d4884e2aadfa8fc1101.jpg" 
+                                    class="w-8 h-8 mr-2 rounded-full object-cover" 
+                                    alt="Booking.com Logo">
+                                    Booking.com
+                                </button>
+                            </div>
+
+                            <div class="" onclick="openReviewPlatform('whatsapp')">
+                                <button class="w-full bg-primary-light dark:bg-primary-dark text-white py-3 px-6 rounded-lg transition duration-300 font-medium flex items-center justify-center">
+                                    <!-- WhatsApp PNG Logo เป็นวงกลม -->
+                                    <img src="https://i.pinimg.com/736x/c6/09/0d/c6090df18193e2616a6a32076883b70c.jpg" 
+                                    class="w-8 h-8 mr-2 rounded-full object-cover" 
+                                    alt="WhatsApp Logo">
+                                    WhatsApp
+                                </button>
+                            </div>
+   
+                            <!-- WhatsApp Card -->
+                            <!-- <div class="" onclick="openReviewPlatform('whatsapp')">
+                                <button class="w-full bg-primary-light dark:bg-primary-dark text-white py-3 px-6 rounded-lg transition duration-300 font-medium">
+                                    <i class="fab fa-whatsapp ml-2 mr-2 text-green-500 group-hover:text-green-400 transition-colors duration-300 bg-gradient-to-br from-green-500 to-green-500 bg-clip-text text-transparent"></i>
+                                    WhatsApp 
+                                </button>
+                            </div>    -->
                         </div>
                     </div>
                 </div>
@@ -551,6 +589,56 @@
 
 {% block extra_js %}
 <!-- Updated JavaScript Section -->
+<script>
+    
+    function openReviewPlatform(platform) {
+        let url = '';
+        
+        switch(platform) {
+            case 'agoda':
+                // Replace with your actual Agoda property URL
+                url = 'https://www.agoda.com/pilgrims-kitchen-inn/hotel/savannakhet-la.html?countryId=190&finalPriceView=1&isShowMobileAppPrice=false&cid=-1&numberOfBedrooms=&familyMode=false&adults=1&children=0&rooms=1&maxRooms=0&checkIn=2025-07-3&isCalendarCallout=false&childAges=&numberOfGuest=0&missingChildAges=false&travellerType=0&showReviewSubmissionEntry=false&currencyCode=USD&isFreeOccSearch=false&tspTypes=16%2C-1&los=1&searchrequestid=c6c69fb5-8a6f-44a1-a432-dc0418c9a393&ds=eWKzGUSArxNLxVrp';
+                break;
+            case 'booking':
+                // Replace with your actual Booking.com property URL
+                url = 'https://www.booking.com/hotel/la/pilgrim-39-s-kitchen-amp-inn.html?aid=304142&label=gen173nr-1FCBkoggI46AdIM1gEaIEBiAEBmAExuAEHyAEM2AEB6AEB-AECiAIBqAIDuALH65LDBsACAdICJDhjNTU0OWM2LTM0YWMtNDBhNi04ZThkLWExODQwM2YxNGQwY9gCBeACAQ&sid=9b35241d3d42c34c66c1e205f6709641&checkin=2025-07-02&checkout=2025-08-04&dest_id=1668881&dest_type=hotel&dist=0&group_adults=2&group_children=0&hapos=1&hpos=1&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&soh=1&sr_order=popularity&srepoch=1751430651&srpvid=a91a5d5546be220aa7c21290647e010a&type=total&ucfs=1&#no_availability_msg';
+                break;
+            case 'whatsapp':
+                // Replace with your actual Booking.com property URL
+                url = 'https://wa.me/8562022133733?text=Hello%20Pilgrims%20Kitchen%20%26%20Inn%2C%20I%20would%20like%20to%20make%20an%20inquiry';
+                break;
+        }
+        
+        if (url) {
+            window.open(url, '_blank');
+        }
+    }
+    
+    // Add scroll animations
+    document.addEventListener('DOMContentLoaded', function() {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Animate review cards on scroll
+        document.querySelectorAll('.review-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    });
+</script>
 <script>
     // Gallery functionality with multiple images
     let currentImageIndex = 0;
