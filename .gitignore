@@ -1,0 +1,16 @@
+# Environment
+.env
+
+# Database
+db.sqlite3
+
+# Static and Media Files
+/static/
+/media/
+
+# System files
+.DS_Store
+
+# Python cache
+__pycache__/
+*.pycenv/
