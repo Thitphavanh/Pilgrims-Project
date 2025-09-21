@@ -25,6 +25,14 @@ services:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASS}
+      
+  adminer:
+    image: adminer  
+    restart: always
+    ports:
+      - "8080:8080" 
+    depends_on:
+      - db         
 
 volumes:
   postgres_data:
