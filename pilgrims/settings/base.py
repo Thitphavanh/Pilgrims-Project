@@ -3,6 +3,7 @@
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
 import os
+from dotenv import load_dotenv
 
 # Load .env file from the project root, not the settings folder
 load_dotenv(dotenv_path=Path(__file__).resolve().parent.parent.parent / '.env')
