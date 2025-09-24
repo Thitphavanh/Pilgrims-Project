@@ -27,6 +27,7 @@ def menu_item(request):
     soup_salad_mediterranean_items = MenuItem.objects.filter(
         category="soup_salad_mediterranean"
     ).order_by("-created_at")[:12]
+    dessert_items = MenuItem.objects.filter(category="dessert").order_by("-created_at")[:12]
 
     context = {
         "breakfast_items": breakfast_items,
@@ -38,6 +39,7 @@ def menu_item(request):
         "pizza_items": pizza_items,
         "local_food_items": local_food_items,
         "soup_salad_mediterranean_items": soup_salad_mediterranean_items,
+        "dessert_items": dessert_items,
     }
     return render(request, "restaurant/menu.html", context)
 

@@ -118,19 +118,19 @@
                 <!-- Language Toggle -->
                 <!-- Language Toggle (Fixed Version) -->
                 <div class="relative">
-                    <button id="language-toggle" class="flex items-center p-2 rounded-full text-neutral-content-light dark:text-neutral-content-dark hover:bg-gray-100 dark:hover:bg-primary-dark focus:outline-none transition-colors duration-300" aria-label="Change language">
+                    <button id="language-toggle" class="flex items-center p-2 rounded-full text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none transition-colors duration-300" aria-label="Change language">
                         <i class="fas fa-globe text-lg sm:text-xl mr-1"></i>
                         <span class="text-sm font-medium">{{ LANGUAGE_CODE|upper }}</span>
                         <i class="fas fa-chevron-down text-xs ml-1 transition-transform duration-200" id="chevron-icon"></i>
                     </button>
                     
                     <!-- Language Dropdown -->
-                    <div id="language-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-primary-dark-dark rounded-lg shadow-lg dark:dark-shadow-lg border border-gray-200 dark:border-gray-600 z-50 opacity-0 transform scale-95 transition-all duration-200">
+                    <div id="language-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-600 z-[9999] opacity-0 transform scale-95 transition-all duration-200">
                         <div class="py-1">
                             <form action="{% url 'set_language' %}" method="post" class="inline">
                                 {% csrf_token %}
                                 <input name="next" type="hidden" value="{{ request.get_full_path }}" />
-                                <button type="submit" name="language" value="lo" class="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-primary-dark flex items-center transition-colors duration-200">
+                                <button type="submit" name="language" value="lo" class="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center transition-colors duration-200">
                                     <img src="https://flagcdn.com/w20/la.png" alt="ລາວ" class="w-5 h-3 mr-3 rounded">
                                     <span>ລາວ (Lao)</span>
                                     {% if LANGUAGE_CODE == 'lo' %}
@@ -141,7 +141,7 @@
                             <form action="{% url 'set_language' %}" method="post" class="inline">
                                 {% csrf_token %}
                                 <input name="next" type="hidden" value="{{ request.get_full_path }}" />
-                                <button type="submit" name="language" value="en" class="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-primary-dark flex items-center transition-colors duration-200">
+                                <button type="submit" name="language" value="en" class="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center transition-colors duration-200">
                                     <img src="https://flagcdn.com/w20/us.png" alt="English" class="w-5 h-3 mr-3 rounded">
                                     <span>English</span>
                                     {% if LANGUAGE_CODE == 'en' %}
@@ -415,56 +415,72 @@
             const languageToggle = document.getElementById('language-toggle');
             const languageDropdown = document.getElementById('language-dropdown');
             const chevronIcon = document.getElementById('chevron-icon');
-        
+
+            console.log('Language dropdown elements:', { languageToggle, languageDropdown, chevronIcon });
+
             if (languageToggle && languageDropdown) {
+                // Function to hide dropdown
+                function hideDropdown() {
+                    languageDropdown.classList.remove('opacity-100', 'scale-100');
+                    languageDropdown.classList.add('opacity-0', 'scale-95');
+                    setTimeout(() => {
+                        languageDropdown.classList.add('hidden');
+                    }, 200);
+                    if (chevronIcon) {
+                        chevronIcon.style.transform = 'rotate(0deg)';
+                    }
+                }
+
+                // Function to show dropdown
+                function showDropdown() {
+                    languageDropdown.classList.remove('hidden');
+                    setTimeout(() => {
+                        languageDropdown.classList.remove('opacity-0', 'scale-95');
+                        languageDropdown.classList.add('opacity-100', 'scale-100');
+                    }, 10);
+                    if (chevronIcon) {
+                        chevronIcon.style.transform = 'rotate(180deg)';
+                    }
+                }
+
                 languageToggle.addEventListener('click', function(e) {
+                    console.log('Language toggle clicked');
                     e.preventDefault();
                     e.stopPropagation();
-                    
+
                     const isHidden = languageDropdown.classList.contains('hidden');
-                    
+                    console.log('Dropdown is hidden:', isHidden);
+
                     if (isHidden) {
-                        // Show dropdown
-                        languageDropdown.classList.remove('hidden');
-                        setTimeout(() => {
-                            languageDropdown.classList.remove('opacity-0', 'scale-95');
-                            languageDropdown.classList.add('opacity-100', 'scale-100');
-                        }, 10);
-                        chevronIcon.style.transform = 'rotate(180deg)';
+                        showDropdown();
                     } else {
-                        // Hide dropdown
-                        languageDropdown.classList.remove('opacity-100', 'scale-100');
-                        languageDropdown.classList.add('opacity-0', 'scale-95');
-                        setTimeout(() => {
-                            languageDropdown.classList.add('hidden');
-                        }, 200);
-                        chevronIcon.style.transform = 'rotate(0deg)';
+                        hideDropdown();
                     }
                 });
-        
+
                 // Close dropdown when clicking outside
                 document.addEventListener('click', function(e) {
-                    if (!languageToggle.contains(e.target) && !languageDropdown.contains(e.target)) {
-                        languageDropdown.classList.remove('opacity-100', 'scale-100');
-                        languageDropdown.classList.add('opacity-0', 'scale-95');
-                        setTimeout(() => {
-                            languageDropdown.classList.add('hidden');
-                        }, 200);
-                        chevronIcon.style.transform = 'rotate(0deg)';
+                    const isClickInside = languageToggle.contains(e.target) || languageDropdown.contains(e.target);
+                    if (!isClickInside && !languageDropdown.classList.contains('hidden')) {
+                        console.log('Clicking outside, hiding dropdown');
+                        hideDropdown();
                     }
                 });
-        
+
                 // Close dropdown when pressing Escape key
                 document.addEventListener('keydown', function(e) {
                     if (e.key === 'Escape' && !languageDropdown.classList.contains('hidden')) {
-                        languageDropdown.classList.remove('opacity-100', 'scale-100');
-                        languageDropdown.classList.add('opacity-0', 'scale-95');
-                        setTimeout(() => {
-                            languageDropdown.classList.add('hidden');
-                        }, 200);
-                        chevronIcon.style.transform = 'rotate(0deg)';
+                        console.log('Escape pressed, hiding dropdown');
+                        hideDropdown();
                     }
                 });
+
+                // Prevent dropdown from closing when clicking inside it
+                languageDropdown.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            } else {
+                console.error('Language dropdown elements not found');
             }
         });
         </script>

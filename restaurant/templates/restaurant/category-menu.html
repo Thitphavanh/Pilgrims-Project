@@ -21,7 +21,7 @@
         transform: translateY(-8px) scale(1.02);
     }
     
-    .menu-card:hover .menu-image {
+    .menu-card:hover {
         transform: scale(1.1);
     }
     
@@ -85,7 +85,7 @@
                 <i class="fas fa-chevron-right text-xs"></i>
                 <a href="{% url 'menu-page' %}" class="hover:text-primary transition-colors">ເມນູ</a>
                 <i class="fas fa-chevron-right text-xs"></i>
-                <span class="text-primary-dark font-medium">{{ category_display }}</span>
+                <span class="font-medium">{{ category_display }}</span>
             </div>
             
             <!-- Quick Actions -->
@@ -125,6 +125,8 @@
                     <i class="fas fa-utensils text-6xl"></i>
                 {% elif category == 'soup_salad_mediterranean' %}
                     <i class="fas fa-leaf text-6xl"></i>
+                {% elif category == 'dessert' %}
+                    <i class="fas fa-ice-cream text-6xl"></i>
                 {% elif category == 'drinks' %}
                     <i class="fas fa-glass-martini-alt text-6xl"></i>
                 {% else %}
@@ -173,6 +175,10 @@
                 {% elif category == 'soup_salad_mediterranean' %}
                     <p class=" text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
                         ສະຫຼັດສົດ ແລະອາຫານຍອດນິຍົມຈາກພາກມະຕິເຕຣເນຍ ທີ່ເຕັມໄປດ້ວຍສິ່ງທີ່ມີປະໂຫຍດຕໍ່ສຸຂະພາບ
+                    </p>
+                {% elif category == 'dessert' %}
+                    <p class=" text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
+                        ຂອງຫວານແລະເຄຼັດລັບທີ່ຫວານຫໍມ ເຮັດຈາກສ່ວນຜະສົມຄຸນນະພາບສູງ
                     </p>
                 {% elif category == 'drinks' %}
                     <p class=" text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
@@ -233,72 +239,19 @@
     </div>
 </section>
 
-<!-- Featured Items Preview (if any) -->
-{% if featured_items %}
-<section class="py-12 bg-gradient-to-br from-primary/5 to-primary-dark/5">
-    <div class="container mx-auto px-4">
-        <div class="text-center mb-8">
-            <h2 class="text-2xl md:text-3xl font-serif font-bold mb-4">
-                <i class="fas fa-star text-yellow-500 mr-2"></i>ແນະນຳພິເສດໃນໝວດນີ້
-            </h2>
-            <div class="w-16 h-1 bg-primary mx-auto rounded-full"></div>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-9xl mx-auto">
-            {% for item in featured_items %}
-            <a href="{% url 'menu-item-detail-page' item.slug %}">
-                <div class="rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
-                    <div class="relative">
-                        {% if item.image %}
-                        <img src="{{ item.image.url }}" 
-                            alt="{{ item.name }}" 
-                            class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300">
-                        {% else %}
-                        <div class="w-full h-40 bg-gradient-to-br from-primary-light to-primary flex items-center justify-center">
-                            <i class="fas fa-utensils text-2xl text-white opacity-50"></i>
-                        </div>
-                        {% endif %}
-                        <div class="absolute top-3 left-3">
-                            <span class="bg-red-500 text-white px-2 py-1 rounded-full text-xs font-semibold">
-                                <i class="fas fa-star mr-1"></i>Featured
-                            </span>
-                        </div>
-                        <div class="absolute top-3 right-3">
-                            <span class="bg-white/90 text-primary-dark px-3 py-1 rounded-full text-sm font-semibold">
-                                {{ item.price|intcomma }} LAK
-                            </span>
-                        </div>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="font-serif font-bold text-lg mb-2">
-                            
-                                {{ item.name }}
-                    
-                        </h3>
-                        <p class=" text-sm mb-3 line-clamp-2">
-                            {{ item.description }}
-                        </p>
-                    </div>
-                </div>
-            {% endfor %}
-            </a>
-        </div>
-    </div>
-</section>
-{% endif %}
 <!-- Main Menu Items Grid -->
-<section class="py-16">
+<section class="py-12 bg-gradient-to-br from-primary/5 to-primary-dark/5">
     <div class="container mx-auto px-4">
         {% if menu_items %}
             <!-- Menu Items Grid -->
-            <div id="menu-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 stagger-animation">
+            <div id="menu-grid" class="grid grid-cols-1 gap-6 stagger-animation">
                 {% for item in menu_items %}
-                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
+                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20">
                     <div class="relative overflow-hidden rounded-2xl mb-6">
                         {% if item.image %}
                         <img src="{{ item.image.url }}" 
                              alt="{{ item.name }}" 
-                             class="w-full h-48 object-cover menu-image">
+                             class="w-full h-full object-cover menu-image">
                         {% else %}
                         <div class="w-full h-48 bg-gradient-to-br from-primary-light to-primary flex items-center justify-center">
                             {% if category == 'breakfast' %}
@@ -317,6 +270,8 @@
                                 <i class="fas fa-utensils text-4xl opacity-50"></i>
                             {% elif category == 'soup_salad_mediterranean' %}
                                 <i class="fas fa-leaf text-4xl opacity-50"></i>
+                            {% elif category == 'dessert' %}
+                                <i class="fas fa-ice-cream text-4xl opacity-50"></i>
                             {% elif category == 'drinks' %}
                                 <i class="fas fa-glass-martini-alt text-4xl opacity-50"></i>
                             {% else %}
@@ -325,12 +280,6 @@
                         </div>
                         {% endif %}
                         
-                        <!-- Price Badge -->
-                        <div class="absolute top-4 right-4">
-                            <span class="bg-gradient-to-br from-primary to-primary-dark px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
-                                {{ item.price|intcomma }} LAK
-                            </span>
-                        </div>
                         
                         <!-- Featured Badge -->
                         {% if item.is_featured %}
@@ -426,6 +375,8 @@
                             <i class="fas fa-utensils"></i>
                         {% elif category == 'soup_salad_mediterranean' %}
                             <i class="fas fa-leaf"></i>
+                        {% elif category == 'dessert' %}
+                            <i class="fas fa-ice-cream"></i>
                         {% elif category == 'drinks' %}
                             <i class="fas fa-glass-martini-alt"></i>
                         {% else %}
@@ -460,17 +411,13 @@
             <h2 class="text-3xl md:text-4xl font-serif font-bold text-white mb-6">
                 ພົບເມນູທີ່ທ່ານຊື່ນຊົບແລ້ວບໍ?
             </h2>
-            <p class="text-primary-light text-lg md:text-xl mb-8 leading-relaxed">
+            <p class="text-lg md:text-xl mb-8 leading-relaxed">
                 ສັ່ງອາຫານດຽວນີ້ ຫຼື ຕິດຕໍ່ພວກເຮົາເພື່ອສອບຖາມເພີ່ມເຕີມ
             </p>
             <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
                 <a href="tel:+856XXXXXXXX" 
-                   class="text-primary hover:bg-primary-light hover:text-primary-dark px-8 py-4 rounded-xl font-semibold text-lg transition-colors">
+                   class="hover:bg-primary-light px-8 py-4 rounded-xl font-semibold text-lg transition-colors">
                     <i class="fas fa-phone mr-2"></i>ສັ່ງອາຫານດຽວນີ້
-                </a>
-                <a href="{% url 'menu-search-page' %}" 
-                   class="border-2 border-white text-white hover:hover:text-primary px-8 py-4 rounded-xl font-semibold text-lg transition-colors">
-                    <i class="fas fa-search mr-2"></i>ຄົ້ນຫາເມນູ
                 </a>
             </div>
         </div>

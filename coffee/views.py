@@ -251,7 +251,7 @@ def coffee_list_view(request):
     print(f"Final product count after distinct(): {final_count}")
 
     # Pagination
-    paginator = Paginator(coffees, 12)
+    paginator = Paginator(coffees, 6)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
 

@@ -317,7 +317,7 @@
             <div x-show="activeTab === 'reviews'">
                 
                 <!-- Add Review Form -->
-                <div class="bg-gray-50 p-6 rounded-lg mb-8">
+                <div class="border border-amber-200 p-6 rounded-lg mb-8">
                     <h4 class="font-semibold mb-4">ຂຽນຣີວິວ</h4>
                     <form method="POST" action="{% url 'add_review' coffee.slug %}" class="space-y-4">
                         {% csrf_token %}
@@ -393,8 +393,8 @@
         <h3 class="text-2xl font-bold mb-8">ກາເຟທີ່ຄ້າຍຄືກັນ</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {% for similar_coffee in similar_coffees %}
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                <div class="h-40 bg-gradient-to-br from-amber-200 to-amber-400 flex items-center justify-center overflow-hidden">
+            <div class="rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                <div class="h-96 bg-gradient-to-br from-amber-200 to-amber-400 flex items-center justify-center overflow-hidden">
                     {% if similar_coffee.images %}
                         <img src="{{ similar_coffee.images.url }}" 
                              alt="{{ similar_coffee.name }}"
@@ -408,7 +408,7 @@
                     <p class="text-sm  mb-2">{{ similar_coffee.coffee_bean.name }}</p>
                     <div class="flex justify-between items-center">
                         <span class="text-lg font-bold text-amber-600">₭{{ similar_coffee.price|floatformat:0 }}</span>
-                        <a href="{% url 'coffee_detail' similar_coffee.pk %}" 
+                        <a href="{% url 'coffee_detail' similar_coffee.slug %}"
                            class="text-amber-600 hover:text-amber-700 text-sm font-medium">
                             ເບິ່ງລາຍລະອຽດ
                         </a>

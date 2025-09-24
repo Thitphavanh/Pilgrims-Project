@@ -203,8 +203,8 @@
                         <button class="category-tab group bg-white dark:bg-primary-dark-dark hover:bg-gradient-to-br hover:from-primary-light hover:to-primary-dark-light dark:hover:from-secondary-dark dark:hover:to-secondary-light px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 whitespace-nowrap text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-600" data-target="soup_salad_mediterranean">
                             <div class="flex items-center">
                                 {% if category_menus.soup_salad_mediterranean.image %}
-                                <img src="{{ category_menus.soup_salad_mediterranean.image.url }}"
-                                    alt="Soup & Salad"
+                                <img src="{{ category_menus.soup_salad_mediterranean.image.url }}" 
+                                    alt="Soup & Salad" 
                                     class="w-8 h-8 rounded-full object-cover mr-3 border-2 border-gray-300 group-hover:border-white transition-all">
                                 {% else %}
                                 <i class="fas fa-leaf mr-3 text-lg"></i>
@@ -212,21 +212,7 @@
                                 <span>Soup & Salad</span>
                             </div>
                         </button>
-
-                        <!-- Desserts Tab -->
-                        <button class="category-tab group bg-white dark:bg-primary-dark-dark hover:bg-gradient-to-br hover:from-primary-light hover:to-primary-dark-light dark:hover:from-secondary-dark dark:hover:to-secondary-light px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 whitespace-nowrap text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-600" data-target="dessert">
-                            <div class="flex items-center">
-                                {% if category_menus.dessert.image %}
-                                <img src="{{ category_menus.dessert.image.url }}"
-                                    alt="Desserts"
-                                    class="w-8 h-8 rounded-full object-cover mr-3 border-2 border-gray-300 group-hover:border-white transition-all">
-                                {% else %}
-                                <i class="fas fa-ice-cream mr-3 text-lg"></i>
-                                {% endif %}
-                                <span>Desserts</span>
-                            </div>
-                        </button>
-
+                        
                         <!-- Drinks Tab -->
                         <button class="category-tab group bg-white dark:bg-primary-dark-dark hover:bg-gradient-to-br hover:from-primary-light hover:to-primary-dark-light dark:hover:from-secondary-dark dark:hover:to-secondary-light px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 whitespace-nowrap text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-600" data-target="drinks">
                             <div class="flex items-center">
@@ -271,9 +257,6 @@
                 <div id="soup_salad_mediterranean-description" class="category-desc hidden">
                     <p class="italic text-lg">ສະຫຼັດສົດ ແລະອາຫານຍອດນິຍົມຈາກພາກມະຕິເຕຣເນຍ ທີ່ເຕັມໄປດ້ວຍສິ່ງທີ່ມີປະໂຫຍດຕໍ່ສຸຂະພາບ</p>
                 </div>
-                <div id="dessert-description" class="category-desc hidden">
-                    <p class="italic text-lg">ຂອງຫວານແລະເຄຼັດລັບທີ່ຫວານຫໍມ ເຮັດຈາກສ່ວນຜະສົມຄຸນນະພາບສູງ</p>
-                </div>
                 <div id="drinks-description" class="category-desc hidden">
                     <p class="italic text-lg">ເຄື່ອງດື່ມທີ່ຊົດຊື່ນ, ຄອກແທວສະເພາະ ແລະເລືອກຄັດສັນແບບພິຖີພິຖັນ</p>
                 </div>
@@ -287,7 +270,7 @@
                 <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
                     <div class="relative overflow-hidden rounded-2xl mb-6">
                         {% if item.image %}
-                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover menu-image transition-transform duration-300">
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image transition-transform duration-300">
                         {% else %}
                         <div class="w-full h-48 bg-gradient-to-br from-primary-light to-primary flex items-center justify-center">
                             <i class="fas fa-coffee text-4xl  opacity-50"></i>
@@ -295,7 +278,11 @@
                         {% endif %}
                         
                         <!-- Price Badge -->
-                        
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-gradient-to-br from-primary to-primary-dark text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                                {{ item.price|intcomma }} LAK
+                            </span>
+                        </div>
                         
                         <!-- Featured Badge -->
                         {% if item.is_featured %}
@@ -349,14 +336,18 @@
                 <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
                     <div class="relative overflow-hidden rounded-2xl mb-6">
                         {% if item.image %}
-                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover menu-image transition-transform duration-300">
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image transition-transform duration-300">
                         {% else %}
                         <div class="w-full h-48 bg-gradient-to-br from-amber-200 to-amber-400 flex items-center justify-center">
                             <i class="fas fa-mug-hot text-4xl  opacity-50"></i>
                         </div>
                         {% endif %}
                         
-                        
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-gradient-to-br from-primary to-primary-dark text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                                {{ item.price|intcomma }} LAK
+                            </span>
+                        </div>
                         
                         {% if item.is_featured %}
                         <div class="absolute top-4 left-4">
@@ -410,14 +401,18 @@
                 <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
                     <div class="relative overflow-hidden rounded-2xl mb-6">
                         {% if item.image %}
-                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover menu-image transition-transform duration-300">
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image transition-transform duration-300">
                         {% else %}
                         <div class="w-full h-48 bg-gradient-to-br from-red-200 to-blue-300 flex items-center justify-center">
                             <i class="fas fa-hamburger text-4xl  opacity-50"></i>
                         </div>
                         {% endif %}
                         
-                        
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-gradient-to-br from-primary to-primary-dark text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                                {{ item.price|intcomma }} LAK
+                            </span>
+                        </div>
                         
                         {% if item.is_featured %}
                         <div class="absolute top-4 left-4">
@@ -471,14 +466,18 @@
                 <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
                     <div class="relative overflow-hidden rounded-2xl mb-6">
                         {% if item.image %}
-                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover menu-image transition-transform duration-300">
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image transition-transform duration-300">
                         {% else %}
                         <div class="w-full h-48 bg-gradient-to-br from-orange-200 to-red-300 flex items-center justify-center">
                             <i class="fas fa-pepper-hot text-4xl  opacity-50"></i>
                         </div>
                         {% endif %}
                         
-                        
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-gradient-to-br from-primary to-primary-dark text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                                {{ item.price|intcomma }} LAK
+                            </span>
+                        </div>
                         
                         {% if item.is_featured %}
                         <div class="absolute top-4 left-4">
@@ -533,14 +532,18 @@
                 <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
                     <div class="relative overflow-hidden rounded-2xl mb-6">
                         {% if item.image %}
-                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover menu-image transition-transform duration-300">
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image transition-transform duration-300">
                         {% else %}
                         <div class="w-full h-48 bg-gradient-to-br from-green-200 to-red-300 flex items-center justify-center">
                             <i class="fas fa-pepper-hot text-4xl  opacity-50"></i>
                         </div>
                         {% endif %}
                         
-                        
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-gradient-to-br from-primary to-primary-dark text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                                {{ item.price|intcomma }} LAK
+                            </span>
+                        </div>
                         
                         {% if item.is_featured %}
                         <div class="absolute top-4 left-4">
@@ -655,14 +658,18 @@
                 <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
                     <div class="relative overflow-hidden rounded-2xl mb-6">
                         {% if item.image %}
-                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover menu-image transition-transform duration-300">
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image transition-transform duration-300">
                         {% else %}
                         <div class="w-full h-48 bg-gradient-to-br from-green-200 to-yellow-300 flex items-center justify-center">
                             <i class="fas fa-utensils text-4xl  opacity-50"></i>
                         </div>
                         {% endif %}
                         
-                        
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-gradient-to-br from-primary to-primary-dark text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                                {{ item.price|intcomma }} LAK
+                            </span>
+                        </div>
                         
                         {% if item.is_featured %}
                         <div class="absolute top-4 left-4">
@@ -717,14 +724,18 @@
                 <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
                     <div class="relative overflow-hidden rounded-2xl mb-6">
                         {% if item.image %}
-                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover menu-image transition-transform duration-300">
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image transition-transform duration-300">
                         {% else %}
                         <div class="w-full h-48 bg-gradient-to-br from-green-200 to-blue-300 flex items-center justify-center">
                             <i class="fas fa-leaf text-4xl  opacity-50"></i>
                         </div>
                         {% endif %}
                         
-                        
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-gradient-to-br from-primary to-primary-dark text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                                {{ item.price|intcomma }} LAK
+                            </span>
+                        </div>
                         
                         {% if item.is_featured %}
                         <div class="absolute top-4 left-4">
@@ -773,81 +784,24 @@
                 {% endfor %}
             </div>
 
-            <!-- Desserts Menu -->
-            <div id="dessert-menu" class="menu-content grid grid-cols-1 gap-6">
-                {% for item in dessert_items %}
-                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
-                    <div class="relative overflow-hidden rounded-2xl mb-6">
-                        {% if item.image %}
-                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover menu-image transition-transform duration-300">
-                        {% else %}
-                        <div class="w-full h-48 bg-gradient-to-br from-pink-200 to-purple-300 flex items-center justify-center">
-                            <i class="fas fa-ice-cream text-4xl  opacity-50"></i>
-                        </div>
-                        {% endif %}
-
-                        {% if item.is_featured %}
-                        <div class="absolute top-4 left-4">
-                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                <i class="fas fa-star mr-1"></i>Featured
-                            </span>
-                        </div>
-                        {% endif %}
-                    </div>
-
-                    <div class="space-y-4">
-                        <div class="flex items-start justify-between">
-                            <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">{{ item.name }}</h3>
-                            <div class="text-right">
-                                <div class="text-2xl font-bold text-primary">{{ item.price|intcomma }} LAK</div>
-                            </div>
-                        </div>
-
-                        <p class="text-gray-600 description-text leading-relaxed">
-                            {{ item.description }}
-                        </p>
-
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center text-sm text-gray-500">
-                                <i class="fas fa-ice-cream mr-2"></i>
-                                <span>Sweet Treat</span>
-                                {% if item.is_featured %}
-                                <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
-                                <span>Signature Dessert</span>
-                                {% endif %}
-                            </div>
-
-                            <div class="text-primary hover transition-colors">
-                                <i class="fas fa-arrow-right"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% empty %}
-                <div class="col-span-full bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-dashed border-primary rounded-3xl p-12 text-center">
-                    <div class="text-6xl text-primary mb-6"><i class="fas fa-ice-cream"></i></div>
-                    <h3 class="text-2xl font-semibold text-gray-700 mb-4">ເມນູຂອງຫວານກຳລັງກະກຽມ</h3>
-                    <p class="text-gray-500 max-w-md mx-auto text-lg">
-                        ຂອງຫວານແລະເຄຼັດລັບຫວານໆກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ
-                    </p>
-                </div>
-                {% endfor %}
-            </div>
-
             <!-- Drinks Menu -->
             <div id="drinks-menu" class="menu-content grid grid-cols-1 gap-6">
                 {% for item in drinks_items %}
                 <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer" onclick="{% if item.slug %}window.location.href='{% url 'menu-item-detail-page' item.slug %}'{% endif %}">
                     <div class="relative overflow-hidden rounded-2xl mb-6">
                         {% if item.image %}
-                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover menu-image transition-transform duration-300">
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover menu-image transition-transform duration-300">
                         {% else %}
                         <div class="w-full h-48 bg-gradient-to-br from-blue-200 to-purple-300 flex items-center justify-center">
                             <i class="fas fa-glass-martini-alt text-4xl  opacity-50"></i>
                         </div>
                         {% endif %}
                         
-                        
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-gradient-to-br from-primary to-primary-dark text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                                {{ item.price|intcomma }} LAK
+                            </span>
+                        </div>
                         
                         {% if item.is_featured %}
                         <div class="absolute top-4 left-4">

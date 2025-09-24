@@ -3,42 +3,6 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils import timezone
 from decimal import Decimal
 
-# class RoomType(models.Model):
-#     name = models.CharField(max_length=100, null=True, blank=True)
-#     description = models.TextField()
-#     price_per_night = models.DecimalField(max_digits=10, decimal_places=2)
-#     capacity = models.PositiveIntegerField()
-
-#     def __str__(self):
-#         return f"{self.name} - ${self.price_per_night}/night"
-
-
-# class Room(models.Model):
-#     room_number = models.CharField(max_length=10, unique=True)
-#     room_type = models.ForeignKey(
-#         RoomType, on_delete=models.CASCADE, related_name="rooms"
-#     )
-#     is_available = models.BooleanField(default=True)
-#     floor = models.PositiveIntegerField()
-#     image = models.ImageField(upload_to="rooms/", null=True, blank=True)
-
-#     def __str__(self):
-#         return f"Room {self.room_number} - {self.room_type.name}"
-
-
-# class Hotel(models.Model):
-#     room = models.ForeignKey(
-#         Room, on_delete=models.CASCADE, related_name="hotels", null=True, blank=True
-#     )
-#     name = models.CharField(max_length=100)
-#     description = models.TextField()
-#     image = models.ImageField(upload_to="hotel/", null=True, blank=True)
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     updated_at = models.DateTimeField(auto_now=True)
-
-#     def __str__(self):
-#         return f"{self.name} - {self.description}"
-
 
 class RoomType(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
@@ -111,28 +75,17 @@ class Amenity(models.Model):
 
 
 class Room(models.Model):
-    room_number = models.CharField(max_length=10, unique=True)
     room_type = models.ForeignKey(
         RoomType, on_delete=models.CASCADE, related_name="rooms"
     )
     amenities = models.ManyToManyField(
         Amenity, through="RoomAmenity", related_name="rooms", blank=True
     )
-    is_available = models.BooleanField(default=True)
-    floor = models.PositiveIntegerField()
     image = models.ImageField(upload_to="rooms/", null=True, blank=True)
 
-    # Additional room-specific information
-    view_type = models.CharField(
-        max_length=50,
-        choices=[
-            ("city", "City View"),
-            ("garden", "Garden View"),
-            ("pool", "Pool View"),
-            ("courtyard", "Courtyard View"),
-        ],
-        default="city",
-    )
+    # Check-in/out information
+    check_in_date = models.CharField(max_length=20, blank=True, default="", help_text="Check-in date as text")
+    check_out_date = models.CharField(max_length=20, blank=True, default="", help_text="Check-out date as text")
 
     # Maintenance and status
     last_cleaned = models.DateTimeField(null=True, blank=True)
@@ -144,22 +97,22 @@ class Room(models.Model):
     updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
 
     class Meta:
-        ordering = ["floor", "room_number"]
+        ordering = ["room_type", "id"]
         verbose_name = "Room"
         verbose_name_plural = "Rooms"
 
     def __str__(self):
-        return f"Room {self.room_number} - {self.room_type.name}"
+        return f"Room {self.id} - {self.room_type.name}"
 
     @property
     def availability_status(self):
         """Get human-readable availability status"""
         if self.is_out_of_order:
             return "Out of Order"
-        elif self.is_available:
-            return "Available"
-        else:
+        elif self.check_in_date:
             return "Occupied"
+        else:
+            return "Available"
 
     @property
     def total_price_with_fees(self):
@@ -191,6 +144,31 @@ class Room(models.Model):
         except RoomAmenity.DoesNotExist:
             return amenity.description
 
+    def check_in_guest(self, check_in_date, check_out_date=None):
+        """Check in a guest to this room"""
+        if self.check_in_date:
+            raise ValueError("Room is already occupied")
+        if self.is_out_of_order:
+            raise ValueError("Room is out of order")
+
+        self.check_in_date = check_in_date
+        self.check_out_date = check_out_date or ""
+        self.save()
+
+    def check_out_guest(self):
+        """Check out the current guest from this room"""
+        if not self.check_in_date:
+            raise ValueError("No guest is currently checked in")
+
+        self.check_in_date = ""
+        self.check_out_date = ""
+        self.save()
+
+    @property
+    def is_available_for_booking(self):
+        """Check if room is available for new bookings"""
+        return not self.is_out_of_order and not self.check_in_date
+
 
 class RoomImage(models.Model):
     room = models.ForeignKey(Room, related_name="room_images", on_delete=models.CASCADE)
@@ -199,7 +177,7 @@ class RoomImage(models.Model):
     is_primary = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.room.room_number} - Image"
+        return f"Room {self.room.id} - Image"
 
 
 class RoomAmenity(models.Model):
@@ -220,7 +198,7 @@ class RoomAmenity(models.Model):
         verbose_name_plural = "Room Amenities"
 
     def __str__(self):
-        return f"{self.room.room_number} - {self.amenity.name}"
+        return f"Room {self.room.id} - {self.amenity.name}"
 
 
 class Hotel(models.Model):
@@ -261,7 +239,7 @@ class Hotel(models.Model):
     @property
     def available_rooms_count(self):
         """Count of available rooms in this hotel"""
-        return self.hotels.filter(is_available=True, is_out_of_order=False).count()
+        return self.hotels.filter(is_out_of_order=False).count()
 
 
 # Optional: Booking model for future use
@@ -297,7 +275,7 @@ class Booking(models.Model):
         verbose_name_plural = "Bookings"
 
     def __str__(self):
-        return f"Booking {self.id} - {self.guest_name} - Room {self.room.room_number}"
+        return f"Booking {self.id} - {self.guest_name} - Room {self.room.id}"
 
     @property
     def nights_count(self):

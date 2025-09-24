@@ -7,6 +7,7 @@ class MenuItem(models.Model):
     CATEGORY_CHOICES = [
         ("breakfast", "Breakfast"),
         ("coffee", "Coffee"),
+        ("dessert", "Dessert"),
         ("american", "American"),
         ("indian", "Indian"),
         ("drinks", "Drinks"),

@@ -102,13 +102,11 @@ class RoomTypeAdmin(admin.ModelAdmin):
 
     def rooms_count(self, obj):
         count = obj.rooms.count()
-        available_count = obj.rooms.filter(
-            is_available=True, is_out_of_order=False
-        ).count()
+        operational_count = obj.rooms.filter(is_out_of_order=False).count()
 
         url = reverse("admin:hotel_room_changelist") + f"?room_type__id__exact={obj.id}"
         return format_html(
-            '<a href="{}">{} total ({} available)</a>', url, count, available_count
+            '<a href="{}">{} total ({} operational)</a>', url, count, operational_count
         )
 
     rooms_count.short_description = "Rooms"
@@ -131,46 +129,51 @@ class RoomTypeAdmin(admin.ModelAdmin):
 class RoomAmenityInline(admin.TabularInline):
     model = RoomAmenity
     extra = 1
-    fields = ('amenity', 'is_available', 'additional_info')
+    fields = ("amenity", "is_available", "additional_info")
+
 
 class RoomImageInline(admin.TabularInline):
     model = RoomImage
     extra = 1
-    fields = ('image', 'alt_text', 'is_primary')
+    fields = ("image", "alt_text", "is_primary")
+
 
 @admin.register(Room)
 class RoomAdmin(admin.ModelAdmin):
     list_display = [
-        "room_number",
+        "id",
         "room_type",
-        "floor",
         "availability_status_display",
-        "view_type",
         "image_preview",
         "last_cleaned",
+        "check_in_date",
+        "check_out_date",
     ]
     list_filter = [
         "room_type",
-        "floor",
-        "is_available",
         "is_out_of_order",
-        "view_type",
         "last_cleaned",
     ]
-    search_fields = ["room_number", "room_type__name", "maintenance_notes"]
-    ordering = ["floor", "room_number"]
-    
+    search_fields = ["room_type__name", "maintenance_notes"]
+    ordering = ["room_type", "id"]
+
     inlines = [RoomImageInline, RoomAmenityInline]
-    
+
     def amenities_count(self, obj):
         return obj.amenities.count()
-    amenities_count.short_description = 'Amenities'
 
+    amenities_count.short_description = "Amenities"
 
     fieldsets = (
         (
             "Basic Information",
-            {"fields": ("room_number", "room_type", "floor", "view_type")},
+            {
+                "fields": (
+                    "room_type",
+                    "check_in_date",
+                    "check_out_date",
+                )
+            },
         ),
         (
             "Media",
@@ -181,7 +184,7 @@ class RoomAdmin(admin.ModelAdmin):
         (
             "Availability",
             {
-                "fields": ("is_available", "is_out_of_order"),
+                "fields": ("is_out_of_order",),
             },
         ),
         (
@@ -223,29 +226,22 @@ class RoomAdmin(admin.ModelAdmin):
     image_preview.short_description = "Image"
 
     actions = [
-        "mark_available",
-        "mark_unavailable",
         "mark_out_of_order",
+        "mark_operational",
         "mark_cleaned_today",
     ]
 
-    def mark_available(self, request, queryset):
-        count = queryset.update(is_available=True, is_out_of_order=False)
-        self.message_user(request, f"{count} rooms marked as available.")
-
-    mark_available.short_description = "Mark as available"
-
-    def mark_unavailable(self, request, queryset):
-        count = queryset.update(is_available=False)
-        self.message_user(request, f"{count} rooms marked as unavailable.")
-
-    mark_unavailable.short_description = "Mark as unavailable"
-
     def mark_out_of_order(self, request, queryset):
-        count = queryset.update(is_out_of_order=True, is_available=False)
+        count = queryset.update(is_out_of_order=True)
         self.message_user(request, f"{count} rooms marked as out of order.")
 
     mark_out_of_order.short_description = "Mark as out of order"
+
+    def mark_operational(self, request, queryset):
+        count = queryset.update(is_out_of_order=False)
+        self.message_user(request, f"{count} rooms marked as operational.")
+
+    mark_operational.short_description = "Mark as operational"
 
     def mark_cleaned_today(self, request, queryset):
         from django.utils import timezone
@@ -256,23 +252,24 @@ class RoomAdmin(admin.ModelAdmin):
     mark_cleaned_today.short_description = "Mark as cleaned today"
 
 
-
 @admin.register(Amenity)
 class AmenityAdmin(admin.ModelAdmin):
-    list_display = ('name', 'icon_color', 'is_premium', 'is_active', 'rooms_count')
-    list_filter = ('icon_color', 'is_premium', 'is_active')
-    search_fields = ('name', 'description')
-    readonly_fields = ('created_at',)
-    
+    list_display = ("name", "icon_color", "is_premium", "is_active", "rooms_count")
+    list_filter = ("icon_color", "is_premium", "is_active")
+    search_fields = ("name", "description")
+    readonly_fields = ("created_at",)
+
     def rooms_count(self, obj):
         return obj.rooms.count()
-    rooms_count.short_description = 'Rooms'
+
+    rooms_count.short_description = "Rooms"
+
 
 @admin.register(RoomAmenity)
 class RoomAmenityAdmin(admin.ModelAdmin):
-    list_display = ('room', 'amenity', 'is_available')
-    list_filter = ('is_available', 'amenity__is_premium')
-    search_fields = ('room__room_number', 'amenity__name')
+    list_display = ("room", "amenity", "is_available")
+    list_filter = ("is_available", "amenity__is_premium")
+    search_fields = ("amenity__name",)
 
 
 @admin.register(Hotel)
@@ -409,7 +406,6 @@ class BookingAdmin(admin.ModelAdmin):
         "guest_name",
         "guest_email",
         "guest_phone",
-        "room__room_number",
         "room__room_type__name",
     ]
     date_hierarchy = "check_in_date"

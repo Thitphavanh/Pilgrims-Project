@@ -35,6 +35,9 @@ urlpatterns = [
     # Room listings
     path("rooms/", views.rooms_list_view, name="rooms-list-page"),
     path("room/<int:room_id>/book/", views.room_booking_view, name="room-booking-page"),
+    # Check-in/out functionality
+    path("room/<int:room_id>/check-in/", views.room_check_in_view, name="room-check-in"),
+    path("room/<int:room_id>/check-out/", views.room_check_out_view, name="room-check-out"),
     path("rooms/featured/", views.featured_rooms_view, name="featured-rooms-page"),
     path(
         "api/room-availability/",

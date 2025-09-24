@@ -117,6 +117,18 @@ class CoffeeProduct(models.Model):
     def __str__(self):
         return f"{self.name} - {self.weight}{self.weight_unit}"
 
+    def save(self, *args, **kwargs):
+        """Override save to ensure slug is created"""
+        if not self.slug:
+            base_slug = slugify(self.name)
+            slug = base_slug
+            counter = 1
+            while CoffeeProduct.objects.filter(slug=slug).exclude(pk=self.pk).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+            self.slug = slug
+        super().save(*args, **kwargs)
+
     @property
     def price_per_unit(self):
         """ຄຳນວນລາຄາຕໍ່ໜ່ວຍນ້ຳໜັກ"""

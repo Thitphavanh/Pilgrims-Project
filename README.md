@@ -90,20 +90,20 @@ This project uses Docker to streamline the setup process. You no longer need to 
 3.  **🛠️ Build and Run the Containers**
     This single command builds the Docker images, starts the Django and PostgreSQL services, and shows you the application logs.
     ```bash
-    docker-compose up --build
+    docker compose up --build
     ```
     Keep this terminal running.
 
 4.  **🗄️ Run Database Migrations**
     The first time you start the application, you need to set up the database schema. **Open a new terminal window** and run:
     ```bash
-    docker-compose exec web python manage.py migrate
+    docker compose exec web python manage.py migrate
     ```
 
 5.  **🧑‍💻 Create a Superuser (Optional)**
     To access the Django admin panel, create an administrator account. In the second terminal, run:
     ```bash
-    docker-compose exec web python manage.py createsuperuser
+    docker compose exec web python manage.py createsuperuser
     ```
 
 ---

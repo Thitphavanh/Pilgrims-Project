@@ -13,71 +13,7 @@
     <!-- Page Header -->
     <div class="relative py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-neutral-light via-blue-50 to-indigo-100 dark:from-neutral-dark dark:via-gray-900 dark:to-blue-900 transition-colors duration-500 overflow-hidden">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        
-        <!-- Filters -->
-        <div class="bg-white dark:bg-primary-dark-dark rounded-xl shadow-lg p-6 mb-8">
-            <form method="GET" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-                
-                <!-- Room Type Filter -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">ປະເພດຫ້ອງ</label>
-                    <select name="type" class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
-                        <option value="">ປະເພດຫ້ອງ</option>
-                        {% for room_type in room_types %}
-                        <option value="{{ room_type.id }}" {% if current_filters.type == room_type.id|stringformat:"s" %}selected{% endif %}>
-                            {{ room_type.name }}
-                        </option>
-                        {% endfor %}
-                    </select>
-                </div>
-                
-                <!-- Floor Filter -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">ຊັ້ນ</label>
-                    <select name="floor" class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
-                        <option value="">ຊັ້ນທັງໝົດ</option>
-                        {% for floor in floors %}
-                        <option value="{{ floor }}" {% if current_filters.floor == floor|stringformat:"s" %}selected{% endif %}>
-                            ຊັ້ນ {{ floor }}
-                        </option>
-                        {% endfor %}
-                    </select>
-                </div>
-                
-                <!-- Availability Filter -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">ຫ້ອງພັກທີ່ມີຢູ່</label>
-                    <select name="available" class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
-                        <option value="">ຫ້ອງທັງໝົດ</option>
-                        <option value="true" {% if current_filters.available == "true" %}selected{% endif %}>ຫ້ອງພັກສະເພາະທີ່ມີວ່າງ</option>
-                        <option value="false" {% if current_filters.available == "false" %}selected{% endif %}>ຫ້ອງພັກທີ່ຈອງແລ້ວ</option>
-                    </select>
-                </div>
-                
-                <!-- Price Range -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">ຊ່ວງ</label>
-                    <div class="flex space-x-2">
-                        <input type="number" name="price_min" value="{{ current_filters.price_min }}" 
-                               placeholder="Min" 
-                               class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
-                        <input type="number" name="price_max" value="{{ current_filters.price_max }}" 
-                               placeholder="Max" 
-                               class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
-                    </div>
-                </div>
-                
-                <!-- Filter Buttons -->
-                <div class="flex space-x-2">
-                    <button type="submit" class="flex-1 bg-primary-light dark:bg-primary-dark text-white py-2 px-4 rounded-lg hover:bg-secondary-light dark:hover:bg-secondary-dark transition duration-300">
-                        <i class="fas fa-search mr-2"></i>ໂຕກອງ
-                    </button>
-                    <a href="{% url 'rooms-list-page' %}" class="flex-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 py-6 px-4 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition duration-300 text-center">
-                        ລົບ
-                    </a>
-                </div>
-            </form>
-        </div>
+    
 
         <!-- Results Summary -->
         <div class="flex justify-between items-center mb-6">
@@ -85,15 +21,6 @@
                 ກຳລັງສະແດງໃຫ້ເຫັນ {{ page_obj|length }} ລະຫວ່າງ {{ page_obj.paginator.count }} ຫ້ອງ
             </div>
             
-            <!-- View Toggle -->
-            <div class="flex items-center space-x-2">
-                <button onclick="toggleView('grid')" id="gridViewBtn" class="p-2 rounded-lg bg-primary-light text-white">
-                    <i class="fas fa-th-large"></i>
-                </button>
-                <button onclick="toggleView('list')" id="listViewBtn" class="p-2 rounded-lg bg-gray-200 text-gray-600">
-                    <i class="fas fa-list"></i>
-                </button>
-            </div>
         </div>
 
          <!-- Room Grid -->
@@ -103,7 +30,7 @@
                 <!-- <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Experience the perfect blend of comfort and luxury in our thoughtfully designed rooms and suites.</p> -->
             </div>
             {% if page_obj %}
-                <div id="roomsContainer" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" data-view="grid">
+                <div id="roomsContainer" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6" data-view="grid">
                     {% for room in page_obj %}
                     <div class="room-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" 
                         data-price="{{ room.room_type.price_per_night }}" 
@@ -116,7 +43,7 @@
                                 <div class="relative group">
                                     <img src="{{ room.room_images.first.image.url }}" 
                                         alt="{{ room.room_images.first.alt_text }}"
-                                        class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
                                     <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
                                 </div>
                             {% else %}

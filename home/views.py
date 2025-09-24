@@ -7,14 +7,9 @@ from django.core.paginator import Paginator
 
 
 def home(request):
-    featured_rooms = Room.objects.filter(is_available=True)
     # Base queryset - available rooms only
-    rooms = (
-        Room.objects.filter(is_available=True, is_out_of_order=False)
-        .select_related("room_type")
-        .prefetch_related("amenities", "room_images", "roomamenity_set__amenity")
-    )
-
+    rooms = Room.objects.all().order_by("-created_at")
+    featured_rooms = Room.objects.all().order_by("-created_at")
     breakfast_items = MenuItem.objects.filter(category="breakfast").order_by(
         "-created_at"
     )[:8]
@@ -40,6 +35,9 @@ def home(request):
     soup_salad_mediterranean_items = MenuItem.objects.filter(
         category="soup_salad_mediterranean"
     ).order_by("-created_at")[:8]
+    dessert_items = MenuItem.objects.filter(category="dessert").order_by(
+        "-created_at"
+    )[:8]
 
     # ກາເຟຂາຍດີ (ສຸ່ມ 6 ລາຍການ)
     featured_coffees = (
@@ -68,6 +66,7 @@ def home(request):
         "pizza_items": pizza_items,
         "local_food_items": local_food_items,
         "soup_salad_mediterranean_items": soup_salad_mediterranean_items,
+        "dessert_items": dessert_items,
         "featured_coffees": featured_coffees,
         "categories": categories,
         "stats": {

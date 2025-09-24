@@ -4,7 +4,7 @@
 
 {% load humanize %}
 
-{% block title %}{{ room.room_type.name }} - Room {{ room.room_number }} - Hotel{% endblock %}
+{% block title %}{{ room.room_type.name }} - Room {{ room.id }} - Hotel{% endblock %}
 
 {% block extra_css %}
 <style>
@@ -84,9 +84,9 @@
     <nav class="bg-white dark:bg-primary-dark-dark shadow-sm">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <ol class="flex items-center space-x-2 text-sm">
-                <li><a href="{% url 'home-page' %}" class="text-primary-light dark:text-primary-dark hover:text-secondary-light">Home</a></li>
+                <li><a href="{% url 'home-page' %}" class= hover:text-secondary-light">Home</a></li>
                 <li class="text-gray-400">/</li>
-                <li><a href="{% url 'rooms-list-page' %}" class="text-primary-light dark:text-primary-dark hover:text-secondary-light">Rooms</a></li>
+                <li><a href="{% url 'rooms-list-page' %}" class= hover:text-secondary-light">Rooms</a></li>
                 <li class="text-gray-400">/</li>
                 <li class="text-gray-600 dark:text-gray-300">{{ room.room_type.name }}</li>
             </ol>
@@ -124,15 +124,20 @@
                         
                        
                         <div class="mt-4 md:mt-0">
-                            {% if room.is_available %}
+                            {% if room.is_out_of_order %}
+                            <span class="inline-flex items-center bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 px-3 py-2 rounded-full text-sm font-medium">
+                                <i class="fas fa-tools mr-2"></i>
+                                Out of Order
+                            </span>
+                            {% elif room.is_checked_in %}
+                            <span class="inline-flex items-center bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 px-3 py-2 rounded-full text-sm font-medium">
+                                <i class="fas fa-user mr-2"></i>
+                                Occupied
+                            </span>
+                            {% else %}
                             <span class="inline-flex items-center bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-2 rounded-full text-sm font-medium">
                                 <i class="fas fa-check-circle mr-2"></i>
                                 Available
-                            </span>
-                            {% else %}
-                            <span class="inline-flex items-center bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 px-3 py-2 rounded-full text-sm font-medium">
-                                <i class="fas fa-times-circle mr-2"></i>
-                                Not Available
                             </span>
                             {% endif %}
                         </div>
@@ -234,7 +239,7 @@
                         <!-- Premium Amenities Section -->
                         {% if premium_amenities_data %}
                         <div class="mb-8">
-                            <h3 class="text-lg font-semibold text-primary-light dark:text-primary-dark mb-4 flex items-center">
+                            <h3 class="text-lg font-semibold mb-4 flex items-center">
                                 <i class="fas fa-crown mr-2"></i>
                                 Premium Features
                             </h3>
@@ -317,7 +322,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3 flex items-center">
-                                <i class="fas fa-clock text-primary-light dark:text-primary-dark mr-2"></i>
+                                <i class="fas fa-clock mr-2"></i>
                                 Check-in & Check-out
                             </h3>
                             <ul class="space-y-2 text-gray-600 dark:text-gray-300 text-sm">
@@ -338,7 +343,7 @@
                         
                         <div>
                             <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3 flex items-center">
-                                <i class="fas fa-ban text-primary-light dark:text-primary-dark mr-2"></i>
+                                <i class="fas fa-ban mr-2"></i>
                                 Restrictions
                             </h3>
                             <ul class="space-y-2 text-gray-600 dark:text-gray-300 text-sm">
@@ -381,7 +386,7 @@
                                 <div class="flex-1">
                                     <h3 class="font-semibold text-gray-800 dark:text-gray-200 mb-1">{{ hotel.name }}</h3>
                                     <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">{{ hotel.description|truncatewords:10 }}</p>
-                                    <a href="#" class="text-primary-light dark:text-primary-dark text-sm hover:underline">
+                                    <a href="#" class= text-sm hover:underline">
                                         View Details <i class="fas fa-arrow-right ml-1"></i>
                                     </a>
                                 </div>
@@ -399,7 +404,7 @@
                     
                     <!-- Price Display -->
                     <div class="text-center border-b border-gray-200 dark:border-gray-700 pb-6">
-                        <div class="text-3xl font-bold text-primary-light dark:text-primary-dark mb-2">
+                        <div class="text-3xl font-bold mb-2">
                             {{ room.room_type.price_per_night|intcomma }} LAK
                         </div>
                         <div class="text-gray-600 dark:text-gray-300 text-sm">per night</div>
@@ -407,177 +412,74 @@
                     </div>
 
                     <div class="text-center border-b border-gray-200 dark:border-gray-700 pb-6">
-                        <div class="text-3xl font-bold text-primary-light dark:text-primary-dark mb-2">
+                        <div class="text-3xl font-bold mb-2">
                             {{ room.room_type.name }}
                         </div>
-                        <div class="text-gray-600 dark:text-gray-300 text-sm"> <i class="fas fa-door-open mr-2"></i> Room {{ room.room_number }}</div>
-                        <div class="text-xs text-gray-500 dark:text-gray-400 mt-1"> <i class="fas fa-building mr-2"></i> Floor {{ room.floor }}</div>
+                        <div class="text-gray-600 dark:text-gray-300 text-sm"> <i class="fas fa-door-open mr-2"></i> {{ room.room_type.description }}</div>
                         <div class="text-xs text-gray-500 dark:text-gray-400 mt-1"> <i class="fas fa-users mr-2"></i> Up to {{ room.room_type.capacity }} guests</div>
                     </div>
 
                     <div class="text-center border-b border-gray-200 dark:border-gray-700 pb-6">
-                        <div class="text-3xl font-bold text-primary-light dark:text-primary-dark mb-2">
+                        <div class="text-3xl font-bold mb-2">
                             ນະໂຍບາຍຂອງຫ້ອງ
                         </div>
-                        <div class="text-lg font-semibold text-gray-800 dark:text-gray-200"> <i class="fas fa-clock text-primary-light dark:text-primary-dark mr-2"></i>
+                        <div class="text-lg font-semibold text-gray-800 dark:text-gray-200"> <i class="fas fa-clock mr-2"></i>
                             Check-in & Check-out
                         </div>
                         <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">  <i class="fas fa-sign-in-alt text-green-500 mr-2"></i>
-                            Check-in: 3:00 PM onwards
+                            Check-in: {{ room.check_in_date }} PM 
                         </div>
                         <div class="text-xs text-gray-500 dark:text-gray-400 mt-1"> <i class="fas fa-sign-out-alt text-red-500 mr-2"></i>
-                            Check-out: Until 11:00 AM
+                            Check-out: {{ room.check_out_date }} AM
                         </div>
                         <div class="text-xs text-gray-500 dark:text-gray-400 mt-1"> <i class="fas fa-id-card text-blue-500 mr-2"></i>
                             Valid ID required
                         </div>
 
-                        <div class="text-lg font-semibold text-gray-800 dark:text-gray-200"> <i class="fas fa-ban text-primary-light dark:text-primary-dark mr-2"></i>
+                        <div class="text-lg font-semibold text-gray-800 dark:text-gray-200"> <i class="fas fa-ban mr-2"></i>
                             Restrictions
                         </div>
                         <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">   <i class="fas fa-smoking-ban text-red-500 mr-2"></i>
                             Non-smoking room
                         </div>
-                        <div class="text-xs text-gray-500 dark:text-gray-400 mt-1"> <i class="fas fa-paw text-orange-500 mr-2"></i>
-                            Pets allowed (extra charge)
-                        </div>
-                        <div class="text-xs text-gray-500 dark:text-gray-400 mt-1"> <i class="fas fa-volume-down text-blue-500 mr-2"></i>
-                            Quiet hours: 10 PM - 7 AM
-                        </div>
                     </div>
 
-    
 
-                    <!-- Booking Form -->
-                    <form class="space-y-4" method="post" action="">
-                        {% csrf_token %}
-                        
-                        <!-- Check-in Date -->
-                        <!-- <div>
-                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Check-in Date</label>
-                            <input type="date" 
-                                   name="check_in" 
-                                   required
-                                   class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark focus:border-transparent">
-                        </div> -->
-                        
-                        <!-- Check-out Date -->
-                        <!-- <div>
-                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Check-out Date</label>
-                            <input type="date" 
-                                   name="check_out" 
-                                   required
-                                   class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark focus:border-transparent">
-                        </div> -->
-                        
-                        <!-- Guests -->
-                        <!-- <div>
-                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Guests</label>
-                            <select name="guests" 
-                                    class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark focus:border-transparent">
-                                {% for i in "12345"|slice:":"|add:room.room_type %}
-                                <option value="{{ forloop.counter }}">{{ forloop.counter }} guest{{ forloop.counter|pluralize }}</option>
-                                {% endfor %}
-                            </select>
-                        </div> -->
-                        
-                        <!-- Special Requests -->
-                        <!-- <div>
-                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Special Requests (Optional)</label>
-                            <textarea name="special_requests" 
-                                      rows="3" 
-                                      placeholder="Any special requirements or preferences..."
-                                      class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark focus:border-transparent resize-none"></textarea>
-                        </div> -->
-                        
-                        <!-- Price Breakdown -->
-                        <!-- <div class="price-breakdown rounded-lg p-4 space-y-2">
-                            <div class="flex justify-between text-sm">
-                                <span class="text-gray-600 dark:text-gray-400">Room rate (per night)</span>
-                                <span class="font-medium">${{ room.room_type.price_per_night }}</span>
-                            </div>
-                            <div class="flex justify-between text-sm">
-                                <span class="text-gray-600 dark:text-gray-400">Service fee</span>
-                                <span class="font-medium">$15</span>
-                            </div>
-                            <div class="flex justify-between text-sm">
-                                <span class="text-gray-600 dark:text-gray-400">Taxes</span>
-                                <span class="font-medium">$12</span>
-                            </div>
-                            <hr class="border-gray-300 dark:border-gray-600">
-                            <div class="flex justify-between font-bold text-lg">
-                                <span>Total</span>
-                                <span class="text-primary-light dark:text-primary-dark">${{ room.room_type.price_per_night|add:"27" }}</span>
-                            </div>
-                        </div> -->
-                        
-                        <!-- Book Now Button -->
-                        <!-- {% if room.is_available %}
-                        <button type="submit" 
-                                class="w-full bg-primary-light dark:bg-primary-dark text-white py-3 px-6 rounded-lg hover:bg-secondary-light dark:hover:bg-secondary-dark transition duration-300 font-medium">
-                            <i class="fas fa-calendar-check mr-2"></i>
-                            Book This Room
-                        </button>
-                        {% else %}
-                        <button type="button" 
-                                disabled
-                                class="w-full bg-gray-400 dark:bg-gray-600 text-white py-3 px-6 rounded-lg cursor-not-allowed font-medium">
-                            <i class="fas fa-times-circle mr-2"></i>
-                            Room Not Available
-                        </button>
-                        {% endif %}  -->
-                    </form>
-                    
-                    <!-- Contact Info -->
+
+                    <!-- Booking Links -->
                     <div class="text-center border-b border-gray-200 dark:border-gray-700 pb-6">
-                        <div class="text-3xl font-bold text-primary-light dark:text-primary-dark mb-2">
-                            ຈອງ
+                        <div class="text-xl font-bold mb-4">
+                            ຕ້ອງການຄວາມຊ່ວຍເຫຼືອໃນການຈອງຂອງທ່ານບໍ?
                         </div>
                         <div class="space-y-2">
-                              
-                             <!-- Agoda Card -->
-                            <div class="" onclick="openReviewPlatform('agoda')">
+                            <div onclick="openReviewPlatform('agoda')">
                                 <button class="w-full bg-primary-light dark:bg-primary-dark text-white py-3 px-6 rounded-lg transition duration-300 font-medium flex items-center justify-center">
-                                    <!-- Booking.com SVG Logo -->
                                     <img src="https://i.pinimg.com/736x/a2/b0/5d/a2b05d6d5547345a295614f8ebe90c56.jpg"
-                                    class="w-8 h-8 mr-2 rounded-full object-cover" 
+                                    class="w-8 h-8 mr-2 rounded-full object-cover"
                                     alt="Agoda Logo">
-                                    Agoda 
+                                    Agoda
                                 </button>
                             </div>
-                            
-                            <!-- <a href="mailto:reservations@hotel.com" class="flex items-center justify-center text-primary-light dark:text-primary-dark hover:text-secondary-light dark:hover:text-secondary-dark text-sm">
-                                <i class="fas fa-envelope mr-2"></i>
-                                reservations@hotel.com
-                            </a> -->
-                            <!-- Booking.com Card -->
-                            <div class="" onclick="openReviewPlatform('booking')">
+
+                            <div onclick="openReviewPlatform('booking')">
                                 <button class="w-full bg-primary-light dark:bg-primary-dark text-white py-3 px-6 rounded-lg transition duration-300 font-medium flex items-center justify-center">
-                                    <!-- Booking.com SVG Logo -->
-                                    <img src="https://i.pinimg.com/736x/2f/f7/ee/2ff7ee806d977d4884e2aadfa8fc1101.jpg" 
-                                    class="w-8 h-8 mr-2 rounded-full object-cover" 
+                                    <img src="https://i.pinimg.com/736x/2f/f7/ee/2ff7ee806d977d4884e2aadfa8fc1101.jpg"
+                                    class="w-8 h-8 mr-2 rounded-full object-cover"
                                     alt="Booking.com Logo">
                                     Booking.com
                                 </button>
                             </div>
 
-                            <div class="" onclick="openReviewPlatform('whatsapp')">
+                            <div onclick="openReviewPlatform('whatsapp')">
                                 <button class="w-full bg-primary-light dark:bg-primary-dark text-white py-3 px-6 rounded-lg transition duration-300 font-medium flex items-center justify-center">
-                                    <!-- WhatsApp PNG Logo เป็นวงกลม -->
-                                    <img src="https://i.pinimg.com/736x/c6/09/0d/c6090df18193e2616a6a32076883b70c.jpg" 
-                                    class="w-8 h-8 mr-2 rounded-full object-cover" 
+                                    <img src="https://i.pinimg.com/736x/c6/09/0d/c6090df18193e2616a6a32076883b70c.jpg"
+                                    class="w-8 h-8 mr-2 rounded-full object-cover"
                                     alt="WhatsApp Logo">
                                     WhatsApp
                                 </button>
                             </div>
-   
-                            <!-- WhatsApp Card -->
-                            <!-- <div class="" onclick="openReviewPlatform('whatsapp')">
-                                <button class="w-full bg-primary-light dark:bg-primary-dark text-white py-3 px-6 rounded-lg transition duration-300 font-medium">
-                                    <i class="fab fa-whatsapp ml-2 mr-2 text-green-500 group-hover:text-green-400 transition-colors duration-300 bg-gradient-to-br from-green-500 to-green-500 bg-clip-text text-transparent"></i>
-                                    WhatsApp 
-                                </button>
-                            </div>    -->
+                            <div class="text-gray-600 dark:text-gray-300 text-sm">For better rates and more information, please contact
+                                us directly through our WhatsApp.</div>
                         </div>
                     </div>
                 </div>

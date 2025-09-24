@@ -24,7 +24,7 @@ def hotel(request):
 
     # Base queryset - available rooms only
     rooms = (
-        Room.objects.filter(is_available=True, is_out_of_order=False)
+        Room.objects.filter(is_out_of_order=False, check_in_date="")
         .select_related("room_type")
         .prefetch_related("amenities", "room_images", "roomamenity_set__amenity")
     )
@@ -51,8 +51,9 @@ def hotel(request):
         except ValueError:
             pass
 
-    if view_type_filter:
-        rooms = rooms.filter(view_type=view_type_filter)
+    # view_type filter removed as field no longer exists
+    # if view_type_filter:
+    #     rooms = rooms.filter(view_type=view_type_filter)
 
     if amenity_filter:
         rooms = rooms.filter(amenities__id=amenity_filter)
@@ -64,7 +65,7 @@ def hotel(request):
     room_types = RoomType.objects.all().order_by("name")
     available_amenities = (
         Amenity.objects.filter(
-            is_active=True, rooms__is_available=True, rooms__is_out_of_order=False
+            is_active=True, rooms__is_out_of_order=False
         )
         .distinct()
         .order_by("name")
@@ -108,7 +109,6 @@ def hotel(request):
             "amenity": amenity_filter,
         },
         # Choices for dropdowns
-        "view_type_choices": Room._meta.get_field("view_type").choices,
         "capacity_choices": [(i, f"{i}+ Guests") for i in range(1, 11)],
     }
 
@@ -120,7 +120,7 @@ def rooms_list_view(request):
 
     # Filter parameters
     room_type_filter = request.GET.get("type")
-    floor_filter = request.GET.get("floor")
+    # floor_filter = request.GET.get("floor")  # Removed as floor field no longer exists
     availability_filter = request.GET.get("available")
     price_min = request.GET.get("price_min")
     price_max = request.GET.get("price_max")
@@ -132,13 +132,13 @@ def rooms_list_view(request):
     if room_type_filter:
         rooms = rooms.filter(room_type__id=room_type_filter)
 
-    if floor_filter:
-        rooms = rooms.filter(floor=floor_filter)
+    # if floor_filter:
+    #     rooms = rooms.filter(floor=floor_filter)  # Removed as floor field no longer exists
 
     if availability_filter == "true":
-        rooms = rooms.filter(is_available=True)
+        rooms = rooms.filter(is_out_of_order=False)
     elif availability_filter == "false":
-        rooms = rooms.filter(is_available=False)
+        rooms = rooms.filter(is_out_of_order=True)
 
     if price_min:
         try:
@@ -154,7 +154,8 @@ def rooms_list_view(request):
 
     # Get filter options
     room_types = RoomType.objects.all()
-    floors = Room.objects.values_list("floor", flat=True).distinct().order_by("floor")
+    # floors = Room.objects.values_list("floor", flat=True).distinct().order_by("floor")  # Removed as floor field no longer exists
+    floors = []  # Empty list since floor field is removed
 
     # Pagination
     from django.core.paginator import Paginator
@@ -169,7 +170,7 @@ def rooms_list_view(request):
         "floors": floors,
         "current_filters": {
             "type": room_type_filter,
-            "floor": floor_filter,
+            # "floor": floor_filter,  # Removed as floor field no longer exists
             "available": availability_filter,
             "price_min": price_min,
             "price_max": price_max,
@@ -224,7 +225,7 @@ def room_detail_view(request, id):
 
     # Get other rooms of the same type (alternatives)
     similar_rooms = Room.objects.filter(
-        room_type=room.room_type, is_available=True
+        room_type=room.room_type, is_out_of_order=False, check_in_date=""
     ).exclude(id=room.id)[:3]
 
     context = {
@@ -236,7 +237,7 @@ def room_detail_view(request, id):
         "standard_amenities_data": standard_amenities_data,
         "related_hotels": related_hotels,
         "similar_rooms": similar_rooms,
-        "page_title": f"{room.room_type.name} - Room {room.room_number}",
+        "page_title": f"{room.room_type.name} - Room {room.id}",
     }
 
     return render(request, "hotel/room-detail.html", context)
@@ -307,7 +308,7 @@ def room_booking_view(request, room_id):
 
     room = get_object_or_404(Room, id=room_id)
 
-    if not room.is_available:
+    if not room.is_available_for_booking:
         messages.error(request, "Sorry, this room is not available for booking.")
         return redirect("room-detail-page", room_id=room_id)
 
@@ -362,7 +363,7 @@ def room_booking_view(request, room_id):
                 Thank you for your booking request!
                 
                 Booking Details:
-                - Room: {room.room_type.name} (Room {room.room_number})
+                - Room: {room.room_type.name} (Room {room.id})
                 - Check-in: {check_in.strftime('%B %d, %Y')}
                 - Check-out: {check_out.strftime('%B %d, %Y')}
                 - Guests: {guests}
@@ -396,6 +397,51 @@ def room_booking_view(request, room_id):
     return redirect("room-detail-page", room_id=room_id)
 
 
+@require_http_methods(["POST"])
+def room_check_in_view(request, room_id):
+    """Handle room check-in"""
+    room = get_object_or_404(Room, id=room_id)
+
+    # Get form data
+    check_in_date = request.POST.get("check_in_date", "").strip()
+    check_out_date = request.POST.get("check_out_date", "").strip()
+
+    # Validate required fields
+    if not check_in_date:
+        messages.error(request, "Check-in date is required.")
+        return redirect("room-detail-page", room_id=room_id)
+
+    # Attempt check-in
+    try:
+        room.check_in_guest(check_in_date, check_out_date)
+        messages.success(
+            request,
+            f"Successfully checked in guest to Room {room.id}."
+        )
+    except ValueError as e:
+        messages.error(request, str(e))
+
+    return redirect("room-detail-page", room_id=room_id)
+
+
+@require_http_methods(["POST"])
+def room_check_out_view(request, room_id):
+    """Handle room check-out"""
+    room = get_object_or_404(Room, id=room_id)
+
+    # Attempt check-out
+    try:
+        room.check_out_guest()
+        messages.success(
+            request,
+            f"Successfully checked out guest from Room {room.id}."
+        )
+    except ValueError as e:
+        messages.error(request, str(e))
+
+    return redirect("room-detail-page", room_id=room_id)
+
+
 def room_availability_api(request):
     """API endpoint to check room availability"""
 
@@ -412,8 +458,8 @@ def room_availability_api(request):
 
             return JsonResponse(
                 {
-                    "available": room.is_available,
-                    "room_number": room.room_number,
+                    "available": not room.is_out_of_order,
+                    "room_id": room.id,
                     "room_type": room.room_type.name,
                     "price_per_night": float(room.room_type.price_per_night),
                 }
@@ -428,7 +474,7 @@ def room_availability_api(request):
 def featured_rooms_view(request):
     """Get featured rooms for homepage"""
 
-    featured_rooms = Room.objects.filter(is_available=True).select_related("room_type")[
+    featured_rooms = Room.objects.filter(is_out_of_order=False, check_in_date="").select_related("room_type")[
         :6
     ]  # Get 6 featured rooms
 

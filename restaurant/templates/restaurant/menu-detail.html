@@ -25,13 +25,12 @@
 </nav>
 
 <!-- Menu Item Detail Section -->
-<section class="py-12 md:py-20">
+<section class="py-12">
     <div class="container mx-auto px-4">
         <div class="max-w-9xl mx-auto">
             
-
             <!-- Main Content Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+            <div class="grid grid-cols-1 gap-12 mb-16">
                 
                 <!-- Image Section -->
                 <div class="space-y-6">
@@ -39,9 +38,9 @@
                         {% if menu_item.image %}
                             <img src="{{ menu_item.image.url }}" 
                                  alt="{{ menu_item.name }}" 
-                                 class="w-full h-96 lg:h-[500px] object-cover transition-transform duration-500 group-hover:scale-105">
+                                 class="w-full h-full object-cover transition-transform">
                         {% else %}
-                            <div class="w-full h-96 lg:h-[500px] bg-gradient-to-br from-primary-light to-primary flex items-center justify-center">
+                            <div class="w-full h-full bg-gradient-to-br from-primary-light to-primary flex items-center justify-center">
                                 <i class="fas fa-utensils text-6xl opacity-50"></i>
                             </div>
                         {% endif %}
@@ -54,84 +53,10 @@
                             </span>
                         </div>
                         {% endif %}
-                        
-                        <!-- Price Badge -->
-                        <div class="absolute top-6 right-6">
-                            <span class="bg-gradient-to-br text-white from-primary to-primary-dark px-6 py-3 rounded-full text-xl font-bold shadow-lg">
-                                {{ menu_item.price|intcomma }} LAK
-                            </span>
-                        </div>
+
                     </div>
                 </div>
 
-                <!-- Details Section -->
-                <div class="space-y-8">
-                    
-                    <!-- Header -->
-                    <div class="space-y-4">
-                        <div class="flex items-center space-x-3">
-                            <span class="px-3 py-1 rounded-full text-sm font-medium">
-                                {{ category_display }}
-                            </span>
-                            {% if menu_item.is_featured %}
-                            <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">
-                                <i class="fas fa-star mr-1"></i>Featured
-                            </span>
-                            {% endif %}
-                        </div>
-                        
-                        <h1 class="text-4xl md:text-5xl font-serif font-bold leading-tight">
-                            {{ menu_item.name }}
-                        </h1>
-                        
-                        <div class="flex items-center space-x-4 ">
-                            <div class="flex items-center">
-                                <i class="fas fa-clock mr-2 text-primary"></i>
-                                <span>ສັ່ງໄດ້ຕະຫຼອດມື້</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-utensils mr-2 text-primary"></i>
-                                <span>ປຸງສົດໃໝ່</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Description -->
-                    <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-semibold">ລາຍລະອຽດ</h3>
-                        <p class="text-lg leading-relaxed">
-                            {{ menu_item.description }}
-                        </p>
-                    </div>
-
-                    <!-- Price and Actions -->
-                    <div class="space-y-6 p-6 rounded-2xl shadow-lg border border-gray-100">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <p class="text-sm  mb-1">ລາຄາ</p>
-                                <p class="text-3xl font-bold">
-                                    {{ menu_item.price|intcomma }} <span class="text-lg ">LAK</span>
-                                </p>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-sm  mb-1">ໝວດໝູ່</p>
-                                <p class="text-lg font-semibold text-primary">{{ category_display }}</p>
-                            </div>
-                        </div>
-                        
-                        <!-- Additional Info -->
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="border p-4 rounded-xl text-center">
-                                <i class="fas fa-leaf text-2xl text-green-500 mb-2"></i>
-                                <p class="text-sm font-medium">ວັດຖຸດິບສົດ</p>
-                            </div>
-                            <div class="border p-4 rounded-xl text-center">
-                                <i class="fas fa-award text-2xl text-yellow-500 mb-2"></i>
-                                <p class="text-sm font-medium">ຄຸນນະພາບສູງ</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <!-- Related Items Section -->
@@ -146,7 +71,7 @@
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {% for item in related_items %}
-                    <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
+                    <div class="rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
                         <div class="relative">
                             {% if item.image %}
                             <img src="{{ item.image.url }}" 
@@ -158,7 +83,7 @@
                             </div>
                             {% endif %}
                             <div class="absolute top-3 right-3">
-                                <span class="bg-white/90 px-3 py-1 rounded-full text-sm font-semibold">
+                                <span class="bg-red-500 px-3 py-1 text-white rounded-full text-sm font-semibold">
                                     {{ item.price|intcomma }} LAK
                                 </span>
                             </div>
@@ -198,7 +123,7 @@
                             {% if item.image %}
                             <img src="{{ item.image.url }}" 
                                  alt="{{ item.name }}" 
-                                 class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
                             {% else %}
                             <div class="w-full h-48 bg-gradient-to-br from-primary-light to-primary flex items-center justify-center">
                                 <i class="fas fa-utensils text-2xl opacity-50"></i>
@@ -209,11 +134,7 @@
                                     <i class="fas fa-star mr-1"></i>Featured
                                 </span>
                             </div>
-                            <div class="absolute top-3 right-3">
-                                <span class="bg-yellow-400 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                    {{ item.price|intcomma }} LAK
-                                </span>
-                            </div>
+                           
                         </div>
                         <div class="p-5">
                             <h3 class="font-serif font-bold text-lg mb-2">
