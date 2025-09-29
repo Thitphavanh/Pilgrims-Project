@@ -25,7 +25,7 @@ Pilgrims-Project/
 ├── hotel/
 ├── restaurant/
 │
-├── pilgrims/
+├── config/
 │   ├── __init__.py
 │   ├── asgi.py
 │   ├── urls.py

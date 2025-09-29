@@ -127,9 +127,9 @@
                     <!-- Language Dropdown -->
                     <div id="language-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-primary-dark-dark rounded-lg shadow-lg dark:dark-shadow-lg border border-gray-200 dark:border-gray-600 z-50 opacity-0 transform scale-95 transition-all duration-200">
                         <div class="py-1">
-                            <form action="{% url 'set_language' %}" method="post" class="inline">
+                            <form action="{% url 'set_language' %}" method="post" class="inline" id="lao-language-form">
                                 {% csrf_token %}
-                                <input name="next" type="hidden" value="{{ request.get_full_path }}" />
+                                <input name="next" type="hidden" value="/" id="lao-next-input" />
                                 <button type="submit" name="language" value="lo" class="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-primary-dark flex items-center transition-colors duration-200">
                                     <img src="https://flagcdn.com/w20/la.png" alt="ລາວ" class="w-5 h-3 mr-3 rounded">
                                     <span>ລາວ (Lao)</span>
@@ -138,9 +138,9 @@
                                     {% endif %}
                                 </button>
                             </form>
-                            <form action="{% url 'set_language' %}" method="post" class="inline">
+                            <form action="{% url 'set_language' %}" method="post" class="inline" id="english-language-form">
                                 {% csrf_token %}
-                                <input name="next" type="hidden" value="{{ request.get_full_path }}" />
+                                <input name="next" type="hidden" value="/en/" id="english-next-input" />
                                 <button type="submit" name="language" value="en" class="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-primary-dark flex items-center transition-colors duration-200">
                                     <img src="https://flagcdn.com/w20/us.png" alt="English" class="w-5 h-3 mr-3 rounded">
                                     <span>English</span>
@@ -466,6 +466,36 @@
                     }
                 });
             }
+
+            // Update language form next parameters based on current URL
+            function updateLanguageFormUrls() {
+                const currentPath = window.location.pathname;
+                const laoNextInput = document.getElementById('lao-next-input');
+                const englishNextInput = document.getElementById('english-next-input');
+
+                if (laoNextInput && englishNextInput) {
+                    // For switching to Lao (default language, no prefix)
+                    if (currentPath.startsWith('/en/')) {
+                        // Remove /en prefix for Lao
+                        laoNextInput.value = currentPath.substring(3) || '/';
+                    } else {
+                        // Already on Lao version or no language prefix
+                        laoNextInput.value = currentPath;
+                    }
+
+                    // For switching to English (/en prefix)
+                    if (currentPath.startsWith('/en/')) {
+                        // Already on English version
+                        englishNextInput.value = currentPath;
+                    } else {
+                        // Add /en prefix for English
+                        englishNextInput.value = '/en' + (currentPath === '/' ? '' : currentPath);
+                    }
+                }
+            }
+
+            // Update URLs when page loads
+            updateLanguageFormUrls();
         });
         </script>
     {% block extra_js %}{% endblock %}

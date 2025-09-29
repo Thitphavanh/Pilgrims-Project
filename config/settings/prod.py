@@ -1,4 +1,4 @@
-# pilgrims/settings/prod.py
+# config/settings/prod.py
 
 from .base import *
 

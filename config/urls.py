@@ -17,7 +17,7 @@
 #     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
-# pilgrims/urls.py
+# config/urls.py
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
@@ -36,7 +36,7 @@ urlpatterns += i18n_patterns(
     path("hotel/", include("hotel.urls")),
     path("menu/", include("restaurant.urls")),
     path("coffee/", include("coffee.urls")),
-    prefix_default_language=False,  # Don't add /en/ prefix for default language
+    prefix_default_language=False,  # Don't add /lo/ prefix for default language (Lao)
 )
 
 if settings.DEBUG:

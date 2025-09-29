@@ -13,7 +13,7 @@ services:
     env_file:
       - .env
     environment:
-      - DJANGO_SETTINGS_MODULE=pilgrims.settings.dev
+      - DJANGO_SETTINGS_MODULE=config.settings.dev
     depends_on:
       - db
 

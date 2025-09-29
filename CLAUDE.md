@@ -53,7 +53,7 @@ docker-compose exec web python manage.py test restaurant
 ## Architecture Overview
 
 ### Multi-App Django Structure
-- **pilgrims/**: Main project with split settings (dev/prod/base)
+- **config/**: Main project with split settings (dev/prod/base)
 - **home/**: Landing page, contact forms, main navigation
 - **hotel/**: Complex booking system with rooms, amenities, and review aggregation
 - **restaurant/**: Menu management with multi-category support
@@ -84,8 +84,8 @@ docker-compose exec web python manage.py test restaurant
 - URL patterns use `i18n_patterns` for language prefixes
 
 ### Settings Configuration
-- **Base settings**: Common configuration in `pilgrims/settings/base.py`
-- **Development**: `DJANGO_SETTINGS_MODULE=pilgrims.settings.dev`
+- **Base settings**: Common configuration in `config/settings/base.py`
+- **Development**: `DJANGO_SETTINGS_MODULE=config.settings.dev`
 - **Production**: Uses production settings with Gunicorn
 - PostgreSQL database with environment variable configuration
 

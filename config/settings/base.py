@@ -1,4 +1,4 @@
-# pilgrims/settings/base.py
+# config/settings/base.py
 
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
@@ -44,7 +44,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "pilgrims.urls"
+ROOT_URLCONF = "config.urls"
 
 TEMPLATES = [
     {
@@ -64,7 +64,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "pilgrims.wsgi.application"
+WSGI_APPLICATION = "config.wsgi.application"
 
 # Database Configuration (now using PostgreSQL)
 DATABASES = {
@@ -92,6 +92,7 @@ LANGUAGES = [("en", _("English")), ("lo", _("ລາວ"))]
 LOCALE_PATHS = [BASE_DIR / "locale"]
 TIME_ZONE = "Asia/Bangkok" # Updated for your likely location
 USE_I18N = True
+USE_L10N = True
 USE_TZ = True
 
 # Static and Media files

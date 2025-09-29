@@ -1,4 +1,4 @@
-# pilgrims/settings/dev.py
+# config/settings/dev.py
 
 from .base import *
 
