@@ -143,6 +143,7 @@ class RoomAdmin(admin.ModelAdmin):
     list_display = [
         "id",
         "room_type",
+        "slug",
         "availability_status_display",
         "image_preview",
         "last_cleaned",
@@ -154,8 +155,9 @@ class RoomAdmin(admin.ModelAdmin):
         "is_out_of_order",
         "last_cleaned",
     ]
-    search_fields = ["room_type__name", "maintenance_notes"]
+    search_fields = ["room_type__name", "maintenance_notes", "slug"]
     ordering = ["room_type", "id"]
+    readonly_fields = ["slug"]
 
     inlines = [RoomImageInline, RoomAmenityInline]
 
@@ -164,12 +166,21 @@ class RoomAdmin(admin.ModelAdmin):
 
     amenities_count.short_description = "Amenities"
 
+    def slug_display(self, obj):
+        if obj.slug:
+            return obj.slug
+        else:
+            return "Auto-generated on save"
+
+    slug_display.short_description = "Slug"
+
     fieldsets = (
         (
             "Basic Information",
             {
                 "fields": (
                     "room_type",
+                    "slug",
                     "check_in_date",
                     "check_out_date",
                 )
@@ -229,6 +240,7 @@ class RoomAdmin(admin.ModelAdmin):
         "mark_out_of_order",
         "mark_operational",
         "mark_cleaned_today",
+        "regenerate_slugs",
     ]
 
     def mark_out_of_order(self, request, queryset):
@@ -250,6 +262,29 @@ class RoomAdmin(admin.ModelAdmin):
         self.message_user(request, f"{count} rooms marked as cleaned today.")
 
     mark_cleaned_today.short_description = "Mark as cleaned today"
+
+    def regenerate_slugs(self, request, queryset):
+        from django.utils.text import slugify
+
+        updated_count = 0
+        for room in queryset:
+            if room.room_type:
+                base_slug = slugify(f"{room.room_type.name}")
+                slug = f"{base_slug}-{room.id}"
+                counter = 1
+
+                # Ensure uniqueness
+                while Room.objects.filter(slug=slug).exclude(pk=room.pk).exists():
+                    slug = f"{base_slug}-{room.id}-{counter}"
+                    counter += 1
+
+                room.slug = slug
+                room.save()
+                updated_count += 1
+
+        self.message_user(request, f"Successfully regenerated slugs for {updated_count} rooms.")
+
+    regenerate_slugs.short_description = "Regenerate slugs for selected rooms"
 
 
 @admin.register(Amenity)

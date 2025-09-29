@@ -181,11 +181,11 @@ def rooms_list_view(request):
     return render(request, "hotel/rooms-list.html", context)
 
 
-def room_detail_view(request, id):
+def room_detail_view(request, slug):
     """Display detailed information about a specific room"""
 
     # Get the room with related data
-    room = get_object_or_404(Room, id=id)
+    room = get_object_or_404(Room, slug=slug)
 
     room_images = room.room_images.all().order_by("-is_primary", "id")
 
@@ -285,7 +285,7 @@ def review(request):
     if not featured_reviews:
         featured_reviews = (
             GuestReview.objects.filter(
-                is_active=True, platform__is_active=True, rating__gte=4.5
+                is_active=True, platform__is_active=True, rating__gte=9.0
             )
             .select_related("platform")
             .order_by("-rating", "-review_date")[:3]
@@ -303,14 +303,14 @@ def review(request):
 
 
 @require_http_methods(["POST"])
-def room_booking_view(request, room_id):
+def room_booking_view(request, slug):
     """Handle room booking form submission"""
 
-    room = get_object_or_404(Room, id=room_id)
+    room = get_object_or_404(Room, slug=slug)
 
     if not room.is_available_for_booking:
         messages.error(request, "Sorry, this room is not available for booking.")
-        return redirect("room-detail-page", room_id=room_id)
+        return redirect("room-detail-page", slug=slug)
 
     # Get form data
     check_in_str = request.POST.get("check_in")
@@ -325,22 +325,22 @@ def room_booking_view(request, room_id):
 
         if check_in < timezone.now().date():
             messages.error(request, "Check-in date cannot be in the past.")
-            return redirect("room-detail-page", room_id=room_id)
+            return redirect("room-detail-page", slug=slug)
 
         if check_out <= check_in:
             messages.error(request, "Check-out date must be after check-in date.")
-            return redirect("room-detail-page", room_id=room_id)
+            return redirect("room-detail-page", slug=slug)
 
         if int(guests) > room.room_type.capacity:
             messages.error(
                 request,
                 f"This room can accommodate maximum {room.room_type.capacity} guests.",
             )
-            return redirect("room-detail-page", room_id=room_id)
+            return redirect("room-detail-page", slug=slug)
 
     except (ValueError, TypeError):
         messages.error(request, "Please provide valid dates and guest count.")
-        return redirect("room-detail-page", room_id=room_id)
+        return redirect("room-detail-page", slug=slug)
 
     # Calculate booking details
     nights = (check_out - check_in).days
@@ -394,13 +394,13 @@ def room_booking_view(request, room_id):
         f"We will contact you shortly to confirm your reservation.",
     )
 
-    return redirect("room-detail-page", room_id=room_id)
+    return redirect("room-detail-page", slug=slug)
 
 
 @require_http_methods(["POST"])
-def room_check_in_view(request, room_id):
+def room_check_in_view(request, slug):
     """Handle room check-in"""
-    room = get_object_or_404(Room, id=room_id)
+    room = get_object_or_404(Room, slug=slug)
 
     # Get form data
     check_in_date = request.POST.get("check_in_date", "").strip()
@@ -409,7 +409,7 @@ def room_check_in_view(request, room_id):
     # Validate required fields
     if not check_in_date:
         messages.error(request, "Check-in date is required.")
-        return redirect("room-detail-page", room_id=room_id)
+        return redirect("room-detail-page", slug=slug)
 
     # Attempt check-in
     try:
@@ -421,13 +421,13 @@ def room_check_in_view(request, room_id):
     except ValueError as e:
         messages.error(request, str(e))
 
-    return redirect("room-detail-page", room_id=room_id)
+    return redirect("room-detail-page", slug=slug)
 
 
 @require_http_methods(["POST"])
-def room_check_out_view(request, room_id):
+def room_check_out_view(request, slug):
     """Handle room check-out"""
-    room = get_object_or_404(Room, id=room_id)
+    room = get_object_or_404(Room, slug=slug)
 
     # Attempt check-out
     try:
@@ -439,7 +439,7 @@ def room_check_out_view(request, room_id):
     except ValueError as e:
         messages.error(request, str(e))
 
-    return redirect("room-detail-page", room_id=room_id)
+    return redirect("room-detail-page", slug=slug)
 
 
 def room_availability_api(request):

@@ -2,9 +2,11 @@
 
 {% load static %}
 
-{% load humanize %}
+{% load lao_filters %}
 
-{% block title %}Restaurant & Dining - Project Pilgrims{% endblock %}
+{% load i18n %}
+
+{% block title %}{% trans "Restaurant & Dining - Project Pilgrims" %}{% endblock %}
 
 {% block extra_css %}
 <style>
@@ -61,13 +63,13 @@
         <div class="container mx-auto px-4 h-full flex items-center justify-center relative z-10">
             <div class="text-center max-w-3xl">
                 <h1 class="text-4xl md:text-5xl font-serif font-bold leading-tight mb-4">
-                    **ການເດີນທາງດ້ານອາຫານ**
+                    **{% trans "ການເດີນທາງດ້ານອາຫານ" %}**
                 </h1>
                 <p class="text-xl mb-8">
-                     ສຳຜັດຄວາມລ້ຳເລີດຂອງອາຫານໃນຮ້ານອາຫານສຸດຫຼູຂອງພວກເຮົາ ໃນທຸກໆຈານເຮົາໄດ້ໃສ່ເລື່ອງລາວເຂົ້າໄປ.
+                     {% trans "ສຳຜັດຄວາມລ້ຳເລີດຂອງອາຫານໃນຮ້ານອາຫານສຸດຫຼູຂອງພວກເຮົາ ໃນທຸກໆຈານເຮົາໄດ້ໃສ່ເລື່ອງລາວເຂົ້າໄປ." %}
                 </p>
                 <a href="#menu" class="bg-primary hover:bg-primary-dark font-medium px-6 py-3 rounded-md text-center transition duration-300">
-                    ເບິ່ງເມນູຂອງພວກເຮົາ
+                    {% trans "ເບິ່ງເມນູຂອງພວກເຮົາ" %}
                 </a>
             </div>
         </div>
@@ -80,11 +82,11 @@
         <!-- Animated section header with enhanced typography -->
         <div class="text-center mb-12 md:mb-16 animate-on-scroll opacity-0 translate-y-8">
             <div class="inline-block">
-                <span class="inline-block font-medium mb-2 tracking-wider text-sm uppercase">CULINARY DELIGHTS</span>
-                <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 leading-tight">ເມນູຂອງພວກເຮົາ</h2>
+                <span class="inline-block font-medium mb-2 tracking-wider text-sm uppercase">{% trans "CULINARY DELIGHTS" %}</span>
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 leading-tight">{% trans "ເມນູຂອງພວກເຮົາ" %}</h2>
                 <div class="w-32 h-1.5 bg-gradient-to-r from-primary to-primary-dark mx-auto mb-8 rounded-full"></div>
                 <p class="max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
-                    ສຳຫຼວດເມນູອາຫານຫຼາກຫຼາຍຈາກທົ່ວໂລກ ທີ່ປຸງແຕ່ງດ້ວຍຄວາມຕັ້ງໃຈແລະວັດຖຸດິບຊັ້ນດີ
+                    {% trans "ສຳຫຼວດເມນູອາຫານຫຼາກຫຼາຍຈາກທົ່ວໂລກ ທີ່ປຸງແຕ່ງດ້ວຍຄວາມຕັ້ງໃຈແລະວັດຖຸດິບຊັ້ນດີ" %}
                 </p>
             </div>
         </div>
@@ -94,7 +96,7 @@
             <div class="relative mb-8">
                 <!-- Mobile scroll indicator -->
                 <div class="absolute -top-8 left-0 right-0 text-center text-sm text-gray-500 md:hidden">
-                    <span class="scroll-indicator">ເລື່ອນເບິ່ງເມນູເພີ່ມເຕີມ <i class="fas fa-arrow-right text-primary ml-2"></i></span>
+                    <span class="scroll-indicator">{% trans "ເລື່ອນເບິ່ງເມນູເພີ່ມເຕີມ" %} <i class="fas fa-arrow-right text-primary ml-2"></i></span>
                 </div>
                 
                 <!-- Enhanced Menu Tabs Template -->
@@ -111,7 +113,7 @@
                                 {% else %}
                                 <i class="fas fa-coffee mr-3 text-lg"></i>
                                 {% endif %}
-                                <span>Breakfast</span>
+                                <span>{% trans "Breakfast" %}</span>
                             </div>
                         </button>
                         
@@ -125,7 +127,7 @@
                                 {% else %}
                                 <i class="fas fa-mug-hot mr-3 text-lg"></i>
                                 {% endif %}
-                                <span>Coffee</span>
+                                <span>{% trans "Coffee" %}</span>
                             </div>
                         </button>
                         
@@ -139,7 +141,7 @@
                                 {% else %}
                                 <i class="fas fa-pizza-slice mr-3 text-lg"></i>
                                 {% endif %}
-                                <span>Pizza</span>
+                                <span>{% trans "Pizza" %}</span>
                             </div>
                         </button>
                         
@@ -153,7 +155,7 @@
                                 {% else %}
                                 <i class="fas fa-hamburger mr-3 text-lg"></i>
                                 {% endif %}
-                                <span>American</span>
+                                <span>{% trans "American" %}</span>
                             </div>
                         </button>
                         
@@ -167,7 +169,7 @@
                                 {% else %}
                                 <i class="fas fa-pepper-hot mr-3 text-lg"></i>
                                 {% endif %}
-                                <span>Indian</span>
+                                <span>{% trans "Indian" %}</span>
                             </div>
                         </button>
                         
@@ -181,7 +183,7 @@
                                 {% else %}
                                 <i class="fas fa-pepper-hot mr-3 text-lg"></i>
                                 {% endif %}
-                                <span>Mexican</span>
+                                <span>{% trans "Mexican" %}</span>
                             </div>
                         </button>
                         
@@ -195,7 +197,7 @@
                                 {% else %}
                                 <i class="fas fa-utensils mr-3 text-lg"></i>
                                 {% endif %}
-                                <span>Local Specialties</span>
+                                <span>{% trans "Local Specialties" %}</span>
                             </div>
                         </button>
                         
@@ -209,7 +211,7 @@
                                 {% else %}
                                 <i class="fas fa-leaf mr-3 text-lg"></i>
                                 {% endif %}
-                                <span>Soup & Salad</span>
+                                <span>{% trans "Soup & Salad" %}</span>
                             </div>
                         </button>
 
@@ -223,7 +225,7 @@
                                 {% else %}
                                 <i class="fas fa-ice-cream mr-3 text-lg"></i>
                                 {% endif %}
-                                <span>Desserts</span>
+                                <span>{% trans "Desserts" %}</span>
                             </div>
                         </button>
 
@@ -237,7 +239,7 @@
                                 {% else %}
                                 <i class="fas fa-glass-martini-alt mr-3 text-lg"></i>
                                 {% endif %}
-                                <span>Drinks</span>
+                                <span>{% trans "Drinks" %}</span>
                             </div>
                         </button>
                         
@@ -248,7 +250,7 @@
             <!-- Enhanced Category descriptions -->
             <div class="text-center my-8 min-h-16">
                 <div id="breakfast-description" class="category-desc active">
-                    <p class="italic text-lg">ລີ່ມຕົ້ນວັນຂອງທ່ານດ້ວຍເມນູອາຫານເຊົ້າສຸດແຊບຂອງພວກເຮົາ</p>
+                    <p class="italic text-lg">{% trans "ເລີ່ມຕົ້ນວັນຂອງທ່ານດ້ວຍເມນູອາຫານເຊົ້າສຸດແຊບຂອງພວກເຮົາ" %}</p>
                 </div>
                 <div id="coffee-description" class="category-desc hidden">
                     <p class="italic text-lg">ເຄື່ອງດື່ມກາເຟທີ່ຖືກຊົງແບບຊຳນານ ໂດຍໃຊ້ເມັດກາເຟຊັ່ນນຳຈາກທົ່ວໂລກ</p>
@@ -799,7 +801,7 @@
                         <div class="flex items-start justify-between">
                             <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">{{ item.name }}</h3>
                             <div class="text-right">
-                                <div class="text-2xl font-bold text-primary">{{ item.price|intcomma }} LAK</div>
+                                <div class="text-2xl font-bold text-primary">{{ item.price|lao_currency }}</div>
                             </div>
                         </div>
 

@@ -1,8 +1,25 @@
 {% extends 'base.html' %}
 
-{% load humanize %}
+{% load lao_filters %}
 
 {% block title %}{{ coffee.name }} - ຮ້ານກາເຟ{% endblock %}
+
+{% block extra_css %}
+<style>
+    .scrollbar-hide {
+        -ms-overflow-style: none;  /* Internet Explorer 10+ */
+        scrollbar-width: none;  /* Firefox */
+    }
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;  /* Safari and Chrome */
+    }
+
+    /* Optional: Add smooth scroll behavior for better UX */
+    .scrollbar-hide {
+        scroll-behavior: smooth;
+    }
+</style>
+{% endblock %}
 
 {% block content %}
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -13,101 +30,148 @@
             <li class="">/</li>
             <li><a href="{% url 'coffee_list' %}" class="text-amber-600 hover:text-amber-700">ກາເຟທັງໝົດ</a></li>
             <li class="">/</li>
+            {% if coffee.categories.exists %}
+                {% with first_category=coffee.categories.first %}
+                <li><a href="{% url 'category' first_category.id %}" class="text-amber-600 hover:text-amber-700">{{ first_category.name }}</a></li>
+                {% endwith %}
+            {% else %}
+                <li class="text-gray-500">ໝວດໝູ່ກາເຟ</li>
+            {% endif %}
+            <li class="">/</li>
             <li class="">{{ coffee.name }}</li>
         </ol>
     </nav>
     
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
         
-        <!-- Coffee Image Gallery -->
-        <div x-data="imageGallery()" class="space-y-4">
-            <!-- Main Image Display -->
-            <div class="aspect-square bg-gradient-to-br from-amber-200 to-amber-400 rounded-lg flex items-center justify-center relative overflow-hidden">
-                <!-- Show image if activeImage exists -->
-                <template x-if="activeImage">
-                    <img :src="activeImage" 
+        <!-- Coffee Image Gallery - Taobao Style -->
+        <div x-data="imageGallery()" class="flex space-x-3">
+            <!-- Vertical Thumbnail Gallery (Left Side) - Taobao Style -->
+            <div class="relative flex-shrink-0" x-show="totalImages > 1">
+                <!-- Thumbnail container with smooth scroll -->
+                <div class="relative h-96 w-16 overflow-hidden">
+                    <div class="flex flex-col space-y-1 transition-transform duration-300 ease-out"
+                         id="thumbnail-container"
+                         :style="{ transform: 'translateY(-' + (scrollOffset * 68) + 'px)' }">
+                        <!-- Main product image thumbnail -->
+                        {% if coffee.images %}
+                        <div class="flex-shrink-0 aspect-square w-16 h-16 bg-white border border-gray-200 rounded cursor-pointer overflow-hidden transition-all duration-200 hover:border-amber-400 hover:shadow-md"
+                             :class="{ 'border-amber-500 shadow-md ring-2 ring-amber-200': activeImage === '{{ coffee.images.url }}' }"
+                             @click="setActiveImage('{{ coffee.images.url }}', 0)"
+                             @mouseenter="setActiveImage('{{ coffee.images.url }}', 0)">
+                            <img src="{{ coffee.images.url }}"
+                                 alt="{{ coffee.name }}"
+                                 class="w-full h-full object-cover">
+                        </div>
+                        {% endif %}
+
+                        <!-- Gallery images thumbnails -->
+                        {% for gallery_image in coffee.gallery_images.all %}
+                        <div class="flex-shrink-0 aspect-square w-16 h-16 bg-white border border-gray-200 rounded cursor-pointer overflow-hidden transition-all duration-200 hover:border-amber-400 hover:shadow-md"
+                             :class="{ 'border-amber-500 shadow-md ring-2 ring-amber-200': activeImage === '{{ gallery_image.image.url }}' }"
+                             @click="setActiveImage('{{ gallery_image.image.url }}', {{ forloop.counter }})"
+                             @mouseenter="setActiveImage('{{ gallery_image.image.url }}', {{ forloop.counter }})">
+                            <img src="{{ gallery_image.image.url }}"
+                                 alt="{{ gallery_image.alt_text|default:coffee.name }}"
+                                 class="w-full h-full object-cover">
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Smooth scroll buttons - Taobao style -->
+                <template x-if="canScrollUp">
+                    <button @click="scrollUp()"
+                            class="absolute -top-1 left-1/2 transform -translate-x-1/2 bg-white shadow-lg border border-gray-200 rounded-full w-6 h-6 flex items-center justify-center hover:bg-gray-50 hover:shadow-xl transition-all duration-200 z-10">
+                        <i class="fas fa-chevron-up text-gray-500 text-xs"></i>
+                    </button>
+                </template>
+
+                <template x-if="canScrollDown">
+                    <button @click="scrollDown()"
+                            class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 bg-white shadow-lg border border-gray-200 rounded-full w-6 h-6 flex items-center justify-center hover:bg-gray-50 hover:shadow-xl transition-all duration-200 z-10">
+                        <i class="fas fa-chevron-down text-gray-500 text-xs"></i>
+                    </button>
+                </template>
+            </div>
+
+            <!-- Single thumbnail for single image -->
+            <div x-show="totalImages === 1" class="flex-shrink-0">
+                {% if coffee.images %}
+                <div class="aspect-square w-16 h-16 bg-white border-2 border-amber-500 rounded overflow-hidden shadow-md ring-2 ring-amber-200">
+                    <img src="{{ coffee.images.url }}"
                          alt="{{ coffee.name }}"
                          class="w-full h-full object-cover">
-                </template>
-                
-                <!-- Fallback icon when no image -->
-                <template x-if="!activeImage">
-                    <i class="fas fa-coffee text-8xl opacity-30"></i>
-                </template>
-                
-                <!-- Badges -->
-                <div class="absolute top-4 left-4 space-y-2">
-                    {% if coffee.is_fresh %}
-                    <div class="bg-green-500 px-3 py-1 rounded-full text-sm font-semibold">
-                        <i class="fas fa-leaf mr-1"></i>ສົດໃໝ່
-                    </div>
-                    {% endif %}
-                    
-                    {% if coffee.stock_quantity < 10 %}
-                    <div class="bg-red-500 px-3 py-1 rounded-full text-sm font-semibold">
-                        <i class="fas fa-exclamation-triangle mr-1"></i>ເຫຼືອໜ້ອຍ
-                    </div>
-                    {% endif %}
-                </div>
-                
-                <!-- Rating Badge -->
-                {% if avg_rating > 0 %}
-                <div class="absolute top-4 right-4 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-sm font-semibold">
-                    <i class="fas fa-star mr-1"></i>{{ avg_rating|floatformat:1 }}
                 </div>
                 {% endif %}
             </div>
-            
-            <!-- Thumbnail Gallery -->
-            <div class="grid grid-cols-4 gap-2">
-                <!-- Main product image thumbnail -->
-                {% if coffee.images %}
-                <div class="aspect-square bg-amber-100 rounded-lg overflow-hidden cursor-pointer hover:ring-2 hover:ring-amber-500 transition"
-                     :class="{ 'ring-2 ring-amber-600': activeImage === '{{ coffee.images.url }}' }"
-                     @click="setActiveImage('{{ coffee.images.url }}')">
-                    <img src="{{ coffee.images.url }}" 
-                         alt="{{ coffee.name }}"
-                         class="w-full h-full object-cover">
-                </div>
-                {% endif %}
-                
-                <!-- Gallery images thumbnails -->
-                {% for gallery_image in coffee.gallery_images.all %}
-                <div class="aspect-square bg-amber-100 rounded-lg overflow-hidden cursor-pointer hover:ring-2 hover:ring-amber-500 transition"
-                     :class="{ 'ring-2 ring-amber-600': activeImage === '{{ gallery_image.image.url }}' }"
-                     @click="setActiveImage('{{ gallery_image.image.url }}')">
-                    <img src="{{ gallery_image.image.url }}" 
-                         alt="{{ gallery_image.alt_text|default:coffee.name }}"
-                         class="w-full h-full object-cover">
-                </div>
-                {% endfor %}
-                
-                <!-- Calculate remaining slots and fill with placeholders -->
-                {% with total_images=coffee.gallery_images.count %}
-                    {% if coffee.images %}
-                        {% with used_slots=total_images|add:1 %}
-                            {% if used_slots < 4 %}
-                                {% for i in "123"|slice:":3" %}
-                                    {% if forloop.counter <= 4|add:used_slots %}
-                                    <div class="aspect-square bg-gray-100 rounded-lg flex items-center justify-center opacity-50">
-                                        <i class="fas fa-plus  text-xl"></i>
-                                    </div>
-                                    {% endif %}
-                                {% endfor %}
-                            {% endif %}
-                        {% endwith %}
-                    {% else %}
-                        {% if total_images < 4 %}
-                            {% for i in "1234"|slice:":4" %}
-                                {% if forloop.counter <= 4 %}
-                                <div class="aspect-square bg-gray-100 rounded-lg flex items-center justify-center opacity-50">
-                                    <i class="fas fa-plus  text-xl"></i>
-                                </div>
-                                {% endif %}
-                            {% endfor %}
+
+            <!-- Main Image Display (Right Side) - Taobao Style -->
+            <div class="flex-1 relative group">
+                <div class="aspect-square bg-white border border-gray-200 rounded-lg flex items-center justify-center relative overflow-hidden shadow-sm">
+                    <!-- Show image if activeImage exists -->
+                    <template x-if="activeImage">
+                        <img :src="activeImage"
+                             alt="{{ coffee.name }}"
+                             class="w-full h-full object-cover transition-all duration-300"
+                             x-transition:enter="transition ease-out duration-300"
+                             x-transition:enter-start="opacity-0 transform scale-105"
+                             x-transition:enter-end="opacity-100 transform scale-100">
+                    </template>
+
+                    <!-- Fallback icon when no image -->
+                    <template x-if="!activeImage">
+                        <i class="fas fa-coffee text-8xl text-gray-300"></i>
+                    </template>
+
+                    <!-- Subtle navigation arrows - only show on hover -->
+                    <template x-if="totalImages > 1">
+                        <div class="absolute inset-0 flex items-center justify-between p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                            <button @click="previousImage()"
+                                    class="bg-white bg-opacity-90 text-gray-700 rounded-full w-8 h-8 flex items-center justify-center hover:bg-opacity-100 hover:shadow-md transition-all duration-200 backdrop-blur-sm">
+                                <i class="fas fa-chevron-left text-sm"></i>
+                            </button>
+                            <button @click="nextImage()"
+                                    class="bg-white bg-opacity-90 text-gray-700 rounded-full w-8 h-8 flex items-center justify-center hover:bg-opacity-100 hover:shadow-md transition-all duration-200 backdrop-blur-sm">
+                                <i class="fas fa-chevron-right text-sm"></i>
+                            </button>
+                        </div>
+                    </template>
+
+                    <!-- Clean image counter -->
+                    <template x-if="totalImages > 1">
+                        <div class="absolute bottom-3 right-3 bg-black bg-opacity-60 text-white px-2 py-1 rounded text-xs backdrop-blur-sm">
+                            <span x-text="currentImageIndex + 1"></span>/<span x-text="totalImages"></span>
+                        </div>
+                    </template>
+
+                    <!-- Badges positioned cleanly -->
+                    <div class="absolute top-3 left-3 space-y-1">
+                        {% if coffee.is_fresh %}
+                        <div class="bg-green-500 text-white px-2 py-1 rounded text-xs font-medium shadow-sm">
+                            <i class="fas fa-leaf mr-1"></i>ສົດໃໝ່
+                        </div>
                         {% endif %}
+
+                        {% if coffee.stock_quantity < 10 %}
+                        <div class="bg-red-500 text-white px-2 py-1 rounded text-xs font-medium shadow-sm">
+                            <i class="fas fa-exclamation-triangle mr-1"></i>ເຫຼືອໜ້ອຍ
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Rating Badge -->
+                    {% if avg_rating > 0 %}
+                    <div class="absolute top-3 right-3 bg-yellow-400 text-yellow-900 px-2 py-1 rounded text-xs font-medium shadow-sm">
+                        <i class="fas fa-star mr-1"></i>{{ avg_rating|floatformat:1 }}
+                    </div>
                     {% endif %}
-                {% endwith %}
+                </div>
+
+                <!-- Zoom hint -->
+                <div class="absolute bottom-3 left-3 bg-black bg-opacity-60 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200 backdrop-blur-sm">
+                    <i class="fas fa-search-plus mr-1"></i>Click to zoom
+                </div>
             </div>
         </div>
         
@@ -135,10 +199,10 @@
             <!-- Price -->
             <div class="border-t border-gray-200 pt-6">
                 <div class="flex items-baseline space-x-4">
-                    <span class="text-4xl font-bold text-amber-600">{{ coffee.price|intcomma }} LAK</span>
+                    <span class="text-4xl font-bold text-amber-600">{{ coffee.price|lao_currency }}</span>
                     <span class="text-gray-500">{{ coffee.weight }}{{ coffee.weight_unit }}</span>
                 </div>
-                <p class="text-sm text-gray-500 mt-1">{{ coffee.price_per_unit|intcomma }} LAK/100g</p>
+                <p class="text-sm text-gray-500 mt-1">{{ coffee.price_per_unit|lao_currency }}/100g</p>
             </div>
             
             <!-- Specifications -->
@@ -231,13 +295,43 @@
             
             <!-- Actions -->
             <div class="border-t border-gray-200 pt-6 space-y-4">
-    
-                
-                <div class="flex space-x-4 text-sm">
-                    <button class="flex items-center  hover:text-amber-600 transition"
-                            onclick="shareProduct()">
-                        <i class="fas fa-share-alt mr-1"></i>ແຊຣ໌
+                <!-- WhatsApp Order Button -->
+                <div class="space-y-3">
+                    <button onclick="orderViaWhatsApp('{{ coffee.name }}', '{{ coffee.price|floatformat:0 }}', '{{ coffee.weight }}{{ coffee.weight_unit }}')"
+                            class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2 shadow-md hover:shadow-lg transform hover:scale-105">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                        <span>ສັ່ງຊື້ຜ່ານ WhatsApp</span>
                     </button>
+
+                    <!-- Secondary action buttons -->
+                    <div class="grid grid-cols-2 gap-3">
+                        <button class="flex items-center justify-center space-x-2 border-2 border-amber-500 text-amber-600 hover:bg-amber-500 hover:text-white font-medium py-2 px-4 rounded-lg transition-all duration-200"
+                                onclick="addToWishlist('{{ coffee.slug }}')">
+                            <i class="fas fa-heart text-sm"></i>
+                            <span>ຖືກໃຈ</span>
+                        </button>
+
+                        <button class="flex items-center justify-center space-x-2 border-2 border-gray-300 text-gray-600 hover:bg-gray-100 font-medium py-2 px-4 rounded-lg transition-all duration-200"
+                                onclick="shareProduct()">
+                            <i class="fas fa-share-alt text-sm"></i>
+                            <span>ແຊຣ໌</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stock Status -->
+                <div class="flex items-center space-x-2 text-sm">
+                    {% if coffee.stock_quantity > 0 %}
+                        <div class="flex items-center text-green-600">
+                            <i class="fas fa-check-circle mr-1"></i>
+                            <span>ມີສິນຄ້າພ້ອມ ({{ coffee.stock_quantity }} ຖົງ)</span>
+                        </div>
+                    {% else %}
+                        <div class="flex items-center text-red-600">
+                            <i class="fas fa-times-circle mr-1"></i>
+                            <span>ສິນຄ້າໝົດ</span>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -389,50 +483,343 @@
     
     <!-- Similar Coffees -->
     {% if similar_coffees %}
-    <div class="border-t border-gray-200 pt-12">
-        <h3 class="text-2xl font-bold mb-8">ກາເຟທີ່ຄ້າຍຄືກັນ</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {% for similar_coffee in similar_coffees %}
-            <div class="rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                <div class="h-96 bg-gradient-to-br from-amber-200 to-amber-400 flex items-center justify-center overflow-hidden">
-                    {% if similar_coffee.images %}
-                        <img src="{{ similar_coffee.images.url }}" 
-                             alt="{{ similar_coffee.name }}"
-                             class="w-full h-full object-cover">
-                    {% else %}
-                        <i class="fas fa-coffee text-4xl opacity-30"></i>
-                    {% endif %}
+    <div class="border-t border-gray-200 dark:border-gray-700 pt-12 mt-12">
+        <div class="text-center mb-12">
+            <div class="flex items-center justify-center mb-4">
+                <div class="h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent flex-1"></div>
+                <div class="px-6">
+                    <i class="fas fa-coffee text-3xl text-amber-600 mb-2"></i>
                 </div>
-                <div class="p-4">
-                    <h4 class="font-semibold mb-2 line-clamp-2">{{ similar_coffee.name }}</h4>
-                    <p class="text-sm  mb-2">{{ similar_coffee.coffee_bean.name }}</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-lg font-bold text-amber-600">₭{{ similar_coffee.price|floatformat:0 }}</span>
+                <div class="h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent flex-1"></div>
+            </div>
+            <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">ກາເຟທີ່ຄ້າຍຄືກັນ</h3>
+            <p class="text-gray-600 dark:text-gray-400">ຄົ້ນພົບກາເຟທີ່ມີລົດຊາດໃກ້ຄຽງກັນ</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {% for similar_coffee in similar_coffees %}
+            <div class="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700">
+                <!-- Product Badge -->
+                <div class="absolute top-4 left-4 z-10">
+                    <span class="bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                        ແນະນໍາ
+                    </span>
+                </div>
+
+                <!-- Image Container -->
+                <div class="relative h-64 bg-gradient-to-br from-amber-100 via-amber-200 to-amber-300 dark:from-amber-800 dark:via-amber-700 dark:to-amber-600 overflow-hidden">
+                    {% if similar_coffee.images %}
+                        <img src="{{ similar_coffee.images.url }}"
+                             alt="{{ similar_coffee.name }}"
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    {% else %}
+                        <div class="flex items-center justify-center h-full">
+                            <div class="text-center">
+                                <i class="fas fa-coffee text-6xl text-amber-600 dark:text-amber-300 opacity-60 mb-2"></i>
+                                <p class="text-amber-700 dark:text-amber-200 text-sm font-medium">{{ similar_coffee.name }}</p>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <!-- Overlay gradient -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+
+                <!-- Content -->
+                <div class="p-6">
+                    <div class="mb-4">
+                        <h4 class="font-bold text-lg text-gray-900 dark:text-white mb-2 line-clamp-2 group-hover:text-amber-600 transition-colors duration-300">
+                            {{ similar_coffee.name }}
+                        </h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-3 flex items-center">
+                            <i class="fas fa-seedling mr-2 text-green-500"></i>
+                            {{ similar_coffee.coffee_bean.name }}
+                        </p>
+                    </div>
+
+                    <!-- Rating & Reviews -->
+                    {% if similar_coffee.avg_rating %}
+                    <div class="flex items-center mb-4">
+                        <div class="flex items-center">
+                            {% for i in "12345" %}
+                                {% if forloop.counter <= similar_coffee.avg_rating %}
+                                    <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                {% else %}
+                                    <i class="far fa-star text-gray-300 text-sm"></i>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">
+                            ({{ similar_coffee.avg_rating|lao_intcomma }})
+                        </span>
+                    </div>
+                    {% endif %}
+
+                    <!-- Price & Action -->
+                    <div class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700">
+                        <div>
+                            <span class="text-xl font-bold text-amber-600 dark:text-amber-400">
+                                {{ similar_coffee.price|lao_currency }}
+                            </span>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">
+                                {{ similar_coffee.weight }}{{ similar_coffee.weight_unit }}
+                            </p>
+                        </div>
                         <a href="{% url 'coffee_detail' similar_coffee.slug %}"
-                           class="text-amber-600 hover:text-amber-700 text-sm font-medium">
-                            ເບິ່ງລາຍລະອຽດ
+                           class="inline-flex items-center px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white text-sm font-medium rounded-lg transition-colors duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">
+                            <span>ເບິ່ງລາຍລະອຽດ</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
                         </a>
                     </div>
                 </div>
+
+                <!-- Hover effect background -->
+                <div class="absolute inset-0 bg-gradient-to-r from-amber-400/0 via-amber-400/5 to-amber-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
             </div>
             {% endfor %}
+        </div>
+
+        <!-- View All Button -->
+        <div class="text-center mt-12">
+            <a href="{% url 'coffee_list' %}"
+               class="inline-flex items-center px-8 py-3 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                <i class="fas fa-th-large mr-3"></i>
+                ເບິ່ງກາເຟທັງໝົດ
+                <i class="fas fa-arrow-right ml-3"></i>
+            </a>
         </div>
     </div>
     {% endif %}
 </div>
 
 <script>
-// Alpine.js Image Gallery Component
+// Alpine.js Image Gallery Component - Taobao Style
 function imageGallery() {
+    const images = [
+        {% if coffee.images %}'{{ coffee.images.url }}'{% endif %}
+        {% for gallery_image in coffee.gallery_images.all %}
+        {% if coffee.images %},{% endif %}'{{ gallery_image.image.url }}'
+        {% endfor %}
+    ].filter(img => img); // Remove empty strings
+
     return {
-        activeImage: {% if coffee.images %}'{{ coffee.images.url }}'{% else %}null{% endif %},
-        
-        setActiveImage(imageUrl) {
+        activeImage: images[0] || null,
+        images: images,
+        currentImageIndex: 0,
+        totalImages: images.length,
+        scrollOffset: 0,
+        maxVisibleThumbnails: 5, // Number of visible thumbnails (384px / 68px)
+
+        // Computed properties for scroll buttons
+        get canScrollUp() {
+            return this.scrollOffset > 0;
+        },
+
+        get canScrollDown() {
+            return this.scrollOffset < Math.max(0, this.totalImages - this.maxVisibleThumbnails);
+        },
+
+        setActiveImage(imageUrl, index) {
             this.activeImage = imageUrl;
-            console.log('Image changed to:', imageUrl);
+            this.currentImageIndex = index !== undefined ? index : this.images.indexOf(imageUrl);
+
+            // Auto-scroll thumbnails to keep active image visible
+            this.autoScrollToActive();
+        },
+
+
+        nextImage() {
+            if (this.currentImageIndex < this.images.length - 1) {
+                this.currentImageIndex++;
+            } else {
+                this.currentImageIndex = 0; // Loop back to first image
+            }
+            this.activeImage = this.images[this.currentImageIndex];
+            this.autoScrollToActive();
+        },
+
+        previousImage() {
+            if (this.currentImageIndex > 0) {
+                this.currentImageIndex--;
+            } else {
+                this.currentImageIndex = this.images.length - 1; // Loop to last image
+            }
+            this.activeImage = this.images[this.currentImageIndex];
+            this.autoScrollToActive();
+        },
+
+        scrollUp() {
+            if (this.canScrollUp) {
+                this.scrollOffset = Math.max(0, this.scrollOffset - 1);
+            }
+        },
+
+        scrollDown() {
+            if (this.canScrollDown) {
+                this.scrollOffset = Math.min(
+                    Math.max(0, this.totalImages - this.maxVisibleThumbnails),
+                    this.scrollOffset + 1
+                );
+            }
+        },
+
+        autoScrollToActive() {
+            const activeIndex = this.currentImageIndex;
+
+            // If active image is above visible area, scroll up
+            if (activeIndex < this.scrollOffset) {
+                this.scrollOffset = activeIndex;
+            }
+            // If active image is below visible area, scroll down
+            else if (activeIndex >= this.scrollOffset + this.maxVisibleThumbnails) {
+                this.scrollOffset = Math.max(0, activeIndex - this.maxVisibleThumbnails + 1);
+            }
+        },
+
+        // Smooth wheel scrolling for thumbnails
+        handleWheel(event) {
+            event.preventDefault();
+            if (event.deltaY > 0) {
+                this.scrollDown();
+            } else {
+                this.scrollUp();
+            }
+        },
+
+        // Initialize on component mount
+        init() {
+            console.log('Taobao-style gallery initialized with', this.totalImages, 'images');
+
+            // Add wheel event listener to thumbnail container
+            this.$nextTick(() => {
+                const container = document.getElementById('thumbnail-container');
+                if (container) {
+                    container.parentElement.addEventListener('wheel', (e) => this.handleWheel(e));
+                }
+            });
         }
+    };
+}
+
+// WhatsApp Order functionality
+function orderViaWhatsApp(coffeeName, price, weight) {
+    // WhatsApp business number (replace with actual number)
+    const phoneNumber = '8562022133733'; // Your WhatsApp business number
+
+    // Create order message
+    const message = `ສະບາຍດີ! ຂ້ອຍຕ້ອງການສັ່ງກາເຟ:
+
+📦 ຜະລິດຕະພັນ: ${coffeeName}
+💰 ລາຄາ: ${price} LAK
+⚖️ ນ້ຳໜັກ: ${weight}
+🔗 ລິ້ງ: ${window.location.href}
+
+ກະລຸນາແຈ້ງລາຍລະອຽດການຈັດສົ່ງ ແລະ ການຊຳລະເງິນ
+
+ຂອບໃຈ!`;
+
+    // Create WhatsApp URL
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+    // Open WhatsApp in new window/tab
+    window.open(whatsappUrl, '_blank');
+
+    // Track order attempt (optional analytics)
+    console.log('WhatsApp order initiated for:', coffeeName);
+}
+
+// Add to wishlist functionality
+function addToWishlist(coffeeSlug) {
+    // Get existing wishlist from localStorage
+    let wishlist = JSON.parse(localStorage.getItem('coffee_wishlist') || '[]');
+
+    // Check if already in wishlist
+    if (wishlist.includes(coffeeSlug)) {
+        // Remove from wishlist
+        wishlist = wishlist.filter(slug => slug !== coffeeSlug);
+        localStorage.setItem('coffee_wishlist', JSON.stringify(wishlist));
+
+        // Update button appearance
+        const button = event.target.closest('button');
+        const icon = button.querySelector('i');
+        const text = button.querySelector('span');
+
+        icon.className = 'fas fa-heart text-sm';
+        text.textContent = 'ຖືກໃຈ';
+        button.className = button.className.replace('bg-amber-500 text-white', 'border-2 border-amber-500 text-amber-600 hover:bg-amber-500 hover:text-white');
+
+        // Show notification
+        showNotification('ລຶບອອກຈາກລາຍການທີ່ຖືກໃຈແລ້ວ', 'info');
+    } else {
+        // Add to wishlist
+        wishlist.push(coffeeSlug);
+        localStorage.setItem('coffee_wishlist', JSON.stringify(wishlist));
+
+        // Update button appearance
+        const button = event.target.closest('button');
+        const icon = button.querySelector('i');
+        const text = button.querySelector('span');
+
+        icon.className = 'fas fa-heart text-sm text-red-500';
+        text.textContent = 'ຖືກໃຈແລ້ວ';
+        button.className = button.className.replace('border-2 border-amber-500 text-amber-600 hover:bg-amber-500 hover:text-white', 'bg-amber-500 text-white');
+
+        // Show notification
+        showNotification('ເພີ່ມໃສ່ລາຍການທີ່ຖືກໃຈແລ້ວ', 'success');
     }
 }
+
+// Show notification function
+function showNotification(message, type = 'info') {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 transition-all duration-300 transform translate-x-full ${
+        type === 'success' ? 'bg-green-500 text-white' :
+        type === 'error' ? 'bg-red-500 text-white' :
+        'bg-blue-500 text-white'
+    }`;
+    notification.innerHTML = `
+        <div class="flex items-center space-x-2">
+            <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-times-circle' : 'fa-info-circle'}"></i>
+            <span>${message}</span>
+        </div>
+    `;
+
+    // Add to document
+    document.body.appendChild(notification);
+
+    // Animate in
+    setTimeout(() => {
+        notification.classList.remove('translate-x-full');
+    }, 100);
+
+    // Remove after 3 seconds
+    setTimeout(() => {
+        notification.classList.add('translate-x-full');
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
+    }, 3000);
+}
+
+// Check wishlist status on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const wishlist = JSON.parse(localStorage.getItem('coffee_wishlist') || '[]');
+    const coffeeSlug = '{{ coffee.slug }}';
+
+    if (wishlist.includes(coffeeSlug)) {
+        // Update wishlist button to show it's already liked
+        const wishlistButton = document.querySelector('[onclick*="addToWishlist"]');
+        if (wishlistButton) {
+            const icon = wishlistButton.querySelector('i');
+            const text = wishlistButton.querySelector('span');
+
+            icon.className = 'fas fa-heart text-sm text-red-500';
+            text.textContent = 'ຖືກໃຈແລ້ວ';
+            wishlistButton.className = wishlistButton.className.replace('border-2 border-amber-500 text-amber-600 hover:bg-amber-500 hover:text-white', 'bg-amber-500 text-white');
+        }
+    }
+});
 
 // Share functionality
 function shareProduct() {
@@ -445,9 +832,9 @@ function shareProduct() {
     } else {
         // Fallback to copying URL
         navigator.clipboard.writeText(window.location.href).then(() => {
-            alert('ລິ້ງໄດ້ຖືກຄັດລອກແລ້ວ!');
+            showNotification('ລິ້ງໄດ້ຖືກຄັດລອກແລ້ວ!', 'success');
         }).catch(() => {
-            alert('ບໍ່ສາມາດຄັດລອກລິ້ງໄດ້');
+            showNotification('ບໍ່ສາມາດຄັດລອກລິ້ງໄດ້', 'error');
         });
     }
 }
@@ -457,5 +844,7 @@ function toggleCompare(coffeeId) {
     console.log('Toggle compare for coffee:', coffeeId);
     // Implement your compare logic here
 }
+
 </script>
+
 {% endblock %}

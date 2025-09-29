@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% load humanize %}
+{% load lao_filters %}
 
 {% block title %}{{ room.room_type.name }} - Room {{ room.id }} - Hotel{% endblock %}
 
@@ -39,13 +39,44 @@
     .gallery-thumbnail {
         transition: all 0.3s ease;
     }
-    
+
     .gallery-thumbnail:hover {
         transform: scale(1.05);
     }
-    
+
     .gallery-thumbnail.active {
         border: 3px solid #dabc94;
+    }
+
+    /* Taobao-style vertical gallery styles */
+    .vertical-thumbnail {
+        transition: all 0.2s ease;
+        border: 2px solid transparent;
+    }
+
+    .vertical-thumbnail:hover {
+        transform: scale(1.05);
+        border-color: #dabc94;
+    }
+
+    .vertical-thumbnail.active {
+        border-color: #dabc94 !important;
+        box-shadow: 0 4px 12px rgba(218, 188, 148, 0.3);
+    }
+
+    /* Smooth scrolling for thumbnail container */
+    .thumbnail-container {
+        transition: transform 0.3s ease-out;
+    }
+
+    /* Hide scrollbars */
+    .thumbnail-scroll::-webkit-scrollbar {
+        display: none;
+    }
+
+    .thumbnail-scroll {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
     }
     
 
@@ -78,15 +109,15 @@
 {% endblock %}
 
 {% block content %}
-<div class="bg-gray-50 dark:bg-neutral-dark min-h-screen">
+<div class="dark:bg-neutral-dark min-h-screen">
     
     <!-- Breadcrumb -->
-    <nav class="bg-white dark:bg-primary-dark-dark shadow-sm">
+    <nav class=" shadow-sm">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <ol class="flex items-center space-x-2 text-sm">
-                <li><a href="{% url 'home-page' %}" class= hover:text-secondary-light">Home</a></li>
+                <li><a href="{% url 'home-page' %}" class= hover:text-secondary-light">ໜ້າຫຼັກ</a></li>
                 <li class="text-gray-400">/</li>
-                <li><a href="{% url 'rooms-list-page' %}" class= hover:text-secondary-light">Rooms</a></li>
+                <li><a href="{% url 'rooms-list-page' %}" class= hover:text-secondary-light">ຫ້ອງທັງໝົດ</a></li>
                 <li class="text-gray-400">/</li>
                 <li class="text-gray-600 dark:text-gray-300">{{ room.room_type.name }}</li>
             </ol>
@@ -98,141 +129,108 @@
             
             <!-- Main Content -->
             <div class="lg:col-span-2 space-y-8">
-                
-                <!-- Room Header -->
-                <!-- <div class="bg-white dark:bg-primary-dark-dark rounded-xl shadow-lg p-6">
-                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                        <div>
-                            <h1 class="text-3xl font-playfair font-bold text-primary-light dark:text-white mb-2">
-                                {{ room.room_type.name }}
-                            </h1>
-                            <div class="flex items-center space-x-4 text-gray-600 dark:text-gray-300">
-                                <span class="flex items-center">
-                                    <i class="fas fa-door-open mr-2"></i>
-                                    Room {{ room.room_number }}
-                                </span>
-                                <span class="flex items-center">
-                                    <i class="fas fa-building mr-2"></i>
-                                    Floor {{ room.floor }}
-                                </span>
-                                <span class="flex items-center">
-                                    <i class="fas fa-users mr-2"></i>
-                                    Up to {{ room.room_type.capacity }} guests
-                                </span>
-                            </div>
-                        </div>
-                        
-                       
-                        <div class="mt-4 md:mt-0">
-                            {% if room.is_out_of_order %}
-                            <span class="inline-flex items-center bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 px-3 py-2 rounded-full text-sm font-medium">
-                                <i class="fas fa-tools mr-2"></i>
-                                Out of Order
-                            </span>
-                            {% elif room.is_checked_in %}
-                            <span class="inline-flex items-center bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 px-3 py-2 rounded-full text-sm font-medium">
-                                <i class="fas fa-user mr-2"></i>
-                                Occupied
-                            </span>
-                            {% else %}
-                            <span class="inline-flex items-center bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-2 rounded-full text-sm font-medium">
-                                <i class="fas fa-check-circle mr-2"></i>
-                                Available
-                            </span>
-                            {% endif %}
-                        </div>
-                    </div>
-                    
-                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-                        {{ room.room_type.description }}
-                    </p>
-                </div> -->
-
-                <!-- Room Gallery -->
-                <!-- Room Gallery -->
-                <div class="bg-white dark:bg-primary-dark-dark rounded-xl shadow-lg overflow-hidden">
-                    <div class="room-gallery">
-                        <!-- Main Image -->
-                        <div class="relative h-96 overflow-hidden" id="mainImageContainer">
-                            {% if primary_image %}
-                            <img src="{{ primary_image.image.url }}" 
-                                alt="{{ primary_image.alt_text|default:room.room_type.name }}" 
-                                id="mainImage"
-                                class="w-full h-full object-cover">
-                            {% elif room.image %}
-                            <img src="{{ room.image.url }}" 
-                                alt="{{ room.room_type.name }}" 
-                                id="mainImage"
-                                class="w-full h-full object-cover">
-                            {% else %}
-                            <div class="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center">
-                                <div class="text-center">
-                                    <i class="fas fa-bed text-6xl text-gray-400 dark:text-gray-500 mb-4"></i>
-                                    <p class="text-gray-500 dark:text-gray-400">Room Image Coming Soon</p>
-                                </div>
-                            </div>
-                            {% endif %}
-                            
-                            <!-- Image Navigation -->
-                            {% if room_images.count > 1 or room.image and room_images.count > 0 %}
-                            <div class="absolute inset-0 flex items-center justify-between p-4">
-                                <button onclick="previousImage()" class="bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all">
-                                    <i class="fas fa-chevron-left"></i>
-                                </button>
-                                <button onclick="nextImage()" class="bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all">
-                                    <i class="fas fa-chevron-right"></i>
-                                </button>
-                            </div>
-                            {% endif %}
-                            
-                            <!-- Image Counter -->
-                            {% if room_images.count > 1 or room.image and room_images.count > 0 %}
-                            <div class="absolute bottom-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm">
-                                <span id="imageCounter">1</span> / <span id="totalImages">{{ room_images.count|default:1 }}</span>
-                            </div>
-                            {% endif %}
-                        </div>
-                        
-                        <!-- Thumbnail Gallery -->
+                <!-- Room Gallery - Taobao Style -->
+                <div class="rounded-xl shadow-lg overflow-hidden" x-data="imageGallery()" x-init="init()">
+                    <div class="flex">
+                        <!-- Vertical Thumbnail Gallery (Left Side) - Taobao Style -->
                         {% if room_images.count > 1 or room.image and room_images.count > 0 %}
-                        <div class="p-4">
-                            <div class="grid grid-cols-4 md:grid-cols-6 gap-2" id="thumbnailGallery">
-                                
-                                <!-- Room Images from RoomImage model -->
-                                {% for image in room_images %}
-                                <div class="gallery-thumbnail {% if forloop.first %}active{% endif %} cursor-pointer" 
-                                    onclick="setMainImage('{{ image.image.url }}', '{{ image.alt_text|default:room.room_type.name }}', {{ forloop.counter0 }}, this)">
-                                    <img src="{{ image.image.url }}" 
-                                        alt="{{ image.alt_text|default:'Room view'|add:' '|add:forloop.counter }}" 
-                                        class="w-full h-16 object-cover rounded-lg">
-                                    {% if image.is_primary %}
-                                    <div class="absolute top-1 right-1 bg-primary-light text-white text-xs px-1 rounded">
-                                        <i class="fas fa-star"></i>
+                        <div class="w-24 flex flex-col border-r border-gray-200 dark:border-gray-700">
+                            <!-- Thumbnail Container -->
+                            <div class="flex-1 overflow-hidden relative p-2" id="thumbnail-container">
+                                <div class="transition-transform duration-300 ease-out"
+                                     :style="`transform: translateY(-${scrollOffset * 68}px)`">
+
+                                    <!-- Room Images from RoomImage model -->
+                                    {% for image in room_images %}
+                                    <div class="p-1">
+                                        <div class="w-16 h-16 cursor-pointer rounded-lg overflow-hidden transition-all duration-200"
+                                             :class="{ 'border-2 border-amber-500 shadow-md ring-2 ring-amber-200': activeImage === '{{ image.image.url }}' }"
+                                             @click="setActiveImage('{{ image.image.url }}', {{ forloop.counter0 }})"
+                                             @mouseenter="setActiveImage('{{ image.image.url }}', {{ forloop.counter0 }})">
+                                            <img src="{{ image.image.url }}"
+                                                 alt="{{ image.alt_text|default:'Room view'|add:' '|add:forloop.counter }}"
+                                                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-200">
+                                            {% if image.is_primary %}
+                                            <div class="absolute top-1 right-1 bg-amber-500 text-white text-xs px-1 rounded">
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+
+                                    <!-- Fallback to single room.image if no RoomImages exist -->
+                                    {% if not room_images.exists and room.image %}
+                                    <div class="p-1">
+                                        <div class="w-16 h-16 cursor-pointer rounded-lg overflow-hidden transition-all duration-200"
+                                             :class="{ 'border-2 border-amber-500 shadow-md ring-2 ring-amber-200': activeImage === '{{ room.image.url }}' }"
+                                             @click="setActiveImage('{{ room.image.url }}', 0)"
+                                             @mouseenter="setActiveImage('{{ room.image.url }}', 0)">
+                                            <img src="{{ room.image.url }}"
+                                                 alt="Room view"
+                                                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-200">
+                                        </div>
                                     </div>
                                     {% endif %}
                                 </div>
-                                {% endfor %}
-                                
-                                <!-- Fallback to single room.image if no RoomImages exist -->
-                                {% if not room_images.exists and room.image %}
-                                <div class="gallery-thumbnail active cursor-pointer" 
-                                    onclick="setMainImage('{{ room.image.url }}', '{{ room.room_type.name }}', 0, this)">
-                                    <img src="{{ room.image.url }}" 
-                                        alt="Room view" 
-                                        class="w-full h-16 object-cover rounded-lg">
-                                </div>
-                                {% endif %}
-                                
                             </div>
                         </div>
                         {% endif %}
+
+                        <!-- Main Image Container -->
+                        <div class="flex-1 relative rounded-2xl overflow-hidden">
+                            <div class="relative h-96 md:h-[500px] lg:h-[600px] overflow-hidden rounded-2xl">
+                                {% if primary_image %}
+                                <img :src="activeImage || '{{ primary_image.image.url }}'"
+                                     alt="{{ primary_image.alt_text|default:room.room_type.name }}"
+                                     class="w-full h-full object-cover transition-opacity duration-300">
+                                {% elif room.image %}
+                                <img :src="activeImage || '{{ room.image.url }}'"
+                                     alt="{{ room.room_type.name }}"
+                                     class="w-full h-full object-cover transition-opacity duration-300">
+                                {% else %}
+                                <div class="w-full h-full from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center">
+                                    <div class="text-center">
+                                        <i class="fas fa-bed text-6xl text-gray-400 dark:text-gray-500 mb-4"></i>
+                                        <p class="text-gray-500 dark:text-gray-400">Room Image Coming Soon</p>
+                                    </div>
+                                </div>
+                                {% endif %}
+
+                                <!-- Image Navigation Arrows -->
+                                {% if room_images.count > 1 or room.image and room_images.count > 0 %}
+                                <div class="absolute inset-0 flex items-center justify-between p-4 opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                    <button @click="previousImage()"
+                                            class="bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-200 transform hover:scale-110">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </button>
+                                    <button @click="nextImage()"
+                                            class="bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-200 transform hover:scale-110">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </div>
+                                {% endif %}
+
+                                <!-- Image Counter -->
+                                {% if room_images.count > 1 or room.image and room_images.count > 0 %}
+                                <div class="absolute bottom-4 right-4 bg-black/70 text-white px-3 py-2 rounded-full text-sm font-medium">
+                                    <span x-text="currentImageIndex + 1">1</span> / <span x-text="totalImages">{{ room_images.count|default:1 }}</span>
+                                </div>
+                                {% endif %}
+
+                                <!-- Image Info Badge -->
+                                <div class="absolute top-4 left-4 bg-black/70 text-white px-3 py-2 rounded-lg text-sm font-medium">
+                                    <i class="fas fa-camera mr-2"></i>{{ room.room_type.name }}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
 
     
                 <!-- Room Features & Amenities -->
-                <div class="bg-white dark:bg-primary-dark-dark rounded-xl shadow-lg p-6">
+                <div class=" rounded-xl shadow-lg p-6">
                     <h2 class="text-2xl font-playfair font-bold text-primary-light dark:text-white mb-6">ຄຸນສົມບັດ ແລະ ສິ່ງອໍານວຍຄວາມສະດວກຂອງຫ້ອງ</h2>
                     
                     {% if room_amenities_data %}
@@ -245,7 +243,7 @@
                             </h3>
                             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                                 {% for amenity_data in premium_amenities_data %}
-                                <div class="room-feature-card text-center p-4 rounded-lg bg-gradient-to-br from-{{ amenity_data.amenity.icon_color }}-50 to-{{ amenity_data.amenity.icon_color }}-100 dark:from-{{ amenity_data.amenity.icon_color }}-900 dark:to-{{ amenity_data.amenity.icon_color }}-800 border border-{{ amenity_data.amenity.icon_color }}-200 dark:border-{{ amenity_data.amenity.icon_color }}-700">
+                                <div class="room-feature-card text-center p-4 rounded-lg from-{{ amenity_data.amenity.icon_color }}-50 to-{{ amenity_data.amenity.icon_color }}-100 dark:from-{{ amenity_data.amenity.icon_color }}-900 dark:to-{{ amenity_data.amenity.icon_color }}-800 border border-{{ amenity_data.amenity.icon_color }}-200 dark:border-{{ amenity_data.amenity.icon_color }}-700">
                                     <div class="amenity-icon bg-{{ amenity_data.amenity.icon_color }}-100 dark:bg-{{ amenity_data.amenity.icon_color }}-900 text-{{ amenity_data.amenity.icon_color }}-600 dark:text-{{ amenity_data.amenity.icon_color }}-300 relative">
                                         <i class="{{ amenity_data.amenity.icon }} text-xl"></i>
                                         <div class="absolute -top-1 -right-1 w-4 h-4 bg-yellow-400 rounded-full flex items-center justify-center">
@@ -266,14 +264,14 @@
                         {% if standard_amenities_data %}
                         <div>
                             {% if premium_amenities_data %}
-                            <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4 flex items-center">
+                            <h3 class="text-lg font-semibold dark:text-gray-300 mb-4 flex items-center">
                                 <i class="fas fa-check-circle mr-2"></i>
                                 Standard Features
                             </h3>
                             {% endif %}
                             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                                 {% for amenity_data in standard_amenities_data %}
-                                <div class="room-feature-card text-center p-4 rounded-lg bg-gray-50 dark:bg-gray-800 hover:bg-{{ amenity_data.amenity.icon_color }}-50 dark:hover:bg-{{ amenity_data.amenity.icon_color }}-900 transition-colors duration-300">
+                                <div class="room-feature-card text-center p-4 rounded-lg hover:bg-{{ amenity_data.amenity.icon_color }}-50 dark:hover:bg-{{ amenity_data.amenity.icon_color }}-900 transition-colors duration-300">
                                     <div class="amenity-icon bg-{{ amenity_data.amenity.icon_color }}-100 dark:bg-{{ amenity_data.amenity.icon_color }}-900 text-{{ amenity_data.amenity.icon_color }}-600 dark:text-{{ amenity_data.amenity.icon_color }}-300">
                                         <i class="{{ amenity_data.amenity.icon }} text-xl"></i>
                                     </div>
@@ -316,7 +314,7 @@
                 
 
                 <!-- Room Policies -->
-                <!-- <div class="bg-white dark:bg-primary-dark-dark rounded-xl shadow-lg p-6">
+                <!-- <div class=" rounded-xl shadow-lg p-6">
                     <h2 class="text-2xl font-playfair font-bold text-primary-light dark:text-white mb-6">Room Policies</h2>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -366,7 +364,7 @@
 
                 <!-- Related Hotels -->
                 {% if related_hotels %}
-                <div class="bg-white dark:bg-primary-dark-dark rounded-xl shadow-lg p-6">
+                <div class=" rounded-xl shadow-lg p-6">
                     <h2 class="text-2xl font-playfair font-bold text-primary-light dark:text-white mb-6">Related Properties</h2>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -400,12 +398,12 @@
 
             <!-- Booking Sidebar -->
             <div class="lg:col-span-1">
-                <div class="booking-card bg-white dark:bg-primary-dark-dark rounded-xl shadow-lg p-6 space-y-6">
+                <div class="booking-card  rounded-xl shadow-lg p-6 space-y-6">
                     
                     <!-- Price Display -->
                     <div class="text-center border-b border-gray-200 dark:border-gray-700 pb-6">
                         <div class="text-3xl font-bold mb-2">
-                            {{ room.room_type.price_per_night|intcomma }} LAK
+                            {{ room.room_type.price_per_night|lao_currency }}
                         </div>
                         <div class="text-gray-600 dark:text-gray-300 text-sm">per night</div>
                         <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Taxes and fees included</div>
@@ -451,36 +449,46 @@
                         <div class="text-xl font-bold mb-4">
                             ຕ້ອງການຄວາມຊ່ວຍເຫຼືອໃນການຈອງຂອງທ່ານບໍ?
                         </div>
-                        <div class="space-y-2">
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
                             <div onclick="openReviewPlatform('agoda')">
-                                <button class="w-full bg-primary-light dark:bg-primary-dark text-white py-3 px-6 rounded-lg transition duration-300 font-medium flex items-center justify-center">
+                                <button class="w-full border-2 border-gray-300 hover:border-red-500 bg-transparent hover:text-red-600 py-3 px-4 rounded-lg transition duration-300 font-medium flex flex-col items-center justify-center">
                                     <img src="https://i.pinimg.com/736x/a2/b0/5d/a2b05d6d5547345a295614f8ebe90c56.jpg"
-                                    class="w-8 h-8 mr-2 rounded-full object-cover"
+                                    class="w-8 h-8 mb-2 rounded-full object-cover"
                                     alt="Agoda Logo">
-                                    Agoda
+                                    <span class="text-xs">Agoda</span>
                                 </button>
                             </div>
 
                             <div onclick="openReviewPlatform('booking')">
-                                <button class="w-full bg-primary-light dark:bg-primary-dark text-white py-3 px-6 rounded-lg transition duration-300 font-medium flex items-center justify-center">
+                                <button class="w-full border-2 border-gray-300 hover:border-blue-500 bg-transparent hover:text-blue-600 py-3 px-4 rounded-lg transition duration-300 font-medium flex flex-col items-center justify-center">
                                     <img src="https://i.pinimg.com/736x/2f/f7/ee/2ff7ee806d977d4884e2aadfa8fc1101.jpg"
-                                    class="w-8 h-8 mr-2 rounded-full object-cover"
+                                    class="w-8 h-8 mb-2 rounded-full object-cover"
                                     alt="Booking.com Logo">
-                                    Booking.com
+                                    <span class="text-xs">Booking</span>
+                                </button>
+                            </div>
+
+                            <div onclick="openReviewPlatform('expedia')">
+                                <button class="w-full border-2 border-gray-300 hover:border-yellow-500 bg-transparent hover:text-yellow-600 py-3 px-4 rounded-lg transition duration-300 font-medium flex flex-col items-center justify-center">
+                                    <img src="https://i.pinimg.com/736x/08/7a/e9/087ae99de1c8af19b618307b1631314a.jpg"
+                                    class="w-8 h-8 mb-2 rounded-full object-cover"
+                                    alt="Expedia Logo">
+                                    <span class="text-xs">Expedia</span>
                                 </button>
                             </div>
 
                             <div onclick="openReviewPlatform('whatsapp')">
-                                <button class="w-full bg-primary-light dark:bg-primary-dark text-white py-3 px-6 rounded-lg transition duration-300 font-medium flex items-center justify-center">
+                                <button class="w-full border-2 border-gray-300 hover:border-green-500 bg-transparent hover:text-green-600 py-3 px-4 rounded-lg transition duration-300 font-medium flex flex-col items-center justify-center">
                                     <img src="https://i.pinimg.com/736x/c6/09/0d/c6090df18193e2616a6a32076883b70c.jpg"
-                                    class="w-8 h-8 mr-2 rounded-full object-cover"
+                                    class="w-8 h-8 mb-2 rounded-full object-cover"
                                     alt="WhatsApp Logo">
-                                    WhatsApp
+                                    <span class="text-xs">WhatsApp</span>
                                 </button>
                             </div>
-                            <div class="text-gray-600 dark:text-gray-300 text-sm">For better rates and more information, please contact
-                                us directly through our WhatsApp.</div>
+                            
                         </div>
+                        <div class="text-gray-600 dark:text-gray-300 text-sm mt-4">For better rates and more information, please contact
+                            us directly through our WhatsApp.</div>
                     </div>
                 </div>
             </div>
@@ -499,15 +507,32 @@
         switch(platform) {
             case 'agoda':
                 // Replace with your actual Agoda property URL
-                url = 'https://www.agoda.com/pilgrims-kitchen-inn/hotel/savannakhet-la.html?countryId=190&finalPriceView=1&isShowMobileAppPrice=false&cid=-1&numberOfBedrooms=&familyMode=false&adults=1&children=0&rooms=1&maxRooms=0&checkIn=2025-07-3&isCalendarCallout=false&childAges=&numberOfGuest=0&missingChildAges=false&travellerType=0&showReviewSubmissionEntry=false&currencyCode=USD&isFreeOccSearch=false&tspTypes=16%2C-1&los=1&searchrequestid=c6c69fb5-8a6f-44a1-a432-dc0418c9a393&ds=eWKzGUSArxNLxVrp';
+                url = 'https://www.agoda.com/pilgrims-kitchen-inn/hotel/savannakhet-la.html?countryId=190&finalPriceView=1&isShowMobileAppPrice=false&cid=-999&numberOfBedrooms=&familyMode=false&adults=2&children=0&rooms=1&maxRooms=0&checkIn=2025-10-1&isCalendarCallout=false&childAges=&numberOfGuest=0&missingChildAges=false&travellerType=1&showReviewSubmissionEntry=false&currencyCode=USD&isFreeOccSearch=false&los=7&searchrequestid=29893042-03f3-4850-b681-a74e9636398a&ds=visHuLZYSC4GlIOO';
                 break;
             case 'booking':
                 // Replace with your actual Booking.com property URL
                 url = 'https://www.booking.com/hotel/la/pilgrim-39-s-kitchen-amp-inn.html?aid=304142&label=gen173nr-1FCBkoggI46AdIM1gEaIEBiAEBmAExuAEHyAEM2AEB6AEB-AECiAIBqAIDuALH65LDBsACAdICJDhjNTU0OWM2LTM0YWMtNDBhNi04ZThkLWExODQwM2YxNGQwY9gCBeACAQ&sid=9b35241d3d42c34c66c1e205f6709641&checkin=2025-07-02&checkout=2025-08-04&dest_id=1668881&dest_type=hotel&dist=0&group_adults=2&group_children=0&hapos=1&hpos=1&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&soh=1&sr_order=popularity&srepoch=1751430651&srpvid=a91a5d5546be220aa7c21290647e010a&type=total&ucfs=1&#no_availability_msg';
                 break;
+            case 'expedia':
+                // Replace with your actual Expedia property URL
+                url = 'https://www.expedia.com/Savannakhet-Hotels-Pilgrims-Kitchen-Inn.h14986614.Hotel-Information?chkin=2025-10-26&chkout=2025-10-27&flexibility=1_DAY&searchRange=2025-09-01_2025-09-30%2C2025-10-01_2025-10-31&x_pwa=1&rfrr=HSR&pwa_ts=1758512563425&referrerUrl=aHR0cHM6Ly93d3cuZXhwZWRpYS5jb20vSG90ZWwtU2VhcmNo&useRewards=false&rm1=a2&regionId=4203&destination=Savannakhet%2C+Savannakhet+Province%2C+Laos&destType=MARKET&latLong=16.572249%2C104.770552&sort=RECOMMENDED&top_dp=23&top_cur=USD&userIntent=&selectedRoomType=201489188&selectedRatePlan=207472150&searchId=3d7caf90-437a-47b3-b17a-a1160d8ce092';
+                break;
             case 'whatsapp':
-                // Replace with your actual Booking.com property URL
-                url = 'https://wa.me/8562022133733?text=Hello%20Pilgrims%20Kitchen%20%26%20Inn%2C%20I%20would%20like%20to%20make%20an%20inquiry';
+                // Dynamic WhatsApp message with room details
+                const message = `ສະບາຍດີ Pilgrims Kitchen & Inn,
+
+ຂ້ອຍຕ້ອງການຈອງຫ້ອງພັກດັ່ງລຸ່ມນີ້:
+
+🏨 ຫ້ອງ: {{ room.room_type.name }}
+🏷️ ລາຄາ: {{ room.room_type.price_per_night|lao_currency }} ຕໍ່ຄືນ
+👥 ຈຳນວນແຂກ:  ຄົນ (ຕ້ອງລະບຸຈຳນວນຄົນເຂົ້າພັກ)
+🔗 ລິ້ງ: ${window.location.href}
+
+ກະລຸນາແຈ້ງລາຍລະອຽດການຈັດສົ່ງ ແລະ ການຊຳລະເງິນ
+
+ຂອບໃຈ!`;
+
+                url = `https://wa.me/8562022133733?text=${encodeURIComponent(message)}`;
                 break;
         }
         
@@ -542,128 +567,129 @@
     });
 </script>
 <script>
-    // Gallery functionality with multiple images
-    let currentImageIndex = 0;
+// Taobao-style Hotel Room Gallery with Alpine.js
+function imageGallery() {
     const images = [
         {% for image in room_images %}
-        {
-            url: '{{ image.image.url }}',
-            alt: '{{ image.alt_text|default:room.room_type.name|escapejs }}'
-        }{% if not forloop.last %},{% endif %}
+        '{{ image.image.url }}'{% if not forloop.last %},{% endif %}
         {% endfor %}
         {% if not room_images.exists and room.image %}
-        {
-            url: '{{ room.image.url }}',
-            alt: '{{ room.room_type.name|escapejs }}'
-        }
+        '{{ room.image.url }}'
         {% endif %}
-    ];
-    
-    function setMainImage(imageUrl, altText, index, thumbnail) {
-        const mainImage = document.getElementById('mainImage');
-        mainImage.src = imageUrl;
-        mainImage.alt = altText;
-        
-        // Update current index
-        currentImageIndex = index;
-        
-        // Update counter
-        const counter = document.getElementById('imageCounter');
-        if (counter) {
-            counter.textContent = index + 1;
+    ].filter(img => img); // Remove empty strings
+
+    return {
+        activeImage: images[0] || null,
+        images: images,
+        currentImageIndex: 0,
+        totalImages: images.length,
+        scrollOffset: 0,
+        maxVisibleThumbnails: 5, // Number of visible thumbnails
+
+        // Computed properties for scroll buttons
+        get canScrollUp() {
+            return this.scrollOffset > 0;
+        },
+        get canScrollDown() {
+            return this.scrollOffset < Math.max(0, this.totalImages - this.maxVisibleThumbnails);
+        },
+
+        setActiveImage(imageUrl, index) {
+            this.activeImage = imageUrl;
+            this.currentImageIndex = index !== undefined ? index : this.images.indexOf(imageUrl);
+            // Auto-scroll thumbnails to keep active image visible
+            this.autoScrollToActive();
+        },
+
+        nextImage() {
+            if (this.currentImageIndex < this.images.length - 1) {
+                this.currentImageIndex++;
+            } else {
+                this.currentImageIndex = 0; // Loop back to first image
+            }
+            this.activeImage = this.images[this.currentImageIndex];
+            this.autoScrollToActive();
+        },
+
+        previousImage() {
+            if (this.currentImageIndex > 0) {
+                this.currentImageIndex--;
+            } else {
+                this.currentImageIndex = this.images.length - 1; // Loop to last image
+            }
+            this.activeImage = this.images[this.currentImageIndex];
+            this.autoScrollToActive();
+        },
+
+        scrollUp() {
+            if (this.canScrollUp) {
+                this.scrollOffset--;
+            }
+        },
+
+        scrollDown() {
+            if (this.canScrollDown) {
+                this.scrollOffset++;
+            }
+        },
+
+        autoScrollToActive() {
+            // Auto-scroll to keep the active thumbnail visible
+            const activeIndex = this.currentImageIndex;
+            const containerStart = this.scrollOffset;
+            const containerEnd = this.scrollOffset + this.maxVisibleThumbnails - 1;
+
+            if (activeIndex < containerStart) {
+                // Scroll up to show the active thumbnail
+                this.scrollOffset = activeIndex;
+            } else if (activeIndex > containerEnd) {
+                // Scroll down to show the active thumbnail
+                this.scrollOffset = activeIndex - this.maxVisibleThumbnails + 1;
+            }
+        },
+
+        // Smooth wheel scrolling for thumbnails
+        handleWheel(event) {
+            event.preventDefault();
+            if (event.deltaY > 0) {
+                this.scrollDown();
+            } else {
+                this.scrollUp();
+            }
+        },
+
+        // Initialize on component mount
+        init() {
+            console.log('Taobao-style hotel gallery initialized with', this.totalImages, 'images');
+
+            // Add wheel event listener to thumbnail container
+            this.$nextTick(() => {
+                const container = document.getElementById('thumbnail-container');
+                if (container) {
+                    container.parentElement.addEventListener('wheel', (e) => this.handleWheel(e));
+                }
+            });
         }
-        
-        // Update thumbnail active state
-        document.querySelectorAll('.gallery-thumbnail').forEach(thumb => {
-            thumb.classList.remove('active');
-        });
-        thumbnail.classList.add('active');
+    };
+}
+
+// Legacy support for keyboard navigation
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowLeft' && window.Alpine) {
+        const gallery = document.querySelector('[x-data*="imageGallery"]').__x.$data;
+        if (gallery && gallery.previousImage) {
+            gallery.previousImage();
+        }
+    } else if (e.key === 'ArrowRight' && window.Alpine) {
+        const gallery = document.querySelector('[x-data*="imageGallery"]').__x.$data;
+        if (gallery && gallery.nextImage) {
+            gallery.nextImage();
+        }
     }
-    
-    function previousImage() {
-        if (images.length > 1) {
-            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-            const image = images[currentImageIndex];
-            document.getElementById('mainImage').src = image.url;
-            document.getElementById('mainImage').alt = image.alt;
-            
-            // Update counter
-            const counter = document.getElementById('imageCounter');
-            if (counter) {
-                counter.textContent = currentImageIndex + 1;
-            }
-            
-            // Update thumbnail active state
-            const thumbnails = document.querySelectorAll('.gallery-thumbnail');
-            thumbnails.forEach(thumb => thumb.classList.remove('active'));
-            if (thumbnails[currentImageIndex]) {
-                thumbnails[currentImageIndex].classList.add('active');
-            }
-        }
-    }
-    
-    function nextImage() {
-        if (images.length > 1) {
-            currentImageIndex = (currentImageIndex + 1) % images.length;
-            const image = images[currentImageIndex];
-            document.getElementById('mainImage').src = image.url;
-            document.getElementById('mainImage').alt = image.alt;
-            
-            // Update counter
-            const counter = document.getElementById('imageCounter');
-            if (counter) {
-                counter.textContent = currentImageIndex + 1;
-            }
-            
-            // Update thumbnail active state
-            const thumbnails = document.querySelectorAll('.gallery-thumbnail');
-            thumbnails.forEach(thumb => thumb.classList.remove('active'));
-            if (thumbnails[currentImageIndex]) {
-                thumbnails[currentImageIndex].classList.add('active');
-            }
-        }
-    }
-    
-    // Keyboard navigation
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowLeft') {
-            previousImage();
-        } else if (e.key === 'ArrowRight') {
-            nextImage();
-        }
-    });
+});
 </script>
 <script>
-    // Gallery functionality
-    let currentImageIndex = 0;
-    const images = [
-        {% if room.image %}'{{ room.image.url }}'{% endif %}
-        // Add more images here as needed
-    ];
-    
-    function setMainImage(imageUrl, thumbnail) {
-        document.getElementById('mainImage').src = imageUrl;
-        
-        // Update thumbnail active state
-        document.querySelectorAll('.gallery-thumbnail').forEach(thumb => {
-            thumb.classList.remove('active');
-        });
-        thumbnail.classList.add('active');
-    }
-    
-    function previousImage() {
-        if (images.length > 1) {
-            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-            document.getElementById('mainImage').src = images[currentImageIndex];
-        }
-    }
-    
-    function nextImage() {
-        if (images.length > 1) {
-            currentImageIndex = (currentImageIndex + 1) % images.length;
-            document.getElementById('mainImage').src = images[currentImageIndex];
-        }
-    }
+    // Gallery functions already defined in previous script block
     
     // Date validation
     document.addEventListener('DOMContentLoaded', function() {

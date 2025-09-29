@@ -1,19 +1,21 @@
 {% extends 'base.html' %}
 
-{% load humanize %}
+{% load lao_filters %}
 
-{% block title %}ລາຍການກາເຟທັງໝົດ - ຮ້ານກາເຟ{% endblock %}
+{% load i18n %}
+
+{% block title %}{% trans "ລາຍການກາເຟທັງໝົດ - ຮ້ານກາເຟ" %}{% endblock %}
 
 {% block content %}
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div class="text-center mb-8">
-        <p class="">ກາເຟພີລກຣິມ ແມ່ນກາເຟທີ່ປູກເທິງພູສູງໃນປະເທດລາວ. ພວກເຮົາຮ່ວມງານ ແລະ ຊື້ກາເຟກັບຊາວສວນ ຜູ້ປູກກາເຟໂດຍກົງ ໃນລາຄາທີ່ເປັນກາງ. ກາເຟພີລກຣິມ ຂົ້ວຈາກເມັດກາເຟທີ່ໄດ້ຄຸນນະພາບສູງ ແລະ ກາຍມາເປັນກາເຟທີ່ມີລົດຊາດທີ່ດີເປັນທີ່ເພິ່ງພໍໃຈສຳລັບນັກດື່ມກາເຟທັງຫຼາຍ</p>
+        <p class="text-1xl font-bold mb-2">ກາເຟພີລກຣິມ ແມ່ນກາເຟທີ່ປູກເທິງພູສູງໃນປະເທດລາວ.<br/> ພວກເຮົາຮ່ວມງານ ແລະ ຊື້ກາເຟກັບຊາວສວນ ຜູ້ປູກກາເຟໂດຍກົງ ໃນລາຄາທີ່ເປັນກາງ. ກາເຟພີລກຣິມ ຂົ້ວຈາກເມັດກາເຟທີ່ໄດ້ຄຸນນະພາບສູງ ແລະ ກາຍມາເປັນກາເຟທີ່ມີລົດຊາດທີ່ດີເປັນທີ່ເພິ່ງພໍໃຈສຳລັບນັກດື່ມກາເຟທັງຫຼາຍ</p>
     </div>
     
     <!-- Header -->
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
         <div>
-            <h1 class="text-3xl font-bold mb-2">ລາຍການກາເຟທັງໝົດ</h1>
+            <h1 class="text-3xl font-bold mb-2">{% trans "ລາຍການກາເຟທັງໝົດ" %}</h1>
             <p class="">ພົບ {{ page_obj.paginator.count }} ລາຍການ</p>
         </div>
     </div>
@@ -82,8 +84,8 @@
                         <!-- Price and Rating Row -->
                         <div class="flex justify-between items-center mb-4">
                             <div>
-                                <span class="text-2xl font-bold text-amber-600">{{ coffee.price|intcomma }} LAK</span>
-                                <div class="text-xs text-gray-500">{{ coffee.price_per_unit|intcomma }} LAK/100g</div>
+                                <span class="text-2xl font-bold text-amber-600">{{ coffee.price|lao_currency }}</span>
+                                <div class="text-xs text-gray-500">{{ coffee.price_per_unit|lao_currency }}/100g</div>
                             </div>
                             
                             <!-- Rating -->
@@ -91,7 +93,7 @@
                                 {% if coffee.avg_rating %}
                                 <div class="flex items-center text-yellow-400 justify-end mb-1">
                                     {% for i in "12345" %}
-                                        {% if forloop.counter <= coffee.avg_rating|intcomma %}
+                                        {% if forloop.counter <= coffee.avg_rating|lao_intcomma %}
                                         <i class="fas fa-star text-xs"></i>
                                         {% else %}
                                         <i class="far fa-star text-xs"></i>
@@ -121,12 +123,9 @@
   
                         <!-- Action Buttons -->
                         <div class="flex space-x-2">
-                            <button class="flex-1 bg-amber-600 text-white py-2 px-4 rounded-lg hover:bg-amber-700 transition font-medium">
-                                <a href="{% url 'coffee_detail' coffee.slug %}">
-                                    <i class="fas fa-eye mr-2"></i>ເບິ່ງລາຍລະອຽດ
-                                </a>
-                            </button>
-                            
+                            <a href="{% url 'coffee_detail' coffee.slug %}" class="flex-1 bg-amber-600 text-white py-2 px-4 rounded-lg hover:bg-amber-700 transition font-medium text-center inline-flex items-center justify-center">
+                                <i class="fas fa-eye mr-2"></i>ເບິ່ງລາຍລະອຽດ
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -87,7 +87,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Internationalization
-LANGUAGE_CODE = "en"
+LANGUAGE_CODE = "lo"
 LANGUAGES = [("en", _("English")), ("lo", _("ລາວ"))]
 LOCALE_PATHS = [BASE_DIR / "locale"]
 TIME_ZONE = "Asia/Bangkok" # Updated for your likely location
@@ -97,6 +97,9 @@ USE_TZ = True
 # Static and Media files
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles" # Renamed to avoid conflicts
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 

@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Guest Reviews - Project Pilgrims{% endblock %}
+{% block title %}{% trans "Guest Reviews - Project Pilgrims" %}{% endblock %}
 
 <!-- https://www.booking.com/hotel/la/pilgrim-39-s-kitchen-amp-inn.html?aid=304142&label=gen173nr-1FCBkoggI46AdIM1gEaIEBiAEBmAExuAEHyAEM2AEB6AEB-AECiAIBqAIDuALH65LDBsACAdICJDhjNTU0OWM2LTM0YWMtNDBhNi04ZThkLWExODQwM2YxNGQwY9gCBeACAQ&sid=9b35241d3d42c34c66c1e205f6709641&checkin=2025-07-02&checkout=2025-08-04&dest_id=1668881&dest_type=hotel&dist=0&group_adults=2&group_children=0&hapos=1&hpos=1&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&soh=1&sr_order=popularity&srepoch=1751430651&srpvid=a91a5d5546be220aa7c21290647e010a&type=total&ucfs=1&#tab-reviews -->
 
@@ -76,12 +77,12 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                     </div>
-                    <span class="text-white font-bold text-xl">4.8/5</span>
+                    <span class="text-white font-bold text-xl">{{ review_summary.average_rating }}/10</span>
                 </div>
                 <div class="text-white">
-                    <span class="text-lg opacity-80">Based on</span>
-                    <span class="font-bold text-xl">2,847</span>
-                    <span class="text-lg opacity-80">reviews</span>
+                    <span class="text-lg opacity-80">{% trans "Based on" %}</span>
+                    <span class="font-bold text-xl">{{ review_summary.total_reviews }}</span>
+                    <span class="text-lg opacity-80">{% trans "reviews" %}</span>
                 </div>
             </div>
         </div>
@@ -100,97 +101,138 @@
             </p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            
+        <!-- First Row: 4 Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-6xl mx-auto mb-8">
             <!-- Agoda Card -->
-            <div class="review-card glass-effect rounded-2xl p-8 text-center cursor-pointer" 
+            <div class="review-card glass-effect rounded-2xl p-8 text-center cursor-pointer"
                  onclick="openReviewPlatform('agoda')">
                 <div class="mb-6">
-                    <img src="https://i.pinimg.com/736x/a2/b0/5d/a2b05d6d5547345a295614f8ebe90c56.jpg" 
+                    <img src="https://i.pinimg.com/736x/a2/b0/5d/a2b05d6d5547345a295614f8ebe90c56.jpg"
                          alt="Agoda Logo" class="platform-logo mx-auto mb-4">
                     <h3 class="text-2xl font-bold text-primary-dark">Agoda</h3>
                 </div>
                 <div class="bg-gray-50 rounded-lg p-4 mb-6">
-                    <p class="text-gray-700 italic text-sm">
-                        "Exceptional stay with outstanding service. The restaurant exceeded our expectations!"
-                    </p>
-                    <div class="text-xs text-gray-500 mt-2">- Recent Guest Review</div>
+                    <div class="text-xs text-gray-500 mt-2">Pilgrim's Kitchen & Inn.</div>
                 </div>
-                
+
                 <button class="w-full bg-primary hover:bg-primary-dark text-white font-medium py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center">
                     <i class="fas fa-external-link-alt mr-2"></i>
                     Agoda Reviews
                 </button>
             </div>
-            
+
             <!-- Booking.com Card -->
-            <div class="review-card glass-effect rounded-2xl p-8 text-center cursor-pointer" 
+            <div class="review-card glass-effect rounded-2xl p-8 text-center cursor-pointer"
                  onclick="openReviewPlatform('booking')">
                 <div class="mb-6">
-                    <img src="https://i.pinimg.com/736x/17/dc/f4/17dcf4ba715b51b8c23baeb707c38ad7.jpg" 
+                    <img src="https://i.pinimg.com/736x/17/dc/f4/17dcf4ba715b51b8c23baeb707c38ad7.jpg"
                          alt="Booking.com Logo" class="platform-logo mx-auto mb-4">
                     <h3 class="text-2xl font-bold text-primary-dark">Booking.com</h3>
                 </div>
-                
-               
+
                 <div class="bg-gray-50 rounded-lg p-4 mb-6">
-                    <p class="text-gray-700 italic text-sm">
-                        "Beautiful property with amazing dining options. Highly recommend the restaurant!"
-                    </p>
-                    <div class="text-xs text-gray-500 mt-2">- Verified Guest</div>
+                    <div class="text-xs text-gray-500 mt-2">Pilgrim's Kitchen & Inn.</div>
                 </div>
-                
+
                 <button class="w-full bg-primary hover:bg-primary-dark text-white font-medium py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center">
                     <i class="fas fa-external-link-alt mr-2"></i>
                     Reviews
                 </button>
             </div>
-            
-            <!-- TripAdvisor Card -->
-            <div class="review-card glass-effect rounded-2xl p-8 text-center cursor-pointer" 
+
+            <!-- TripAdvisor Restaurant Card -->
+            <div class="review-card glass-effect rounded-2xl p-8 text-center cursor-pointer"
                  onclick="openReviewPlatform('tripadvisor')">
                 <div class="mb-6">
-                    <img src="https://i.pinimg.com/736x/1e/9c/a2/1e9ca2f9f6d7ad09d565e26c7ad0178c.jpg" 
+                    <img src="https://i.pinimg.com/736x/1e/9c/a2/1e9ca2f9f6d7ad09d565e26c7ad0178c.jpg"
                          alt="TripAdvisor Logo" class="platform-logo mx-auto mb-4">
                     <h3 class="text-2xl font-bold text-primary-dark">TripAdvisor</h3>
                 </div>
-                
-                
+
                 <div class="bg-gray-50 rounded-lg p-4 mb-6">
-                    <p class="text-gray-700 italic text-sm">
-                        "A culinary gem! The international menu is fantastic and the service impeccable."
-                    </p>
-                    <div class="text-xs text-gray-500 mt-2">- TripAdvisor Reviewer</div>
+                    <div class="text-xs text-gray-500 mt-2">Pilgrim's Kitchen & Inn Restaurant</div>
                 </div>
-                
+
                 <button class="w-full bg-primary hover:bg-primary-dark text-white font-medium py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center">
                     <i class="fas fa-external-link-alt mr-2"></i>
-                     Reviews
+                    Reviews
                 </button>
             </div>
 
             <!-- Airbnb Card -->
-            <div class="review-card glass-effect rounded-2xl p-8 text-center cursor-pointer" 
-            onclick="openReviewPlatform('airbnb')">
-            <div class="mb-6">
-            <img src="https://a0.muscache.com/airbnb/static/logos/belo-200x200-4d851c5b28f61931bf1df28dd15e60ef.png" 
-                    alt="Airbnb Logo" class="platform-logo mx-auto mb-4">
-            <h3 class="text-2xl font-bold text-primary-dark">Airbnb</h3>
+            <div class="review-card glass-effect rounded-2xl p-8 text-center cursor-pointer"
+                 onclick="openReviewPlatform('airbnb')">
+                <div class="mb-6">
+                    <img src="https://a0.muscache.com/airbnb/static/logos/belo-200x200-4d851c5b28f61931bf1df28dd15e60ef.png"
+                             alt="Airbnb Logo" class="platform-logo mx-auto mb-4">
+                    <h3 class="text-2xl font-bold text-primary-dark">Airbnb</h3>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                    <div class="text-xs text-gray-500 mt-2">Pilgrim's Kitchen & Inn.</div>
+                </div>
+                <button class="w-full bg-primary hover:bg-primary-dark text-white font-medium py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center">
+                    <i class="fas fa-external-link-alt mr-2"></i>
+                    Reviews
+                </button>
+            </div>
+        </div>
+
+        <!-- Second Row: 3 Centered Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <!-- TripAdvisor Guesthouse Card -->
+            <div class="review-card glass-effect rounded-2xl p-8 text-center cursor-pointer"
+                 onclick="openReviewPlatform('tripadvisor-guesthouse')">
+                <div class="mb-6">
+                    <img src="https://i.pinimg.com/736x/1e/9c/a2/1e9ca2f9f6d7ad09d565e26c7ad0178c.jpg"
+                         alt="TripAdvisor Logo" class="platform-logo mx-auto mb-4">
+                    <h3 class="text-2xl font-bold text-primary-dark">TripAdvisor</h3>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                    <div class="text-xs text-gray-500 mt-2">Pilgrim's Kitchen & Inn Guesthouse</div>
+                </div>
+
+                <button class="w-full bg-primary hover:bg-primary-dark text-white font-medium py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center">
+                    <i class="fas fa-external-link-alt mr-2"></i>
+                    Reviews
+                </button>
             </div>
 
-           
-            <div class="bg-gray-50 rounded-lg p-4 mb-6">
-            <p class="text-gray-700 italic text-sm">
-                "Superhost exceeded all expectations! Beautiful property with amazing amenities. The restaurant on-site is world-class!"
-            </p>
-            <div class="text-xs text-gray-500 mt-2">- Verified Guest</div>
+            <!-- Google Card -->
+            <div class="review-card glass-effect rounded-2xl p-8 text-center cursor-pointer"
+                 onclick="openReviewPlatform('google')">
+                <div class="mb-6">
+                    <img src="https://i.pinimg.com/1200x/60/41/99/604199df880fb029291ddd7c382e828b.jpg"
+                             alt="Google Logo" class="platform-logo mx-auto mb-4">
+                    <h3 class="text-2xl font-bold text-primary-dark">Google</h3>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                    <div class="text-xs text-gray-500 mt-2">Pilgrim's Kitchen & Inn.</div>
+                </div>
+                <button class="w-full bg-primary hover:bg-primary-dark text-white font-medium py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center">
+                    <i class="fas fa-external-link-alt mr-2"></i>
+                    Reviews
+                </button>
             </div>
 
+            <!-- Expedia Card -->
+            <div class="review-card glass-effect rounded-2xl p-8 text-center cursor-pointer"
+                 onclick="openReviewPlatform('expedia')">
+                <div class="mb-6">
+                    <img src="https://i.pinimg.com/736x/08/7a/e9/087ae99de1c8af19b618307b1631314a.jpg"
+                             alt="Expedia Logo" class="platform-logo mx-auto mb-4">
+                    <h3 class="text-2xl font-bold text-primary-dark">Expedia</h3>
+                </div>
 
-            <button class="w-full bg-primary hover:bg-primary-dark text-white font-medium py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center">
-            <i class="fas fa-external-link-alt mr-2"></i>
-             Reviews
-            </button>
+                <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                    <div class="text-xs text-gray-500 mt-2">Pilgrim's Kitchen & Inn.</div>
+                </div>
+                <button class="w-full bg-primary hover:bg-primary-dark text-white font-medium py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center">
+                    <i class="fas fa-external-link-alt mr-2"></i>
+                    Reviews
+                </button>
             </div>
         </div>
     </div>
@@ -207,7 +249,7 @@
             </p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {% for review in recent_reviews %}
             <!-- Recent Review {{ forloop.counter }} -->
             <div class="bg-white p-6 rounded-lg shadow-md border-l-4" 
@@ -277,17 +319,6 @@
             </div>
             {% endfor %}
         </div>
-        
-        <!-- View All Reviews Button -->
-        {% if recent_reviews %}
-        <div class="text-center mt-12">
-            <a href="{% url 'review-page' %}" 
-               class="inline-flex items-center bg-primary hover:bg-primary-dark text-white font-medium px-8 py-3 rounded-lg transition duration-300">
-                <i class="fas fa-star mr-2"></i>
-                View All Reviews
-            </a>
-        </div>
-        {% endif %}
     </div>
 </section>
 
@@ -342,7 +373,7 @@
         switch(platform) {
             case 'agoda':
                 // Replace with your actual Agoda property URL
-                url = 'https://www.agoda.com/pilgrims-kitchen-inn/hotel/savannakhet-la.html?countryId=190&finalPriceView=1&isShowMobileAppPrice=false&cid=-1&numberOfBedrooms=&familyMode=false&adults=1&children=0&rooms=1&maxRooms=0&checkIn=2025-07-3&isCalendarCallout=false&childAges=&numberOfGuest=0&missingChildAges=false&travellerType=0&showReviewSubmissionEntry=false&currencyCode=USD&isFreeOccSearch=false&tspTypes=16%2C-1&los=1&searchrequestid=c6c69fb5-8a6f-44a1-a432-dc0418c9a393&ds=eWKzGUSArxNLxVrp';
+                url = 'https://www.agoda.com/pilgrims-kitchen-inn/hotel/savannakhet-la.html?countryId=190&finalPriceView=1&isShowMobileAppPrice=false&cid=-999&numberOfBedrooms=&familyMode=false&adults=2&children=0&rooms=1&maxRooms=0&checkIn=2025-10-1&isCalendarCallout=false&childAges=&numberOfGuest=0&missingChildAges=false&travellerType=1&showReviewSubmissionEntry=false&currencyCode=USD&isFreeOccSearch=false&los=7&searchrequestid=29893042-03f3-4850-b681-a74e9636398a&ds=visHuLZYSC4GlIOO';
                 break;
             case 'booking':
                 // Replace with your actual Booking.com property URL
@@ -352,9 +383,21 @@
                 // Replace with your actual Booking.com property URL
                 url = 'https://www.tripadvisor.com/Restaurant_Review-g811038-d8835073-Reviews-Pilgrim_s_Kitchen_Inn-Savannakhet_Savannakhet_Province.html';
                 break;
+            case 'tripadvisor-guesthouse':
+                // Replace with your actual Booking.com property URL
+                url = 'https://www.tripadvisor.com/Hotel_Review-g811038-d8705049-Reviews-Pilgrim_s_Kitchen_Inn-Savannakhet_Savannakhet_Province.html';
+                break;
             case 'airbnb':
                 // Replace with your actual Airbnb property URL
-                url = 'https://www.airbnb.com/rooms/your-property-id';
+                url = 'https://www.airbnb.com/rooms/15321349?search_mode=regular_search&adults=1&check_in=2025-10-01&check_out=2025-10-06&children=0&infants=0&pets=0&source_impression_id=p3_1758513986_P3fhN2FUCqSyDT5T&previous_page_section_name=1000&federated_search_id=bdfdcda8-55df-4f81-982c-4b9d03151c0e';
+                break;
+            case 'expedia':
+                // Replace with your actual Airbnb property URL
+                url = 'https://www.expedia.com/Savannakhet-Hotels-Pilgrims-Kitchen-Inn.h14986614.Hotel-Information?chkin=2025-09-29&chkout=2025-10-01&x_pwa=1&rfrr=HSR&pwa_ts=1758513218387&referrerUrl=aHR0cHM6Ly93d3cuZXhwZWRpYS5jb20vSG90ZWwtU2VhcmNo&useRewards=false&rm1=a2&regionId=4203&destination=Savannakhet%2C%20Savannakhet%20Province%2C%20Laos&destType=MARKET&selected=14986614&latLong=16.572249%2C104.770552&sort=RECOMMENDED&userIntent=&searchId=32536f27-2d02-4a57-b2eb-9bd37b0e5ab9&';
+                break;
+            case 'google':
+                // Replace with your actual Airbnb property URL
+                url = 'https://www.google.com/travel/search?q=pilgrim%27s%20kitchen%20%26%20inn&g2lb=4965990%2C4969803%2C72248050%2C72248052%2C72302247%2C72317059%2C72414906%2C72471280%2C72472051%2C72485658%2C72560029%2C72573224%2C72601598%2C72616120%2C72647020%2C72686036%2C72803964%2C72882230%2C72958624%2C72959983%2C72990342%2C73010544%2C73053694%2C73059275%2C73064216%2C73064764%2C73076417%2C73107089%2C73110162&hl=en-LA&gl=la&ssta=1&ts=CAEaRwopEicyJTB4MzczMzU0NzA0NTIyYjIzNToweDY0ODBlODY2NDg4ZDNhZmESGhIUCgcI6Q8QCRgWEgcI6Q8QCRgXGAEyAhAA&qs=CAEyE0Nnb0ktdlcweE9TTXVzQmtFQUU4AkIJCfo6jUhm6IBkQgkJ-jqNSGbogGQ&ap=ugEHcmV2aWV3cw&ictx=111&ved=0CAAQ5JsGahcKEwiwipyh_vKPAxUAAAAAHQAAAAAQBA';
                 break;
         }
         

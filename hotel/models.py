@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils import timezone
+from django.utils.text import slugify
 from decimal import Decimal
 
 
@@ -78,6 +79,7 @@ class Room(models.Model):
     room_type = models.ForeignKey(
         RoomType, on_delete=models.CASCADE, related_name="rooms"
     )
+    slug = models.SlugField(max_length=100, unique=True, blank=True, null=True)
     amenities = models.ManyToManyField(
         Amenity, through="RoomAmenity", related_name="rooms", blank=True
     )
@@ -103,6 +105,25 @@ class Room(models.Model):
 
     def __str__(self):
         return f"Room {self.id} - {self.room_type.name}"
+
+    def save(self, *args, **kwargs):
+        """Override save to ensure slug is created"""
+        if not self.slug:
+            # Create base slug from room type and id
+            if self.room_type:
+                base_slug = slugify(f"{self.room_type.name}")
+                # If we don't have an ID yet, save first to get one
+                if not self.id:
+                    super().save(*args, **kwargs)
+
+                # Now create slug with ID
+                slug = f"{base_slug}-{self.id}"
+                counter = 1
+                while Room.objects.filter(slug=slug).exclude(pk=self.pk).exists():
+                    slug = f"{base_slug}-{self.id}-{counter}"
+                    counter += 1
+                self.slug = slug
+        super().save(*args, **kwargs)
 
     @property
     def availability_status(self):
@@ -286,14 +307,14 @@ class Review(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
     rating = models.PositiveIntegerField(
-        validators=[MinValueValidator(1), MaxValueValidator(5)]
+        validators=[MinValueValidator(1), MaxValueValidator(10)]
     )
     comment = models.TextField()
     date_posted = models.DateTimeField(auto_now_add=True)
     is_approved = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.name} - {self.rating}/5 stars"
+        return f"{self.name} - {self.rating}/10 stars"
 
 
 class ReviewPlatform(models.Model):
@@ -305,6 +326,7 @@ class ReviewPlatform(models.Model):
         ("airbnb", "Airbnb"),
         ("tripadvisor", "TripAdvisor"),
         ("google", "Google Reviews"),
+        ("expedia", "Expedia"),
     ]
 
     name = models.CharField(max_length=50, choices=PLATFORM_CHOICES, unique=True)
@@ -353,11 +375,11 @@ class PlatformRating(models.Model):
         ReviewPlatform, on_delete=models.CASCADE, related_name="rating"
     )
     overall_rating = models.DecimalField(
-        max_digits=3,
+        max_digits=4,
         decimal_places=1,
         validators=[
             MinValueValidator(Decimal("0.0")),
-            MaxValueValidator(Decimal("5.0")),
+            MaxValueValidator(Decimal("10.0")),
         ],
     )
     total_reviews = models.PositiveIntegerField(default=0)
@@ -368,7 +390,7 @@ class PlatformRating(models.Model):
         verbose_name_plural = "Platform Ratings"
 
     def __str__(self):
-        return f"{self.platform.display_name} - {self.overall_rating}/5.0"
+        return f"{self.platform.display_name} - {self.overall_rating}/10.0"
 
 
 class CategoryRating(models.Model):
@@ -379,11 +401,11 @@ class CategoryRating(models.Model):
     )
     category = models.ForeignKey(ReviewCategory, on_delete=models.CASCADE)
     rating = models.DecimalField(
-        max_digits=3,
+        max_digits=4,
         decimal_places=1,
         validators=[
             MinValueValidator(Decimal("0.0")),
-            MaxValueValidator(Decimal("5.0")),
+            MaxValueValidator(Decimal("10.0")),
         ],
     )
 
@@ -398,7 +420,7 @@ class CategoryRating(models.Model):
     @property
     def rating_percentage(self):
         """Return rating as percentage for progress bars"""
-        return (self.rating / 5.0) * 100
+        return (self.rating / 10.0) * 100
 
 
 class GuestReview(models.Model):
@@ -411,6 +433,7 @@ class GuestReview(models.Model):
         ("couple", "Couple's Trip"),
         ("friends", "Friends Trip"),
         ("weekend", "Weekend Getaway"),
+        ("traveled", "Traveled with partner"),
         ("other", "Other"),
     ]
 
@@ -420,15 +443,15 @@ class GuestReview(models.Model):
     reviewer_name = models.CharField(max_length=100)
     review_text = models.TextField()
     rating = models.DecimalField(
-        max_digits=3,
+        max_digits=4,
         decimal_places=1,
         validators=[
             MinValueValidator(Decimal("0.0")),
-            MaxValueValidator(Decimal("5.0")),
+            MaxValueValidator(Decimal("10.0")),
         ],
     )
     trip_type = models.CharField(
-        max_length=20, choices=TRIP_TYPE_CHOICES, default="other"
+        max_length=25, choices=TRIP_TYPE_CHOICES, default="other"
     )
     review_date = models.DateTimeField(default=timezone.now)
     is_featured = models.BooleanField(default=False)
@@ -449,7 +472,7 @@ class GuestReview(models.Model):
         verbose_name_plural = "Guest Reviews"
 
     def __str__(self):
-        return f"{self.reviewer_name} - {self.platform.display_name} ({self.rating}/5)"
+        return f"{self.reviewer_name} - {self.platform.display_name} ({self.rating}/10)"
 
     @property
     def days_ago(self):
@@ -477,7 +500,7 @@ class GuestReview(models.Model):
     @property
     def star_range(self):
         """Return range for template star rendering"""
-        return range(1, 6)  # 1 to 5
+        return range(1, 11)  # 1 to 10
 
     @property
     def full_stars(self):
@@ -495,12 +518,12 @@ class ReviewSummary(models.Model):
 
     total_reviews = models.PositiveIntegerField(default=0)
     average_rating = models.DecimalField(
-        max_digits=3,
+        max_digits=4,
         decimal_places=1,
         default=Decimal("0.0"),
         validators=[
             MinValueValidator(Decimal("0.0")),
-            MaxValueValidator(Decimal("5.0")),
+            MaxValueValidator(Decimal("10.0")),
         ],
     )
     last_updated = models.DateTimeField(auto_now=True)
@@ -509,7 +532,7 @@ class ReviewSummary(models.Model):
     featured_stat_1_label = models.CharField(
         max_length=100, default="Excellence Rating"
     )
-    featured_stat_1_value = models.CharField(max_length=50, default="4.8/5")
+    featured_stat_1_value = models.CharField(max_length=50, default="9.6/10")
 
     featured_stat_2_label = models.CharField(
         max_length=100, default="Guest Satisfaction"
@@ -524,7 +547,7 @@ class ReviewSummary(models.Model):
         verbose_name_plural = "Review Summary"
 
     def __str__(self):
-        return f"Overall: {self.average_rating}/5.0 ({self.total_reviews} reviews)"
+        return f"Overall: {self.average_rating}/10.0 ({self.total_reviews} reviews)"
 
     def save(self, *args, **kwargs):
         # Auto-calculate summary stats

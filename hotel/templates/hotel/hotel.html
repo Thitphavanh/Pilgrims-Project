@@ -479,7 +479,7 @@
                     
                     <div class="flex items-center">
                         <div class="flex text-yellow-400 mr-2">
-                            {% for i in "12345"|make_list %}
+                            {% for i in "12345678910"|make_list %}
                                 {% if forloop.counter <= review.rating %}
                                     <i class="fas fa-star"></i>
                                 {% else %}
@@ -487,7 +487,7 @@
                                 {% endif %}
                             {% endfor %}
                         </div>
-                        <span class="text-sm text-gray-600">{{ review.rating }}/5</span>
+                        <span class="text-sm text-gray-600">{{ review.rating }}/10</span>
                     </div>
                 </div>
                 {% endfor %}

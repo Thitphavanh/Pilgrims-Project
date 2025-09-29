@@ -93,15 +93,15 @@
             <!-- Logo -->
             <div class="flex items-center">
                 <a href="{% url 'home-page' %}" class="font-playfair text-2xl sm:text-3xl font-bold text-primary-light dark:text-secondary-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 ease-in-out">
-                    <img 
-                        src="{% static 'images/logo.jpeg' %}" 
+                    <img
+                        src="{% static 'images/logo.jpeg' %}"
                         class="w-12 h-12 object-cover"
                         loading="lazy"
                     >
                 </a>
             </div>
 
-          
+
             <!-- Navigation Links -->
             <div id="nav-content" class="hidden md:flex md:items-center md:w-auto w-full transition-all duration-300 ease-in-out">
                 <ul class="md:flex md:flex-row flex-col md:space-x-6 lg:space-x-10 mt-4 md:mt-0 text-base sm:text-lg font-medium">
@@ -118,19 +118,19 @@
                 <!-- Language Toggle -->
                 <!-- Language Toggle (Fixed Version) -->
                 <div class="relative">
-                    <button id="language-toggle" class="flex items-center p-2 rounded-full text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none transition-colors duration-300" aria-label="Change language">
+                    <button id="language-toggle" class="flex items-center p-2 rounded-full text-neutral-content-light dark:text-neutral-content-dark hover:bg-gray-100 dark:hover:bg-primary-dark focus:outline-none transition-colors duration-300" aria-label="Change language">
                         <i class="fas fa-globe text-lg sm:text-xl mr-1"></i>
                         <span class="text-sm font-medium">{{ LANGUAGE_CODE|upper }}</span>
                         <i class="fas fa-chevron-down text-xs ml-1 transition-transform duration-200" id="chevron-icon"></i>
                     </button>
-                    
+
                     <!-- Language Dropdown -->
-                    <div id="language-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-600 z-[9999] opacity-0 transform scale-95 transition-all duration-200">
+                    <div id="language-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-primary-dark-dark rounded-lg shadow-lg dark:dark-shadow-lg border border-gray-200 dark:border-gray-600 z-50 opacity-0 transform scale-95 transition-all duration-200">
                         <div class="py-1">
                             <form action="{% url 'set_language' %}" method="post" class="inline">
                                 {% csrf_token %}
                                 <input name="next" type="hidden" value="{{ request.get_full_path }}" />
-                                <button type="submit" name="language" value="lo" class="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center transition-colors duration-200">
+                                <button type="submit" name="language" value="lo" class="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-primary-dark flex items-center transition-colors duration-200">
                                     <img src="https://flagcdn.com/w20/la.png" alt="ລາວ" class="w-5 h-3 mr-3 rounded">
                                     <span>ລາວ (Lao)</span>
                                     {% if LANGUAGE_CODE == 'lo' %}
@@ -141,7 +141,7 @@
                             <form action="{% url 'set_language' %}" method="post" class="inline">
                                 {% csrf_token %}
                                 <input name="next" type="hidden" value="{{ request.get_full_path }}" />
-                                <button type="submit" name="language" value="en" class="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center transition-colors duration-200">
+                                <button type="submit" name="language" value="en" class="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-primary-dark flex items-center transition-colors duration-200">
                                     <img src="https://flagcdn.com/w20/us.png" alt="English" class="w-5 h-3 mr-3 rounded">
                                     <span>English</span>
                                     {% if LANGUAGE_CODE == 'en' %}
@@ -199,7 +199,7 @@
     <!-- Main Content -->
     <main class="flex-grow">
         {% block content %}
-        
+
         {% endblock %}
     </main>
 
@@ -222,8 +222,8 @@
                         <li class="flex items-center">
                             <i class="fas fa-phone-alt mr-3 sm:mr-4 text-secondary-light dark:text-secondary-dark flex-shrink-0"></i>
                             <div>
-                                <span class="block">{% trans "Tel" %}: 
-                                    <a href="tel:+8562022133733" 
+                                <span class="block">{% trans "Tel" %}:
+                                    <a href="tel:+8562022133733"
                                     class="hover:text-secondary-light dark:hover:text-secondary-dark transition-colors duration-300 underline">
                                         +856 20 22133733
                                     </a>
@@ -233,18 +233,18 @@
                         <li class="flex items-center">
                             <i class="fas fa-envelope mr-3 sm:mr-4 text-secondary-light dark:text-secondary-dark flex-shrink-0"></i>
                             <div>
-                                <span class="block">{% trans "Email" %}: 
-                                    <a href="mailto:pilgrimscontact@gmail.com" 
+                                <span class="block">{% trans "Email" %}:
+                                    <a href="mailto:pilgrimscontact@gmail.com"
                                     class="hover:text-secondary-light dark:hover:text-secondary-dark transition-colors duration-300 underline break-all">
                                         pilgrimscontact@gmail.com
                                     </a>
                                 </span>
                             </div>
                         </li>
-                        
+
                     </ul>
                 </div>
-    
+
                 <!-- Quick Links -->
                 <div>
                     <h3 class="text-xl sm:text-2xl font-playfair mb-4 sm:mb-6 font-bold text-secondary-light dark:text-secondary-dark">{% trans "Stay Connected" %}</h3>
@@ -256,8 +256,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.facebook.com/pilgrimskitchenandinn/" 
-                            target="_blank" 
+                            <a href="https://www.facebook.com/pilgrimskitchenandinn/"
+                            target="_blank"
                             rel="noopener noreferrer"
                             class="hover:text-secondary-light dark:hover:text-secondary-dark transition duration-300 inline-flex items-center py-1 hover:translate-x-2 transform group">
                                 <i class="fab fa-facebook-f mr-3 text-blue-500 group-hover:text-blue-400 transition-colors duration-300"></i>
@@ -265,15 +265,15 @@
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.instagram.com/pilgrimskitchenandinn/" 
-                            target="_blank" 
+                            <a href="https://www.instagram.com/pilgrimskitchenandinn/"
+                            target="_blank"
                             rel="noopener noreferrer"
                             class="hover:text-secondary-light dark:hover:text-secondary-dark transition duration-300 inline-flex items-center py-1 hover:translate-x-2 transform group">
                                 <i class="fab fa-instagram mr-3 text-pink-500 group-hover:text-pink-400 transition-colors duration-300 bg-gradient-to-br from-purple-500 to-pink-500 bg-clip-text text-transparent"></i>
                                 Instagram
                             </a>
                         </li>
-        
+
                     </ul>
                 </div>
                   <!-- Timings -->
@@ -317,7 +317,7 @@
             // Theme toggle
             const themeToggleBtn = document.getElementById('theme-toggle');
             if (themeToggleBtn) {
-                if (localStorage.getItem('color-theme') === 'dark' || 
+                if (localStorage.getItem('color-theme') === 'dark' ||
                     (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                     document.documentElement.classList.add('dark');
                 } else {
@@ -416,71 +416,55 @@
             const languageDropdown = document.getElementById('language-dropdown');
             const chevronIcon = document.getElementById('chevron-icon');
 
-            console.log('Language dropdown elements:', { languageToggle, languageDropdown, chevronIcon });
-
             if (languageToggle && languageDropdown) {
-                // Function to hide dropdown
-                function hideDropdown() {
-                    languageDropdown.classList.remove('opacity-100', 'scale-100');
-                    languageDropdown.classList.add('opacity-0', 'scale-95');
-                    setTimeout(() => {
-                        languageDropdown.classList.add('hidden');
-                    }, 200);
-                    if (chevronIcon) {
-                        chevronIcon.style.transform = 'rotate(0deg)';
-                    }
-                }
-
-                // Function to show dropdown
-                function showDropdown() {
-                    languageDropdown.classList.remove('hidden');
-                    setTimeout(() => {
-                        languageDropdown.classList.remove('opacity-0', 'scale-95');
-                        languageDropdown.classList.add('opacity-100', 'scale-100');
-                    }, 10);
-                    if (chevronIcon) {
-                        chevronIcon.style.transform = 'rotate(180deg)';
-                    }
-                }
-
                 languageToggle.addEventListener('click', function(e) {
-                    console.log('Language toggle clicked');
                     e.preventDefault();
                     e.stopPropagation();
 
                     const isHidden = languageDropdown.classList.contains('hidden');
-                    console.log('Dropdown is hidden:', isHidden);
 
                     if (isHidden) {
-                        showDropdown();
+                        // Show dropdown
+                        languageDropdown.classList.remove('hidden');
+                        setTimeout(() => {
+                            languageDropdown.classList.remove('opacity-0', 'scale-95');
+                            languageDropdown.classList.add('opacity-100', 'scale-100');
+                        }, 10);
+                        chevronIcon.style.transform = 'rotate(180deg)';
                     } else {
-                        hideDropdown();
+                        // Hide dropdown
+                        languageDropdown.classList.remove('opacity-100', 'scale-100');
+                        languageDropdown.classList.add('opacity-0', 'scale-95');
+                        setTimeout(() => {
+                            languageDropdown.classList.add('hidden');
+                        }, 200);
+                        chevronIcon.style.transform = 'rotate(0deg)';
                     }
                 });
 
                 // Close dropdown when clicking outside
                 document.addEventListener('click', function(e) {
-                    const isClickInside = languageToggle.contains(e.target) || languageDropdown.contains(e.target);
-                    if (!isClickInside && !languageDropdown.classList.contains('hidden')) {
-                        console.log('Clicking outside, hiding dropdown');
-                        hideDropdown();
+                    if (!languageToggle.contains(e.target) && !languageDropdown.contains(e.target)) {
+                        languageDropdown.classList.remove('opacity-100', 'scale-100');
+                        languageDropdown.classList.add('opacity-0', 'scale-95');
+                        setTimeout(() => {
+                            languageDropdown.classList.add('hidden');
+                        }, 200);
+                        chevronIcon.style.transform = 'rotate(0deg)';
                     }
                 });
 
                 // Close dropdown when pressing Escape key
                 document.addEventListener('keydown', function(e) {
                     if (e.key === 'Escape' && !languageDropdown.classList.contains('hidden')) {
-                        console.log('Escape pressed, hiding dropdown');
-                        hideDropdown();
+                        languageDropdown.classList.remove('opacity-100', 'scale-100');
+                        languageDropdown.classList.add('opacity-0', 'scale-95');
+                        setTimeout(() => {
+                            languageDropdown.classList.add('hidden');
+                        }, 200);
+                        chevronIcon.style.transform = 'rotate(0deg)';
                     }
                 });
-
-                // Prevent dropdown from closing when clicking inside it
-                languageDropdown.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                });
-            } else {
-                console.error('Language dropdown elements not found');
             }
         });
         </script>

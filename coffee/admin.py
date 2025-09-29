@@ -46,6 +46,7 @@ class ProductImageInline(admin.TabularInline):
 class CoffeeProductAdmin(admin.ModelAdmin):
     list_display = [
         "name",
+        "slug",
         "coffee_bean",
         "roast_level",
         "price",
@@ -62,10 +63,13 @@ class CoffeeProductAdmin(admin.ModelAdmin):
         "weight_unit",
         "categories",
     ]
-    search_fields = ["name", "coffee_bean__name", "description"]
+    search_fields = ["name", "slug", "coffee_bean__name", "description"]
     ordering = ["name"]
     filter_horizontal = ["categories"]
     inlines = [ProductImageInline, CoffeeReviewInline]
+
+    # Auto-populate slug from name
+    prepopulated_fields = {"slug": ("name",)}
 
     fieldsets = (
         (
@@ -73,12 +77,12 @@ class CoffeeProductAdmin(admin.ModelAdmin):
             {
                 "fields": (
                     "name",
+                    "slug",  # Moved slug to be right after name
                     "coffee_bean",
                     "roast_level",
                     "grind_type",
                     "categories",
                     "images",
-                    "slug",
                 )
             },
         ),
@@ -109,6 +113,39 @@ class CoffeeProductAdmin(admin.ModelAdmin):
         return (
             super().get_queryset(request).select_related("coffee_bean", "roast_level")
         )
+
+    def slug_status(self, obj):
+        """Display slug status"""
+        if obj.slug:
+            return format_html(
+                '<span style="color: green; font-weight: bold;">✓ {}</span>',
+                obj.slug
+            )
+        else:
+            return format_html(
+                '<span style="color: red; font-weight: bold;">✗ No slug</span>'
+            )
+    slug_status.short_description = "Slug Status"
+
+    actions = ['generate_slugs']
+
+    def generate_slugs(self, request, queryset):
+        """Admin action to generate slugs for selected products"""
+        updated = 0
+        for product in queryset:
+            if not product.slug:
+                product.generate_slug()
+                product.save()
+                updated += 1
+
+        if updated == 1:
+            message = "1 product slug was successfully generated."
+        else:
+            message = f"{updated} product slugs were successfully generated."
+
+        self.message_user(request, message)
+
+    generate_slugs.short_description = "Generate slugs for selected products"
 
 
 @admin.register(CoffeeCategory)

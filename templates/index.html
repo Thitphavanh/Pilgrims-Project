@@ -4,7 +4,7 @@
 
 {% load i18n %}
 
-{% load humanize %}
+{% load lao_filters %}
 
 {% block title %}Pilgrims - Hotel & Fine Dining{% endblock %}
 
@@ -80,6 +80,19 @@
             transform: translateX(-5px);
         }
     }
+
+    @keyframes spin-slow {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .animate-spin-slow {
+        animation: spin-slow 3s linear infinite;
+    }
 </style>
 <!-- Hero Section -->
 {% include 'components/hero-section.html' %}
@@ -89,16 +102,16 @@
     <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row items-center">
             <div class="md:w-1/2 mb-10 md:mb-0 md:pr-12">
-                <h2 class="text-3xl md:text-4xl font-serif font-bold mb-6">Pilgrims Kitchen & Inn ຍິນດີຕ້ອນຮັບ </h2>
+                <h2 class="text-3xl md:text-4xl font-serif font-bold mb-6">{% trans "Pilgrims Kitchen & Inn ຍິນດີຕ້ອນຮັບ" %}</h2>
                 <p class=" mb-6 leading-relaxed">
-                    Nestle by the banks of the Mekong River with sweeping views across to Thailand, we bring together a cozy cafe, a vibrant multi-cuisine restaurant, a welcoming guesthouse, and our very own in-house coffee roastery - all under one roof. Our cafe is the perfect place to begin your day with a fresh cup of coffee while watching the river awaken, while our restaurant takes you on a journey of flavors from around the world - Mexican, Indian, American, Mediterranean, and Local Lao specialties.
+                    {% trans "Nestle by the banks of the Mekong River with sweeping views across to Thailand, we bring together a cozy cafe, a vibrant multi-cuisine restaurant, a welcoming guesthouse, and our very own in-house coffee roastery - all under one roof. Our cafe is the perfect place to begin your day with a fresh cup of coffee while watching the river awaken, while our restaurant takes you on a journey of flavors from around the world - Mexican, Indian, American, Mediterranean, and Local Lao specialties." %}
                 </p>
                 <p class=" mb-8 leading-relaxed">
-                    For travelers, our guesthouse offers the comfort of 11 well-appointed rooms and 2 spacious suites, where you can rest, recharge, and wake up to the beauty of the Mekong sunrise. And for coffee lovers, our in-house roasting ensures every cup is crafted with passion, freshness, and care. Whether you are passing through, staying the night, or simply looking for a place to relax and connect, we invite you to discover comfort, flavor, and unforgettable riverside experiences with us.
+                    {% trans "For travelers, our guesthouse offers the comfort of 11 well-appointed rooms and 2 spacious suites, where you can rest, recharge, and wake up to the beauty of the Mekong sunrise. And for coffee lovers, our in-house roasting ensures every cup is crafted with passion, freshness, and care. Whether you are passing through, staying the night, or simply looking for a place to relax and connect, we invite you to discover comfort, flavor, and unforgettable riverside experiences with us." %}
                 </p>
             </div>
             <div class="md:w-1/2">
-                <img src="{% static 'images/pilgrims-kitchen-views.jpg' %}" alt="Hotel Lobby" class="rounded-lg shadow-xl">
+                <img src="{% static 'images/pilgrims-kitchen-views.jpg' %}" alt="{% trans 'Hotel Lobby' %}" class="rounded-lg shadow-xl">
             </div>
         </div>
     </div>
@@ -110,11 +123,11 @@
         <!-- Animated section header -->
         <div class="text-center mb-12 md:mb-16 animate-on-scroll opacity-0 translate-y-8">
             <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 leading-tight">
-                ເມນູຂອງພວກເຮົາ
+                {% trans "ເມນູຂອງພວກເຮົາ" %}
             </h2>
             <div class="w-32 h-1.5 mx-auto mb-8 rounded-full"></div>
             <p class="max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
-                ສຳຫຼວດເມນູອາຫານຫຼາກຫຼາຍຈາກທົ່ວໂລກ ທີ່ປຸງແຕ່ງດ້ວຍຄວາມຕັ້ງໃຈແລະວັດຖຸດິບຊັ້ນດີ
+                {% trans "ສຳຫຼວດເມນູອາຫານຫຼາກຫຼາຍຈາກທົ່ວໂລກ ທີ່ປຸງແຕ່ງດ້ວຍຄວາມຕັ້ງໃຈແລະວັດຖຸດິບຊັ້ນດີ" %}
             </p>
         </div>
         
@@ -123,41 +136,41 @@
             <div class="relative mb-8">
                 <!-- Mobile scroll indicator -->
                 <div class="absolute -top-8 left-0 right-0 text-center text-sm  md:hidden">
-                    <span class="scroll-indicator">ເລື່ອນເບິ່ງເມນູເພີ່ມເຕີມ <i class="fas fa-arrow-right text-primary ml-2"></i></span>
+                    <span class="scroll-indicator">{% trans "Scroll to see more menu" %} <i class="fas fa-arrow-right text-primary ml-2"></i></span>
                 </div>
                 
                 <!-- Menu tabs with enhanced design -->
                 <div class="flex overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-primary scrollbar-track-transparent gap-3">
                     <div class="flex flex-nowrap gap-3 mx-auto min-w-max">
                         <button class="category-tab active bg-primary text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl whitespace-nowrap" data-target="breakfast">
-                            <i class="fas fa-coffee mr-3 text-lg"></i>Breakfast
+                            <i class="fas fa-coffee mr-3 text-lg"></i>{% trans "Breakfast" %}
                         </button>
                         <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap" data-target="coffee">
-                            <i class="fas fa-mug-hot mr-3 text-lg"></i>Coffee
+                            <i class="fas fa-mug-hot mr-3 text-lg"></i>{% trans "Coffee" %}
                         </button>
                         <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap" data-target="american">
-                            <i class="fas fa-hamburger mr-3 text-lg"></i>American
+                            <i class="fas fa-hamburger mr-3 text-lg"></i>{% trans "American" %}
                         </button>
                         <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap" data-target="indian">
-                            <i class="fas fa-pepper-hot mr-3 text-lg"></i>Indian
+                            <i class="fas fa-pepper-hot mr-3 text-lg"></i>{% trans "Indian" %}
                         </button>
                         <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap" data-target="mexican">
-                            <i class="fas fa-pepper-hot mr-3 text-lg"></i>Mexican
+                            <i class="fas fa-pepper-hot mr-3 text-lg"></i>{% trans "Mexican" %}
                         </button>
                         <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap" data-target="pizza">
-                            <i class="fas fa-pizza-slice mr-3 text-lg"></i>Pizza
+                            <i class="fas fa-pizza-slice mr-3 text-lg"></i>{% trans "Pizza" %}
                         </button>
                         <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap" data-target="local_food">
-                            <i class="fas fa-utensils mr-3 text-lg"></i>Local Specialties
+                            <i class="fas fa-utensils mr-3 text-lg"></i>{% trans "Local Specialties" %}
                         </button>
                         <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap" data-target="soup_salad_mediterranean">
-                            <i class="fas fa-leaf mr-3 text-lg"></i>Soup & Salad
+                            <i class="fas fa-leaf mr-3 text-lg"></i>{% trans "Soup & Salad" %}
                         </button>
                         <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap" data-target="dessert">
-                            <i class="fas fa-ice-cream mr-3 text-lg"></i>Desserts
+                            <i class="fas fa-ice-cream mr-3 text-lg"></i>{% trans "Desserts" %}
                         </button>
                         <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap" data-target="drinks">
-                            <i class="fas fa-glass-martini-alt mr-3 text-lg"></i>Drinks
+                            <i class="fas fa-glass-martini-alt mr-3 text-lg"></i>{% trans "Drinks" %}
                         </button>
                     </div>
                 </div>
@@ -166,34 +179,34 @@
             <!-- Category descriptions -->
             <div class="text-center my-8 min-h-16">
                 <div id="breakfast-description" class="category-desc active">
-                    <p class="italic text-lg">ລີ່ມຕົ້ນວັນຂອງທ່ານດ້ວຍເມນູອາຫານເຊົ້າສຸດແຊບຂອງພວກເຮົາ</p>
+                    <p class="italic text-lg">{% trans "Start your day with our delicious breakfast menu" %}</p>
                 </div>
                 <div id="coffee-description" class="category-desc hidden">
-                    <p class="italic text-lg">ເຄື່ອງດື່ມກາເຟທີ່ຖືກຊົງແບບຊຳນານ ໂດຍໃຊ້ເມັດກາເຟຊັ່ນນຳຈາກທົ່ວໂລກ</p>
+                    <p class="italic text-lg">{% trans "Expertly crafted coffee drinks using premium beans from around the world" %}</p>
                 </div>
                 <div id="american-description" class="category-desc hidden">
-                    <p class="italic text-lg">ອາຫານຄລາສສິກສະໄຕລ໌ອາເມຣິກາ ທີ່ຖືກປຸງແຕ່ງໂດຍພໍ່ຄົວຂອງເຮົາໃນແນວພິເສດ</p>
+                    <p class="italic text-lg">{% trans "Classic American cuisine prepared with our chef's special touch" %}</p>
                 </div>
                 <div id="indian-description" class="category-desc hidden">
-                    <p class="italic text-lg">ອາຫານອິນເດຍແບບດັ້ງເດີມ ທີ່ເຕັມໄປດ້ວຍກິ່ນຫອມຂອງເຄື່ອງເທດ ແລະວິທີປຸງແບບດັ້ງເດີມ</p>
+                    <p class="italic text-lg">{% trans "Traditional Indian dishes filled with aromatic spices and authentic cooking methods" %}</p>
                 </div>
                 <div id="mexican-description" class="category-desc hidden">
-                    <p class="italic text-lg">ອາຫານແມັກຊິໂກທີ່ເຂັ້ມຂົ້ນ ແລະເຕັມໄປດ້ວຍລົດຊາດ ໃຊ້ວັດຖຸດິບສົດ ແລະສູດຕົ້ນສະບັບແທ້</p>
+                    <p class="italic text-lg">{% trans "Bold and flavorful Mexican cuisine using fresh ingredients and authentic recipes" %}</p>
                 </div>
                 <div id="pizza-description" class="category-desc hidden">
-                    <p class="italic text-lg">ພິຊຊ່າແຮນເມດ ຫນ້າຄຸນນະພາບ</p>
+                    <p class="italic text-lg">{% trans "Handmade pizzas with premium toppings" %}</p>
                 </div>
                 <div id="local_food-description" class="category-desc hidden">
-                    <p class="italic text-lg">ອາຫານພື້ນເມືອງຈາກແຕ່ລະພາກ ທີ່ໂຊວເອກະລັກຂອງວັດຖຸດິບແລະປະເພນີທ້ອງຖິ່ນ</p>
+                    <p class="italic text-lg">{% trans "Regional specialties showcasing unique local ingredients and traditions" %}</p>
                 </div>
                 <div id="soup_salad_mediterranean-description" class="category-desc hidden">
-                    <p class="italic text-lg">ສະຫຼັດສົດ ແລະອາຫານຍອດນິຍົມຈາກພາກມະຕິເຕຣເນຍ ທີ່ເຕັມໄປດ້ວຍສິ່ງທີ່ມີປະໂຫຍດຕໍ່ສຸຂະພາບ</p>
+                    <p class="italic text-lg">{% trans "Fresh salads and Mediterranean favorites packed with healthy goodness" %}</p>
                 </div>
                 <div id="dessert-description" class="category-desc hidden">
-                    <p class="italic text-lg">ຂອງຫວານແລະເຄຼັດລັບທີ່ຫວານຫໍມ ເຮັດຈາກສ່ວນຜະສົມຄຸນນະພາບສູງ</p>
+                    <p class="italic text-lg">{% trans "Sweet treats and delicate desserts made with high-quality ingredients" %}</p>
                 </div>
                 <div id="drinks-description" class="category-desc hidden">
-                    <p class="italic text-lg">ເຄື່ອງດື່ມທີ່ຊົດຊື່ນ, ຄອກແທວສະເພາະ ແລະເລືອກຄັດສັນແບບພິຖີພິຖັນ</p>
+                    <p class="italic text-lg">{% trans "Refreshing beverages, specialty cocktails and carefully curated selections" %}</p>
                 </div>
             </div>
             
@@ -228,10 +241,10 @@
                         </p>
                         <div class="flex items-center text-sm ">
                             <i class="fas fa-utensils mr-2"></i>
-                            <span>Breakfast Special</span>
+                            <span>{% trans "Breakfast Special" %}</span>
                             {% if item.is_featured %}
                             <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
-                            <span>Chef's Choice</span>
+                            <span>{% trans "Chef's Choice" %}</span>
                             {% endif %}
                         </div>
                     </div>
@@ -239,9 +252,9 @@
                 {% empty %}
                 <div class="col-span-full border-2 border-dashed border-primary rounded-3xl p-12 text-center">
                     <div class="text-6xl mb-6"><i class="fas fa-coffee"></i></div>
-                    <h3 class="text-2xl font-semibold  mb-4">ເມນູອາຫານເຊົ້າກຳລັງກະກຽມ</h3>
+                    <h3 class="text-2xl font-semibold  mb-4">{% trans "ເມນູອາຫານເຊົ້າກຳລັງກະກຽມ" %}</h3>
                     <p class=" max-w-md mx-auto text-lg">
-                        ພວກເຮົາກຳລັງກະກຽມເມນູອາຫານເຊົ້າພິເສດ ຄອຍຕິດຕາມໃນໄວໆນີ້
+                        {% trans "ພວກເຮົາກຳລັງກະກຽມເມນູອາຫານເຊົ້າພິເສດ ຄອຍຕິດຕາມໃນໄວໆນີ້" %}
                     </p>
                 </div>
                 {% endfor %}
@@ -694,7 +707,7 @@
     <div class="text-center mt-12">
         <a href="{% url 'menu-page' %}" 
            class="inline-flex items-center bg-primary text-white px-8 py-3 rounded-lg hover:bg-primary-700 transition font-medium">
-            <span>ເບິ່ງເມນູທັງໝົດ</span>
+            <span>{% trans "ເບິ່ງເມນູທັງໝົດ" %}</span>
             <i class="fas fa-arrow-right ml-2"></i>
         </a>
     </div>
@@ -728,8 +741,8 @@
 <section class="py-16 bg-primary bg-opacity-10">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold mb-4">ກາເຟແນະນຳ</h2>
-            <p class="">ກາເຟຄຸນນະພາບສູງທີ່ຄັດສັນມາເປັນພິເສດ</p>
+            <h2 class="text-3xl font-bold mb-4">{% trans "ກາເຟແນະນຳ" %}</h2>
+            <p class="">{% trans "ກາເຟຄຸນນະພາບສູງທີ່ຄັດສັນມາເປັນພິເສດ" %}</p>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -788,7 +801,7 @@
                     <div class="flex items-center mb-3">
                         <div class="flex items-center text-yellow-400 mr-2">
                             {% for i in "12345" %}
-                                {% if forloop.counter <= coffee.avg_rating|intcomma %}
+                                {% if forloop.counter <= coffee.avg_rating|lao_intcomma %}
                                 <i class="fas fa-star text-sm"></i>
                                 {% else %}
                                 <i class="far fa-star text-sm"></i>
@@ -809,20 +822,17 @@
                     <!-- Price -->
                     <div class="flex justify-between items-center mb-4">
                         <div>
-                            <span class="text-2xl font-bold text-amber-600">{{ coffee.price|intcomma }} LAK</span>
-                            <div class="text-xs">{{ coffee.price_per_unit|intcomma }} LAK/100g</div>
+                            <span class="text-2xl font-bold text-amber-600">{{ coffee.price|lao_currency }}</span>
+                            <div class="text-xs">{{ coffee.price_per_unit|lao_currency }}/100g</div>
                         </div>
                         <span class="text-sm px-2 py-1 rounded">{{ coffee.weight }}{{ coffee.weight_unit }}</span>
                     </div>
                     
                     <!-- Action Buttons -->
                      <div class="flex space-x-2">
-                        <button class="flex-1 bg-amber-600 text-white py-2 px-4 rounded-lg hover:bg-amber-700 transition font-medium">
-                            <a href="{% url 'coffee_detail' coffee.slug %}">
-                               ເບິ່ງລາຍລະອຽດ
-                            </a>
-                        </button>
-                        
+                        <a href="{% url 'coffee_detail' coffee.slug %}" class="flex-1 bg-amber-600 text-white py-2 px-4 rounded-lg hover:bg-amber-700 transition font-medium text-center inline-flex items-center justify-center">
+                            ເບິ່ງລາຍລະອຽດ
+                        </a>
                     </div>
                 </div>
             </div>
@@ -848,301 +858,153 @@
     </div>
 </section>
 
-<!-- Categories -->
-<!-- <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold mb-4">ໝວດໝູ່ກາເຟ</h2>
-            <p class="">ເລືອກກາເຟຕາມປະເພດທີ່ທ່ານມັກ</p>
-        </div>
-        
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {% for category in categories %}
-            <a href="#" 
-               class="group text-center p-6 bg-amber-50 rounded-lg hover:bg-amber-100 transition">
-                <div class="w-16 h-16 bg-amber-200 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-amber-300 transition">
-                    <i class="fas fa-coffee text-2xl text-amber-700"></i>
-                </div>
-                <h3 class="font-semibold">{{ category.name }}</h3>
-                {% if category.description %}
-                <p class="text-sm  mt-2">{{ category.description|truncatewords:10 }}</p>
-                {% endif %}
-            </a>
-            {% empty %}
-            <div class="col-span-full text-center py-12">
-                <p class="">ບໍ່ມີໝວດໝູ່ໃນຂະນະນີ້</p>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-
-<section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold mb-4">ໝວດໝູ່ກາເຟ</h2>
-            <p class="">ເລືອກກາເຟຕາມປະເພດທີ່ທ່ານມັກ</p>
-        </div>
-        
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {% for category in categories %}
-            <a href="{% url 'category_detail' category.slug %}" 
-               class="group text-center p-6 bg-amber-50 rounded-lg hover:bg-amber-100 transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1">
-                
-          
-                <div class="w-16 h-16 bg-amber-200 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-amber-300 transition-all duration-300 overflow-hidden">
-                    {% if category.image %}
-                        <img src="{{ category.image.url }}" 
-                             alt="{{ category.name }}"
-                             class="w-full h-full object-cover rounded-full">
-                    {% else %}
-                        <i class="fas fa-coffee text-2xl text-amber-700 group-hover:scale-110 transition-transform duration-300"></i>
-                    {% endif %}
-                </div>
-                
-             
-                <h3 class="font-semibold group-hover:text-amber-700 transition-colors mb-2">
-                    {{ category.name }}
-                </h3>
-                
-                {% if category.description %}
-                <p class="text-sm  mt-2 line-clamp-2">
-                    {{ category.description|truncatewords:10 }}
-                </p>
-                {% endif %}
-                
-        
-                <div class="mt-3 text-xs text-amber-600 font-medium">
-                    {{ category.products_count|default:0 }} ລາຍການ
-                </div>
-                
-             
-                <div class="mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <i class="fas fa-arrow-right text-amber-600"></i>
-                </div>
-            </a>
-            {% empty %}
-            <div class="col-span-full text-center py-12">
-                <i class="fas fa-tags text-4xl text-gray-300 mb-4"></i>
-                <p class=" text-lg">ບໍ່ມີໝວດໝູ່ໃນຂະນະນີ້</p>
-                <p class="text-gray-400 text-sm mt-2">ກະລຸນາກັບມາໃໝ່ໃນໄວໆນີ້</p>
-            </div>
-            {% endfor %}
-        </div>
-        
-      
-        {% if categories %}
-        <div class="text-center mt-12">
-            <a href="{% url 'coffee_list' %}" 
-               class="inline-flex items-center bg-amber-600 text-white px-8 py-3 rounded-lg hover:bg-amber-700 transition font-medium">
-                <span>ເບິ່ງກາເຟທັງໝົດ</span>
-                <i class="fas fa-th-large ml-2"></i>
-            </a>
-        </div>
-        {% endif %}
-    </div>
-</section> -->
-
-
-
-<!-- Main Content -->
-<div class="relative py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-neutral-light via-blue-50 to-indigo-100 dark:from-neutral-dark dark:via-gray-900 dark:to-blue-900 transition-colors duration-500 overflow-hidden">
-    <!-- Featured Rooms Section -->
-    {% if featured_rooms %}
-    <div class="container mx-auto px-4 sm:px-6 mx-auto">
-        <div class="flex items-center justify-between mb-6">
-            <h2 class="text-2xl font-bold">
-                <i class="fas fa-star text-yellow-500 mr-2"></i>ຫ້ອງແນະນຳ
-            </h2>
-            <span class="text-sm "><!-- View All Rooms Button -->
-                <div class="mt-10 sm:mt-12 text-center">
-                   <a href="#" class="inline-flex items-center bg-transparent border-2 border-primary-light dark:border-primary-dark dark hover:bg-primary-light hover:text-white dark:hover:bg-primary-dark dark:hover:text-white px-6 py-3 rounded-lg transition duration-300 font-medium">
-                       ເບິ່ງທີ່ພັກທັງໝົດ
-                       <i class="fas fa-chevron-right ml-2"></i>
-                   </a>
-               </div>
-            </span>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6 mb-8">
-            {% for room in featured_rooms %}
-            <div class="rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border-2 border-yellow-200">
-                <div class="relative">
-                    {% if room.room_images.all %}
-                        <img src="{{ room.room_images.first.image.url }}" 
-                             alt="{{ room.room_images.first.alt_text }}"
-                             class="w-full h-full object-cover">
-                    {% else %}
-                        <div class="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                            <i class="fas fa-image text-4xl text-gray-400"></i>
-                        </div>
-                    {% endif %}
-                    
-                    <!-- Featured Badge -->
-                    <div class="absolute top-3 left-3">
-                        <span class="bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900 px-3 py-1 rounded-full text-xs font-bold shadow-lg">
-                            <i class="fas fa-crown mr-1"></i>FEATURED
-                        </span>
-                    </div>
-                    
-                    <!-- Status Badge -->
-                    <div class="absolute top-3 right-3">
-                        <span class="bg-green-500 text-white px-3 py-1 rounded-full text-xs font-medium shadow-lg">
-                            {{ room.availability_status }}
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="p-6">
-                    <div class="flex justify-between items-start mb-3">
-                        <h3 class="text-xl font-bold">{{ room.room_type.name }}</h3>
-                        <span class="bg-blue-100 text-blue-800 text-sm px-2 py-1 rounded-lg font-medium">
-                            Room {{ room.room_number }}
-                        </span>
-                    </div>
-                    
-                    <p class=" mb-4 line-clamp-2">{{ room.room_type.description|truncatewords:15 }}</p>
-                    
-                    <!-- Room Details -->
-                    <div class="grid grid-cols-2 gap-4 mb-4 py-3 rounded-lg">
-                        <div class="text-center">
-                            <i class="fas fa-users text-blue-500 text-lg mb-1"></i>
-                            <div class="text-sm font-medium">{{ room.room_type.capacity }}</div>
-                            <div class="text-xs ">Guests</div>
-                        </div>
-                        <div class="text-center">
-                            <i class="fas fa-expand-arrows-alt text-green-500 text-lg mb-1"></i>
-                            <div class="text-sm font-medium">{{ room.room_type.size_sqm }}m²</div>
-                            <div class="text-xs ">Size</div>
-                        </div>
-                        <!-- <div class="text-center">
-                            <i class="fas fa-eye text-purple-500 text-lg mb-1"></i>
-                            <div class="text-sm font-medium">{{ room.get_view_type_display|truncatewords:1 }}</div>
-                            <div class="text-xs ">View</div>
-                        </div> -->
-                    </div>
-                    
-                    <!-- Price and CTA -->
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <span class="text-2xl font-bold text-blue-600">{{ room.room_type.price_per_night|intcomma }} LAK</span>
-                            <span class="">/ຕໍ່ຄືນ</span>
-                        </div>
-                        <a href="{% url 'room-detail-page' room.id %}" class="inline-flex items-center bg-primary-light dark:bg-secondary-dark text-white px-4 py-2 rounded-lg hover:bg-secondary-light dark:hover:bg-secondary-dark-dark transition duration-300 text-sm font-medium">
-                            ເບິ່ງລາຍລະອຽດ
-                            <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-    {% endif %}
-</div>
-            
  <!-- Room Grid -->
  <div class="relative py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-neutral-light via-blue-50 to-indigo-100 dark:from-neutral-dark dark:via-gray-900 dark:to-blue-900 transition-colors duration-500 overflow-hidden">
     <!-- Section Header -->
-    <div class="text-center mb-10 sm:mb-14">
-        <h2 class="text-3xl sm:text-4xl font-playfair font-bold mb-4">ຫ້ອງພັກທີ່ມີຢູ່</h2>
-        <!-- <p class=" dark:text-gray-300 max-w-2xl mx-auto">Experience the perfect blend of comfort and luxury in our thoughtfully designed rooms and suites.</p> -->
+    <div class="text-center mb-10 sm:mb-14 relative">
+        <!-- Main Heading with Gradient and Animation -->
+        <div class="relative z-10">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">{% trans "ຫ້ອງພັກທີ່ມີຢູ່" %}</h2>
+            </div>
+        </div>
     </div>
     {% if rooms %}
     <div class="container mx-auto px-4 sm:px-6 mx-auto">
         <div id="roomsContainer" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6" data-view="grid">
             {% for room in rooms %}
-            <div class="room-card rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" 
-                data-price="{{ room.room_type.price_per_night }}" 
+            <div class="room-card group relative rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl bg-white dark:bg-gray-800 border border-amber-100 dark:border-amber-800"
+                data-price="{{ room.room_type.price_per_night }}"
                 data-capacity="{{ room.room_type.capacity }}"
                 data-room-type="{{ room.room_type.name|lower }}"
                 data-amenities="{% for amenity in room.get_available_amenities %}{{ amenity.name|lower }} {% endfor %}">
-                
-                <div class="relative">
+
+                <!-- Decorative Corner Element -->
+                <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-amber-400 to-transparent opacity-20 z-10 transform rotate-45 translate-x-10 -translate-y-10 group-hover:scale-150 transition-transform duration-500"></div>
+
+                <!-- Image Container with Enhanced Effects -->
+                <div class="relative h-64 overflow-hidden">
                     {% if room.room_images.all %}
-                        <div class="relative group">
-                            <img src="{{ room.room_images.first.image.url }}" 
+                        <div class="relative group/image h-full">
+                            <img src="{{ room.room_images.first.image.url }}"
                                 alt="{{ room.room_images.first.alt_text }}"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out">
+
+                            <!-- Gradient Overlays -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent group-hover:from-black/40 transition-all duration-300"></div>
+                            <div class="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-transparent to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                            <!-- Animated Shimmer Effect -->
+                            <div class="absolute inset-0 transform translate-x-full group-hover:translate-x-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 ease-out"></div>
                         </div>
                     {% else %}
-                        <div class="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                            <i class="fas fa-bed text-4xl text-gray-400"></i>
+                        <div class="w-full h-full bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center group-hover:from-amber-200 group-hover:to-amber-300 transition-colors duration-300">
+                            <i class="fas fa-bed text-5xl text-amber-400 group-hover:scale-110 transition-transform duration-300"></i>
                         </div>
                     {% endif %}
-                    
-                    <!-- Status Badge -->
-                    <div class="absolute top-3 left-3">
-                        <span class="bg-green-500 text-white px-3 py-1 rounded-full text-xs font-medium shadow-lg">
-                            {{ room.availability_status }}
-                        </span>
+
+                    <!-- Enhanced Status Badge -->
+                    <div class="absolute top-4 left-4 z-20">
+                        <div class="flex items-center space-x-1 bg-gradient-to-r from-green-500 to-green-600 text-white px-3 py-2 rounded-full text-xs font-semibold shadow-lg backdrop-blur-sm border border-white/20 hover:scale-105 transition-transform duration-200">
+                            <div class="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                            <span>{{ room.availability_status }}</span>
+                        </div>
                     </div>
-                    
-                    <!-- Room Number -->
-                    <div class="absolute top-3 right-3">
-                        <span class="backdrop-blur-sm  px-3 py-1 rounded-full text-xs font-medium shadow-lg">
+
+                    <!-- Enhanced Room Number -->
+                    <div class="absolute top-4 right-4 z-20">
+                        <div class="bg-white/90 backdrop-blur-sm text-gray-800 px-3 py-2 rounded-full text-xs font-bold shadow-lg border border-amber-200 hover:bg-amber-50 transition-colors duration-200">
                             Room {{ room.room_number }}
-                        </span>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="p-6">
-                    <div class="flex justify-between items-start mb-3">
-                        <h3 class="text-xl font-bold">{{ room.room_type.name }}</h3>
+
+                <!-- Enhanced Content Section -->
+                <div class="p-6 relative">
+                    <!-- Decorative Line -->
+                    <div class="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent"></div>
+
+                    <!-- Header Section -->
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-1 group-hover:text-amber-600 transition-colors duration-300">{{ room.room_type.name }}</h3>
+                            <div class="flex items-center space-x-2">
+                                <div class="flex items-center">
+                                    {% for i in "12345" %}
+                                        <i class="fas fa-star text-amber-400 text-xs"></i>
+                                    {% endfor %}
+                                </div>
+                                <span class="text-xs text-gray-500 dark:text-gray-400">(4.8)</span>
+                            </div>
+                        </div>
                         <div class="text-right">
-                            <div class="text-2xl font-bold text-blue-600">{{ room.room_type.price_per_night|intcomma }} LAK</div>
-                            <div class="text-xs ">ຕໍ່ຄືນ</div>
+                            <div class="bg-gradient-to-r from-amber-500 to-amber-600 bg-clip-text text-transparent">
+                                <div class="text-2xl font-bold">{{ room.room_type.price_per_night|lao_currency }}</div>
+                                <div class="text-xs text-gray-500 dark:text-gray-400">ຕໍ່ຄືນ</div>
+                            </div>
                         </div>
                     </div>
-                    
-                    <p class=" mb-4 line-clamp-2">{{ room.room_type.description|truncatewords:12 }}</p>
-                    
-                    <!-- Room Features -->
-                    <div class="grid grid-cols-3 gap-4 mb-4 py-3 rounded-lg">
-                        <div class="text-center">
-                            <i class="fas fa-users text-blue-500 text-lg mb-1"></i>
-                            <div class="text-sm font-medium">{{ room.room_type.capacity }}</div>
-                            <div class="text-xs ">Guests</div>
+
+                    <!-- Description -->
+                    <p class="text-gray-600 dark:text-gray-300 mb-5 line-clamp-2 leading-relaxed">{{ room.room_type.description|truncatewords:12 }}</p>
+
+                    <!-- Enhanced Room Features -->
+                    <div class="grid grid-cols-2 gap-3 mb-5">
+                        <div class="text-center p-3 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 rounded-xl hover:from-blue-100 hover:to-blue-200 transition-colors duration-300 group/feature">
+                            <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-2 group-hover/feature:scale-110 transition-transform duration-200">
+                                <i class="fas fa-users text-white text-sm"></i>
+                            </div>
+                            <div class="text-sm font-bold text-gray-800 dark:text-white">{{ room.room_type.capacity }}</div>
+                            <div class="text-xs text-gray-500 dark:text-gray-400">Guests</div>
                         </div>
-                        <div class="text-center">
-                            <i class="fas fa-expand-arrows-alt text-green-500 text-lg mb-1"></i>
-                            <div class="text-sm font-medium">{{ room.room_type.size_sqm }}m²</div>
-                            <div class="text-xs ">Size</div>
-                        </div>
-                        <div class="text-center">
-                            <i class="fas fa-eye text-purple-500 text-lg mb-1"></i>
-                            <div class="text-sm font-medium text-xs">{{ room.get_view_type_display }}</div>
-                            <div class="text-xs ">View</div>
+                        <div class="text-center p-3 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/30 rounded-xl hover:from-green-100 hover:to-green-200 transition-colors duration-300 group/feature">
+                            <div class="w-8 h-8 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-2 group-hover/feature:scale-110 transition-transform duration-200">
+                                <i class="fas fa-expand-arrows-alt text-white text-sm"></i>
+                            </div>
+                            <div class="text-sm font-bold text-gray-800 dark:text-white">{{ room.room_type.size_sqm }}m²</div>
+                            <div class="text-xs text-gray-500 dark:text-gray-400">Size</div>
                         </div>
                     </div>
-                    
-                    <!-- Amenities Preview -->
-                    <div class="mb-4">
-                        <div class="flex flex-wrap gap-1">
+
+                    <!-- Enhanced Amenities -->
+                    <div class="mb-6">
+                        <h4 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3 flex items-center">
+                            <i class="fas fa-sparkles text-amber-500 mr-2"></i>
+                            ສິ່ງອຳນວຍຄວາມສະດວກ
+                        </h4>
+                        <div class="flex flex-wrap gap-2">
                             {% for amenity in room.get_available_amenities|slice:":3" %}
-                                <span class="inline-flex items-center bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded-full">
-                                    <i class="{{ amenity.icon }} mr-1"></i>
+                                <span class="inline-flex items-center bg-gradient-to-r from-amber-50 to-amber-100 dark:from-amber-900/30 dark:to-amber-800/30 text-amber-700 dark:text-amber-300 text-xs px-3 py-2 rounded-full border border-amber-200 dark:border-amber-700 hover:from-amber-100 hover:to-amber-200 hover:scale-105 transition-all duration-200">
+                                    <i class="{{ amenity.icon }} mr-1.5 text-amber-600"></i>
                                     {{ amenity.name }}
                                 </span>
                             {% endfor %}
                             {% if room.get_available_amenities.count > 3 %}
-                                <span class="inline-flex items-center bg-gray-100 text-blue-700 text-xs px-2 py-1 rounded-full">
-                                    +{{ room.get_available_amenities.count|add:"-3" }} ອື່ນໆ
+                                <span class="inline-flex items-center bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-2 rounded-full border border-gray-200 dark:border-gray-600 hover:from-gray-100 hover:to-gray-200 hover:scale-105 transition-all duration-200">
+                                    <i class="fas fa-plus mr-1"></i>
+                                    {{ room.get_available_amenities.count|add:"-3" }} ອື່ນໆ
                                 </span>
                             {% endif %}
                         </div>
                     </div>
-                    
-                    <!-- Action Buttons -->
-                    <div class="space-y-2">
-                        <a href="{% url 'room-detail-page' room.pk %}">
-                            <button class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-4 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 font-medium shadow-lg hover:shadow-xl">
-                                ເບິ່ງລາຍລະອຽດ <i class="fas fa-eye ml-2"></i>
+
+                    <!-- Enhanced Action Button -->
+                    <div class="space-y-3">
+                        <a href="{% url 'room-detail-page' room.slug %}" class="block">
+                            <button class="w-full bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 hover:from-blue-700 hover:via-blue-800 hover:to-indigo-800 text-white py-3.5 px-6 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 group">
+                                <span class="flex items-center justify-center">
+                                    <i class="fas fa-eye mr-2 group-hover:animate-pulse"></i>
+                                    ເບິ່ງລາຍລະອຽດ
+                                    <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform duration-300"></i>
+                                </span>
                             </button>
                         </a>
                     </div>
+                         
                 </div>
+
+                <!-- Bottom Glow Effect -->
+                <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
             {% endfor %}
         </div>
@@ -1162,7 +1024,7 @@
 {% endif %}   
  <!-- View All Rooms Button -->
  <div class="m-10 sm:mt-12 text-center">
-    <a href="#" class="inline-flex items-center bg-transparent border-2 border-primary-light dark:border-primary-dark hover:bg-primary-light dark:hover:bg-primary-dark dark:hover:text-white px-6 py-3 rounded-lg transition duration-300 font-medium">
+    <a href="{% url 'rooms-list-page' %}" class="bg-blue-600 inline-flex items-center bg-transparent hover:bg-blue-700 text-white hover:text-white dark:hover:text-white px-6 py-3 rounded-lg transition duration-300 font-medium">
         ເບິ່ງທີ່ພັກທັງໝົດ
         <i class="fas fa-chevron-right ml-2"></i>
     </a>

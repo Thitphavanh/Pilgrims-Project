@@ -118,16 +118,42 @@ class CoffeeProduct(models.Model):
         return f"{self.name} - {self.weight}{self.weight_unit}"
 
     def save(self, *args, **kwargs):
-        """Override save to ensure slug is created"""
-        if not self.slug:
+        """Override save to ensure slug is created from name"""
+        if not self.slug or (self.pk and self.name):
+            # Generate slug from name
             base_slug = slugify(self.name)
+            if not base_slug:  # Handle empty name or non-ASCII characters
+                base_slug = f"coffee-product-{self.pk or 'new'}"
+
             slug = base_slug
             counter = 1
+
+            # Ensure slug uniqueness
             while CoffeeProduct.objects.filter(slug=slug).exclude(pk=self.pk).exists():
                 slug = f"{base_slug}-{counter}"
                 counter += 1
+
             self.slug = slug
+
         super().save(*args, **kwargs)
+
+    def generate_slug(self):
+        """Manually generate slug from name"""
+        if self.name:
+            base_slug = slugify(self.name)
+            if not base_slug:
+                base_slug = f"coffee-product-{self.pk or 'new'}"
+
+            slug = base_slug
+            counter = 1
+
+            while CoffeeProduct.objects.filter(slug=slug).exclude(pk=self.pk).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+
+            self.slug = slug
+            return self.slug
+        return None
 
     @property
     def price_per_unit(self):

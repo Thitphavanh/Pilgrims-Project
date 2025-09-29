@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% load humanize %}
+{% load lao_filters %}
 
 {% block title %}{{ meta_title|default:menu_item.name }}{% endblock %}
 
@@ -84,7 +84,7 @@
                             {% endif %}
                             <div class="absolute top-3 right-3">
                                 <span class="bg-red-500 px-3 py-1 text-white rounded-full text-sm font-semibold">
-                                    {{ item.price|intcomma }} LAK
+                                    {{ item.price|lao_currency }}
                                 </span>
                             </div>
                         </div>

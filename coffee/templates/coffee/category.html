@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+
+{% load lao_filters %}
+{% load i18n %}
+
+{% block title %}{{ category.name }} - ໝວດໝູ່ກາເຟ{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Breadcrumb -->
+    <nav class="mb-8">
+        <ol class="flex items-center space-x-2 text-sm">
+            <li><a href="{% url 'home-page' %}" class="text-amber-600 hover:text-amber-700">ໜ້າຫຼັກ</a></li>
+            <li class="">/</li>
+            <li><a href="{% url 'coffee_list' %}" class="text-amber-600 hover:text-amber-700">ກາເຟທັງໝົດ</a></li>
+            <li class="">/</li>
+            <li class="">{{ category.name }}</li>
+        </ol>
+    </nav>
+
+    <!-- Category Header -->
+    <div class="text-center mb-12">
+        {% if category.image %}
+        <div class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden bg-gradient-to-br from-amber-200 to-amber-400">
+            <img src="{{ category.image.url }}" alt="{{ category.name }}" class="w-full h-full object-cover">
+        </div>
+        {% else %}
+        <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-amber-200 to-amber-400 flex items-center justify-center">
+            <i class="fas fa-coffee text-4xl text-amber-700 opacity-70"></i>
+        </div>
+        {% endif %}
+
+        <h1 class="text-4xl font-bold mb-4">{{ category.name }}</h1>
+        {% if category.description %}
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">{{ category.description }}</p>
+        {% endif %}
+        <p class="text-gray-500 mt-4">ພົບ {{ page_obj.paginator.count }} ລາຍການໃນໝວດໝູ່ນີ້</p>
+    </div>
+
+    <!-- Coffee Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {% for coffee in page_obj %}
+        <div class="rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
+            <!-- Product Image -->
+            <div class="h-64 bg-gradient-to-br from-amber-200 to-amber-400 flex items-center justify-center relative overflow-hidden">
+                {% if coffee.images %}
+                    <img src="{{ coffee.images.url }}"
+                         alt="{{ coffee.name }}"
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                {% else %}
+                    <i class="fas fa-coffee text-4xl opacity-30"></i>
+                {% endif %}
+
+                <!-- Badges -->
+                <div class="absolute top-2 left-2 space-y-1">
+                    <!-- Freshness Badge -->
+                    {% if coffee.is_fresh %}
+                    <div class="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-semibold shadow-lg">
+                        <i class="fas fa-leaf mr-1"></i>ສົດໃໝ່
+                    </div>
+                    {% endif %}
+
+                    <!-- Stock Badge -->
+                    {% if coffee.stock_quantity < 10 %}
+                    <div class="bg-red-500 text-white px-2 py-1 rounded-full text-xs font-semibold shadow-lg">
+                        <i class="fas fa-exclamation-triangle mr-1"></i>ເຫຼືອໜ້ອຍ
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="p-6">
+                <h3 class="text-xl font-semibold mb-2 line-clamp-2">
+                    <a href="{% url 'coffee_detail' coffee.slug %}" class="hover:text-amber-600 transition-colors">{{ coffee.name }}</a>
+                </h3>
+
+                <div class="space-y-1 text-sm text-gray-600 mb-3">
+                    <p><i class="fas fa-seedling mr-1 text-green-600"></i>{{ coffee.coffee_bean.name }}</p>
+                    <p><i class="fas fa-fire mr-1 text-orange-500"></i>{{ coffee.roast_level }}</p>
+                    <p><i class="fas fa-weight mr-1 text-blue-500"></i>{{ coffee.weight }}{{ coffee.weight_unit }}</p>
+                </div>
+
+                <!-- Price -->
+                <div class="flex justify-between items-center mb-4">
+                    <div>
+                        <span class="text-2xl font-bold text-amber-600">{{ coffee.price|lao_currency }}</span>
+                        <div class="text-xs text-gray-500">{{ coffee.price_per_unit|lao_currency }}/100g</div>
+                    </div>
+                </div>
+
+                <!-- Flavor Notes -->
+                {% if coffee.coffee_bean.flavor_notes %}
+                <p class="text-sm text-gray-600 mb-4 line-clamp-2 italic">
+                    "{{ coffee.coffee_bean.flavor_notes }}"
+                </p>
+                {% endif %}
+
+                <!-- Action Button -->
+                <a href="{% url 'coffee_detail' coffee.slug %}"
+                   class="block w-full bg-amber-600 text-white text-center py-2 px-4 rounded-lg hover:bg-amber-700 transition font-medium">
+                    <i class="fas fa-eye mr-2"></i>ເບິ່ງລາຍລະອຽດ
+                </a>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-span-full text-center py-12">
+            <i class="fas fa-coffee text-6xl text-gray-300 mb-4"></i>
+            <h3 class="text-xl font-semibold text-gray-700 mb-2">ບໍ່ມີກາເຟໃນໝວດໝູ່ນີ້</h3>
+            <p class="text-gray-500 mb-6">ລອງເບິ່ງໝວດໝູ່ອື່ນ ຫຼື ກັບໄປໜ້າລາຍການກາເຟທັງໝົດ</p>
+            <a href="{% url 'coffee_list' %}"
+               class="inline-block bg-amber-600 text-white px-6 py-3 rounded-lg hover:bg-amber-700 transition">
+                ເບິ່ງກາເຟທັງໝົດ
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if page_obj.has_other_pages %}
+    <div class="flex justify-center mt-12">
+        <nav class="flex space-x-2">
+            {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}"
+               class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                <i class="fas fa-chevron-left mr-1"></i>ກ່ອນໜ້າ
+            </a>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+            <span class="px-3 py-2 bg-amber-600 text-white rounded-lg font-medium">{{ num }}</span>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <a href="?page={{ num }}"
+               class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                {{ num }}
+            </a>
+            {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}"
+               class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                ຖັດໄປ<i class="fas fa-chevron-right ml-1"></i>
+            </a>
+            {% endif %}
+        </nav>
+    </div>
+    {% endif %}
+
+    <!-- Back to All Categories -->
+    <div class="text-center mt-12">
+        <a href="{% url 'coffee_list' %}"
+           class="inline-flex items-center text-amber-600 hover:text-amber-700 font-medium">
+            <i class="fas fa-arrow-left mr-2"></i>ກັບໄປລາຍການກາເຟທັງໝົດ
+        </a>
+    </div>
+</div>
+{% endblock %}
