@@ -27,3 +27,6 @@ python manage.py makemessages -l lo --no-obsolete
 
 # Optional: Check for translation coverage
 python manage.py makemessages -l lo --dry-run
+
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC0FbVdQp0ChXprO3jfhW8TsAo5lZIRaf/0Mlm8+UFfzdcZ+o4KBmJJi5sNji9mO5O1yJLzkxHKTtTD+Ro2V+Tj2GE9mvwmtlhAU2AyuAR9MW0xoECQmOWovq2tATal0nkoa13ACTPaGaEsCl3ceviiFIagVmp4x9cdCtK/xIoDtch7F69lEYXOllj83q+lb08UeZ773cqkLzC2e14dOvo0lp9Eg5IV3Yx8ox/U74wnVI19eoRrjJcf9G8FJaGNM2+lIizGvFuCbX3jFLsfOElOnqH4RHu/736E9kg3wen5kpsOS4UXnLE++hcoPHkK/nkwZjT+JKw2d5MUNx+LoRwCHxm7/AJTfTjUBt09A/aAYLNQZVKjJM+1kSfjpTD3WCpG/uQ5y/loRL6MkoB+e5wXsR5MtGvuTTR+3h4hqylK813M+P3R6xdlFRwH4WO7DAHvqNLyYeJVz1moo1w5H+H3wsH05tmQyFCJgyXQ2qYqnz61Rjc+Y7vTojh4HeAVW+k= pilgrimscontact@gmail.com
