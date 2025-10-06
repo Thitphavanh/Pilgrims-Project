@@ -4,6 +4,8 @@
 # Database
 db.sqlite3
 
+command.txt
+
 # Static and Media Files
 /static/
 /media/
