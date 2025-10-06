@@ -1,6 +1,8 @@
 # Environment
 .env
 
+nginx/nginx.conf
+
 # Database
 db.sqlite3
 
