@@ -15,10 +15,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . /app/
 
 # The static root is now 'staticfiles' as defined in base.py
-RUN python manage.py collectstatic --noinput --settings=pilgrims.settings.prod
+RUN python manage.py collectstatic --noinput --settings=config.settings.prod
 
 # EXPOSE 8000 is not strictly needed but good practice
 EXPOSE 8000
 
 # Gunicorn is for production, so we point to production settings
-CMD ["gunicorn", "pilgrims.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000"]
