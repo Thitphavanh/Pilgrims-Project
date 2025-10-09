@@ -129,30 +129,32 @@
                     <!-- Language Dropdown -->
                     <div id="language-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-primary-dark-dark rounded-lg shadow-lg dark:dark-shadow-lg border border-gray-200 dark:border-gray-600 z-50 opacity-0 transform scale-95 transition-all duration-200">
                         <div class="py-1">
-                            <button type="button" data-language="lo" class="language-switch w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-primary-dark flex items-center transition-colors duration-200">
-                                <img src="https://flagcdn.com/w20/la.png" alt="ລາວ" class="w-5 h-3 mr-3 rounded">
-                                <span>ລາວ (Lao)</span>
-                                {% if LANGUAGE_CODE == 'lo' %}
-                                    <i class="fas fa-check ml-auto text-secondary-light"></i>
-                                {% endif %}
-                            </button>
-                            <button type="button" data-language="en" class="language-switch w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-primary-dark flex items-center transition-colors duration-200">
-                                <img src="https://flagcdn.com/w20/us.png" alt="English" class="w-5 h-3 mr-3 rounded">
-                                <span>English</span>
-                                {% if LANGUAGE_CODE == 'en' %}
-                                    <i class="fas fa-check ml-auto text-secondary-light"></i>
-                                {% endif %}
-                            </button>
+                            <a href="javascript:void(0)" onclick="switchLanguage('lo')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-primary-dark transition-colors duration-200">
+                                <div class="flex items-center">
+                                    <img src="https://flagcdn.com/w20/la.png" alt="ລາວ" class="w-5 h-3 mr-3 rounded">
+                                    <span>ລາວ (Lao)</span>
+                                    {% if LANGUAGE_CODE == 'lo' %}
+                                        <i class="fas fa-check ml-auto text-secondary-light"></i>
+                                    {% endif %}
+                                </div>
+                            </a>
+                            <a href="javascript:void(0)" onclick="switchLanguage('en')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-primary-dark transition-colors duration-200">
+                                <div class="flex items-center">
+                                    <img src="https://flagcdn.com/w20/us.png" alt="English" class="w-5 h-3 mr-3 rounded">
+                                    <span>English</span>
+                                    {% if LANGUAGE_CODE == 'en' %}
+                                        <i class="fas fa-check ml-auto text-secondary-light"></i>
+                                    {% endif %}
+                                </div>
+                            </a>
                         </div>
                     </div>
-
-                    <!-- Hidden form for language switching -->
-                    <form id="language-form" action="{% url 'set_language' %}" method="post" style="display: none;">
-                        {% csrf_token %}
-                        <input name="next" type="hidden" value="" id="language-next-input" />
-                        <input name="language" type="hidden" value="" id="language-input" />
-                    </form>
                 </div>
+
+                <!-- Hidden CSRF form for language switching -->
+                <form id="csrf-form" style="display: none;">
+                    {% csrf_token %}
+                </form>
 
                 <!-- Dark Mode Toggle -->
                 <button id="theme-toggle" class="p-2 rounded-full text-neutral-content-light dark:text-neutral-content-dark hover:bg-gray-100 dark:hover:bg-primary-dark focus:outline-none transition-colors duration-300">
@@ -545,67 +547,88 @@
                 });
             }
 
-            // Language switching functionality
-            const languageSwitchButtons = document.querySelectorAll('.language-switch');
-            const languageForm = document.getElementById('language-form');
-            const languageInput = document.getElementById('language-input');
-            const languageNextInput = document.getElementById('language-next-input');
+            // Language switching function
+            window.switchLanguage = function(language) {
+                const currentPath = window.location.pathname;
+                let targetUrl;
 
-            if (languageSwitchButtons.length > 0 && languageForm) {
-                languageSwitchButtons.forEach(button => {
-                    button.addEventListener('click', function(e) {
-                        e.preventDefault();
+                if (language === 'lo') {
+                    // For Lao (default language, no prefix)
+                    if (currentPath.startsWith('/en/')) {
+                        targetUrl = currentPath.substring(3) || '/';
+                    } else {
+                        targetUrl = currentPath;
+                    }
+                } else if (language === 'en') {
+                    // For English (/en prefix)
+                    if (currentPath.startsWith('/en/')) {
+                        targetUrl = currentPath;
+                    } else {
+                        targetUrl = '/en' + (currentPath === '/' ? '/' : currentPath);
+                    }
+                }
 
-                        const selectedLanguage = this.getAttribute('data-language');
-                        const currentPath = window.location.pathname;
+                // Use GET request approach to avoid CSRF issues
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '{% url "set_language" %}';
 
-                        // Set the language value
-                        languageInput.value = selectedLanguage;
+                // Add CSRF token
+                const csrfInput = document.createElement('input');
+                csrfInput.type = 'hidden';
+                csrfInput.name = 'csrfmiddlewaretoken';
+                csrfInput.value = getCsrfToken();
+                form.appendChild(csrfInput);
 
-                        // Calculate the next URL based on selected language
-                        let nextUrl;
-                        if (selectedLanguage === 'lo') {
-                            // For Lao (default language, no prefix)
-                            if (currentPath.startsWith('/en/')) {
-                                nextUrl = currentPath.substring(3) || '/';
-                            } else {
-                                nextUrl = currentPath;
-                            }
-                        } else if (selectedLanguage === 'en') {
-                            // For English (/en prefix)
-                            if (currentPath.startsWith('/en/')) {
-                                nextUrl = currentPath;
-                            } else {
-                                nextUrl = '/en' + (currentPath === '/' ? '/' : currentPath);
-                            }
-                        }
+                // Add language
+                const langInput = document.createElement('input');
+                langInput.type = 'hidden';
+                langInput.name = 'language';
+                langInput.value = language;
+                form.appendChild(langInput);
 
-                        languageNextInput.value = nextUrl;
+                // Add next URL
+                const nextInput = document.createElement('input');
+                nextInput.type = 'hidden';
+                nextInput.name = 'next';
+                nextInput.value = targetUrl;
+                form.appendChild(nextInput);
 
-                        // Get fresh CSRF token from meta tag
-                        const csrfMetaTag = document.querySelector('meta[name="csrf-token"]');
-                        const csrfInput = languageForm.querySelector('[name=csrfmiddlewaretoken]');
+                document.body.appendChild(form);
+                form.submit();
+            };
 
-                        if (csrfInput && csrfMetaTag) {
-                            csrfInput.value = csrfMetaTag.getAttribute('content');
-                        }
+            // Function to get CSRF token from various sources
+            function getCsrfToken() {
+                // First try the hidden CSRF form
+                const csrfForm = document.getElementById('csrf-form');
+                if (csrfForm) {
+                    const csrfInput = csrfForm.querySelector('[name="csrfmiddlewaretoken"]');
+                    if (csrfInput) {
+                        return csrfInput.value;
+                    }
+                }
 
-                        // Submit the form
-                        languageForm.submit();
+                // Try to get from cookie
+                const cookieValue = document.cookie.split(';').find(c => c.trim().startsWith('csrftoken='));
+                if (cookieValue) {
+                    return cookieValue.split('=')[1];
+                }
 
-                        // Close the dropdown
-                        if (languageDropdown) {
-                            languageDropdown.classList.remove('opacity-100', 'scale-100');
-                            languageDropdown.classList.add('opacity-0', 'scale-95');
-                            setTimeout(() => {
-                                languageDropdown.classList.add('hidden');
-                            }, 200);
-                            if (chevronIcon) {
-                                chevronIcon.style.transform = 'rotate(0deg)';
-                            }
-                        }
-                    });
-                });
+                // Fallback to meta tag
+                const metaTag = document.querySelector('meta[name="csrf-token"]');
+                if (metaTag) {
+                    return metaTag.getAttribute('content');
+                }
+
+                // Last fallback - try to find any existing CSRF token in the page
+                const existingToken = document.querySelector('[name="csrfmiddlewaretoken"]');
+                if (existingToken) {
+                    return existingToken.value;
+                }
+
+                console.error('No CSRF token found');
+                return '';
             }
         });
         </script>
