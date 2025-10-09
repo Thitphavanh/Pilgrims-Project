@@ -89,32 +89,33 @@
 <body class="bg-neutral-light dark:bg-neutral-dark font-inter flex flex-col min-h-screen antialiased text-neutral-content-light dark:text-neutral-content-dark transition-colors duration-300">
     <!-- Header & Navigation -->
     <header class="bg-white dark:bg-primary-dark-dark shadow-md dark:dark-shadow-md sticky top-0 z-50 transition-colors duration-300">
-        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap items-center justify-between">
-            <!-- Logo -->
-            <div class="flex items-center">
-                <a href="{% url 'home-page' %}" class="font-playfair text-2xl sm:text-3xl font-bold text-primary-light dark:text-secondary-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 ease-in-out">
-                    <img
-                        src="{% static 'images/logo.jpeg' %}"
-                        class="w-12 h-12 object-cover"
-                        loading="lazy"
-                    >
-                </a>
-            </div>
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 relative">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="{% url 'home-page' %}" class="font-playfair text-2xl sm:text-3xl font-bold text-primary-light dark:text-secondary-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 ease-in-out">
+                        <img
+                            src="{% static 'images/logo.jpeg' %}"
+                            class="w-12 h-12 object-cover"
+                            loading="lazy"
+                        >
+                    </a>
+                </div>
 
+                <!-- Desktop Navigation Links -->
+                <div class="hidden md:flex md:items-center">
+                    <ul class="flex flex-row space-x-6 lg:space-x-10 text-base sm:text-lg font-medium">
+                        <li><a href="{% url 'about-page' %}" class="text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">{% trans "About Us" %}</a></li>
+                        <li><a href="{% url 'rooms-list-page' %}" class="text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">{% trans "Reservation" %}</a></li>
+                        <li><a href="{% url 'menu-page' %}" class="text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">{% trans "Menu" %}</a></li>
+                        <li><a href="{% url 'coffee_list' %}" class="text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">{% trans "Coffee" %}</a></li>
+                        <li><a href="{% url 'review-page' %}" class="text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">{% trans "Review" %}</a></li>
+                        <li><a href="{% url 'contact-page' %}" class="text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">{% trans "Contact" %}</a></li>
+                    </ul>
+                </div>
 
-            <!-- Navigation Links -->
-            <div id="nav-content" class="hidden md:flex md:items-center md:w-auto w-full transition-all duration-300 ease-in-out">
-                <ul class="md:flex md:flex-row flex-col md:space-x-6 lg:space-x-10 mt-4 md:mt-0 text-base sm:text-lg font-medium">
-                    <li><a href="{% url 'about-page' %}" class="block py-2 md:py-0 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">{% trans "About Us" %}</a></li>
-                    <li><a href="{% url 'rooms-list-page' %}" class="block py-2 md:py-0 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">{% trans "Reservation" %}</a></li>
-                    <li><a href="{% url 'menu-page' %}" class="block py-2 md:py-0 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">{% trans "Menu" %}</a></li>
-                    <li><a href="{% url 'coffee_list' %}" class="block py-2 md:py-0 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">{% trans "Coffee" %}</a></li>
-                    <li><a href="{% url 'review-page' %}" class="block py-2 md:py-0 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">{% trans "Review" %}</a></li>
-                    <li><a href="{% url 'contact-page' %}" class="block py-2 md:py-0 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">{% trans "Contact" %}</a></li>
-                </ul>
-            </div>
-
-            <div class="flex items-center space-x-2 sm:space-x-4">
+                <!-- Right side buttons (Language, Theme, Mobile Menu) -->
+                <div class="flex items-center space-x-2 sm:space-x-4">
                 <!-- Language Toggle -->
                 <!-- Language Toggle (Fixed Version) -->
                 <div class="relative">
@@ -167,6 +168,21 @@
                 <button id="mobile-menu-button" class="md:hidden text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light focus:outline-none" aria-label="Toggle navigation">
                     <i class="fas fa-bars text-xl sm:text-2xl"></i>
                 </button>
+            </div>
+            </div>
+
+            <!-- Mobile Navigation Menu -->
+            <div id="nav-content" class="hidden absolute top-full left-0 right-0 w-full bg-white dark:bg-primary-dark-dark shadow-lg border-t border-gray-200 dark:border-gray-600 z-50 md:!hidden">
+                <div class="container mx-auto px-4">
+                    <ul class="flex flex-col py-4 space-y-2">
+                        <li><a href="{% url 'about-page' %}" class="block py-3 px-4 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light hover:bg-gray-50 dark:hover:bg-primary-dark rounded transition duration-300">{% trans "About Us" %}</a></li>
+                        <li><a href="{% url 'rooms-list-page' %}" class="block py-3 px-4 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light hover:bg-gray-50 dark:hover:bg-primary-dark rounded transition duration-300">{% trans "Reservation" %}</a></li>
+                        <li><a href="{% url 'menu-page' %}" class="block py-3 px-4 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light hover:bg-gray-50 dark:hover:bg-primary-dark rounded transition duration-300">{% trans "Menu" %}</a></li>
+                        <li><a href="{% url 'coffee_list' %}" class="block py-3 px-4 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light hover:bg-gray-50 dark:hover:bg-primary-dark rounded transition duration-300">{% trans "Coffee" %}</a></li>
+                        <li><a href="{% url 'review-page' %}" class="block py-3 px-4 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light hover:bg-gray-50 dark:hover:bg-primary-dark rounded transition duration-300">{% trans "Review" %}</a></li>
+                        <li><a href="{% url 'contact-page' %}" class="block py-3 px-4 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light hover:bg-gray-50 dark:hover:bg-primary-dark rounded transition duration-300">{% trans "Contact" %}</a></li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>
@@ -334,13 +350,68 @@
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const navContent = document.getElementById('nav-content');
 
+            console.log('Mobile menu button:', mobileMenuButton);
+            console.log('Nav content:', navContent);
+
             if (mobileMenuButton && navContent) {
-                mobileMenuButton.addEventListener('click', function() {
-                    navContent.classList.toggle('hidden');
+                mobileMenuButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    console.log('Mobile menu button clicked!');
+
+                    const isHidden = navContent.classList.contains('hidden');
+                    console.log('Is menu hidden?', isHidden);
+
+                    if (isHidden) {
+                        // Show menu
+                        navContent.classList.remove('hidden');
+                        navContent.classList.add('block');
+                        console.log('Showing menu');
+                    } else {
+                        // Hide menu
+                        navContent.classList.add('hidden');
+                        navContent.classList.remove('block');
+                        console.log('Hiding menu');
+                    }
+
                     // Toggle hamburger to X icon
                     const icon = mobileMenuButton.querySelector('i');
-                    icon.classList.toggle('fa-bars');
-                    icon.classList.toggle('fa-times');
+                    if (icon) {
+                        if (icon.classList.contains('fa-bars')) {
+                            icon.classList.remove('fa-bars');
+                            icon.classList.add('fa-times');
+                        } else {
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-bars');
+                        }
+                    }
+                });
+
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!mobileMenuButton.contains(e.target) && !navContent.contains(e.target)) {
+                        navContent.classList.add('hidden');
+                        navContent.classList.remove('block');
+                        const icon = mobileMenuButton.querySelector('i');
+                        if (icon) {
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-bars');
+                        }
+                    }
+                });
+
+                // Close mobile menu when pressing Escape key
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && !navContent.classList.contains('hidden')) {
+                        navContent.classList.add('hidden');
+                        navContent.classList.remove('block');
+                        const icon = mobileMenuButton.querySelector('i');
+                        if (icon) {
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-bars');
+                        }
+                    }
                 });
             }
 
@@ -348,10 +419,17 @@
             const navLinks = document.querySelectorAll('#nav-content a');
             navLinks.forEach(link => {
                 link.addEventListener('click', () => {
-                    navContent.classList.add('hidden');
-                    const icon = mobileMenuButton.querySelector('i');
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
+                    if (navContent) {
+                        navContent.classList.add('hidden');
+                        navContent.classList.remove('block');
+                    }
+                    if (mobileMenuButton) {
+                        const icon = mobileMenuButton.querySelector('i');
+                        if (icon) {
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-bars');
+                        }
+                    }
                 });
             });
 

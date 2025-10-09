@@ -25,45 +25,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /**
  * Mobile Navigation functionality
+ * Note: Main mobile navigation is handled in base.html to avoid conflicts
  */
 function initializeMobileNav() {
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const navContent = document.getElementById('nav-content');
-    
-    if (mobileMenuButton && navContent) {
-        mobileMenuButton.addEventListener('click', function() {
-            // Toggle the navigation
-            navContent.classList.toggle('hidden');
-            
-            // Change icon based on menu state
-            const icon = this.querySelector('i');
-            if (icon) {
-                if (navContent.classList.contains('hidden')) {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                } else {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-times');
-                }
-            }
-        });
-        
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const isClickInside = navContent.contains(event.target) || mobileMenuButton.contains(event.target);
-            
-            if (!isClickInside && !navContent.classList.contains('hidden') && window.innerWidth < 768) {
-                navContent.classList.add('hidden');
-                
-                // Reset icon
-                const icon = mobileMenuButton.querySelector('i');
-                if (icon) {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
-            }
-        });
-    }
+    // Mobile navigation is handled in base.html
+    // This function is kept for compatibility but does not interfere
+    console.log('Mobile navigation initialized in base.html');
 }
 
 /**
