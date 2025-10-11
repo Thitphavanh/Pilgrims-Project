@@ -34,6 +34,72 @@ msgstr "Booking"
 msgid "Menu"
 msgstr "Menu"
 
+
+
+
+msgid "ສິ່ກາເຟພີລກຣິມ ແມ່ນກາເຟທີ່ປູກເທິງພູສູງໃນປະເທດລາວ. ພວກເຮົາຮ່ວມງານ ແລະ ຊື້ກາເຟກັບຊາວສວນ ຜູ້ປູກກາເຟໂດຍກົງ ໃນລາຄາທີ່ເປັນກາງ. ກາເຟພີລກຣິມ ຂົ້ວຈາກເມັດກາເຟທີ່ໄດ້ຄຸນນະພາບສູງ ແລະ ກາຍມາເປັນກາເຟທີ່ມີລົດຊາດທີ່ດີເປັນທີ່ເພິ່ງພໍໃຈສຳລັບນັກດື່ມກາເຟທັງຫຼາຍ"
+msgstr "Pilgrim's coffee is coffee grown on high mountains in Laos. We cooperate and buy coffee directly from farmers at a fair price. Pilgrim's coffee is roasted from high-quality beans and becomes a delicious coffee that satisfies all coffee drinkers."
+
+msgid "ພົບ 7 ລາຍການ"
+msgstr "Found 7 items"
+
+msgid "ສິ່ງອຳນວຍຄວາມສະດວກຂອງພວກເຮົາ"
+msgstr "Our Amenities"
+
+msgid "ອິນເຕີເນັດ Wi-Fi ຟຣີ"
+msgstr "Free Wi-Fi Internet"
+
+msgid "“ມີອິນເຕີເນັດຄວາມໄວສູງ ໃຫ້ບໍລິການຄອບຄຸມທົ່ວພື້ນທີ່.”"
+msgstr "“High-speed internet access is available throughout the property.”"
+
+msgid "ພື້ນທີ່ Co-working"
+msgstr "Co-working Space"
+
+msgid "ຊ່ວຍໃຫ້ພວກທ່ານມີຄວາມສະດວກໃນການເຮັດວຽກ."
+msgstr "Stay productive with our convenient co-working space."
+
+msgid "ສະໜາມເດັກຫຼິ້ນ"
+msgstr "Playground"
+
+msgid "ໃຫ້ລູກຂອງທ່ານ ເພີດເພີນກັບການຜະຈົນໄພທີ່ປອດໄພ ແລະ ເຕັມໄປດ້ວຍຄວາມມ່ວນຊື່ນ."
+msgstr "Let your kids enjoy a safe and fun-filled adventure."
+
+msgid "ຈອດລົດຟຣີ"
+msgstr "Free Parking"
+
+msgid "ບໍລິການຈອດລົດຟຣີ ສຳລັບແຂກທຸກຄົນ."
+msgstr "Free parking is available for all guests."
+
+msgid "ກາເຟແນະນຳ"
+msgstr "Featured Coffee"
+
+msgid "ກາເຟຄຸນນະພາບສູງທີ່ຄັດສັນມາເປັນພິເສດ"
+msgstr "High-quality coffee specially selected"
+
+msgid "ຄົ່ວກາງ"
+msgstr "Medium Roast"
+
+msgid "ເບິ່ງລາຍລະອຽດ"
+msgstr "View Details"
+
+msgid "ເບິ່ງກາເຟທັງໝົດ"
+msgstr "View All Coffee"
+
+msgid "ຫ້ອງພັກທີ່ມີຢູ່"
+msgstr "Available Rooms"
+
+msgid "ສິ່ງອຳນວຍຄວາມສະດວກ"
+msgstr "Amenities"
+
+msgid "ເບິ່ງທີ່ພັກທັງໝົດ"
+msgstr "View All Rooms"
+
+msgid "ເມນູຂອງພວກເຮົາ"
+msgstr "Our Menu"
+
+msgid "ສຳຫຼວດເມນູອາຫານຫຼາກຫຼາຍຈາກທົ່ວໂລກ ທີ່ປຸງແຕ່ງດ້ວຍຄວາມຕັ້ງໃຈແລະວັດຖຸດິບຊັ້ນດີ"
+msgstr "Explore a diverse menu from around the world, prepared with passion and fine ingredients"
+
 #: templates/base.html:231
 msgid "Coffee"
 msgstr "Coffee"
