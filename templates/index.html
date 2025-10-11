@@ -6,7 +6,7 @@
 
 {% load lao_filters %}
 
-{% block title %}Pilgrims - Hotel & Fine Dining{% endblock %}
+{% block title %}{% trans "Pilgrims - Hotel & Fine Dining" %}{% endblock %}
 
 {% block content %}
 
@@ -229,7 +229,7 @@
                         {% if item.is_featured %}
                         <div class="absolute top-4 left-4">
                             <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                <i class="fas fa-star mr-1"></i>Featured
+                                <i class="fas fa-star mr-1"></i>{% trans "Featured" %}
                             </span>
                         </div>
                         {% endif %}
@@ -278,7 +278,7 @@
                         {% if item.is_featured %}
                         <div class="absolute top-4 left-4">
                             <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                <i class="fas fa-star mr-1"></i>Featured
+                                <i class="fas fa-star mr-1"></i>{% trans "Featured" %}
                             </span>
                         </div>
                         {% endif %}
@@ -290,10 +290,10 @@
                         </p>
                         <div class="flex items-center text-sm ">
                             <i class="fas fa-mug-hot mr-2"></i>
-                            <span>Coffee Specialty</span>
+                            <span>{% trans "Coffee Specialty" %}</span>
                             {% if item.is_featured %}
                             <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
-                            <span>Barista's Choice</span>
+                            <span>{% trans "Barista's Choice" %}</span>
                             {% endif %}
                         </div>
                     </div>
@@ -301,9 +301,9 @@
                 {% empty %}
                 <div class="col-span-full border-2 border-dashed border-primary rounded-3xl p-12 text-center">
                     <div class="text-6xl mb-6"><i class="fas fa-mug-hot"></i></div>
-                    <h3 class="text-2xl font-semibold  mb-4">ເມນູກາເຟກຳລັງກະກຽມ</h3>
+                    <h3 class="text-2xl font-semibold  mb-4">{% trans "ເມນູກາເຟກຳລັງກະກຽມ" %}</h3>
                     <p class=" max-w-md mx-auto text-lg">
-                        ເຮົາກຳລັງກະກຽມເມນູກາເຟພິເສດ ຄອຍຕິດຕາມໃນໄວໆນີ້
+                        {% trans "ເຮົາກຳລັງກະກຽມເມນູກາເຟພິເສດ ຄອຍຕິດຕາມໃນໄວໆນີ້" %}
                     </p>
                 </div>
                 {% endfor %}
@@ -327,7 +327,7 @@
                         {% if item.is_featured %}
                         <div class="absolute top-4 left-4">
                             <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                <i class="fas fa-star mr-1"></i>Featured
+                                <i class="fas fa-star mr-1"></i>{% trans "Featured" %}
                             </span>
                         </div>
                         {% endif %}
@@ -339,10 +339,10 @@
                         </p>
                         <div class="flex items-center text-sm ">
                             <i class="fas fa-hamburger mr-2"></i>
-                            <span>American Classic</span>
+                            <span>{% trans "American Classic" %}</span>
                             {% if item.is_featured %}
                             <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
-                            <span>Chef's Special</span>
+                            <span>{% trans "Chef's Special" %}</span>
                             {% endif %}
                         </div>
                     </div>
@@ -350,9 +350,9 @@
                 {% empty %}
                 <div class="col-span-full border-2 border-dashed border-primary rounded-3xl p-12 text-center">
                     <div class="text-6xl mb-6"><i class="fas fa-hamburger"></i></div>
-                    <h3 class="text-2xl font-semibold  mb-4">ເມນູອາຫານອາເມຣິກາກຳລັງກະກຽມ</h3>
+                    <h3 class="text-2xl font-semibold  mb-4">{% trans "ເມນູອາຫານອາເມຣິກາກຳລັງກະກຽມ" %}</h3>
                     <p class=" max-w-md mx-auto text-lg">
-                        ອາຫານອາເມຣິກາຄລາສສິກກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ
+                        {% trans "ອາຫານອາເມຣິກາຄລາສສິກກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ" %}
                     </p>
                 </div>
                 {% endfor %}
@@ -376,7 +376,7 @@
                         {% if item.is_featured %}
                         <div class="absolute top-4 left-4">
                             <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                <i class="fas fa-star mr-1"></i>Featured
+                                <i class="fas fa-star mr-1"></i>{% trans "Featured" %}
                             </span>
                         </div>
                         {% endif %}
@@ -388,10 +388,10 @@
                         </p>
                         <div class="flex items-center text-sm ">
                             <i class="fas fa-pepper-hot mr-2"></i>
-                            <span>Indian Cuisine</span>
+                            <span>{% trans "Indian Cuisine" %}</span>
                             {% if item.is_featured %}
                             <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
-                            <span>Authentic Recipe</span>
+                            <span>{% trans "Authentic Recipe" %}</span>
                             {% endif %}
                         </div>
                     </div>
@@ -399,9 +399,9 @@
                 {% empty %}
                 <div class="col-span-full border-2 border-dashed border-primary rounded-3xl p-12 text-center">
                     <div class="text-6xl mb-6"><i class="fas fa-pepper-hot"></i></div>
-                    <h3 class="text-2xl font-semibold  mb-4">ເມນູອາຫານອິນເດຍກຳລັງກະກຽມ</h3>
+                    <h3 class="text-2xl font-semibold  mb-4">{% trans "ເມນູອາຫານອິນເດຍກຳລັງກະກຽມ" %}</h3>
                     <p class=" max-w-md mx-auto text-lg">
-                        ອາຫານອິນເດຍແບບດັ້ງເດີມກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ
+                        {% trans "ອາຫານອິນເດຍແບບດັ້ງເດີມກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ" %}
                     </p>
                 </div>
                 {% endfor %}
@@ -425,7 +425,7 @@
                         {% if item.is_featured %}
                         <div class="absolute top-4 left-4">
                             <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                <i class="fas fa-star mr-1"></i>Featured
+                                <i class="fas fa-star mr-1"></i>{% trans "Featured" %}
                             </span>
                         </div>
                         {% endif %}
@@ -437,10 +437,10 @@
                         </p>
                         <div class="flex items-center text-sm ">
                             <i class="fas fa-pepper-hot mr-2"></i>
-                            <span>Mexican Fiesta</span>
+                            <span>{% trans "Mexican Fiesta" %}</span>
                             {% if item.is_featured %}
                             <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
-                            <span>Traditional Recipe</span>
+                            <span>{% trans "Traditional Recipe" %}</span>
                             {% endif %}
                         </div>
                     </div>
@@ -448,9 +448,9 @@
                 {% empty %}
                 <div class="col-span-full border-2 border-dashed border-primary rounded-3xl p-12 text-center">
                     <div class="text-6xl mb-6"><i class="fas fa-pepper-hot"></i></div>
-                    <h3 class="text-2xl font-semibold  mb-4">ເມນູອາຫານແມັກຊິໂກກຳລັງກະກຽມ</h3>
+                    <h3 class="text-2xl font-semibold  mb-4">{% trans "ເມນູອາຫານແມັກຊິໂກກຳລັງກະກຽມ" %}</h3>
                     <p class=" max-w-md mx-auto text-lg">
-                        ອາຫານແມັກຊິໂກກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ
+                        {% trans "ອາຫານແມັກຊິໂກກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ" %}
                     </p>
                 </div>
                 {% endfor %}
@@ -474,7 +474,7 @@
                         {% if item.is_featured %}
                         <div class="absolute top-4 left-4">
                             <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                <i class="fas fa-star mr-1"></i>Featured
+                                <i class="fas fa-star mr-1"></i>{% trans "Featured" %}
                             </span>
                         </div>
                         {% endif %}
@@ -486,10 +486,10 @@
                         </p>
                         <div class="flex items-center text-sm ">
                             <i class="fas fa-pizza-slice mr-2"></i>
-                            <span>Handmade Pizza</span>
+                            <span>{% trans "Handmade Pizza" %}</span>
                             {% if item.is_featured %}
                             <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
-                            <span>Signature Pizza</span>
+                            <span>{% trans "Signature Pizza" %}</span>
                             {% endif %}
                         </div>
                     </div>
@@ -497,9 +497,9 @@
                 {% empty %}
                 <div class="col-span-full border-2 border-dashed border-primary rounded-3xl p-12 text-center">
                     <div class="text-6xl mb-6"><i class="fas fa-pizza-slice"></i></div>
-                    <h3 class="text-2xl font-semibold  mb-4">ເມນູພິຊຊ່າກຳລັງກະກຽມ</h3>
+                    <h3 class="text-2xl font-semibold  mb-4">{% trans "ເມນູພິຊຊ່າກຳລັງກະກຽມ" %}</h3>
                     <p class=" max-w-md mx-auto text-lg">
-                        ພິຊຊ່າສະເພາະກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ
+                        {% trans "ພິຊຊ່າສະເພາະກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ" %}
                     </p>
                 </div>
                 {% endfor %}
@@ -523,7 +523,7 @@
                         {% if item.is_featured %}
                         <div class="absolute top-4 left-4">
                             <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                <i class="fas fa-star mr-1"></i>Featured
+                                <i class="fas fa-star mr-1"></i>{% trans "Featured" %}
                             </span>
                         </div>
                         {% endif %}
@@ -535,10 +535,10 @@
                         </p>
                         <div class="flex items-center text-sm ">
                             <i class="fas fa-utensils mr-2"></i>
-                            <span>Local Specialty</span>
+                            <span>{% trans "Local Specialty" %}</span>
                             {% if item.is_featured %}
                             <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
-                            <span>Traditional</span>
+                            <span>{% trans "Traditional" %}</span>
                             {% endif %}
                         </div>
                     </div>
@@ -546,9 +546,9 @@
                 {% empty %}
                 <div class="col-span-full border-2 border-dashed border-primary rounded-3xl p-12 text-center">
                     <div class="text-6xl mb-6"><i class="fas fa-utensils"></i></div>
-                    <h3 class="text-2xl font-semibold  mb-4">ເມນູອາຫານພື້ນເມືອງກຳລັງກະກຽມ</h3>
+                    <h3 class="text-2xl font-semibold  mb-4">{% trans "ເມນູອາຫານພື້ນເມືອງກຳລັງກະກຽມ" %}</h3>
                     <p class=" max-w-md mx-auto text-lg">
-                        ອາຫານພື້ນເມືອງກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ
+                        {% trans "ອາຫານພື້ນເມືອງກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ" %}
                     </p>
                 </div>
                 {% endfor %}
@@ -572,7 +572,7 @@
                         {% if item.is_featured %}
                         <div class="absolute top-4 left-4">
                             <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                <i class="fas fa-star mr-1"></i>Featured
+                                <i class="fas fa-star mr-1"></i>{% trans "Featured" %}
                             </span>
                         </div>
                         {% endif %}
@@ -584,10 +584,10 @@
                         </p>
                         <div class="flex items-center text-sm ">
                             <i class="fas fa-leaf mr-2"></i>
-                            <span>Healthy Choice</span>
+                            <span>{% trans "Healthy Choice" %}</span>
                             {% if item.is_featured %}
                             <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
-                            <span>Fresh & Nutritious</span>
+                            <span>{% trans "Fresh & Nutritious" %}</span>
                             {% endif %}
                         </div>
                     </div>
@@ -595,9 +595,9 @@
                 {% empty %}
                 <div class="col-span-full border-2 border-dashed border-primary rounded-3xl p-12 text-center">
                     <div class="text-6xl mb-6"><i class="fas fa-leaf"></i></div>
-                    <h3 class="text-2xl font-semibold  mb-4">ເມນູສະຫຼັດແລະແກງກຳລັງກະກຽມ</h3>
+                    <h3 class="text-2xl font-semibold  mb-4">{% trans "ເມນູສະຫຼັດແລະແກງກຳລັງກະກຽມ" %}</h3>
                     <p class=" max-w-md mx-auto text-lg">
-                        ສະຫຼັດແລະແກງກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ
+                        {% trans "ສະຫຼັດແລະແກງກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ" %}
                     </p>
                 </div>
                 {% endfor %}
@@ -621,7 +621,7 @@
                         {% if item.is_featured %}
                         <div class="absolute top-4 left-4">
                             <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                <i class="fas fa-star mr-1"></i>Featured
+                                <i class="fas fa-star mr-1"></i>{% trans "Featured" %}
                             </span>
                         </div>
                         {% endif %}
@@ -633,10 +633,10 @@
                         </p>
                         <div class="flex items-center text-sm ">
                             <i class="fas fa-ice-cream mr-2"></i>
-                            <span>Sweet Treat</span>
+                            <span>{% trans "Sweet Treat" %}</span>
                             {% if item.is_featured %}
                             <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
-                            <span>Signature Dessert</span>
+                            <span>{% trans "Signature Dessert" %}</span>
                             {% endif %}
                         </div>
                     </div>
@@ -644,9 +644,9 @@
                 {% empty %}
                 <div class="col-span-full border-2 border-dashed border-primary rounded-3xl p-12 text-center">
                     <div class="text-6xl mb-6"><i class="fas fa-ice-cream"></i></div>
-                    <h3 class="text-2xl font-semibold  mb-4">ເມນູຂອງຫວານກຳລັງກະກຽມ</h3>
+                    <h3 class="text-2xl font-semibold  mb-4">{% trans "ເມນູຂອງຫວານກຳລັງກະກຽມ" %}</h3>
                     <p class=" max-w-md mx-auto text-lg">
-                        ຂອງຫວານແລະເຄຼັດລັບຫວານໆກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ
+                        {% trans "ຂອງຫວານແລະເຄຼັດລັບຫວານໆກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ" %}
                     </p>
                 </div>
                 {% endfor %}
@@ -670,7 +670,7 @@
                         {% if item.is_featured %}
                         <div class="absolute top-4 left-4">
                             <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                <i class="fas fa-star mr-1"></i>Featured
+                                <i class="fas fa-star mr-1"></i>{% trans "Featured" %}
                             </span>
                         </div>
                         {% endif %}
@@ -682,10 +682,10 @@
                         </p>
                         <div class="flex items-center text-sm ">
                             <i class="fas fa-glass-martini-alt mr-2"></i>
-                            <span>Refreshing Drink</span>
+                            <span>{% trans "Refreshing Drink" %}</span>
                             {% if item.is_featured %}
                             <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
-                            <span>Bartender's Choice</span>
+                            <span>{% trans "Bartender's Choice" %}</span>
                             {% endif %}
                         </div>
                     </div>
@@ -693,9 +693,9 @@
                 {% empty %}
                 <div class="col-span-full border-2 border-dashed border-primary rounded-3xl p-12 text-center">
                     <div class="text-6xl mb-6"><i class="fas fa-glass-martini-alt"></i></div>
-                    <h3 class="text-2xl font-semibold  mb-4">ເມນູເຄື່ອງດື່ມກຳລັງກະກຽມ</h3>
+                    <h3 class="text-2xl font-semibold  mb-4">{% trans "ເມນູເຄື່ອງດື່ມກຳລັງກະກຽມ" %}</h3>
                     <p class=" max-w-md mx-auto text-lg">
-                        ເຄື່ອງດື່ມພິເສດກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ
+                        {% trans "ເຄື່ອງດື່ມພິເສດກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ" %}
                     </p>
                 </div>
                 {% endfor %}
@@ -707,7 +707,7 @@
     <div class="text-center mt-12">
         <a href="{% url 'menu-page' %}" 
            class="inline-flex items-center bg-primary text-white px-8 py-3 rounded-lg hover:bg-primary-700 transition font-medium">
-            <span>{% trans "ເບິ່ງເມນູທັງໝົດ" %}</span>
+            <span>{% trans "View Full Menu" %}</span>
             <i class="fas fa-arrow-right ml-2"></i>
         </a>
     </div>
@@ -721,15 +721,15 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div class="p-6">
                 <div class="text-4xl font-bold text-amber-600 mb-2">{{ stats.total_products }}</div>
-                <div class="">ຜະລິດຕະພັນກາເຟ</div>
+                <div class="">{% trans "Coffee Products" %}</div>
             </div>
             <div class="p-6">
                 <div class="text-4xl font-bold text-amber-600 mb-2">{{ stats.total_beans }}</div>
-                <div class="">ຊະນິດເມັດກາເຟ</div>
+                <div class="">{% trans "Bean Varieties" %}</div>
             </div>
             <div class="p-6">
                 <div class="text-4xl font-bold text-amber-600 mb-2">{{ stats.total_categories }}</div>
-                <div class="">ໝວດໝູ່</div>
+                <div class="">{% trans "Categories" %}</div>
             </div>
         </div>
     </div>
@@ -762,13 +762,13 @@
                     <div class="absolute top-3 left-3 space-y-2">
                         {% if coffee.is_fresh %}
                         <div class="bg-green-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
-                            <i class="fas fa-leaf mr-1"></i>ສົດໃໝ່
+                            <i class="fas fa-leaf mr-1"></i>{% trans "ສົດໃໝ່" %}
                         </div>
                         {% endif %}
                         
                         {% if coffee.stock_quantity < 10 %}
                         <div class="bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
-                            <i class="fas fa-exclamation-triangle mr-1"></i>ເຫຼືອໜ້ອຍ
+                            <i class="fas fa-exclamation-triangle mr-1"></i>{% trans "ເຫຼືອໜ້ອຍ" %}
                         </div>
                         {% endif %}
                     </div>
@@ -776,7 +776,7 @@
                     <!-- Featured Badge -->
                     <div class="absolute top-3 right-3">
                         <div class="bg-amber-600 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
-                            <i class="fas fa-star mr-1"></i>ແນະນຳ
+                            <i class="fas fa-star mr-1"></i>{% trans "ແນະນຳ" %}
                         </div>
                     </div>
                     
@@ -808,7 +808,7 @@
                                 {% endif %}
                             {% endfor %}
                         </div>
-                        <span class="text-sm ">{{ coffee.avg_rating|floatformat:1 }} ({{ coffee.reviews.count }} ຣີວິວ)</span>
+                        <span class="text-sm ">{{ coffee.avg_rating|floatformat:1 }} ({% blocktrans count review_count=coffee.reviews.count %}{{ review_count }} review{% plural %}{{ review_count }} reviews{% endblocktrans %})</span>
                     </div>
                     {% endif %}
                     
@@ -823,7 +823,7 @@
                     <div class="flex justify-between items-center mb-4">
                         <div>
                             <span class="text-2xl font-bold text-amber-600">{{ coffee.price|lao_currency }}</span>
-                            <div class="text-xs">{{ coffee.price_per_unit|lao_currency }}/100g</div>
+                            <div class="text-xs">{% blocktrans %}{{ coffee.price_per_unit|lao_currency }}/100g{% endblocktrans %}</div>
                         </div>
                         <span class="text-sm px-2 py-1 rounded">{{ coffee.weight }}{{ coffee.weight_unit }}</span>
                     </div>
@@ -831,7 +831,7 @@
                     <!-- Action Buttons -->
                      <div class="flex space-x-2">
                         <a href="{% url 'coffee_detail' coffee.slug %}" class="flex-1 bg-amber-600 text-white py-2 px-4 rounded-lg hover:bg-amber-700 transition font-medium text-center inline-flex items-center justify-center">
-                            ເບິ່ງລາຍລະອຽດ
+                            {% trans "ເບິ່ງລາຍລະອຽດ" %}
                         </a>
                     </div>
                 </div>
@@ -839,8 +839,8 @@
             {% empty %}
             <div class="col-span-full text-center py-12">
                 <i class="fas fa-star text-4xl text-gray-300 mb-4"></i>
-                <p class=" text-lg">ບໍ່ມີກາເຟແນະນຳໃນຂະນະນີ້</p>
-                <p class="text-gray-400 text-sm mt-2">ກະລຸນາກັບມາໃໝ່ໃນໄວໆນີ້</p>
+                <p class=" text-lg">{% trans "ບໍ່ມີກາເຟແນະນຳໃນຂະນະນີ້" %}</p>
+                <p class="text-gray-400 text-sm mt-2">{% trans "ກະລຸນາກັບມາໃໝ່ໃນໄວໆນີ້" %}</p>
             </div>
             {% endfor %}
         </div>
@@ -850,7 +850,7 @@
         <div class="text-center mt-12">
             <a href="{% url 'coffee_list' %}" 
                class="inline-flex items-center bg-amber-600 text-white px-8 py-3 rounded-lg hover:bg-amber-700 transition font-medium">
-                <span>ເບິ່ງກາເຟທັງໝົດ</span>
+                <span>{% trans "ເບິ່ງກາເຟທັງໝົດ" %}</span>
                 <i class="fas fa-arrow-right ml-2"></i>
             </a>
         </div>
@@ -914,7 +914,7 @@
                     <!-- Enhanced Room Number -->
                     <div class="absolute top-4 right-4 z-20">
                         <div class="bg-white/90 backdrop-blur-sm text-gray-800 px-3 py-2 rounded-full text-xs font-bold shadow-lg border border-amber-200 hover:bg-amber-50 transition-colors duration-200">
-                            Room {{ room.room_number }}
+                            {% trans "Room" %} {{ room.room_number }}
                         </div>
                     </div>
                 </div>
@@ -934,13 +934,13 @@
                                         <i class="fas fa-star text-amber-400 text-xs"></i>
                                     {% endfor %}
                                 </div>
-                                <span class="text-xs text-gray-500 dark:text-gray-400">(4.8)</span>
+                                <span class="text-xs text-gray-500 dark:text-gray-400">({% trans "4.8" %})</span>
                             </div>
                         </div>
                         <div class="text-right">
                             <div class="bg-gradient-to-r from-amber-500 to-amber-600 bg-clip-text text-transparent">
                                 <div class="text-2xl font-bold">{{ room.room_type.price_per_night|lao_currency }}</div>
-                                <div class="text-xs text-gray-500 dark:text-gray-400">ຕໍ່ຄືນ</div>
+                                <div class="text-xs text-gray-500 dark:text-gray-400">{% trans "ຕໍ່ຄືນ" %}</div>
                             </div>
                         </div>
                     </div>
@@ -955,14 +955,14 @@
                                 <i class="fas fa-users text-white text-sm"></i>
                             </div>
                             <div class="text-sm font-bold text-gray-800 dark:text-white">{{ room.room_type.capacity }}</div>
-                            <div class="text-xs text-gray-500 dark:text-gray-400">Guests</div>
+                            <div class="text-xs text-gray-500 dark:text-gray-400">{% trans "Guests" %}</div>
                         </div>
                         <div class="text-center p-3 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/30 rounded-xl hover:from-green-100 hover:to-green-200 transition-colors duration-300 group/feature">
                             <div class="w-8 h-8 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-2 group-hover/feature:scale-110 transition-transform duration-200">
                                 <i class="fas fa-expand-arrows-alt text-white text-sm"></i>
                             </div>
                             <div class="text-sm font-bold text-gray-800 dark:text-white">{{ room.room_type.size_sqm }}m²</div>
-                            <div class="text-xs text-gray-500 dark:text-gray-400">Size</div>
+                            <div class="text-xs text-gray-500 dark:text-gray-400">{% trans "Size" %}</div>
                         </div>
                     </div>
 
@@ -970,7 +970,7 @@
                     <div class="mb-6">
                         <h4 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3 flex items-center">
                             <i class="fas fa-sparkles text-amber-500 mr-2"></i>
-                            ສິ່ງອຳນວຍຄວາມສະດວກ
+                            {% trans "ສິ່ງອຳນວຍຄວາມສະດວກ" %}
                         </h4>
                         <div class="flex flex-wrap gap-2">
                             {% for amenity in room.get_available_amenities|slice:":3" %}
@@ -982,7 +982,7 @@
                             {% if room.get_available_amenities.count > 3 %}
                                 <span class="inline-flex items-center bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-2 rounded-full border border-gray-200 dark:border-gray-600 hover:from-gray-100 hover:to-gray-200 hover:scale-105 transition-all duration-200">
                                     <i class="fas fa-plus mr-1"></i>
-                                    {{ room.get_available_amenities.count|add:"-3" }} ອື່ນໆ
+                                    {{ room.get_available_amenities.count|add:"-3" }} {% trans "more" %}
                                 </span>
                             {% endif %}
                         </div>
@@ -994,7 +994,7 @@
                             <button class="w-full bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 hover:from-blue-700 hover:via-blue-800 hover:to-indigo-800 text-white py-3.5 px-6 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 group">
                                 <span class="flex items-center justify-center">
                                     <i class="fas fa-eye mr-2 group-hover:animate-pulse"></i>
-                                    ເບິ່ງລາຍລະອຽດ
+                                    {% trans "ເບິ່ງລາຍລະອຽດ" %}
                                     <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform duration-300"></i>
                                 </span>
                             </button>
@@ -1014,10 +1014,10 @@
         <div class="w-32 h-32 mx-auto mb-6 bg-gray-100 rounded-full flex items-center justify-center">
             <i class="fas fa-search text-4xl text-gray-400"></i>
         </div>
-        <h3 class="text-2xl font-bold mb-2">No rooms found</h3>
-        <p class=" mb-6 max-w-md mx-auto">We couldn't find any rooms matching your criteria. Try adjusting your filters or search terms.</p>
+        <h3 class="text-2xl font-bold mb-2">{% trans "No rooms found" %}</h3>
+        <p class=" mb-6 max-w-md mx-auto">{% trans "We couldn't find any rooms matching your criteria. Try adjusting your filters or search terms." %}</p>
         <a href="{% url 'hotel-page' %}" class="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium">
-            <i class="fas fa-refresh mr-2"></i>Clear All Filters
+            <i class="fas fa-refresh mr-2"></i>{% trans "Clear All Filters" %}
         </a>
     </div>
     </div>
@@ -1025,7 +1025,7 @@
  <!-- View All Rooms Button -->
  <div class="m-10 sm:mt-12 text-center">
     <a href="{% url 'rooms-list-page' %}" class="bg-blue-600 inline-flex items-center bg-transparent hover:bg-blue-700 text-white hover:text-white dark:hover:text-white px-6 py-3 rounded-lg transition duration-300 font-medium">
-        ເບິ່ງທີ່ພັກທັງໝົດ
+        {% trans "ເບິ່ງທີ່ພັກທັງໝົດ" %}
         <i class="fas fa-chevron-right ml-2"></i>
     </a>
 </div>
@@ -1035,7 +1035,7 @@
 <section class="py-16 md:py-24 bg-gradient-to-br from-neutral-light">
     <div class="container mx-auto px-4">
         <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">ສິ່ງອຳນວຍຄວາມສະດວກຂອງພວກເຮົາ</h2>
+            <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">{% trans "ສິ່ງອຳນວຍຄວາມສະດວກຂອງພວກເຮົາ" %}</h2>
             <!-- <p class=" max-w-3xl mx-auto">
                 Enhancing your stay with thoughtful services and comforts.
             </p> -->
@@ -1047,8 +1047,8 @@
                 <div class="inline-block bg-primary bg-opacity-20 p-4 rounded-full mb-4">
                     <i class="fas fa-wifi text-3xl"></i>
                 </div>
-                <h3 class="text-xl font-serif font-bold mb-2">ອິນເຕີເນັດ Wi-Fi ຟຣີ</h3>
-                <p class="">“ມີອິນເຕີເນັດຄວາມໄວສູງ ໃຫ້ບໍລິການຄອບຄຸມທົ່ວພື້ນທີ່.”</p>
+                <h3 class="text-xl font-serif font-bold mb-2">{% trans "ອິນເຕີເນັດ Wi-Fi ຟຣີ" %}</h3>
+                <p class="">{% trans "“ມີອິນເຕີເນັດຄວາມໄວສູງ ໃຫ້ບໍລິການຄອບຄຸມທົ່ວພື້ນທີ່.”" %}</p>
             </div>
             
             <!-- Amenity 2 -->
@@ -1056,8 +1056,8 @@
                 <div class="inline-block bg-primary-light bg-opacity-20 p-4 rounded-full mb-4">
                     <i class="fas fa-laptop-code text-3xl"></i>
                 </div>
-                <h3 class="text-xl font-serif font-bold mb-2">ພື້ນທີ່ Co-working</h3>
-                <p class="">ຊ່ວຍໃຫ້ພວກທ່ານມີຄວາມສະດວກໃນການເຮັດວຽກ.</p>
+                <h3 class="text-xl font-serif font-bold mb-2">{% trans "ພື້ນທີ່ Co-working" %}</h3>
+                <p class="">{% trans "ຊ່ວຍໃຫ້ພວກທ່ານມີຄວາມສະດວກໃນການເຮັດວຽກ." %}</p>
             </div>
             
             <!-- Amenity 3 -->
@@ -1065,8 +1065,8 @@
                 <div class="inline-block bg-primary-light bg-opacity-20 p-4 rounded-full mb-4">
                     <i class="fas fa-child-reaching text-3xl"></i>
                 </div>
-                <h3 class="text-xl font-serif font-bold mb-2">ສະໜາມເດັກຫຼິ້ນ</h3>
-                <p class="">ໃຫ້ລູກຂອງທ່ານ ເພີດເພີນກັບການຜະຈົນໄພທີ່ປອດໄພ ແລະ ເຕັມໄປດ້ວຍຄວາມມ່ວນຊື່ນ.</p>
+                <h3 class="text-xl font-serif font-bold mb-2">{% trans "ສະໜາມເດັກຫຼິ້ນ" %}</h3>
+                <p class="">{% trans "ໃຫ້ລູກຂອງທ່ານ ເພີດເພີນກັບການຜະຈົນໄພທີ່ປອດໄພ ແລະ ເຕັມໄປດ້ວຍຄວາມມ່ວນຊື່ນ." %}</p>
             </div>
             
             <!-- Amenity 4 -->
@@ -1074,8 +1074,8 @@
                 <div class="inline-block bg-primary bg-opacity-20 p-4 rounded-full mb-4">
                     <i class="fas fa-parking text-3xl"></i>
                 </div>
-                <h3 class="text-xl font-serif font-bold mb-2">ຈອດລົດຟຣີ</h3>
-                <p class="">ບໍລິການຈອດລົດຟຣີ ສຳລັບແຂກທຸກຄົນ.</p>
+                <h3 class="text-xl font-serif font-bold mb-2">{% trans "ຈອດລົດຟຣີ" %}</h3>
+                <p class="">{% trans "ບໍລິການຈອດລົດຟຣີ ສຳລັບແຂກທຸກຄົນ." %}</p>
             </div>
         </div>
     </div>
@@ -1086,19 +1086,19 @@
     <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row-reverse items-center">
             <div class="md:w-1/2 mb-10 md:mb-0 md:pl-12">
-                <h2 class="text-3xl md:text-4xl font-serif font-bold mb-6">Riverside Experience</h2>
+                <h2 class="text-3xl md:text-4xl font-serif font-bold mb-6">{% trans "Riverside Experience" %}</h2>
                 <p class="mb-6 leading-relaxed">
-                    Our riverside retreat offers more than just a place to stay — it’s a complete experience by the banks of the Mekong, with sweeping views of Thailand. From freshly roasted coffee at our café to global flavors at our multi-cuisine restaurant, every detail is designed to delight your senses.
+                    {% trans "Our riverside retreat offers more than just a place to stay — it’s a complete experience by the banks of the Mekong, with sweeping views of Thailand. From freshly roasted coffee at our café to global flavors at our multi-cuisine restaurant, every detail is designed to delight your senses." %}
                 </p>
                 <p class="mb-8 leading-relaxed">
-                    Whether you’re here for a hearty breakfast, a leisurely riverside lunch, or a romantic sunset dinner, our team is dedicated to making every moment memorable. Paired with the comfort of our guesthouse and the aroma of coffee roasted in-house, your time with us is crafted to be both relaxing and unforgettable.
+                    {% trans "Whether you’re here for a hearty breakfast, a leisurely riverside lunch, or a romantic sunset dinner, our team is dedicated to making every moment memorable. Paired with the comfort of our guesthouse and the aroma of coffee roasted in-house, your time with us is crafted to be both relaxing and unforgettable." %}
                 </p>
                 <a href="{% url 'menu-page' %}" class="inline-block bg-primary hover:bg-primary-dark text-white font-medium px-6 py-3 rounded-md transition duration-300">
-                    Explore Our Menu
+                    {% trans "Explore Our Menu" %}
                 </a>
             </div>
             <div class="md:w-1/2">
-                <img src="{% static 'images/pilgrims-kitchen-views.jpg' %}" alt="Restaurant" class="rounded-lg shadow-xl">
+                <img src="{% static 'images/pilgrims-kitchen-views.jpg' %}" alt="{% trans "Restaurant" %}" class="rounded-lg shadow-xl">
             </div>
         </div>
     </div>

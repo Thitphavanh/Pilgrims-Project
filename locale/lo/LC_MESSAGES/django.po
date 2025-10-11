@@ -1,227 +1,719 @@
-# Lao Translation for Pilgrims Hotel & Restaurant
-# Copyright (C) 2025 Pilgrims Hotel
-# This file is distributed under the same license as the PACKAGE package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Pilgrims Hotel 1.0\n"
+"Project-Id-Version: Pilgrims-Venture-Project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-24 00:00+0000\n"
-"PO-Revision-Date: 2025-09-24 00:00+0000\n"
-"Last-Translator: Django Admin\n"
-"Language-Team: Lao\n"
+"POT-Creation-Date: 2025-10-12 01:16+0700\n"
+"PO-Revision-Date: 2025-10-11 10:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Lao <your_email@example.com>\n"
 "Language: lo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: pilgrims/settings.py:133
-msgid "English"
-msgstr "English"
+#: coffee/templates/coffee/coffee-list.html:7
+msgid "ລາຍການກາເຟທັງໝົດ - ຮ້ານກາເຟ"
+msgstr ""
 
-#: pilgrims/settings.py:132
+#: coffee/templates/coffee/coffee-list.html:18
+msgid "ລາຍການກາເຟທັງໝົດ"
+msgstr ""
+
+#: config/settings.py:132 config/settings/base.py:91
 msgid "ລາວ"
-msgstr "ລາວ"
+msgstr ""
 
-#: templates/base.html:228
-msgid "About Us"
-msgstr "ກ່ຽວກັບພວກເຮົາ"
+#: config/settings.py:133 config/settings/base.py:91
+msgid "English"
+msgstr ""
 
-#: templates/base.html:229
-msgid "Booking"
-msgstr "ການຈອງ"
+#: hotel/templates/hotel/review.html:5
+msgid "Guest Reviews - Project Pilgrims"
+msgstr ""
 
-#: templates/base.html:230
-msgid "Menu"
-msgstr "ເມນູ"
+#: hotel/templates/hotel/review.html:83
+msgid "Based on"
+msgstr ""
 
-#: templates/base.html:231
-msgid "Coffee"
-msgstr "ກາເຟ"
+#: hotel/templates/hotel/review.html:85
+#, fuzzy
+#| msgid "Previous"
+msgid "reviews"
+msgstr "ກ່ອນໜ້າ"
 
-#: templates/base.html:232
-msgid "Reviews"
-msgstr "ຣີວິວ"
+#: hotel/templates/hotel/rooms-list.html:9
+msgid "All Rooms & Suites - Hotel"
+msgstr "ຫ້ອງພັກ ແລະ ຫ້ອງຊຸດທັງໝົດ - ໂຮງແຮມ"
 
-msgid "Review"
-msgstr "ຣີວິວ"
+#: hotel/templates/hotel/rooms-list.html:17
+#, python-format
+msgid "There are a total of %(total)s rooms"
+msgstr ""
 
-msgid "Reservation"
-msgstr "ການຈອງຫ້ອງ"
+#: hotel/templates/hotel/rooms-list.html:25
+msgid ""
+"Experience the perfect blend of comfort and luxury in our thoughtfully "
+"designed rooms and suites."
+msgstr ""
 
-#: templates/base.html:233
-msgid "Contact"
-msgstr "ຕິດຕໍ່"
+#: hotel/templates/hotel/rooms-list.html:61
+msgid "Available"
+msgstr "ວ່າງ"
 
-# New translations added for language switching
-msgid "Pilgrims Kitchen & Inn ຍິນດີຕ້ອນຮັບ"
-msgstr "Pilgrims Kitchen & Inn ຍິນດີຕ້ອນຮັບ"
+#: hotel/templates/hotel/rooms-list.html:98
+msgid "Floor"
+msgstr ""
 
-msgid "Our Menu"
-msgstr "ເມນູຂອງພວກເຮົາ"
+#: hotel/templates/hotel/rooms-list.html:105
+msgid "per night"
+msgstr ""
 
-msgid "Breakfast"
-msgstr "ອາຫານເຊົ້າ"
-
-msgid "Featured"
-msgstr "ແນະນໍາ"
-
+#: hotel/templates/hotel/rooms-list.html:118 templates/index.html:958
 msgid "Guests"
-msgstr "ແຂກ"
+msgstr ""
 
+#: hotel/templates/hotel/rooms-list.html:119
+#, python-format
+msgid "For %(room.room_type.capacity)s people"
+msgstr ""
+
+#: hotel/templates/hotel/rooms-list.html:123 templates/index.html:965
 msgid "Size"
-msgstr "ຂະໜາດ"
+msgstr ""
 
-msgid "View"
-msgstr "ທັດສະນະ"
+#: hotel/templates/hotel/rooms-list.html:132
+msgid "Amenities"
+msgstr ""
 
+#: hotel/templates/hotel/rooms-list.html:143 templates/index.html:985
+msgid "more"
+msgstr ""
+
+#: hotel/templates/hotel/rooms-list.html:155
 msgid "View Details"
 msgstr "ເບິ່ງລາຍລະອຽດ"
 
-msgid "Room"
-msgstr "ຫ້ອງ"
+#: hotel/templates/hotel/rooms-list.html:184 templates/index.html:1017
+msgid "No rooms found"
+msgstr "ບໍ່ພົບຫ້ອງພັກ"
 
-msgid "View All Room"
-msgstr "ເບິ່ງເມນູທັງໝົດ"
+#: hotel/templates/hotel/rooms-list.html:186
+msgid ""
+"We couldn't find any rooms matching your criteria. Try adjusting your "
+"filters."
+msgstr "ພວກເຮົາບໍ່ສາມາດຊອກຫາຫ້ອງພັກທີ່ຕົງກັບເງື່ອນໄຂຂອງທ່ານ. ລອງປັບແຕ່ງຕົວກອງຂອງທ່ານ."
 
-msgid "Recommended Coffee"
-msgstr "ກາເຟແນະນໍາ"
+#: hotel/templates/hotel/rooms-list.html:193 templates/index.html:1020
+msgid "Clear All Filters"
+msgstr "ລົບຕົວກອງທັງໝົດ"
 
-msgid "Recommended Room"
-msgstr "ຫ້ອງແນະນໍາ"
+#: hotel/templates/hotel/rooms-list.html:197
+msgid "Back to Home"
+msgstr "ກັບໄປໜ້າຫຼັກ"
 
-msgid "Fresh"
-msgstr "ສົດໃໝ່"
+#: hotel/templates/hotel/rooms-list.html:213
+msgid "Previous"
+msgstr "ກ່ອນໜ້າ"
 
-msgid "Low Stock"
-msgstr "ເຫຼືອໜ້ອຍ"
+#: hotel/templates/hotel/rooms-list.html:233
+msgid "Next"
+msgstr "ຕໍ່ໄປ"
 
-msgid "All Coffee List - Coffee Shop"
-msgstr "ລາຍການກາເຟທັງໝົດ - ຮ້ານກາເຟ"
+#: restaurant/templates/restaurant/menu.html:9
+msgid "Restaurant & Dining - Project Pilgrims"
+msgstr ""
 
-# Menu tab translations
-msgid "Scroll to see more menu"
-msgstr "ເລື່ອນເບິ່ງເມນູເພີ່ມເຕີມ"
+#: restaurant/templates/restaurant/menu.html:66
+msgid "ການເດີນທາງດ້ານອາຫານ"
+msgstr ""
 
-msgid "American"
-msgstr "ອາເມຣິກາ"
+#: restaurant/templates/restaurant/menu.html:69
+msgid ""
+"ສຳຜັດຄວາມລ້ຳເລີດຂອງອາຫານໃນຮ້ານອາຫານສຸດຫຼູຂອງພວກເຮົາ ໃນທຸກໆຈານເຮົາໄດ້ໃສ່ເລື່ອງລາວເຂົ້າໄປ."
+msgstr ""
 
-msgid "Indian"
-msgstr "ອິນເດຍ"
+#: restaurant/templates/restaurant/menu.html:72
+msgid "ເບິ່ງເມນູຂອງພວກເຮົາ"
+msgstr ""
 
-msgid "Mexican"
-msgstr "ແມັກຊິໂກ"
+#: restaurant/templates/restaurant/menu.html:85
+msgid "CULINARY DELIGHTS"
+msgstr ""
 
+#: restaurant/templates/restaurant/menu.html:86 templates/index.html:126
+msgid "ເມນູຂອງພວກເຮົາ"
+msgstr ""
+
+#: restaurant/templates/restaurant/menu.html:89 templates/index.html:130
+msgid "ສຳຫຼວດເມນູອາຫານຫຼາກຫຼາຍຈາກທົ່ວໂລກ ທີ່ປຸງແຕ່ງດ້ວຍຄວາມຕັ້ງໃຈແລະວັດຖຸດິບຊັ້ນດີ"
+msgstr ""
+
+#: restaurant/templates/restaurant/menu.html:99
+msgid "ເລື່ອນເບິ່ງເມນູເພີ່ມເຕີມ"
+msgstr ""
+
+#: restaurant/templates/restaurant/menu.html:116 templates/index.html:146
+msgid "Breakfast"
+msgstr "ອາຫານເຊົ້າ"
+
+#: restaurant/templates/restaurant/menu.html:130 templates/base.html:112
+#: templates/base.html:183 templates/index.html:149
+msgid "Coffee"
+msgstr "ກາເຟ"
+
+#: restaurant/templates/restaurant/menu.html:144 templates/index.html:161
 msgid "Pizza"
 msgstr "ພິຊຊ່າ"
 
+#: restaurant/templates/restaurant/menu.html:158 templates/index.html:152
+msgid "American"
+msgstr "ອາຫານອາເມລິກາ"
+
+#: restaurant/templates/restaurant/menu.html:172 templates/index.html:155
+msgid "Indian"
+msgstr "ອາຫານອິນເດຍ"
+
+#: restaurant/templates/restaurant/menu.html:186 templates/index.html:158
+msgid "Mexican"
+msgstr "ອາຫານເມັກຊິໂກ"
+
+#: restaurant/templates/restaurant/menu.html:200 templates/index.html:164
 msgid "Local Specialties"
 msgstr "ອາຫານພື້ນເມືອງ"
 
+#: restaurant/templates/restaurant/menu.html:214 templates/index.html:167
 msgid "Soup & Salad"
-msgstr "ແກງແລະສະລັດ"
+msgstr "ແກງ ແລະ ສະຫຼັດ"
 
+#: restaurant/templates/restaurant/menu.html:228 templates/index.html:170
 msgid "Desserts"
 msgstr "ຂອງຫວານ"
 
+#: restaurant/templates/restaurant/menu.html:242 templates/index.html:173
 msgid "Drinks"
 msgstr "ເຄື່ອງດື່ມ"
 
-# Menu descriptions
-msgid "Start your day with our delicious breakfast menu"
-msgstr "ເລີ່ມຕົ້ນມື້ທ່ານດ້ວຍເມນູອາຫານເຊົ້າແສນອະລ່ອຍຂອງພວກເຮົາ"
+#: restaurant/templates/restaurant/menu.html:253
+msgid "ເລີ່ມຕົ້ນວັນຂອງທ່ານດ້ວຍເມນູອາຫານເຊົ້າສຸດແຊບຂອງພວກເຮົາ"
+msgstr ""
 
-msgid "Expertly crafted coffee drinks using premium beans from around the world"
-msgstr "ເຄື່ອງດື່ມກາເຟທີ່ປຸງແຕ່ງຢ່າງຊ່ຽວຊານດ້ວຍເມັດກາເຟຄຸນນະພາບສູງຈາກທົ່ວໂລກ"
+#: templates/base.html:109 templates/base.html:180
+msgid "About Us"
+msgstr ""
 
-msgid "Classic American cuisine prepared with our chef's special touch"
-msgstr "ອາຫານອາເມຣິກາຄລາສສິກທີ່ປຸງແຕ່ງດ້ວຍສູດພິເສດຂອງພໍ່ຄົວ"
+#: templates/base.html:110 templates/base.html:181
+msgid "Reservation"
+msgstr ""
 
-msgid "Traditional Indian dishes filled with aromatic spices and authentic cooking methods"
-msgstr "ອາຫານອິນເດຍແບບດັ້ງເດີມທີ່ເຕັມໄປດ້ວຍເຄື່ອງເທດຫອມແລະວິທີການປຸງແຕ່ງແບບດັ້ງເດີມ"
+#: templates/base.html:111 templates/base.html:182
+msgid "Menu"
+msgstr ""
 
-msgid "Bold and flavorful Mexican cuisine using fresh ingredients and authentic recipes"
-msgstr "ອາຫານແມັກຊິໂກທີ່ມີລົດຊາດເຂັ້ມຂຸ້ນດ້ວຍວັດຖຸດິບສົດແລະສູດແທ້"
+#: templates/base.html:113 templates/base.html:184
+msgid "Review"
+msgstr ""
 
-msgid "Handmade pizzas with premium toppings"
-msgstr "ພິຊຊ່າທີ່ເຮັດດ້ວຍມືພ້ອມສ່ວນປະກອບຄຸນນະພາບສູງ"
+#: templates/base.html:114 templates/base.html:185
+msgid "Contact"
+msgstr ""
 
-msgid "Regional specialties showcasing unique local ingredients and traditions"
-msgstr "ອາຫານພິເສດຂອງທ້ອງຖິ່ນທີ່ນໍາສະເຫນີວັດຖຸດິບທ້ອງຖິ່ນແລະປະເພນີທີ່ເປັນເອກະລັກ"
-
-msgid "Fresh salads and Mediterranean favorites packed with healthy goodness"
-msgstr "ສະລັດສົດແລະອາຫານເມດິເຕີແລນຽນທີ່ເຕັມໄປດ້ວຍປະໂຫຍດຕໍ່ສຸຂະພາບ"
-
-msgid "Sweet treats and delicate desserts made with high-quality ingredients"
-msgstr "ຂອງຫວານແລະຂອງຫວານອັນລະອຽດທີ່ເຮັດດ້ວຍວັດຖຸດິບຄຸນນະພາບສູງ"
-
-msgid "Refreshing beverages, specialty cocktails and carefully curated selections"
-msgstr "ເຄື່ອງດື່ມຊື່ນ, ຄອກເທນພິເສດແລະການຄັດສັນຢ່າງລະອຽດ"
-
-# Additional menu page translations
-msgid "ການເດີນທາງດ້ານອາຫານ"
-msgstr "ການເດີນທາງດ້ານອາຫານ"
-
-msgid "ສໍາຜັດຄວາມລ້ໍາເລີດຂອງອາຫານໃນຮ້ານອາຫານສຸດຫຼູຂອງພວກເຮົາ ໃນທຸກໆຈານເຮົາໄດ້ໃສ່ເລື່ອງລາວເຂົ້າໄປ."
-msgstr "ສໍາຜັດຄວາມລ້ໍາເລີດຂອງອາຫານໃນຮ້ານອາຫານສຸດຫຼູຂອງພວກເຮົາ ໃນທຸກໆຈານເຮົາໄດ້ໃສ່ເລື່ອງລາວເຂົ້າໄປ."
-
-msgid "ເບິ່ງເມນູຂອງພວກເຮົາ"
-msgstr "ເບິ່ງເມນູຂອງພວກເຮົາ"
-
-msgid "ເລື່ອນເບິ່ງເມນູເພີ່ມເຕີມ"
-msgstr "ເລື່ອນເບິ່ງເມນູເພີ່ມເຕີມ"
-
-msgid "ລີ່ມຕົ້ນວັນຂອງທ່ານດ້ວຍເມນູອາຫານເຊົ້າສຸດແຊບຂອງພວກເຮົາ"
-msgstr "ລີ່ມຕົ້ນວັນຂອງທ່ານດ້ວຍເມນູອາຫານເຊົ້າສຸດແຊບຂອງພວກເຮົາ"
-
-#: templates/base.html:212
+#: templates/base.html:230
 msgid "Contact Us"
-msgstr "ຕິດຕໍ່ພວກເຮົາ"
+msgstr ""
 
-#: templates/base.html:225
-msgid "Tel"
-msgstr "ໂທ"
+#: templates/base.html:235
+msgid "Khanthabouly Road, House No. 168"
+msgstr ""
 
 #: templates/base.html:236
+msgid "Ban Chomkeo, Kaisone Phomvihane District"
+msgstr ""
+
+#: templates/base.html:237
+msgid "Savannakhet, Lao PDR"
+msgstr ""
+
+#: templates/base.html:243
+msgid "Tel"
+msgstr ""
+
+#: templates/base.html:254
 msgid "Email"
-msgstr "ອີເມວ"
+msgstr ""
 
-#: templates/base.html:250
+#: templates/base.html:268
 msgid "Stay Connected"
-msgstr "ຮັກສາການເຊື່ອມຕໍ່"
+msgstr ""
 
-#: templates/base.html:255
+#: templates/base.html:273
 msgid "Follow us on social media channels"
-msgstr "ຕິດຕາມພວກເຮົາໃນສື່ສັງຄົມ"
+msgstr ""
 
-#: templates/base.html:290
+#: templates/base.html:299
 msgid "Timings"
-msgstr "ເວລາເປີດປິດ"
+msgstr ""
 
-#: templates/base.html:295
+#: templates/base.html:304
 msgid "Monday – Saturday"
-msgstr "ວັນຈັນ - ວັນເສົາ"
+msgstr ""
 
-#: templates/base.html:302
+#: templates/base.html:311
 msgid "Sunday"
-msgstr "ວັນອາທິດ"
-
-#: templates/base.html:303
-msgid "Closed"
-msgstr "ປິດ"
+msgstr ""
 
 #: templates/base.html:312
+msgid "Closed"
+msgstr ""
+
+#: templates/base.html:321
 msgid "All rights reserved"
-msgstr "ສະຫງວນລິຂະສິດທັງໝົດ"
+msgstr ""
 
-#: templates/base.html:314
+#: templates/base.html:323
 msgid "Privacy"
-msgstr "ຄວາມເປັນສ່ວນຕົວ"
+msgstr ""
 
-#: templates/base.html:315
+#: templates/base.html:324
 msgid "Terms"
-msgstr "ເງື່ອນໄຂ"
+msgstr ""
 
-#: templates/base.html:316
+#: templates/base.html:325
 msgid "Sitemap"
-msgstr "ແຜນທີ່ເວັບໄຊ"
+msgstr ""
+
+#: templates/components/hero-section.html:34
+msgid ""
+"“A Riverside Retreat for <span class=\"text-secondary-light dark:text-"
+"secondary-dark\">Every Traveler”</span>"
+msgstr ""
+
+#: templates/components/hero-section.html:37
+msgid ""
+"“Discover comfort, diverse cuisine, and freshly roasted coffee at Pilgrim\\"
+msgstr ""
+
+#: templates/index.html:9
+msgid "Pilgrims - Hotel & Fine Dining"
+msgstr "ພິລກຣິມສ - ໂຮງແຮມ ແລະ ອາຫານຫຼູ"
+
+#: templates/index.html:105
+msgid "Pilgrims Kitchen & Inn ຍິນດີຕ້ອນຮັບ"
+msgstr ""
+
+#: templates/index.html:107
+msgid ""
+"Nestle by the banks of the Mekong River with sweeping views across to "
+"Thailand, we bring together a cozy cafe, a vibrant multi-cuisine restaurant, "
+"a welcoming guesthouse, and our very own in-house coffee roastery - all "
+"under one roof. Our cafe is the perfect place to begin your day with a fresh "
+"cup of coffee while watching the river awaken, while our restaurant takes "
+"you on a journey of flavors from around the world - Mexican, Indian, "
+"American, Mediterranean, and Local Lao specialties."
+msgstr ""
+
+#: templates/index.html:110
+msgid ""
+"For travelers, our guesthouse offers the comfort of 11 well-appointed rooms "
+"and 2 spacious suites, where you can rest, recharge, and wake up to the "
+"beauty of the Mekong sunrise. And for coffee lovers, our in-house roasting "
+"ensures every cup is crafted with passion, freshness, and care. Whether you "
+"are passing through, staying the night, or simply looking for a place to "
+"relax and connect, we invite you to discover comfort, flavor, and "
+"unforgettable riverside experiences with us."
+msgstr ""
+
+#: templates/index.html:114
+msgid "Hotel Lobby"
+msgstr ""
+
+#: templates/index.html:139
+msgid "Scroll to see more menu"
+msgstr ""
+
+#: templates/index.html:182
+msgid "Start your day with our delicious breakfast menu"
+msgstr ""
+
+#: templates/index.html:185
+msgid ""
+"Expertly crafted coffee drinks using premium beans from around the world"
+msgstr ""
+
+#: templates/index.html:188
+msgid "Classic American cuisine prepared with our chef's special touch"
+msgstr ""
+
+#: templates/index.html:191
+msgid ""
+"Traditional Indian dishes filled with aromatic spices and authentic cooking "
+"methods"
+msgstr ""
+
+#: templates/index.html:194
+msgid ""
+"Bold and flavorful Mexican cuisine using fresh ingredients and authentic "
+"recipes"
+msgstr ""
+
+#: templates/index.html:197
+msgid "Handmade pizzas with premium toppings"
+msgstr ""
+
+#: templates/index.html:200
+msgid "Regional specialties showcasing unique local ingredients and traditions"
+msgstr ""
+
+#: templates/index.html:203
+msgid "Fresh salads and Mediterranean favorites packed with healthy goodness"
+msgstr ""
+
+#: templates/index.html:206
+msgid "Sweet treats and delicate desserts made with high-quality ingredients"
+msgstr ""
+
+#: templates/index.html:209
+msgid ""
+"Refreshing beverages, specialty cocktails and carefully curated selections"
+msgstr ""
+
+#: templates/index.html:232 templates/index.html:281 templates/index.html:330
+#: templates/index.html:379 templates/index.html:428 templates/index.html:477
+#: templates/index.html:526 templates/index.html:575 templates/index.html:624
+#: templates/index.html:673
+msgid "Featured"
+msgstr "ແນະນຳ"
+
+#: templates/index.html:244
+#, fuzzy
+#| msgid "Breakfast"
+msgid "Breakfast Special"
+msgstr "ອາຫານເຊົ້າ"
+
+#: templates/index.html:247
+msgid "Chef's Choice"
+msgstr ""
+
+#: templates/index.html:255
+msgid "ເມນູອາຫານເຊົ້າກຳລັງກະກຽມ"
+msgstr ""
+
+#: templates/index.html:257
+msgid "ພວກເຮົາກຳລັງກະກຽມເມນູອາຫານເຊົ້າພິເສດ ຄອຍຕິດຕາມໃນໄວໆນີ້"
+msgstr ""
+
+#: templates/index.html:293
+#, fuzzy
+#| msgid "Local Specialties"
+msgid "Coffee Specialty"
+msgstr "ອາຫານພື້ນເມືອງ"
+
+#: templates/index.html:296
+msgid "Barista's Choice"
+msgstr ""
+
+#: templates/index.html:304
+msgid "ເມນູກາເຟກຳລັງກະກຽມ"
+msgstr ""
+
+#: templates/index.html:306
+msgid "ເຮົາກຳລັງກະກຽມເມນູກາເຟພິເສດ ຄອຍຕິດຕາມໃນໄວໆນີ້"
+msgstr ""
+
+#: templates/index.html:342
+#, fuzzy
+#| msgid "American"
+msgid "American Classic"
+msgstr "ອາຫານອາເມລິກາ"
+
+#: templates/index.html:345
+msgid "Chef's Special"
+msgstr ""
+
+#: templates/index.html:353
+msgid "ເມນູອາຫານອາເມຣິກາກຳລັງກະກຽມ"
+msgstr ""
+
+#: templates/index.html:355
+msgid "ອາຫານອາເມຣິກາຄລາສສິກກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+msgstr ""
+
+#: templates/index.html:391
+#, fuzzy
+#| msgid "Indian"
+msgid "Indian Cuisine"
+msgstr "ອາຫານອິນເດຍ"
+
+#: templates/index.html:394
+msgid "Authentic Recipe"
+msgstr ""
+
+#: templates/index.html:402
+msgid "ເມນູອາຫານອິນເດຍກຳລັງກະກຽມ"
+msgstr ""
+
+#: templates/index.html:404
+msgid "ອາຫານອິນເດຍແບບດັ້ງເດີມກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+msgstr ""
+
+#: templates/index.html:440
+#, fuzzy
+#| msgid "Mexican"
+msgid "Mexican Fiesta"
+msgstr "ອາຫານເມັກຊິໂກ"
+
+#: templates/index.html:443
+msgid "Traditional Recipe"
+msgstr ""
+
+#: templates/index.html:451
+msgid "ເມນູອາຫານແມັກຊິໂກກຳລັງກະກຽມ"
+msgstr ""
+
+#: templates/index.html:453
+msgid "ອາຫານແມັກຊິໂກກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+msgstr ""
+
+#: templates/index.html:489
+msgid "Handmade Pizza"
+msgstr ""
+
+#: templates/index.html:492
+msgid "Signature Pizza"
+msgstr ""
+
+#: templates/index.html:500
+msgid "ເມນູພິຊຊ່າກຳລັງກະກຽມ"
+msgstr ""
+
+#: templates/index.html:502
+msgid "ພິຊຊ່າສະເພາະກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+msgstr ""
+
+#: templates/index.html:538
+#, fuzzy
+#| msgid "Local Specialties"
+msgid "Local Specialty"
+msgstr "ອາຫານພື້ນເມືອງ"
+
+#: templates/index.html:541
+msgid "Traditional"
+msgstr ""
+
+#: templates/index.html:549
+msgid "ເມນູອາຫານພື້ນເມືອງກຳລັງກະກຽມ"
+msgstr ""
+
+#: templates/index.html:551
+msgid "ອາຫານພື້ນເມືອງກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+msgstr ""
+
+#: templates/index.html:587
+msgid "Healthy Choice"
+msgstr ""
+
+#: templates/index.html:590
+msgid "Fresh & Nutritious"
+msgstr ""
+
+#: templates/index.html:598
+msgid "ເມນູສະຫຼັດແລະແກງກຳລັງກະກຽມ"
+msgstr ""
+
+#: templates/index.html:600
+msgid "ສະຫຼັດແລະແກງກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+msgstr ""
+
+#: templates/index.html:636
+msgid "Sweet Treat"
+msgstr ""
+
+#: templates/index.html:639
+msgid "Signature Dessert"
+msgstr ""
+
+#: templates/index.html:647
+msgid "ເມນູຂອງຫວານກຳລັງກະກຽມ"
+msgstr ""
+
+#: templates/index.html:649
+msgid "ຂອງຫວານແລະເຄຼັດລັບຫວານໆກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+msgstr ""
+
+#: templates/index.html:685
+msgid "Refreshing Drink"
+msgstr ""
+
+#: templates/index.html:688
+msgid "Bartender's Choice"
+msgstr ""
+
+#: templates/index.html:696
+msgid "ເມນູເຄື່ອງດື່ມກຳລັງກະກຽມ"
+msgstr ""
+
+#: templates/index.html:698
+msgid "ເຄື່ອງດື່ມພິເສດກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+msgstr ""
+
+#: templates/index.html:710
+msgid "View Full Menu"
+msgstr ""
+
+#: templates/index.html:724
+msgid "Coffee Products"
+msgstr ""
+
+#: templates/index.html:728
+msgid "Bean Varieties"
+msgstr ""
+
+#: templates/index.html:732
+msgid "Categories"
+msgstr ""
+
+#: templates/index.html:744
+msgid "ກາເຟແນະນຳ"
+msgstr ""
+
+#: templates/index.html:745
+msgid "ກາເຟຄຸນນະພາບສູງທີ່ຄັດສັນມາເປັນພິເສດ"
+msgstr ""
+
+#: templates/index.html:765
+msgid "ສົດໃໝ່"
+msgstr ""
+
+#: templates/index.html:771
+msgid "ເຫຼືອໜ້ອຍ"
+msgstr ""
+
+#: templates/index.html:779
+msgid "ແນະນຳ"
+msgstr ""
+
+#: templates/index.html:811
+#, python-format
+msgid "%(review_count)s review"
+msgid_plural "%(review_count)s reviews"
+msgstr[0] ""
+
+#: templates/index.html:826
+#, python-format
+msgid "%(coffee.price_per_unit|lao_currency)s/100g"
+msgstr ""
+
+#: templates/index.html:834 templates/index.html:997
+msgid "ເບິ່ງລາຍລະອຽດ"
+msgstr ""
+
+#: templates/index.html:842
+msgid "ບໍ່ມີກາເຟແນະນຳໃນຂະນະນີ້"
+msgstr ""
+
+#: templates/index.html:843
+msgid "ກະລຸນາກັບມາໃໝ່ໃນໄວໆນີ້"
+msgstr ""
+
+#: templates/index.html:853
+msgid "ເບິ່ງກາເຟທັງໝົດ"
+msgstr ""
+
+#: templates/index.html:868
+msgid "ຫ້ອງພັກທີ່ມີຢູ່"
+msgstr ""
+
+#: templates/index.html:917
+msgid "Room"
+msgstr ""
+
+#: templates/index.html:937
+msgid "4.8"
+msgstr ""
+
+#: templates/index.html:943
+msgid "ຕໍ່ຄືນ"
+msgstr ""
+
+#: templates/index.html:973
+msgid "ສິ່ງອຳນວຍຄວາມສະດວກ"
+msgstr ""
+
+#: templates/index.html:1018
+#, fuzzy
+#| msgid ""
+#| "We couldn't find any rooms matching your criteria. Try adjusting your "
+#| "filters."
+msgid ""
+"We couldn't find any rooms matching your criteria. Try adjusting your "
+"filters or search terms."
+msgstr "ພວກເຮົາບໍ່ສາມາດຊອກຫາຫ້ອງພັກທີ່ຕົງກັບເງື່ອນໄຂຂອງທ່ານ. ລອງປັບແຕ່ງຕົວກອງຂອງທ່ານ."
+
+#: templates/index.html:1028
+msgid "ເບິ່ງທີ່ພັກທັງໝົດ"
+msgstr ""
+
+#: templates/index.html:1038
+msgid "ສິ່ງອຳນວຍຄວາມສະດວກຂອງພວກເຮົາ"
+msgstr ""
+
+#: templates/index.html:1050
+msgid "ອິນເຕີເນັດ Wi-Fi ຟຣີ"
+msgstr ""
+
+#: templates/index.html:1051
+msgid "“ມີອິນເຕີເນັດຄວາມໄວສູງ ໃຫ້ບໍລິການຄອບຄຸມທົ່ວພື້ນທີ່.”"
+msgstr ""
+
+#: templates/index.html:1059
+msgid "ພື້ນທີ່ Co-working"
+msgstr ""
+
+#: templates/index.html:1060
+msgid "ຊ່ວຍໃຫ້ພວກທ່ານມີຄວາມສະດວກໃນການເຮັດວຽກ."
+msgstr ""
+
+#: templates/index.html:1068
+msgid "ສະໜາມເດັກຫຼິ້ນ"
+msgstr ""
+
+#: templates/index.html:1069
+msgid "ໃຫ້ລູກຂອງທ່ານ ເພີດເພີນກັບການຜະຈົນໄພທີ່ປອດໄພ ແລະ ເຕັມໄປດ້ວຍຄວາມມ່ວນຊື່ນ."
+msgstr ""
+
+#: templates/index.html:1077
+msgid "ຈອດລົດຟຣີ"
+msgstr ""
+
+#: templates/index.html:1078
+msgid "ບໍລິການຈອດລົດຟຣີ ສຳລັບແຂກທຸກຄົນ."
+msgstr ""
+
+#: templates/index.html:1089
+msgid "Riverside Experience"
+msgstr ""
+
+#: templates/index.html:1091
+msgid ""
+"Our riverside retreat offers more than just a place to stay — it’s a "
+"complete experience by the banks of the Mekong, with sweeping views of "
+"Thailand. From freshly roasted coffee at our café to global flavors at our "
+"multi-cuisine restaurant, every detail is designed to delight your senses."
+msgstr ""
+
+#: templates/index.html:1094
+msgid ""
+"Whether you’re here for a hearty breakfast, a leisurely riverside lunch, or "
+"a romantic sunset dinner, our team is dedicated to making every moment "
+"memorable. Paired with the comfort of our guesthouse and the aroma of coffee "
+"roasted in-house, your time with us is crafted to be both relaxing and "
+"unforgettable."
+msgstr ""
+
+#: templates/index.html:1097
+msgid "Explore Our Menu"
+msgstr ""
+
+#: templates/index.html:1101
+msgid "Restaurant"
+msgstr ""

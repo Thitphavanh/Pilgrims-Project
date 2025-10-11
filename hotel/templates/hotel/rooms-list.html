@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 
 {% load static %}
@@ -15,7 +14,7 @@
         <!-- Results Summary -->
         <div class="flex justify-between items-center mb-6">
             <div class="text-gray-600 dark:text-gray-300">
-                {% blocktrans with current=page_obj|length total=page_obj.paginator.count %} ທັງໝົດມີ {{ total }} ຫ້ອງ{% endblocktrans %}
+                {% blocktrans with total=page_obj.paginator.count %}There are a total of {{ total }} rooms{% endblocktrans %}
             </div>
         </div>
 
@@ -23,7 +22,7 @@
         <div class="">
             <!-- Section Header -->
             <div class="text-center mb-10 sm:mb-14">
-                <!-- <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Experience the perfect blend of comfort and luxury in our thoughtfully designed rooms and suites.</p> -->
+                <!-- <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">{% trans "Experience the perfect blend of comfort and luxury in our thoughtfully designed rooms and suites." %}</p> -->
             </div>
             {% if page_obj %}
                 <div id="roomsContainer" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-8" data-view="grid">
@@ -59,7 +58,7 @@
                                 {% if room.availability_status == "Available" %}
                                 <span class="inline-flex items-center bg-emerald-500 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg backdrop-blur-sm">
                                     <div class="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></div>
-                                    ວ່າງ
+                                    {% trans "Available" %}
                                 </span>
                                 {% else %}
                                 <span class="inline-flex items-center bg-red-500 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg backdrop-blur-sm">
@@ -96,14 +95,14 @@
                                     </h3>
                                     <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
                                         <i class="fas fa-map-marker-alt mr-1 text-blue-500"></i>
-                                        Floor {{ room.floor|default:"1" }}
+                                        {% trans "Floor" %} {{ room.floor|default:"1" }}
                                     </div>
                                 </div>
                                 <div class="text-right">
                                     <div class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                                         {{ room.room_type.price_per_night|lao_currency }}
                                     </div>
-                                    <div class="text-xs text-gray-500 dark:text-gray-400">ຕໍ່ຄືນ</div>
+                                    <div class="text-xs text-gray-500 dark:text-gray-400">{% trans "per night" %}</div>
                                 </div>
                             </div>
 
@@ -116,12 +115,12 @@
                             <div class="grid grid-cols-2 gap-4 mb-6">
                                 <div class="text-center p-3 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-100 dark:border-blue-800">
                                     <i class="fas fa-users text-blue-600 text-lg mb-2"></i>
-                                    <div class="text-xs text-gray-500">ແຂກ</div>
-                                    <div class="text-sm font-bold text-gray-900 dark:text-white">ສຳລັບ {{ room.room_type.capacity }} ຄົນ</div>
+                                    <div class="text-xs text-gray-500">{% trans "Guests" %}</div>
+                                    <div class="text-sm font-bold text-gray-900 dark:text-white">{% blocktrans %}For {{ room.room_type.capacity }} people{% endblocktrans %}</div>
                                 </div>
                                 <div class="text-center p-3 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl border border-emerald-100 dark:border-emerald-800">
                                     <i class="fas fa-expand-arrows-alt text-emerald-600 text-lg mb-2"></i>
-                                    <div class="text-xs text-gray-500">ຂະໜາດ</div>
+                                    <div class="text-xs text-gray-500">{% trans "Size" %}</div>
                                     <div class="text-sm font-bold text-gray-900 dark:text-white">{{ room.room_type.size_sqm }}m²</div>
                                 </div>
                             </div>
@@ -130,7 +129,7 @@
                             <div class="mb-6">
                                 <h4 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3 flex items-center">
                                     <i class="fas fa-star mr-2 text-amber-400"></i>
-                                    ສິ່ງອຳນວຍຄວາມສະດວກ
+                                    {% trans "Amenities" %}
                                 </h4>
                                 <div class="flex flex-wrap gap-2">
                                     {% for amenity in room.get_available_amenities|slice:":4" %}
@@ -141,7 +140,7 @@
                                     {% endfor %}
                                     {% if room.get_available_amenities.count > 4 %}
                                         <span class="inline-flex items-center bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-600">
-                                            +{{ room.get_available_amenities.count|add:"-4" }} ເພີ່ມເຕີມ
+                                            +{{ room.get_available_amenities.count|add:"-4" }} {% trans "more" %}
                                         </span>
                                     {% endif %}
                                 </div>
@@ -153,7 +152,7 @@
                                     <button class="w-full bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 hover:from-blue-700 hover:via-blue-800 hover:to-indigo-800 text-white py-3.5 px-6 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 group">
                                         <span class="flex items-center justify-center">
                                             <i class="fas fa-eye mr-2 group-hover:animate-pulse"></i>
-                                            ເບິ່ງລາຍລະອຽດ
+                                            {% trans "View Details" %}
                                             <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform duration-300"></i>
                                         </span>
                                     </button>
@@ -182,20 +181,20 @@
                         </div>
 
                         <!-- Content -->
-                        <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">ບໍ່ພົບຫ້ອງພັກ</h3>
+                        <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">{% trans "No rooms found" %}</h3>
                         <p class="text-gray-600 dark:text-gray-300 mb-8 max-w-md mx-auto text-lg leading-relaxed">
-                            ພວກເຮົາບໍ່ສາມາດຊອກຫາຫ້ອງພັກທີ່ຕົງກັບເງື່ອນໄຂຂອງທ່ານ. ລອງປັບແຕ່ງຕົວກອງຂອງທ່ານ.
+                            {% trans "We couldn't find any rooms matching your criteria. Try adjusting your filters." %}
                         </p>
 
                         <!-- Action Buttons -->
                         <div class="flex flex-col sm:flex-row gap-4 justify-center">
                             <a href="{% url 'rooms-list-page' %}" class="inline-flex items-center bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                                 <i class="fas fa-refresh mr-2"></i>
-                                ລົບຕົວກອງທັງໝົດ
+                                {% trans "Clear All Filters" %}
                             </a>
                             <a href="{% url 'home-page' %}" class="inline-flex items-center bg-white dark:bg-gray-800 border-2 border-blue-600 text-blue-600 dark:text-blue-400 px-8 py-3 rounded-xl font-semibold hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white transition-all duration-300 transform hover:scale-105">
                                 <i class="fas fa-home mr-2"></i>
-                                ກັບໄປໜ້າຫຼັກ
+                                {% trans "Back to Home" %}
                             </a>
                         </div>
                     </div>
