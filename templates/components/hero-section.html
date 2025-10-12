@@ -5,14 +5,15 @@
 <section class="relative overflow-hidden">
     <!-- Background Image Slideshow -->
     <div class="bg-slideshow absolute inset-0">
-        <div class="bg-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1500 opacity-100 z-10" 
-             style="background-image: url('{% static 'images/pilgrims.jpg' %}');" data-slide-index="0"></div>
-        <div class="bg-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1500 opacity-0" 
-             style="background-image: url('{% static 'images/pilgrims-kitchen-views.jpg' %}');" data-slide-index="1"></div>
-        <div class="bg-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1500 opacity-0" 
-             style="background-image: url('{% static 'images/pilgrims-outside.jpg' %}');" data-slide-index="2"></div>
-        <div class="bg-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1500 opacity-0" 
-             style="background-image: url('{% static 'images/pilgrims-front-view.jpg' %}');" data-slide-index="3"></div>
+        {% for slide in hero_slides %}
+        <div class="bg-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1500 {% if forloop.first %}opacity-100 z-10{% else %}opacity-0{% endif %}" 
+             style="background-image: url('{{ slide.image.url }}');" data-slide-index="{{ forloop.counter0 }}"
+             {% if slide.caption %}aria-label="{{ slide.caption }}"{% endif %}></div>
+        {% empty %}
+        {# Fallback if no slides are defined #}
+        <div class="bg-slide absolute inset-0 bg-cover bg-center opacity-100 z-10" 
+             style="background-image: url('{% static 'images/pilgrims.jpg' %}');" data-slide-index="0" aria-label="Default background image"></div>
+        {% endfor %}
     </div>
     
     <!-- Overlay with custom gradient -->
@@ -21,10 +22,12 @@
     <!-- Slide Navigation Dots -->
     <div class="absolute bottom-6 left-0 right-0 flex justify-center z-20">
         <div class="flex space-x-2 px-4 py-2 bg-black/20 backdrop-blur-sm rounded-full">
+            {% for slide in hero_slides %}
+            <button class="w-3 h-3 rounded-full bg-white {% if forloop.first %}opacity-100{% else %}opacity-50{% endif %} focus:outline-none" data-index="{{ forloop.counter0 }}" aria-label="Show slide {{ forloop.counter }}"></button>
+            {% empty %}
+            {# Fallback for single dot if no slides #}
             <button class="w-3 h-3 rounded-full bg-white opacity-100 focus:outline-none" data-index="0" aria-label="Show slide 1"></button>
-            <button class="w-3 h-3 rounded-full bg-white opacity-50 focus:outline-none" data-index="1" aria-label="Show slide 2"></button>
-            <button class="w-3 h-3 rounded-full bg-white opacity-50 focus:outline-none" data-index="2" aria-label="Show slide 3"></button>
-            <button class="w-3 h-3 rounded-full bg-white opacity-50 focus:outline-none" data-index="3" aria-label="Show slide 4"></button>
+            {% endfor %}
         </div>
     </div>
     

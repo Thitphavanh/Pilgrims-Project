@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pilgrims-Venture-Project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-12 15:39+0700\n"
+"POT-Creation-Date: 2025-10-12 16:11+0700\n"
 "PO-Revision-Date: 2025-10-11 10:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: Lao <your_email@example.com>\n"
@@ -274,6 +274,40 @@ msgstr "ລາວ"
 msgid "English"
 msgstr "ອັງກິດ"
 
+#: home/models.py:5
+msgid "Image"
+msgstr ""
+
+#: home/models.py:6
+#, fuzzy
+#| msgid "Location"
+msgid "Caption"
+msgstr "ສະຖານທີ່"
+
+#: home/models.py:7
+msgid "Link URL"
+msgstr ""
+
+#: home/models.py:8
+msgid "Order"
+msgstr ""
+
+#: home/models.py:8
+msgid "Order in which the slide appears"
+msgstr ""
+
+#: home/models.py:9
+msgid "Is Active"
+msgstr ""
+
+#: home/models.py:12
+msgid "Hero Slide"
+msgstr ""
+
+#: home/models.py:13
+msgid "Hero Slides"
+msgstr ""
+
 #: hotel/templates/hotel/review.html:5
 msgid "Guest Reviews - Project Pilgrims"
 msgstr "ການທົບທວນຂອງແຂກ - ໂຄງການ Pilgrims"
@@ -506,8 +540,8 @@ msgstr "ເລື່ອນລົງເພື່ອເບິ່ງເມນູເ
 msgid "Breakfast"
 msgstr "ອາຫານເຊົ້າ"
 
-#: restaurant/templates/restaurant/menu.html:130 templates/base.html:112
-#: templates/base.html:183 templates/index.html:149
+#: restaurant/templates/restaurant/menu.html:130 templates/base.html:119
+#: templates/base.html:190 templates/index.html:149
 msgid "Coffee"
 msgstr "ກາເຟ"
 
@@ -547,7 +581,7 @@ msgstr "ເຄື່ອງດື່ມ"
 msgid "ເລີ່ມຕົ້ນວັນຂອງທ່ານດ້ວຍເມນູອາຫານເຊົ້າສຸດແຊບຂອງພວກເຮົາ"
 msgstr "ເລີ່ມຕົ້ນມື້ຂອງທ່ານດ້ວຍເມນູອາຫານເຊົ້າແຊບໆຂອງພວກເຮົາ."
 
-#: templates/about.html:16 templates/base.html:109 templates/base.html:180
+#: templates/about.html:16 templates/base.html:116 templates/base.html:187
 msgid "About Us"
 msgstr "ກ່ຽວກັບພວກເຮົາ"
 
@@ -657,106 +691,106 @@ msgstr "ຈອງຫ້ອງພັກ"
 msgid "View Menu"
 msgstr "ເບິ່ງເມນູ"
 
-#: templates/about.html:85 templates/base.html:230 templates/contact.html:55
+#: templates/about.html:85 templates/base.html:237 templates/contact.html:55
 #: templates/contact.html:84
 msgid "Contact Us"
 msgstr "ຕິດຕໍ່ພວກເຮົາ"
 
-#: templates/base.html:110 templates/base.html:181
+#: templates/base.html:117 templates/base.html:188
 msgid "Reservation"
 msgstr "ການຈອງ"
 
-#: templates/base.html:111 templates/base.html:182
+#: templates/base.html:118 templates/base.html:189
 msgid "Menu"
 msgstr "ເມນູ"
 
-#: templates/base.html:113 templates/base.html:184
+#: templates/base.html:120 templates/base.html:191
 msgid "Review"
 msgstr "ການທົບທວນ"
 
-#: templates/base.html:114 templates/base.html:185
+#: templates/base.html:121 templates/base.html:192
 msgid "Contact"
 msgstr "ຕິດຕໍ່"
 
-#: templates/base.html:235
+#: templates/base.html:242
 msgid "Khanthabouly Road, House No. 168"
 msgstr "ເຮືອນເລກທີ 168, ຖະໜົນຄັນທະບູລີ"
 
-#: templates/base.html:236
+#: templates/base.html:243
 msgid "Ban Chomkeo, Kaisone Phomvihane District"
 msgstr "ບ້ານຈອມແກ້ວ, ເມືອງໄກສອນ ພົມວິຫານ"
 
-#: templates/base.html:237
+#: templates/base.html:244
 msgid "Savannakhet, Lao PDR"
 msgstr "ສະຫວັນນະເຂດ, ສປປ ລາວ"
 
-#: templates/base.html:243
+#: templates/base.html:250
 msgid "Tel"
 msgstr "ໂທ"
 
-#: templates/base.html:254
+#: templates/base.html:261
 msgid "Email"
 msgstr "ອີເມວ"
 
-#: templates/base.html:268
+#: templates/base.html:275
 msgid "Stay Connected"
 msgstr "ຕິດຕໍ່ພົວພັນ"
 
-#: templates/base.html:273
+#: templates/base.html:280
 msgid "Follow us on social media channels"
 msgstr "ຕິດຕາມພວກເຮົາໃນຊ່ອງທາງສື່ສັງຄົມ"
 
-#: templates/base.html:299
+#: templates/base.html:306
 msgid "Timings"
 msgstr "ເວລາ"
 
-#: templates/base.html:304
+#: templates/base.html:311
 msgid "Monday – Saturday"
 msgstr "ວັນຈັນ – ວັນເສົາ"
 
-#: templates/base.html:311 templates/contact.html:151
+#: templates/base.html:318 templates/contact.html:151
 msgid "Sunday"
 msgstr "ວັນອາທິດ"
 
-#: templates/base.html:312 templates/contact.html:152
+#: templates/base.html:319 templates/contact.html:152
 #: templates/contact.html:169
 msgid "Closed"
 msgstr "ປິດ"
 
-#: templates/base.html:321
+#: templates/base.html:328
 msgid "All rights reserved"
 msgstr "ສະຫງວນລິຂະສິດທັງໝົດ"
 
-#: templates/base.html:323
+#: templates/base.html:330
 msgid "Privacy"
 msgstr "ນະໂຍບາຍຄວາມເປັນສ່ວນຕົວ"
 
-#: templates/base.html:324
+#: templates/base.html:331
 msgid "Terms"
 msgstr "ເງື່ອນໄຂ"
 
-#: templates/base.html:325
+#: templates/base.html:332
 msgid "Sitemap"
 msgstr "ແຜນຜັງເວັບໄຊ"
 
-#: templates/components/hero-section.html:35
+#: templates/components/hero-section.html:38
 msgid ""
 "“A Riverside Retreat for <span class=\"text-secondary-light dark:text-"
 "secondary-dark\">Every Traveler”</span>"
 msgstr "“ບ່ອນພັກຜ່ອນແຄມແມ່ນໍ້າຂອງສໍາລັບນັກເດີນທາງທຸກຄົນ”"
 
-#: templates/components/hero-section.html:38
+#: templates/components/hero-section.html:41
 msgid ""
 "“Discover comfort, diverse cuisine, and freshly roasted coffee at Pilgrim\\"
 msgstr ""
 "“ພົບກັບຄວາມສະດວກສະບາຍ, ອາຫານທີ່ຫຼາກຫຼາຍ, ແລະ ກາເຟທີ່ຄົ້ວສົດໃໝ່ທີ່ Pilgrim's Kitchen & Inn, "
 "ບ່ອນທີ່ຄວາມງາມຂອງແມ່ນໍ້າຂອງພົບກັບການຕ້ອນຮັບທີ່ອົບອຸ່ນ.”"
 
-#: templates/components/hero-section.html:42
+#: templates/components/hero-section.html:45
 msgid "Book your accommodation"
 msgstr "ຈອງທີ່ພັກຂອງທ່ານ"
 
-#: templates/components/hero-section.html:45
+#: templates/components/hero-section.html:48
 #, fuzzy
 #| msgid "Explore Our Menu"
 msgid "Explore our menu"

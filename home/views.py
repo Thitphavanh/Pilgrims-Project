@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from hotel.models import *
-from coffee.models import *
+from .models import (
+    HeroSlide,
+)  # Import the new model, Room, MenuItem, CoffeeProduct, CoffeeCategory, and CoffeeBean
+from coffee.models import CoffeeProduct, CoffeeCategory, CoffeeBean
 from restaurant.models import MenuItem
-from django.http import JsonResponse
-from django.core.paginator import Paginator
+from hotel.models import Room
 
 
 def home(request):
@@ -35,9 +36,12 @@ def home(request):
     soup_salad_mediterranean_items = MenuItem.objects.filter(
         category="soup_salad_mediterranean"
     ).order_by("-created_at")[:8]
-    dessert_items = MenuItem.objects.filter(category="dessert").order_by(
-        "-created_at"
-    )[:8]
+    dessert_items = MenuItem.objects.filter(category="dessert").order_by("-created_at")[
+        :8
+    ]
+
+    # Fetch active hero slides
+    hero_slides = HeroSlide.objects.filter(is_active=True).order_by("order")
 
     # ກາເຟຂາຍດີ (ສຸ່ມ 6 ລາຍການ)
     featured_coffees = (
@@ -74,6 +78,7 @@ def home(request):
             "total_beans": total_beans,
             "total_categories": total_categories,
         },
+        "hero_slides": hero_slides,  # Add slides to context
     }
     return render(request, "index.html", context)
 
