@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pilgrims Hotel 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-24 00:00+0000\n"
+"POT-Creation-Date: 2025-10-12 15:39+0700\n"
 "PO-Revision-Date: 2025-09-24 00:00+0000\n"
 "Last-Translator: Django Admin\n"
 "Language-Team: English\n"
@@ -14,282 +14,1298 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: pilgrims/settings.py:133
-msgid "English"
-msgstr "English"
+#: coffee/templates/coffee/coffee-detail.html:31
+#: hotel/templates/hotel/room-detail.html:120
+msgid "Home"
+msgstr "Home"
 
-#: pilgrims/settings.py:132
-msgid "ລາວ"
-msgstr "ລາວ"
+#: coffee/templates/coffee/coffee-detail.html:33
+#, fuzzy
+#| msgid "View All Coffee"
+msgid "All Coffee"
+msgstr "All Coffee"
 
-#: templates/base.html:228
-msgid "About Us"
-msgstr "About Us"
+#: coffee/templates/coffee/coffee-detail.html:40
+#, fuzzy
+#| msgid "Local Specialties"
+msgid "Coffee Category"
+msgstr "Coffee Category"
 
-#: templates/base.html:229
-msgid "Booking"
-msgstr "Booking"
-
-#: templates/base.html:230
-msgid "Menu"
-msgstr "Menu"
-
-
-
-
-msgid "ສິ່ກາເຟພີລກຣິມ ແມ່ນກາເຟທີ່ປູກເທິງພູສູງໃນປະເທດລາວ. ພວກເຮົາຮ່ວມງານ ແລະ ຊື້ກາເຟກັບຊາວສວນ ຜູ້ປູກກາເຟໂດຍກົງ ໃນລາຄາທີ່ເປັນກາງ. ກາເຟພີລກຣິມ ຂົ້ວຈາກເມັດກາເຟທີ່ໄດ້ຄຸນນະພາບສູງ ແລະ ກາຍມາເປັນກາເຟທີ່ມີລົດຊາດທີ່ດີເປັນທີ່ເພິ່ງພໍໃຈສຳລັບນັກດື່ມກາເຟທັງຫຼາຍ"
-msgstr "Pilgrim's coffee is coffee grown on high mountains in Laos. We cooperate and buy coffee directly from farmers at a fair price. Pilgrim's coffee is roasted from high-quality beans and becomes a delicious coffee that satisfies all coffee drinkers."
-
-msgid "ພົບ 7 ລາຍການ"
-msgstr "Found 7 items"
-
-msgid "ສິ່ງອຳນວຍຄວາມສະດວກຂອງພວກເຮົາ"
-msgstr "Our Amenities"
-
-msgid "ອິນເຕີເນັດ Wi-Fi ຟຣີ"
-msgstr "Free Wi-Fi Internet"
-
-msgid "“ມີອິນເຕີເນັດຄວາມໄວສູງ ໃຫ້ບໍລິການຄອບຄຸມທົ່ວພື້ນທີ່.”"
-msgstr "“High-speed internet access is available throughout the property.”"
-
-msgid "ພື້ນທີ່ Co-working"
-msgstr "Co-working Space"
-
-msgid "ຊ່ວຍໃຫ້ພວກທ່ານມີຄວາມສະດວກໃນການເຮັດວຽກ."
-msgstr "Stay productive with our convenient co-working space."
-
-msgid "ສະໜາມເດັກຫຼິ້ນ"
-msgstr "Playground"
-
-msgid "ໃຫ້ລູກຂອງທ່ານ ເພີດເພີນກັບການຜະຈົນໄພທີ່ປອດໄພ ແລະ ເຕັມໄປດ້ວຍຄວາມມ່ວນຊື່ນ."
-msgstr "Let your kids enjoy a safe and fun-filled adventure."
-
-msgid "ຈອດລົດຟຣີ"
-msgstr "Free Parking"
-
-msgid "ບໍລິການຈອດລົດຟຣີ ສຳລັບແຂກທຸກຄົນ."
-msgstr "Free parking is available for all guests."
-
-msgid "ກາເຟແນະນຳ"
-msgstr "Featured Coffee"
-
-msgid "ກາເຟຄຸນນະພາບສູງທີ່ຄັດສັນມາເປັນພິເສດ"
-msgstr "High-quality coffee specially selected"
-
-msgid "ຄົ່ວກາງ"
-msgstr "Medium Roast"
-
-msgid "ເບິ່ງລາຍລະອຽດ"
-msgstr "View Details"
-
-msgid "ເບິ່ງກາເຟທັງໝົດ"
-msgstr "View All Coffee"
-
-msgid "ຫ້ອງພັກທີ່ມີຢູ່"
-msgstr "Available Rooms"
-
-msgid "ສິ່ງອຳນວຍຄວາມສະດວກ"
-msgstr "Amenities"
-
-msgid "ເບິ່ງທີ່ພັກທັງໝົດ"
-msgstr "View All Rooms"
-
-msgid "ເມນູຂອງພວກເຮົາ"
-msgstr "Our Menu"
-
-msgid "ສຳຫຼວດເມນູອາຫານຫຼາກຫຼາຍຈາກທົ່ວໂລກ ທີ່ປຸງແຕ່ງດ້ວຍຄວາມຕັ້ງໃຈແລະວັດຖຸດິບຊັ້ນດີ"
-msgstr "Explore a diverse menu from around the world, prepared with passion and fine ingredients"
-
-#: templates/base.html:231
-msgid "Coffee"
-msgstr "Coffee"
-
-#: templates/base.html:232
-msgid "Reviews"
-msgstr "Reviews"
-
-msgid "Review"
-msgstr "Review"
-
-msgid "Reservation"
-msgstr "Reservation"
-
-#: templates/base.html:233
-msgid "Contact"
-msgstr "Contact"
-
-#: templates/base.html:212
-msgid "Contact Us"
-msgstr "Contact Us"
-
-# New translations added for language switching
-msgid "Pilgrims Kitchen & Inn ຍິນດີຕ້ອນຮັບ"
-msgstr "Pilgrims Kitchen & Inn Welcome"
-
-msgid "Our Menu"
-msgstr "Our Menu"
-
-msgid "Breakfast"
-msgstr "Breakfast"
-
-msgid "Featured"
-msgstr "Featured"
-
-msgid "Guests"
-msgstr "Guests"
-
-msgid "Size"
-msgstr "Size"
-
-msgid "View"
-msgstr "View"
-
-msgid "View Details"
-msgstr "View Details"
-
-msgid "Room"
-msgstr "Room"
-
-msgid "View All Room"
-msgstr "View All Room"
-
-msgid "View All Menu"
-msgstr "View All Menu"
-
-msgid "Featured Coffee"
-msgstr "Featured Coffee"
-
-msgid "Featured Rooms"
-msgstr "Featured Rooms"
-
+#: coffee/templates/coffee/coffee-detail.html:154
 msgid "Fresh"
 msgstr "Fresh"
 
+#: coffee/templates/coffee/coffee-detail.html:160 templates/index.html:771
 msgid "Low Stock"
 msgstr "Low Stock"
 
-msgid "All Coffee List - Coffee Shop"
-msgstr "All Coffee List - Coffee Shop"
+#: coffee/templates/coffee/coffee-detail.html:198 templates/index.html:811
+#, python-format
+msgid "%(review_count)s review"
+msgid_plural "%(review_count)s reviews"
+msgstr[0] "%(review_count)s review"
+msgstr[1] "%(review_count)s reviews"
 
-# Menu tab translations
-msgid "Scroll to see more menu"
-msgstr "Scroll to see more menu"
+#: coffee/templates/coffee/coffee-detail.html:212
+msgid "Product Details"
+msgstr "Product Details"
 
-msgid "American"
-msgstr "American"
+#: coffee/templates/coffee/coffee-detail.html:215
+msgid "Roast Level:"
+msgstr "Roast Level:"
 
-msgid "Indian"
-msgstr "Indian"
+#: coffee/templates/coffee/coffee-detail.html:219
+msgid "Grind Type:"
+msgstr "Grind Type:"
 
-msgid "Mexican"
-msgstr "Mexican"
+#: coffee/templates/coffee/coffee-detail.html:223
+msgid "Country of Origin:"
+msgstr "Country of Origin:"
 
+#: coffee/templates/coffee/coffee-detail.html:228
+msgid "Region:"
+msgstr "Region:"
+
+#: coffee/templates/coffee/coffee-detail.html:234
+msgid "Altitude:"
+msgstr "Altitude:"
+
+#: coffee/templates/coffee/coffee-detail.html:235
+msgid "meters"
+msgstr "meters"
+
+#: coffee/templates/coffee/coffee-detail.html:239
+msgid "Quantity in Stock:"
+msgstr "Quantity in Stock:"
+
+#: coffee/templates/coffee/coffee-detail.html:241
+#: coffee/templates/coffee/coffee-detail.html:329
+msgid "bags"
+msgstr "bags"
+
+#: coffee/templates/coffee/coffee-detail.html:250 templates/index.html:732
+msgid "Categories"
+msgstr "Categories"
+
+#: coffee/templates/coffee/coffee-detail.html:263
+msgid "Flavor and Aroma"
+msgstr "Flavor and Aroma"
+
+#: coffee/templates/coffee/coffee-detail.html:270
+msgid "Acidity"
+msgstr "Acidity"
+
+#: coffee/templates/coffee/coffee-detail.html:283
+msgid "Body"
+msgstr "Body"
+
+#: coffee/templates/coffee/coffee-detail.html:305
+msgid "Order via WhatsApp"
+msgstr "Order via WhatsApp"
+
+#: coffee/templates/coffee/coffee-detail.html:313
+msgid "Like"
+msgstr "Like"
+
+#: coffee/templates/coffee/coffee-detail.html:319
+msgid "Share"
+msgstr "Share"
+
+#: coffee/templates/coffee/coffee-detail.html:329
+#, fuzzy
+#| msgid "Low Stock"
+msgid "In Stock"
+msgstr "In Stock"
+
+#: coffee/templates/coffee/coffee-detail.html:334
+#, fuzzy
+#| msgid "Low Stock"
+msgid "Out of Stock"
+msgstr "Out of Stock"
+
+#: coffee/templates/coffee/coffee-detail.html:349
+#, fuzzy
+#| msgid "Reservation"
+msgid "Description"
+msgstr "Description"
+
+#: coffee/templates/coffee/coffee-detail.html:354
+msgid "Brewing Method"
+msgstr "Brewing Method"
+
+#: coffee/templates/coffee/coffee-detail.html:359
+#, fuzzy
+#| msgid "Review"
+msgid "Reviews"
+msgstr "Reviews"
+
+#: coffee/templates/coffee/coffee-detail.html:372
+msgid "No description for this product"
+msgstr "No description for this product"
+
+#: coffee/templates/coffee/coffee-detail.html:383
+msgid "General brewing instructions for coffee"
+msgstr "General brewing instructions for coffee"
+
+#: coffee/templates/coffee/coffee-detail.html:386
+msgid "For Drip brewing"
+msgstr "For Drip brewing"
+
+#: coffee/templates/coffee/coffee-detail.html:388
+msgid "Ratio:"
+msgstr "Ratio:"
+
+#: coffee/templates/coffee/coffee-detail.html:389
+#, fuzzy
+#| msgid "Featured"
+msgid "Temperature:"
+msgstr "Temperature:"
+
+#: coffee/templates/coffee/coffee-detail.html:390
+msgid "Time:"
+msgstr "Time:"
+
+#: coffee/templates/coffee/coffee-detail.html:394
+msgid "For Espresso"
+msgstr "For Espresso"
+
+#: coffee/templates/coffee/coffee-detail.html:398
+msgid "seconds"
+msgstr "seconds"
+
+#: coffee/templates/coffee/coffee-detail.html:405
+msgid ""
+"Recommended to use good quality clean water and freshly ground coffee before "
+"brewing"
+msgstr ""
+"Recommended to use good quality clean water and freshly ground coffee before "
+"brewing"
+
+#: coffee/templates/coffee/coffee-detail.html:417
+msgid "Write a review"
+msgstr "Write a review"
+
+#: coffee/templates/coffee/coffee-detail.html:422
+msgid "Your Name"
+msgstr "Your Name"
+
+#: coffee/templates/coffee/coffee-detail.html:427
+msgid "Rating"
+msgstr "Rating"
+
+#: coffee/templates/coffee/coffee-detail.html:430
+msgid "Select Rating"
+msgstr "Select Rating"
+
+#: coffee/templates/coffee/coffee-detail.html:431
+msgid "5 Stars - Excellent"
+msgstr "5 Stars - Excellent"
+
+#: coffee/templates/coffee/coffee-detail.html:432
+msgid "4 Stars - Very Good"
+msgstr "4 Stars - Very Good"
+
+#: coffee/templates/coffee/coffee-detail.html:433
+msgid "3 Stars - Good"
+msgstr "3 Stars - Good"
+
+#: coffee/templates/coffee/coffee-detail.html:434
+msgid "2 Stars - Fair"
+msgstr "2 Stars - Fair"
+
+#: coffee/templates/coffee/coffee-detail.html:435
+msgid "1 Star - Poor"
+msgstr "1 Star - Poor"
+
+#: coffee/templates/coffee/coffee-detail.html:440
+msgid "Comment"
+msgstr "Comment"
+
+#: coffee/templates/coffee/coffee-detail.html:442
+msgid "Tell us about your experience drinking this coffee..."
+msgstr "Tell us about your experience drinking this coffee..."
+
+#: coffee/templates/coffee/coffee-detail.html:447
+#, fuzzy
+#| msgid "Review"
+msgid "Submit Review"
+msgstr "Submit Review"
+
+#: coffee/templates/coffee/coffee-detail.html:477
+msgid "No reviews yet for this product"
+msgstr "No reviews yet for this product"
+
+#: coffee/templates/coffee/coffee-detail.html:478
+msgid "Be the first to review!"
+msgstr "Be the first to review!"
+
+#: coffee/templates/coffee/coffee-detail.html:497
+#, fuzzy
+#| msgid "Featured Coffee"
+msgid "Similar Coffees"
+msgstr "Similar Coffees"
+
+#: coffee/templates/coffee/coffee-detail.html:498
+msgid "Discover coffees with similar flavors"
+msgstr "Discover coffees with similar flavors"
+
+#: coffee/templates/coffee/coffee-detail.html:507 templates/index.html:779
+msgid "Recommended"
+msgstr "Recommended"
+
+#: coffee/templates/coffee/coffee-detail.html:572
+#: hotel/templates/hotel/room-detail.html:395
+#: hotel/templates/hotel/rooms-list.html:155 templates/index.html:834
+#: templates/index.html:997
+msgid "View Details"
+msgstr "View Details"
+
+#: coffee/templates/coffee/coffee-list.html:7
+msgid "ລາຍການກາເຟທັງໝົດ - ຮ້ານກາເຟ"
+msgstr ""
+
+#: coffee/templates/coffee/coffee-list.html:18
+msgid "ລາຍການກາເຟທັງໝົດ"
+msgstr ""
+
+#: config/settings.py:132 config/settings/base.py:91
+msgid "ລາວ"
+msgstr "ລາວ"
+
+#: config/settings.py:133 config/settings/base.py:91
+msgid "English"
+msgstr "English"
+
+#: hotel/templates/hotel/review.html:5
+msgid "Guest Reviews - Project Pilgrims"
+msgstr ""
+
+#: hotel/templates/hotel/review.html:83
+msgid "Based on"
+msgstr ""
+
+#: hotel/templates/hotel/review.html:85
+#, fuzzy
+#| msgid "Reviews"
+msgid "reviews"
+msgstr "Reviews"
+
+#: hotel/templates/hotel/room-detail.html:122
+msgid "All Rooms"
+msgstr "All Rooms"
+
+#: hotel/templates/hotel/room-detail.html:132
+msgid ""
+"Welcome to Pilgrim’s Kitchen & Inn, where food, coffee, and comfort meet on "
+"the great Mekong River. With magnificent views of Thailand, our place is not "
+"just a coffee shop — it is a riverside retreat designed for travelers, "
+"locals, and coffee lovers."
+msgstr ""
+"Welcome to Pilgrim’s Kitchen & Inn, where food, coffee, and comfort meet on "
+"the great Mekong River. With magnificent views of Thailand, our place is not "
+"just a coffee shop — it is a riverside retreat designed for travelers, "
+"locals, and coffee lovers."
+
+#: hotel/templates/hotel/room-detail.html:202
+msgid "Room Image Coming Soon"
+msgstr ""
+
+#: hotel/templates/hotel/room-detail.html:241
+#, fuzzy
+#| msgid "Our Amenities"
+msgid "Room Features & Amenities"
+msgstr "Our Amenities"
+
+#: hotel/templates/hotel/room-detail.html:249
+msgid "Premium Features"
+msgstr ""
+
+#: hotel/templates/hotel/room-detail.html:276
+msgid "Standard Features"
+msgstr ""
+
+#: hotel/templates/hotel/room-detail.html:300
+#, python-format
+msgid "%(counter)s total amenity"
+msgid_plural "%(counter)s total amenities"
+msgstr[0] ""
+msgstr[1] ""
+
+#: hotel/templates/hotel/room-detail.html:305
+#, python-format
+msgid "%(counter)s premium feature"
+msgid_plural "%(counter)s premium features"
+msgstr[0] ""
+msgstr[1] ""
+
+#: hotel/templates/hotel/room-detail.html:315
+msgid "Amenity information will be updated soon."
+msgstr ""
+
+#: hotel/templates/hotel/room-detail.html:375
+msgid "Related Properties"
+msgstr ""
+
+#: hotel/templates/hotel/room-detail.html:415
+#: hotel/templates/hotel/rooms-list.html:105 templates/index.html:943
+msgid "per night"
+msgstr ""
+
+#: hotel/templates/hotel/room-detail.html:416
+msgid "Taxes and fees included"
+msgstr ""
+
+#: hotel/templates/hotel/room-detail.html:424
+#, python-format
+msgid "Up to %(room.room_type.capacity)s guests"
+msgstr ""
+
+#: hotel/templates/hotel/room-detail.html:429
+msgid "Room Policies"
+msgstr ""
+
+#: hotel/templates/hotel/room-detail.html:432
+msgid "Check-in & Check-out"
+msgstr ""
+
+#: hotel/templates/hotel/room-detail.html:435
+msgid "Check-in:"
+msgstr ""
+
+#: hotel/templates/hotel/room-detail.html:438
+msgid "Check-out:"
+msgstr ""
+
+#: hotel/templates/hotel/room-detail.html:441
+msgid "Valid ID required"
+msgstr ""
+
+#: hotel/templates/hotel/room-detail.html:445
+#, fuzzy
+#| msgid "Reservation"
+msgid "Restrictions"
+msgstr "Reservation"
+
+#: hotel/templates/hotel/room-detail.html:448
+msgid "Non-smoking room"
+msgstr ""
+
+#: hotel/templates/hotel/room-detail.html:457
+msgid "Need help with your booking?"
+msgstr ""
+
+#: hotel/templates/hotel/room-detail.html:497
+#, fuzzy
+#| msgid ""
+#| "Need help with your booking? For better rates and more information, "
+#| "please contact us directly through our WhatsApp."
+msgid ""
+"For better rates and more information, please contact us directly through "
+"our WhatsApp."
+msgstr ""
+"Need help with your booking? For better rates and more information, please "
+"contact us directly through our WhatsApp."
+
+#: hotel/templates/hotel/rooms-list.html:9
+msgid "All Rooms & Suites - Hotel"
+msgstr ""
+
+#: hotel/templates/hotel/rooms-list.html:17
+#, python-format
+msgid "There are a total of %(total)s rooms"
+msgstr ""
+
+#: hotel/templates/hotel/rooms-list.html:25
+msgid ""
+"Experience the perfect blend of comfort and luxury in our thoughtfully "
+"designed rooms and suites."
+msgstr ""
+
+#: hotel/templates/hotel/rooms-list.html:61
+#, fuzzy
+#| msgid "Available Rooms"
+msgid "Available"
+msgstr "Available Rooms"
+
+#: hotel/templates/hotel/rooms-list.html:98
+msgid "Floor"
+msgstr ""
+
+#: hotel/templates/hotel/rooms-list.html:118 templates/index.html:958
+msgid "Guests"
+msgstr "Guests"
+
+#: hotel/templates/hotel/rooms-list.html:119
+#, python-format
+msgid "For %(room.room_type.capacity)s people"
+msgstr ""
+
+#: hotel/templates/hotel/rooms-list.html:123 templates/index.html:965
+msgid "Size"
+msgstr "Size"
+
+#: hotel/templates/hotel/rooms-list.html:132 templates/index.html:973
+msgid "Amenities"
+msgstr "Amenities"
+
+#: hotel/templates/hotel/rooms-list.html:143 templates/index.html:985
+msgid "more"
+msgstr ""
+
+#: hotel/templates/hotel/rooms-list.html:184 templates/index.html:1017
+msgid "No rooms found"
+msgstr ""
+
+#: hotel/templates/hotel/rooms-list.html:186
+msgid ""
+"We couldn't find any rooms matching your criteria. Try adjusting your "
+"filters."
+msgstr ""
+
+#: hotel/templates/hotel/rooms-list.html:193 templates/index.html:1020
+msgid "Clear All Filters"
+msgstr ""
+
+#: hotel/templates/hotel/rooms-list.html:197
+msgid "Back to Home"
+msgstr ""
+
+#: hotel/templates/hotel/rooms-list.html:213
+msgid "Previous"
+msgstr ""
+
+#: hotel/templates/hotel/rooms-list.html:233
+msgid "Next"
+msgstr ""
+
+#: restaurant/templates/restaurant/menu.html:9
+msgid "Restaurant & Dining - Project Pilgrims"
+msgstr ""
+
+#: restaurant/templates/restaurant/menu.html:66
+msgid "ການເດີນທາງດ້ານອາຫານ"
+msgstr ""
+
+#: restaurant/templates/restaurant/menu.html:69
+msgid ""
+"ສຳຜັດຄວາມລ້ຳເລີດຂອງອາຫານໃນຮ້ານອາຫານສຸດຫຼູຂອງພວກເຮົາ ໃນທຸກໆຈານເຮົາໄດ້ໃສ່ເລື່ອງລາວເຂົ້າໄປ."
+msgstr ""
+
+#: restaurant/templates/restaurant/menu.html:72
+msgid "ເບິ່ງເມນູຂອງພວກເຮົາ"
+msgstr ""
+
+#: restaurant/templates/restaurant/menu.html:85
+msgid "CULINARY DELIGHTS"
+msgstr ""
+
+#: restaurant/templates/restaurant/menu.html:86
+msgid "ເມນູຂອງພວກເຮົາ"
+msgstr ""
+
+#: restaurant/templates/restaurant/menu.html:89
+msgid "ສຳຫຼວດເມນູອາຫານຫຼາກຫຼາຍຈາກທົ່ວໂລກ ທີ່ປຸງແຕ່ງດ້ວຍຄວາມຕັ້ງໃຈແລະວັດຖຸດິບຊັ້ນດີ"
+msgstr ""
+
+#: restaurant/templates/restaurant/menu.html:99
+msgid "ເລື່ອນເບິ່ງເມນູເພີ່ມເຕີມ"
+msgstr ""
+
+#: restaurant/templates/restaurant/menu.html:116 templates/index.html:146
+msgid "Breakfast"
+msgstr "Breakfast"
+
+#: restaurant/templates/restaurant/menu.html:130 templates/base.html:112
+#: templates/base.html:183 templates/index.html:149
+msgid "Coffee"
+msgstr "Coffee"
+
+#: restaurant/templates/restaurant/menu.html:144 templates/index.html:161
 msgid "Pizza"
 msgstr "Pizza"
 
+#: restaurant/templates/restaurant/menu.html:158 templates/index.html:152
+msgid "American"
+msgstr "American"
+
+#: restaurant/templates/restaurant/menu.html:172 templates/index.html:155
+msgid "Indian"
+msgstr "Indian"
+
+#: restaurant/templates/restaurant/menu.html:186 templates/index.html:158
+msgid "Mexican"
+msgstr "Mexican"
+
+#: restaurant/templates/restaurant/menu.html:200 templates/index.html:164
 msgid "Local Specialties"
 msgstr "Local Specialties"
 
+#: restaurant/templates/restaurant/menu.html:214 templates/index.html:167
 msgid "Soup & Salad"
 msgstr "Soup & Salad"
 
+#: restaurant/templates/restaurant/menu.html:228 templates/index.html:170
 msgid "Desserts"
 msgstr "Desserts"
 
+#: restaurant/templates/restaurant/menu.html:242 templates/index.html:173
 msgid "Drinks"
 msgstr "Drinks"
 
-# Menu descriptions
-msgid "Start your day with our delicious breakfast menu"
-msgstr "Start your day with our delicious breakfast menu"
+#: restaurant/templates/restaurant/menu.html:253
+msgid "ເລີ່ມຕົ້ນວັນຂອງທ່ານດ້ວຍເມນູອາຫານເຊົ້າສຸດແຊບຂອງພວກເຮົາ"
+msgstr ""
 
-msgid "Expertly crafted coffee drinks using premium beans from around the world"
-msgstr "Expertly crafted coffee drinks using premium beans from around the world"
+#: templates/about.html:16 templates/base.html:109 templates/base.html:180
+msgid "About Us"
+msgstr "About Us"
 
-msgid "Classic American cuisine prepared with our chef's special touch"
-msgstr "Classic American cuisine prepared with our chef's special touch"
+#: templates/about.html:27
+msgid "Welcome to Pilgrim’s Kitchen & Inn"
+msgstr "Welcome to Pilgrim’s Kitchen & Inn"
 
-msgid "Traditional Indian dishes filled with aromatic spices and authentic cooking methods"
-msgstr "Traditional Indian dishes filled with aromatic spices and authentic cooking methods"
+#: templates/about.html:30
+#, fuzzy
+#| msgid ""
+#| "Welcome to Pilgrim’s Kitchen & Inn, where food, coffee, and comfort meet "
+#| "on the great Mekong River. With magnificent views of Thailand, our place "
+#| "is not just a coffee shop — it is a riverside retreat designed for "
+#| "travelers, locals, and coffee lovers."
+msgid ""
+"Where food, coffee, and comfort meet on the great Mekong River. With "
+"magnificent views of Thailand, our place is not just a coffee shop — it is a "
+"riverside retreat designed for travelers, locals, and coffee lovers."
+msgstr ""
+"Where food, coffee, and comfort meet on the great Mekong River. With "
+"magnificent views of Thailand, our place is not just a coffee shop — it is a "
+"riverside retreat designed for travelers, locals, and coffee lovers.Welcome "
+"to Pilgrim’s Kitchen & Inn, where food, coffee, and comfort meet on the "
+"great Mekong River. With magnificent views of Thailand, our place is not "
+"just a coffee shop — it is a riverside retreat designed for travelers, "
+"locals, and coffee lovers."
 
-msgid "Bold and flavorful Mexican cuisine using fresh ingredients and authentic recipes"
-msgstr "Bold and flavorful Mexican cuisine using fresh ingredients and authentic recipes"
+#: templates/about.html:42
+msgid "Our Coffee Shop and Restaurant"
+msgstr "Our Coffee Shop and Restaurant"
 
-msgid "Handmade pizzas with premium toppings"
-msgstr "Handmade pizzas with premium toppings"
+#: templates/about.html:44
+msgid ""
+"Drink your coffee with a beautiful view. From morning to evening, our coffee "
+"shop offers an ideal riverside atmosphere for enjoying freshly roasted "
+"coffee. Whether it's a simple start to the day, meeting friends, or just "
+"relaxing, our shop is the perfect place to unwind. With the Mekong River as "
+"a backdrop, every meal becomes a memorable experience. Our restaurant "
+"combines flavors from around the world — vibrant Mexican and Indian dishes, "
+"classic American and pizzas, Mediterranean cuisine, soups and salads, along "
+"with authentic Lao local dishes. We use only the finest ingredients and a "
+"passion for cooking to create a worthwhile dining experience for you."
+msgstr ""
+"Drink your coffee with a beautiful view. From morning to evening, our coffee "
+"shop offers an ideal riverside atmosphere for enjoying freshly roasted "
+"coffee. Whether it's a simple start to the day, meeting friends, or just "
+"relaxing, our shop is the perfect place to unwind. With the Mekong River as "
+"a backdrop, every meal becomes a memorable experience. Our restaurant "
+"combines flavors from around the world — vibrant Mexican and Indian dishes, "
+"classic American and pizzas, Mediterranean cuisine, soups and salads, along "
+"with authentic Lao local dishes. We use only the finest ingredients and a "
+"passion for cooking to create a worthwhile dining experience for you."
 
-msgid "Regional specialties showcasing unique local ingredients and traditions"
-msgstr "Regional specialties showcasing unique local ingredients and traditions"
+#: templates/about.html:53
+#, fuzzy
+#| msgid "Guests"
+msgid "Our Guesthouse"
+msgstr "Our Guesthouse"
 
-msgid "Fresh salads and Mediterranean favorites packed with healthy goodness"
-msgstr "Fresh salads and Mediterranean favorites packed with healthy goodness"
+#: templates/about.html:55
+msgid ""
+"Wake up with a beautiful river view. Our guesthouse offers 11 comfortable "
+"rooms and 2 special suites designed to make you feel at home. Whether you "
+"are traveling alone, as a couple, or with family, your stay will be filled "
+"with comfort, warmth, and the unforgettable beauty of the Mekong River "
+"outside your window."
+msgstr ""
+"Wake up with a beautiful river view. Our guesthouse offers 11 comfortable "
+"rooms and 2 special suites designed to make you feel at home. Whether you "
+"are traveling alone, as a couple, or with family, your stay will be filled "
+"with comfort, warmth, and the unforgettable beauty of the Mekong River "
+"outside your window."
 
-msgid "Sweet treats and delicate desserts made with high-quality ingredients"
-msgstr "Sweet treats and delicate desserts made with high-quality ingredients"
+#: templates/about.html:64
+msgid "Our Coffee Roasting"
+msgstr "Our Coffee Roasting"
 
-msgid "Refreshing beverages, specialty cocktails and carefully curated selections"
-msgstr "Refreshing beverages, specialty cocktails and carefully curated selections"
+#: templates/about.html:66
+msgid ""
+"Coffee is the heart of what we do. Freshly roasted coffee in-house, the "
+"beans are carefully processed to convey the delicate flavors and aromas that "
+"are unique to our beverages. Every cup of coffee reflects the attention to "
+"the art of coffee roasting, which should be enjoyed with the magnificent "
+"view of the river."
+msgstr ""
+"Coffee is the heart of what we do. Freshly roasted coffee in-house, the "
+"beans are carefully processed to convey the delicate flavors and aromas that "
+"are unique to our beverages. Every cup of coffee reflects the attention to "
+"the art of coffee roasting, which should be enjoyed with the magnificent "
+"view of the river."
 
-# Additional menu page translations
-msgid "ການເດີນທາງດ້ານອາຫານ"
-msgstr "Culinary Journey"
+#: templates/about.html:72
+msgid "We Believe in Creating Experiences"
+msgstr "We Believe in Creating Experiences"
 
-msgid "ສໍາຜັດຄວາມລ້ໍາເລີດຂອງອາຫານໃນຮ້ານອາຫານສຸດຫຼູຂອງພວກເຮົາ ໃນທຸກໆຈານເຮົາໄດ້ໃສ່ເລື່ອງລາວເຂົ້າໄປ."
-msgstr "Experience the culinary excellence of our luxury restaurant. In every dish, we infuse the essence of Lao culture."
+#: templates/about.html:73
+msgid ""
+"Consume diverse food, relax by the riverside with freshly roasted coffee, or "
+"stay in a guesthouse overlooking the Mekong River. We invite you to feel at "
+"home."
+msgstr ""
+"Consume diverse food, relax by the riverside with freshly roasted coffee, or "
+"stay in a guesthouse overlooking the Mekong River. We invite you to feel at "
+"home."
 
-msgid "ເບິ່ງເມນູຂອງພວກເຮົາ"
-msgstr "View Our Menu"
+#: templates/about.html:77
+msgid "Book a Room"
+msgstr "Book a Room"
 
-msgid "ເລື່ອນເບິ່ງເມນູເພີ່ມເຕີມ"
-msgstr "Scroll to see more menu"
+#: templates/about.html:81
+#, fuzzy
+#| msgid "View All Menu"
+msgid "View Menu"
+msgstr "View Menu"
 
-msgid "ລີ່ມຕົ້ນວັນຂອງທ່ານດ້ວຍເມນູອາຫານເຊົ້າສຸດແຊບຂອງພວກເຮົາ"
-msgstr "Start your day with our delicious breakfast menu"
+#: templates/about.html:85 templates/base.html:230 templates/contact.html:55
+#: templates/contact.html:84
+msgid "Contact Us"
+msgstr "Contact Us"
 
-#: templates/base.html:225
+#: templates/base.html:110 templates/base.html:181
+msgid "Reservation"
+msgstr "Reservation"
+
+#: templates/base.html:111 templates/base.html:182
+msgid "Menu"
+msgstr "Menu"
+
+#: templates/base.html:113 templates/base.html:184
+msgid "Review"
+msgstr "Review"
+
+#: templates/base.html:114 templates/base.html:185
+msgid "Contact"
+msgstr "Contact"
+
+#: templates/base.html:235
+msgid "Khanthabouly Road, House No. 168"
+msgstr ""
+
+#: templates/base.html:236
+msgid "Ban Chomkeo, Kaisone Phomvihane District"
+msgstr ""
+
+#: templates/base.html:237
+msgid "Savannakhet, Lao PDR"
+msgstr ""
+
+#: templates/base.html:243
 msgid "Tel"
 msgstr "Tel"
 
-#: templates/base.html:236
+#: templates/base.html:254
 msgid "Email"
 msgstr "Email"
 
-#: templates/base.html:250
+#: templates/base.html:268
 msgid "Stay Connected"
 msgstr "Stay Connected"
 
-#: templates/base.html:255
+#: templates/base.html:273
 msgid "Follow us on social media channels"
 msgstr "Follow us on social media channels"
 
-#: templates/base.html:290
+#: templates/base.html:299
 msgid "Timings"
 msgstr "Timings"
 
-#: templates/base.html:295
+#: templates/base.html:304
 msgid "Monday – Saturday"
 msgstr "Monday – Saturday"
 
-#: templates/base.html:302
+#: templates/base.html:311 templates/contact.html:151
 msgid "Sunday"
 msgstr "Sunday"
 
-#: templates/base.html:303
+#: templates/base.html:312 templates/contact.html:152
+#: templates/contact.html:169
 msgid "Closed"
 msgstr "Closed"
 
-#: templates/base.html:312
+#: templates/base.html:321
 msgid "All rights reserved"
 msgstr "All rights reserved"
 
-#: templates/base.html:314
+#: templates/base.html:323
 msgid "Privacy"
 msgstr "Privacy"
 
-#: templates/base.html:315
+#: templates/base.html:324
 msgid "Terms"
 msgstr "Terms"
 
-#: templates/base.html:316
+#: templates/base.html:325
 msgid "Sitemap"
 msgstr "Sitemap"
+
+#: templates/components/hero-section.html:35
+msgid ""
+"“A Riverside Retreat for <span class=\"text-secondary-light dark:text-"
+"secondary-dark\">Every Traveler”</span>"
+msgstr ""
+
+#: templates/components/hero-section.html:38
+msgid ""
+"“Discover comfort, diverse cuisine, and freshly roasted coffee at Pilgrim\\"
+msgstr ""
+
+#: templates/components/hero-section.html:42
+msgid "Book your accommodation"
+msgstr "Book your accommodation"
+
+#: templates/components/hero-section.html:45
+#, fuzzy
+#| msgid "View Our Menu"
+msgid "Explore our menu"
+msgstr "Explore our menu"
+
+#: templates/contact.html:18
+msgid "Location"
+msgstr ""
+
+#: templates/contact.html:21
+msgid ""
+"Khanthabouly Road, Ban Chomkeo, House No. 168, Kaisone Phomvihane District, "
+"Savannakhet, Lao PDR"
+msgstr ""
+
+#: templates/contact.html:46
+msgid "Contact Information"
+msgstr ""
+
+#: templates/contact.html:71
+msgid "Open WhatsApp"
+msgstr ""
+
+#: templates/contact.html:94
+msgid "Call Now"
+msgstr ""
+
+#: templates/contact.html:107
+#, fuzzy
+#| msgid "Email"
+msgid "Our Email"
+msgstr "Email"
+
+#: templates/contact.html:117
+#, fuzzy
+#| msgid "Email"
+msgid "Send Email"
+msgstr "Email"
+
+#: templates/contact.html:131 templates/contact.html:143
+msgid "Operating Hours"
+msgstr ""
+
+#: templates/contact.html:147
+#, fuzzy
+#| msgid "Monday – Saturday"
+msgid "Monday - Saturday"
+msgstr "Monday – Saturday"
+
+#: templates/contact.html:148
+msgid "7:30 AM - 9:00 PM"
+msgstr ""
+
+#: templates/contact.html:160
+msgid "Opening and closing times"
+msgstr ""
+
+#: templates/contact.html:164
+#, fuzzy
+#| msgid "Monday – Saturday"
+msgid "Monday - Saturday:"
+msgstr "Monday – Saturday"
+
+#: templates/contact.html:168
+#, fuzzy
+#| msgid "Sunday"
+msgid "Sunday:"
+msgstr "Sunday"
+
+#: templates/index.html:9
+msgid "Pilgrims - Hotel & Fine Dining"
+msgstr ""
+
+# New translations added for language switching
+#: templates/index.html:105
+msgid "Pilgrims Kitchen & Inn ຍິນດີຕ້ອນຮັບ"
+msgstr "Pilgrims Kitchen & Inn Welcome"
+
+#: templates/index.html:107
+msgid ""
+"Nestle by the banks of the Mekong River with sweeping views across to "
+"Thailand, we bring together a cozy cafe, a vibrant multi-cuisine restaurant, "
+"a welcoming guesthouse, and our very own in-house coffee roastery - all "
+"under one roof. Our cafe is the perfect place to begin your day with a fresh "
+"cup of coffee while watching the river awaken, while our restaurant takes "
+"you on a journey of flavors from around the world - Mexican, Indian, "
+"American, Mediterranean, and Local Lao specialties."
+msgstr ""
+
+#: templates/index.html:110
+msgid ""
+"For travelers, our guesthouse offers the comfort of 11 well-appointed rooms "
+"and 2 spacious suites, where you can rest, recharge, and wake up to the "
+"beauty of the Mekong sunrise. And for coffee lovers, our in-house roasting "
+"ensures every cup is crafted with passion, freshness, and care. Whether you "
+"are passing through, staying the night, or simply looking for a place to "
+"relax and connect, we invite you to discover comfort, flavor, and "
+"unforgettable riverside experiences with us."
+msgstr ""
+
+#: templates/index.html:114
+msgid "Hotel Lobby"
+msgstr ""
+
+#: templates/index.html:126
+msgid "Our Menu"
+msgstr "Our Menu"
+
+#: templates/index.html:130
+msgid ""
+"Explore a diverse menu from around the world, prepared with passion and fine "
+"ingredients"
+msgstr ""
+"Explore a diverse menu from around the world, prepared with passion and fine "
+"ingredients"
+
+# Menu tab translations
+#: templates/index.html:139
+msgid "Scroll to see more menu"
+msgstr "Scroll to see more menu"
+
+# Menu descriptions
+#: templates/index.html:182
+msgid "Start your day with our delicious breakfast menu"
+msgstr "Start your day with our delicious breakfast menu"
+
+#: templates/index.html:185
+msgid ""
+"Expertly crafted coffee drinks using premium beans from around the world"
+msgstr ""
+"Expertly crafted coffee drinks using premium beans from around the world"
+
+#: templates/index.html:188
+msgid "Classic American cuisine prepared with our chef's special touch"
+msgstr "Classic American cuisine prepared with our chef's special touch"
+
+#: templates/index.html:191
+msgid ""
+"Traditional Indian dishes filled with aromatic spices and authentic cooking "
+"methods"
+msgstr ""
+"Traditional Indian dishes filled with aromatic spices and authentic cooking "
+"methods"
+
+#: templates/index.html:194
+msgid ""
+"Bold and flavorful Mexican cuisine using fresh ingredients and authentic "
+"recipes"
+msgstr ""
+"Bold and flavorful Mexican cuisine using fresh ingredients and authentic "
+"recipes"
+
+#: templates/index.html:197
+msgid "Handmade pizzas with premium toppings"
+msgstr "Handmade pizzas with premium toppings"
+
+#: templates/index.html:200
+msgid "Regional specialties showcasing unique local ingredients and traditions"
+msgstr ""
+"Regional specialties showcasing unique local ingredients and traditions"
+
+#: templates/index.html:203
+msgid "Fresh salads and Mediterranean favorites packed with healthy goodness"
+msgstr "Fresh salads and Mediterranean favorites packed with healthy goodness"
+
+#: templates/index.html:206
+msgid "Sweet treats and delicate desserts made with high-quality ingredients"
+msgstr "Sweet treats and delicate desserts made with high-quality ingredients"
+
+#: templates/index.html:209
+msgid ""
+"Refreshing beverages, specialty cocktails and carefully curated selections"
+msgstr ""
+"Refreshing beverages, specialty cocktails and carefully curated selections"
+
+#: templates/index.html:232 templates/index.html:281 templates/index.html:330
+#: templates/index.html:379 templates/index.html:428 templates/index.html:477
+#: templates/index.html:526 templates/index.html:575 templates/index.html:624
+#: templates/index.html:673
+msgid "Featured"
+msgstr "Featured"
+
+#: templates/index.html:244
+#, fuzzy
+#| msgid "Breakfast"
+msgid "Breakfast Special"
+msgstr "Breakfast"
+
+#: templates/index.html:247
+msgid "Chef's Choice"
+msgstr ""
+
+#: templates/index.html:255
+msgid "ເມນູອາຫານເຊົ້າກຳລັງກະກຽມ"
+msgstr ""
+
+#: templates/index.html:257
+msgid "ພວກເຮົາກຳລັງກະກຽມເມນູອາຫານເຊົ້າພິເສດ ຄອຍຕິດຕາມໃນໄວໆນີ້"
+msgstr ""
+
+#: templates/index.html:293
+#, fuzzy
+#| msgid "Local Specialties"
+msgid "Coffee Specialty"
+msgstr "Local Specialties"
+
+#: templates/index.html:296
+msgid "Barista's Choice"
+msgstr ""
+
+#: templates/index.html:304
+msgid "ເມນູກາເຟກຳລັງກະກຽມ"
+msgstr ""
+
+#: templates/index.html:306
+msgid "ເຮົາກຳລັງກະກຽມເມນູກາເຟພິເສດ ຄອຍຕິດຕາມໃນໄວໆນີ້"
+msgstr ""
+
+#: templates/index.html:342
+#, fuzzy
+#| msgid "American"
+msgid "American Classic"
+msgstr "American"
+
+#: templates/index.html:345
+msgid "Chef's Special"
+msgstr ""
+
+#: templates/index.html:353
+msgid "ເມນູອາຫານອາເມຣິກາກຳລັງກະກຽມ"
+msgstr ""
+
+#: templates/index.html:355
+msgid "ອາຫານອາເມຣິກາຄລາສສິກກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+msgstr ""
+
+#: templates/index.html:391
+#, fuzzy
+#| msgid "Indian"
+msgid "Indian Cuisine"
+msgstr "Indian"
+
+#: templates/index.html:394
+msgid "Authentic Recipe"
+msgstr ""
+
+#: templates/index.html:402
+msgid "ເມນູອາຫານອິນເດຍກຳລັງກະກຽມ"
+msgstr ""
+
+#: templates/index.html:404
+msgid "ອາຫານອິນເດຍແບບດັ້ງເດີມກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+msgstr ""
+
+#: templates/index.html:440
+#, fuzzy
+#| msgid "Mexican"
+msgid "Mexican Fiesta"
+msgstr "Mexican"
+
+#: templates/index.html:443
+msgid "Traditional Recipe"
+msgstr ""
+
+#: templates/index.html:451
+msgid "ເມນູອາຫານແມັກຊິໂກກຳລັງກະກຽມ"
+msgstr ""
+
+#: templates/index.html:453
+msgid "ອາຫານແມັກຊິໂກກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+msgstr ""
+
+#: templates/index.html:489
+msgid "Handmade Pizza"
+msgstr ""
+
+#: templates/index.html:492
+msgid "Signature Pizza"
+msgstr ""
+
+#: templates/index.html:500
+msgid "ເມນູພິຊຊ່າກຳລັງກະກຽມ"
+msgstr ""
+
+#: templates/index.html:502
+msgid "ພິຊຊ່າສະເພາະກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+msgstr ""
+
+#: templates/index.html:538
+#, fuzzy
+#| msgid "Local Specialties"
+msgid "Local Specialty"
+msgstr "Local Specialties"
+
+#: templates/index.html:541
+msgid "Traditional"
+msgstr ""
+
+#: templates/index.html:549
+msgid "ເມນູອາຫານພື້ນເມືອງກຳລັງກະກຽມ"
+msgstr ""
+
+#: templates/index.html:551
+msgid "ອາຫານພື້ນເມືອງກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+msgstr ""
+
+#: templates/index.html:587
+msgid "Healthy Choice"
+msgstr ""
+
+#: templates/index.html:590
+msgid "Fresh & Nutritious"
+msgstr ""
+
+#: templates/index.html:598
+msgid "ເມນູສະຫຼັດແລະແກງກຳລັງກະກຽມ"
+msgstr ""
+
+#: templates/index.html:600
+msgid "ສະຫຼັດແລະແກງກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+msgstr ""
+
+#: templates/index.html:636
+msgid "Sweet Treat"
+msgstr ""
+
+#: templates/index.html:639
+msgid "Signature Dessert"
+msgstr ""
+
+#: templates/index.html:647
+msgid "ເມນູຂອງຫວານກຳລັງກະກຽມ"
+msgstr ""
+
+#: templates/index.html:649
+msgid "ຂອງຫວານແລະເຄຼັດລັບຫວານໆກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+msgstr ""
+
+#: templates/index.html:685
+msgid "Refreshing Drink"
+msgstr ""
+
+#: templates/index.html:688
+msgid "Bartender's Choice"
+msgstr ""
+
+#: templates/index.html:696
+msgid "ເມນູເຄື່ອງດື່ມກຳລັງກະກຽມ"
+msgstr ""
+
+#: templates/index.html:698
+msgid "ເຄື່ອງດື່ມພິເສດກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+msgstr ""
+
+#: templates/index.html:710
+#, fuzzy
+#| msgid "View All Menu"
+msgid "View Full Menu"
+msgstr "View All Menu"
+
+#: templates/index.html:724
+msgid "Coffee Products"
+msgstr ""
+
+#: templates/index.html:728
+#, fuzzy
+#| msgid "Amenities"
+msgid "Bean Varieties"
+msgstr "Amenities"
+
+#: templates/index.html:744
+msgid "Featured Coffee"
+msgstr "Featured Coffee"
+
+#: templates/index.html:745
+msgid "High-quality coffee specially selected"
+msgstr "High-quality coffee specially selected"
+
+#: templates/index.html:765
+msgid "ສົດໃໝ່"
+msgstr ""
+
+#: templates/index.html:826
+#, python-format
+msgid "%(coffee.price_per_unit|lao_currency)s/100g"
+msgstr ""
+
+#: templates/index.html:842
+msgid "ບໍ່ມີກາເຟແນະນຳໃນຂະນະນີ້"
+msgstr ""
+
+#: templates/index.html:843
+msgid "ກະລຸນາກັບມາໃໝ່ໃນໄວໆນີ້"
+msgstr ""
+
+#: templates/index.html:853
+msgid "View All Coffee"
+msgstr "View All Coffee"
+
+#: templates/index.html:868
+#, fuzzy
+#| msgid "Available Rooms"
+msgid "Available Rooms"
+msgstr "Available Rooms"
+
+#: templates/index.html:917
+msgid "Room"
+msgstr "Room"
+
+#: templates/index.html:937
+msgid "4.8"
+msgstr ""
+
+#: templates/index.html:1018
+msgid ""
+"We couldn't find any rooms matching your criteria. Try adjusting your "
+"filters or search terms."
+msgstr ""
+
+#: templates/index.html:1028
+#, fuzzy
+#| msgid "View All Room"
+msgid "View All Accommodation"
+msgstr "View All Accommodation"
+
+#: templates/index.html:1038
+#, fuzzy
+#| msgid "Amenities"
+msgid "Our Amenities"
+msgstr "Our Amenities"
+
+#: templates/index.html:1050
+msgid "Free Wi-Fi Internet"
+msgstr "Free Wi-Fi Internet"
+
+#: templates/index.html:1051
+msgid "“High-speed internet access is available throughout the property.”"
+msgstr "“High-speed internet access is available throughout the property.”"
+
+#: templates/index.html:1059
+msgid "Co-working Space"
+msgstr "Co-working Space"
+
+#: templates/index.html:1060
+msgid "Stay productive with our convenient co-working space."
+msgstr "Stay productive with our convenient co-working space."
+
+#: templates/index.html:1068
+msgid "Playground"
+msgstr "Playground"
+
+#: templates/index.html:1069
+msgid "Let your kids enjoy a safe and fun-filled adventure."
+msgstr "Let your kids enjoy a safe and fun-filled adventure."
+
+#: templates/index.html:1077
+msgid "Free Parking"
+msgstr "Free Parking"
+
+#: templates/index.html:1078
+msgid "Free parking is available for all guests."
+msgstr "Free parking is available for all guests."
+
+#: templates/index.html:1089
+msgid "Riverside Experience"
+msgstr ""
+
+#: templates/index.html:1091
+msgid ""
+"Our riverside retreat offers more than just a place to stay — it’s a "
+"complete experience by the banks of the Mekong, with sweeping views of "
+"Thailand. From freshly roasted coffee at our café to global flavors at our "
+"multi-cuisine restaurant, every detail is designed to delight your senses."
+msgstr ""
+
+#: templates/index.html:1094
+msgid ""
+"Whether you’re here for a hearty breakfast, a leisurely riverside lunch, or "
+"a romantic sunset dinner, our team is dedicated to making every moment "
+"memorable. Paired with the comfort of our guesthouse and the aroma of coffee "
+"roasted in-house, your time with us is crafted to be both relaxing and "
+"unforgettable."
+msgstr ""
+
+#: templates/index.html:1097
+#, fuzzy
+#| msgid "View Our Menu"
+msgid "Explore Our Menu"
+msgstr "View Our Menu"
+
+#: templates/index.html:1101
+msgid "Restaurant"
+msgstr "Restaurant"
+
+#~ msgid "Booking"
+#~ msgstr "Booking"
+
+#~ msgid ""
+#~ "Pilgrim's coffee is coffee grown on high mountains in Laos. We cooperate "
+#~ "and buy coffee directly from farmers at a fair price. Pilgrim's coffee is "
+#~ "roasted from high-quality beans and becomes a delicious coffee that "
+#~ "satisfies all coffee drinkers."
+#~ msgstr ""
+#~ "Pilgrim's coffee is coffee grown on high mountains in Laos. We cooperate "
+#~ "and buy coffee directly from farmers at a fair price. Pilgrim's coffee is "
+#~ "roasted from high-quality beans and becomes a delicious coffee that "
+#~ "satisfies all coffee drinkers."
+
+#~ msgid "Found items"
+#~ msgstr "Found items"
+
+#~ msgid "Co-working Space."
+#~ msgstr "Stay productive with our convenient co-working space."
+
+#~ msgid "Medium Roas"
+#~ msgstr "Medium Roast"
+
+#~ msgid "View All Rooms"
+#~ msgstr "View All Rooms"
+
+#~ msgid "View"
+#~ msgstr "View"
+
+#~ msgid "Featured Rooms"
+#~ msgstr "Featured Rooms"
+
+#~ msgid "All Coffee List - Coffee Shop"
+#~ msgstr "All Coffee List - Coffee Shop"
+
+# Additional menu page translations
+#~ msgid "Culinary Journey"
+#~ msgstr "Culinary Journey"
+
+#~ msgid ""
+#~ "Experience the culinary excellence of our luxury restaurant. In every "
+#~ "dish, we infuse the essence of Lao culture."
+#~ msgstr ""
+#~ "Experience the culinary excellence of our luxury restaurant. In every "
+#~ "dish, we infuse the essence of Lao culture."

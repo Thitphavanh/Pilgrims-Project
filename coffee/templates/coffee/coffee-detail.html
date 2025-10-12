@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load i18n %}
+
 {% load lao_filters %}
 
 {% block title %}{{ coffee.name }} - ຮ້ານກາເຟ{% endblock %}
@@ -26,16 +28,16 @@
     <!-- Breadcrumb -->
     <nav class="mb-8">
         <ol class="flex items-center space-x-2 text-sm">
-            <li><a href="{% url 'home-page' %}" class="text-amber-600 hover:text-amber-700">ໜ້າຫຼັກ</a></li>
+            <li><a href="{% url 'home-page' %}" class="text-amber-600 hover:text-amber-700">{% trans "Home" %}</a></li>
             <li class="">/</li>
-            <li><a href="{% url 'coffee_list' %}" class="text-amber-600 hover:text-amber-700">ກາເຟທັງໝົດ</a></li>
+            <li><a href="{% url 'coffee_list' %}" class="text-amber-600 hover:text-amber-700">{% trans "All Coffee" %}</a></li>
             <li class="">/</li>
             {% if coffee.categories.exists %}
                 {% with first_category=coffee.categories.first %}
                 <li><a href="{% url 'category' first_category.id %}" class="text-amber-600 hover:text-amber-700">{{ first_category.name }}</a></li>
                 {% endwith %}
             {% else %}
-                <li class="text-gray-500">ໝວດໝູ່ກາເຟ</li>
+                <li class="text-gray-500">{% trans "Coffee Category" %}</li>
             {% endif %}
             <li class="">/</li>
             <li class="">{{ coffee.name }}</li>
@@ -149,13 +151,13 @@
                     <div class="absolute top-3 left-3 space-y-1">
                         {% if coffee.is_fresh %}
                         <div class="bg-green-500 text-white px-2 py-1 rounded text-xs font-medium shadow-sm">
-                            <i class="fas fa-leaf mr-1"></i>ສົດໃໝ່
+                            <i class="fas fa-leaf mr-1"></i>{% trans "Fresh" %}
                         </div>
                         {% endif %}
 
                         {% if coffee.stock_quantity < 10 %}
                         <div class="bg-red-500 text-white px-2 py-1 rounded text-xs font-medium shadow-sm">
-                            <i class="fas fa-exclamation-triangle mr-1"></i>ເຫຼືອໜ້ອຍ
+                            <i class="fas fa-exclamation-triangle mr-1"></i>{% trans "Low Stock" %}
                         </div>
                         {% endif %}
                     </div>
@@ -193,7 +195,7 @@
                         {% endif %}
                     {% endfor %}
                 </div>
-                <span class="">{{ avg_rating|floatformat:1 }}/5.0 ({{ review_count }} ຣີວິວ)</span>
+                <span class="">{{ avg_rating|floatformat:1 }}/5.0 ({% blocktrans count review_count=review_count %}{{ review_count }} review{% plural %}{{ review_count }} reviews{% endblocktrans %})</span>
             </div>
             
             <!-- Price -->
@@ -207,36 +209,36 @@
             
             <!-- Specifications -->
             <div class="border-t border-gray-200 pt-6">
-                <h3 class="text-lg font-semibold mb-4">ລາຍລະອຽດຜະລິດຕະພັນ</h3>
+                <h3 class="text-lg font-semibold mb-4">{% trans "Product Details" %}</h3>
                 <div class="grid grid-cols-2 gap-4 text-sm">
                     <div>
-                        <span class="">ລະດັບການຄົ່ວ:</span>
+                        <span class="">{% trans "Roast Level:" %}</span>
                         <p class="font-medium">{{ coffee.roast_level }}</p>
                     </div>
                     <div>
-                        <span class="">ປະເພດການບົດ:</span>
+                        <span class="">{% trans "Grind Type:" %}</span>
                         <p class="font-medium">{{ coffee.get_grind_type_display }}</p>
                     </div>
                     <div>
-                        <span class="">ປະເທດຕົ້ນກຳເນີດ:</span>
+                        <span class="">{% trans "Country of Origin:" %}</span>
                         <p class="font-medium">{{ coffee.coffee_bean.country }}</p>
                     </div>
                     {% if coffee.coffee_bean.region %}
                     <div>
-                        <span class="">ພາກພື້ນ:</span>
+                        <span class="">{% trans "Region:" %}</span>
                         <p class="font-medium">{{ coffee.coffee_bean.region }}</p>
                     </div>
                     {% endif %}
                     {% if coffee.coffee_bean.altitude %}
                     <div>
-                        <span class="">ຄວາມສູງ:</span>
-                        <p class="font-medium">{{ coffee.coffee_bean.altitude }} ແມັດ</p>
+                        <span class="">{% trans "Altitude:" %}</span>
+                        <p class="font-medium">{{ coffee.coffee_bean.altitude }} {% trans "meters" %}</p>
                     </div>
                     {% endif %}
                     <div>
-                        <span class="">ຈຳນວນໃນສະຕັອກ:</span>
+                        <span class="">{% trans "Quantity in Stock:" %}</span>
                         <p class="font-medium {% if coffee.stock_quantity < 10 %}text-red-600{% endif %}">
-                            {{ coffee.stock_quantity }} ຖົງ
+                            {{ coffee.stock_quantity }} {% trans "bags" %}
                         </p>
                     </div>
                 </div>
@@ -245,7 +247,7 @@
             <!-- Categories -->
             {% if coffee.categories.exists %}
             <div class="border-t border-gray-200 pt-6">
-                <h3 class="text-lg font-semibold mb-4">ໝວດໝູ່</h3>
+                <h3 class="text-lg font-semibold mb-4">{% trans "Categories" %}</h3>
                 <div class="flex flex-wrap gap-2">
                     {% for category in coffee.categories.all %}
                     <span class="bg-amber-100 px-3 py-1 rounded-full text-sm">
@@ -258,14 +260,14 @@
             
             <!-- Flavor Profile -->
             <div class="border-t border-gray-200 pt-6">
-                <h3 class="text-lg font-semibold mb-4">ລົດຊາດແລະກິ່ນ</h3>
+                <h3 class="text-lg font-semibold mb-4">{% trans "Flavor and Aroma" %}</h3>
                 {% if coffee.coffee_bean.flavor_notes %}
                 <p class=" mb-4">{{ coffee.coffee_bean.flavor_notes }}</p>
                 {% endif %}
                 
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <span class=" text-sm">ຄວາມສົ້ມ</span>
+                        <span class=" text-sm">{% trans "Acidity" %}</span>
                         <div class="flex items-center mt-1">
                             {% for i in "12345" %}
                                 {% if forloop.counter <= coffee.coffee_bean.acidity_level %}
@@ -278,7 +280,7 @@
                         </div>
                     </div>
                     <div>
-                        <span class=" text-sm">ຄວາມເຂັ້ມຂຸ້ນ</span>
+                        <span class=" text-sm">{% trans "Body" %}</span>
                         <div class="flex items-center mt-1">
                             {% for i in "12345" %}
                                 {% if forloop.counter <= coffee.coffee_bean.body_level %}
@@ -300,7 +302,7 @@
                     <button onclick="orderViaWhatsApp('{{ coffee.name }}', '{{ coffee.price|floatformat:0 }}', '{{ coffee.weight }}{{ coffee.weight_unit }}')"
                             class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2 shadow-md hover:shadow-lg transform hover:scale-105">
                         <i class="fab fa-whatsapp text-xl"></i>
-                        <span>ສັ່ງຊື້ຜ່ານ WhatsApp</span>
+                        <span>{% trans "Order via WhatsApp" %}</span>
                     </button>
 
                     <!-- Secondary action buttons -->
@@ -308,13 +310,13 @@
                         <button class="flex items-center justify-center space-x-2 border-2 border-amber-500 text-amber-600 hover:bg-amber-500 hover:text-white font-medium py-2 px-4 rounded-lg transition-all duration-200"
                                 onclick="addToWishlist('{{ coffee.slug }}')">
                             <i class="fas fa-heart text-sm"></i>
-                            <span>ຖືກໃຈ</span>
+                            <span>{% trans "Like" %}</span>
                         </button>
 
                         <button class="flex items-center justify-center space-x-2 border-2 border-gray-300 text-gray-600 hover:bg-gray-100 font-medium py-2 px-4 rounded-lg transition-all duration-200"
                                 onclick="shareProduct()">
                             <i class="fas fa-share-alt text-sm"></i>
-                            <span>ແຊຣ໌</span>
+                            <span>{% trans "Share" %}</span>
                         </button>
                     </div>
                 </div>
@@ -324,12 +326,12 @@
                     {% if coffee.stock_quantity > 0 %}
                         <div class="flex items-center text-green-600">
                             <i class="fas fa-check-circle mr-1"></i>
-                            <span>ມີສິນຄ້າພ້ອມ ({{ coffee.stock_quantity }} ຖົງ)</span>
+                            <span>{% trans "In Stock" %} ({{ coffee.stock_quantity }} {% trans "bags" %})</span>
                         </div>
                     {% else %}
                         <div class="flex items-center text-red-600">
                             <i class="fas fa-times-circle mr-1"></i>
-                            <span>ສິນຄ້າໝົດ</span>
+                            <span>{% trans "Out of Stock" %}</span>
                         </div>
                     {% endif %}
                 </div>
@@ -344,17 +346,17 @@
                 <button @click="activeTab = 'description'" 
                         :class="activeTab === 'description' ? 'border-amber-500 text-amber-600' : 'border-transparent text-gray-500 hover:'"
                         class="py-2 px-1 border-b-2 font-medium text-sm transition">
-                    ຄຳອະທິບາຍ
+                    {% trans "Description" %}
                 </button>
                 <button @click="activeTab = 'brewing'" 
                         :class="activeTab === 'brewing' ? 'border-amber-500 text-amber-600' : 'border-transparent text-gray-500 hover:'"
                         class="py-2 px-1 border-b-2 font-medium text-sm transition">
-                    ວິທີການຊົງ
+                    {% trans "Brewing Method" %}
                 </button>
                 <button @click="activeTab = 'reviews'" 
                         :class="activeTab === 'reviews' ? 'border-amber-500 text-amber-600' : 'border-transparent text-gray-500 hover:'"
                         class="py-2 px-1 border-b-2 font-medium text-sm transition">
-                    ຣີວິວ ({{ review_count }})
+                    {% trans "Reviews" %} ({{ review_count }})
                 </button>
             </nav>
         </div>
@@ -367,7 +369,7 @@
                 {% else %}
                 <div class="text-center py-8">
                     <i class="fas fa-file-alt text-4xl text-gray-300 mb-4"></i>
-                    <p class="text-gray-500">ບໍ່ມີຄຳອະທິບາຍສຳລັບຜະລິດຕະພັນນີ້</p>
+                    <p class="text-gray-500">{% trans "No description for this product" %}</p>
                 </div>
                 {% endif %}
             </div>
@@ -378,29 +380,29 @@
                 <div class="">{{ coffee.brewing_method|linebreaks }}</div>
                 {% else %}
                 <div class="bg-amber-50 p-6 rounded-lg">
-                    <h4 class="font-semibold mb-4">ຄຳແນະນຳທົ່ວໄປສຳລັບການຊົງກາເຟ</h4>
+                    <h4 class="font-semibold mb-4">{% trans "General brewing instructions for coffee" %}</h4>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <h5 class="font-medium mb-2">ສຳລັບການຊົງແບບດ້ຽງ (Drip)</h5>
+                            <h5 class="font-medium mb-2">{% trans "For Drip brewing" %}</h5>
                             <ul class="space-y-1  text-sm">
-                                <li>• ອັດຕາສ່ວນ: 1:15-1:17</li>
-                                <li>• ອຸນຫະພູມ: 90-95°C</li>
-                                <li>• ເວລາ: 4-6 ນາທີ</li>
+                                <li>• {% trans "Ratio:" %} 1:15-1:17</li>
+                                <li>• {% trans "Temperature:" %} 90-95°C</li>
+                                <li>• {% trans "Time:" %} 4-6 ນາທີ</li>
                             </ul>
                         </div>
                         <div>
-                            <h5 class="font-medium mb-2">ສຳລັບເອສເປຣເຊົ</h5>
+                            <h5 class="font-medium mb-2">{% trans "For Espresso" %}</h5>
                             <ul class="space-y-1  text-sm">
                                 <li>• ອັດຕາສ່ວນ: 1:2</li>
                                 <li>• ອຸນຫະພູມ: 90-96°C</li>
-                                <li>• ເວລາ: 25-30 ວິນາທີ</li>
+                                <li>• ເວລາ: 25-30 {% trans "seconds" %}</li>
                             </ul>
                         </div>
                     </div>
                     <div class="mt-4 pt-4 border-t border-amber-200">
                         <p class="text-sm ">
                             <i class="fas fa-lightbulb text-amber-500 mr-1"></i>
-                            ແນະນຳໃຫ້ໃຊ້ນ້ຳສະອາດຄຸນນະພາບດີ ແລະ ບົດກາເຟໃໝ່ໆ ກ່ອນການຊົງ
+                            {% trans "Recommended to use good quality clean water and freshly ground coffee before brewing" %}
                         </p>
                     </div>
                 </div>
@@ -412,37 +414,37 @@
                 
                 <!-- Add Review Form -->
                 <div class="border border-amber-200 p-6 rounded-lg mb-8">
-                    <h4 class="font-semibold mb-4">ຂຽນຣີວິວ</h4>
+                    <h4 class="font-semibold mb-4">{% trans "Write a review" %}</h4>
                     <form method="POST" action="{% url 'add_review' coffee.slug %}" class="space-y-4">
                         {% csrf_token %}
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-sm font-medium  mb-2">ຊື່ຂອງທ່ານ</label>
+                                <label class="block text-sm font-medium  mb-2">{% trans "Your Name" %}</label>
                                 <input type="text" name="reviewer_name" required
                                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
                             </div>
                             <div>
-                                <label class="block text-sm font-medium  mb-2">ຄະແນນ</label>
+                                <label class="block text-sm font-medium  mb-2">{% trans "Rating" %}</label>
                                 <select name="rating" required
                                         class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
-                                    <option value="">ເລືອກຄະແນນ</option>
-                                    <option value="5">5 ດາວ - ຢອດຢ້ຽມ</option>
-                                    <option value="4">4 ດາວ - ດີຫຼາຍ</option>
-                                    <option value="3">3 ດາວ - ດີ</option>
-                                    <option value="2">2 ດາວ - ພໍດີ</option>
-                                    <option value="1">1 ດາວ - ພໍໃຊ້</option>
+                                    <option value="">{% trans "Select Rating" %}</option>
+                                    <option value="5">{% trans "5 Stars - Excellent" %}</option>
+                                    <option value="4">{% trans "4 Stars - Very Good" %}</option>
+                                    <option value="3">{% trans "3 Stars - Good" %}</option>
+                                    <option value="2">{% trans "2 Stars - Fair" %}</option>
+                                    <option value="1">{% trans "1 Star - Poor" %}</option>
                                 </select>
                             </div>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium  mb-2">ຄຳເຫັນ</label>
+                            <label class="block text-sm font-medium  mb-2">{% trans "Comment" %}</label>
                             <textarea name="comment" rows="4" required
-                                      placeholder="ບອກເລົ່າປະສົບການການດື່ມກາເຟນີ້..."
+                                      placeholder="{% trans "Tell us about your experience drinking this coffee..." %}"
                                       class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-amber-500 focus:border-amber-500"></textarea>
                         </div>
                         <button type="submit" 
                                 class="bg-amber-600 px-6 py-2 rounded-lg hover:bg-amber-700 transition">
-                            ສົ່ງຣີວິວ
+{% trans "Submit Review" %}
                         </button>
                     </form>
                 </div>
@@ -472,8 +474,8 @@
                     {% empty %}
                     <div class="text-center py-8">
                         <i class="fas fa-comments text-4xl text-gray-300 mb-4"></i>
-                        <p class="text-gray-500">ຍັງບໍ່ມີຣີວິວສຳລັບສິນຄ້ານີ້</p>
-                        <p class=" text-sm">ເປັນຄົນທຳອິດທີ່ໃຫ້ຣີວິວ!</p>
+                        <p class="text-gray-500">{% trans "No reviews yet for this product" %}</p>
+                        <p class=" text-sm">{% trans "Be the first to review!" %}</p>
                     </div>
                     {% endfor %}
                 </div>
@@ -492,8 +494,8 @@
                 </div>
                 <div class="h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent flex-1"></div>
             </div>
-            <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">ກາເຟທີ່ຄ້າຍຄືກັນ</h3>
-            <p class="text-gray-600 dark:text-gray-400">ຄົ້ນພົບກາເຟທີ່ມີລົດຊາດໃກ້ຄຽງກັນ</p>
+            <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">{% trans "Similar Coffees" %}</h3>
+            <p class="text-gray-600 dark:text-gray-400">{% trans "Discover coffees with similar flavors" %}</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -502,7 +504,7 @@
                 <!-- Product Badge -->
                 <div class="absolute top-4 left-4 z-10">
                     <span class="bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
-                        ແນະນໍາ
+                        {% trans "Recommended" %}
                     </span>
                 </div>
 
@@ -567,7 +569,7 @@
                         </div>
                         <a href="{% url 'coffee_detail' similar_coffee.slug %}"
                            class="inline-flex items-center px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white text-sm font-medium rounded-lg transition-colors duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">
-                            <span>ເບິ່ງລາຍລະອຽດ</span>
+                            <span>{% trans "View Details" %}</span>
                             <i class="fas fa-arrow-right ml-2"></i>
                         </a>
                     </div>

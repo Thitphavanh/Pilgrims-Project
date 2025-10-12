@@ -4,6 +4,8 @@
 
 {% load humanize %}
 
+{% load i18n %}
+
 {% block title %}About Us - Pilgrims Kitchen & Inn{% endblock %}
 
 {% block content %}
@@ -11,7 +13,7 @@
 <section class="relative h-96 bg-gradient-to-r from-primary-light to-primary-dark flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 bg-black opacity-40"></div>
     <div class="relative z-10 text-center text-white px-4">
-        <h1 class="text-4xl md:text-6xl font-playfair font-bold mb-4 animate-fade-in">ກ່ຽວກັບພວກເຮົາ</h1>
+        <h1 class="text-4xl md:text-6xl font-playfair font-bold mb-4 animate-fade-in">{% trans "About Us" %}</h1>
     </div>
     <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white dark:to-neutral-dark opacity-30"></div>
 </section>
@@ -22,10 +24,10 @@
         <!-- Welcome Section -->
         <div class="max-w-4xl mx-auto text-center mb-16">
             <h2 class="text-3xl md:text-4xl font-playfair font-bold text-primary-light dark:text-secondary-dark mb-6">
-                ຍິນດີຕ້ອນຮັບສູ່ Pilgrim’s Kitchen & Inn 
+                {% trans "Welcome to Pilgrim’s Kitchen & Inn" %}
             </h2>
             <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                ສະຖານທີ່ທີ່ອາຫານ, ກາເຟ ແລະ ຄວາມສະດວກສະບາຍ ມາພົບກັນທີ່ຝັ່ງແມ່ນ້ຳຂອງອັນຍິ່ງໃຫຍ່. ດ້ວຍທິວທັດອັນສະງ່າງາມຂອງປະເທດໄທ ສະຖານທີ່ຂອງພວກເຮົາບໍ່ແມ່ນພຽງແຕ່ຮ້ານກາເຟ — ມັນແມ່ນສະຖານທີ່ພັກຜ່ອນແຄມແມ່ນ້ຳ ທີ່ອອກແບບສໍາລັບນັກທ່ອງທ່ຽວ, ຄົນທ້ອງຖິ່ນ ແລະ ຄົນຮັກກາເຟ.
+                {% trans "Where food, coffee, and comfort meet on the great Mekong River. With magnificent views of Thailand, our place is not just a coffee shop — it is a riverside retreat designed for travelers, locals, and coffee lovers." %}
             </p>
         </div>
 
@@ -37,14 +39,9 @@
                     <div class="w-16 h-16 bg-secondary-light dark:bg-secondary-dark rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-coffee text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-playfair font-bold text-primary-light dark:text-secondary-dark mb-4">
-                        ຮ້ານກາເຟ ແລະ ຮ້ານອາຫານຂອງພວກເຮົາ
-                    </h3>
+                    <h3 class="text-xl font-playfair font-bold text-primary-light dark:text-secondary-dark mb-4">{% trans "Our Coffee Shop and Restaurant" %}</h3>
                 </div>
-                <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-                    ດື່ມກາເຟຂອງທ່ານພ້ອມວິວສວຍງາມ. ຈາກຕອນເຊົ້າຈົນເຖິງຕອນແລງ ຮ້ານກາເຟຂອງພວກເຮົາມອບບັນຍາກາດແຄມແມ່ນ້ຳທີ່ເຫມາະສົມສໍາລັບການດື່ມກາເຟສົດທີ່ຄົວຢູ່ໃນເຮືອນ. ບໍ່ວ່າຈະເປັນການເລີ່ມຕົ້ນມື້ແບບລຽບງ່າຍ, ການພົບປະກັບໝູ່ ຫຼື ການນັ່ງຊິວ ຮ້ານຂອງພວກເຮົາແມ່ນສະຖານທີ່ທີ່ເຫມາະສົມສໍາລັບການພັກຜ່ອນ.
-ດ້ວຍແມ່ນ້ຳຂອງເປັນພື້ນຫຼັງ, ທຸກມື້ອາຫານຈະກາຍເປັນປະສົບການທີ່ໜ້າຈົດຈຳ. ຮ້ານອາຫານຂອງພວກເຮົາລວມລົດຊາດຈາກທົ່ວໂລກ — ອາຫານແນວເມັກຊິໂກ ແລະ ອິນເດຍທີ່ສີສັນ, ອາຫານອາເມຣິກາຄລາສສິກ ແລະ ພິຊຊ່າ, ອາຫານແນວເມດິເຕີເຣນຽນ, ຊຸບ ແລະ ສະຫຼັດ, ພ້ອມກັບອາຫານທ້ອງຖິ່ນລາວແທ້ໆ. ພວກເຮົາໃຊ້ແຕ່ວັດຖຸດິບທີ່ດີທີ່ສຸດ ແລະ ຄວາມຮັກໃນການປຸງອາຫານ ເພື່ອສ້າງມື້ອາຫານທີ່ຄຸ້ມຄ່າໃຫ້ທ່ານ.
-                </p>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed">{% trans "Drink your coffee with a beautiful view. From morning to evening, our coffee shop offers an ideal riverside atmosphere for enjoying freshly roasted coffee. Whether it's a simple start to the day, meeting friends, or just relaxing, our shop is the perfect place to unwind. With the Mekong River as a backdrop, every meal becomes a memorable experience. Our restaurant combines flavors from around the world — vibrant Mexican and Indian dishes, classic American and pizzas, Mediterranean cuisine, soups and salads, along with authentic Lao local dishes. We use only the finest ingredients and a passion for cooking to create a worthwhile dining experience for you." %}</p>
             </div>
 
             <!-- Accommodation -->
@@ -53,13 +50,9 @@
                     <div class="w-16 h-16 bg-secondary-light dark:bg-secondary-dark rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-bed text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-playfair font-bold text-primary-light dark:text-secondary-dark mb-4">
-                        ບ້ານພັກຂອງພວກເຮົາ
-                    </h3>
+                    <h3 class="text-xl font-playfair font-bold text-primary-light dark:text-secondary-dark mb-4">{% trans "Our Guesthouse" %}</h3>
                 </div>
-                <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-                    ຕື່ນນອນພ້ອມວິວສວຍງາມຂອງແມ່ນ້ຳ. ບ້ານພັກຂອງພວກເຮົາມີຫ້ອງພັກທີ່ສະດວກສະບາຍ 11 ຫ້ອງ ແລະ ຫ້ອງພິເສດ 2 ຫ້ອງ ທີ່ຖືກອອກແບບໃຫ້ທ່ານຮູ້ສຶກຄືຢູ່ບ້ານ. ບໍ່ວ່າທ່ານຈະເດີນທາງມາຄົນດຽວ, ມາເປັນຄູ່ ຫຼື ກັບຄອບຄົວ, ການພັກຂອງທ່ານຈະເຕັມໄປດ້ວຍຄວາມສະດວກ, ຄວາມອົບອຸ່ນ ແລະ ຄວາມງາມອັນບໍ່ມີວັນລືມຂອງແມ່ນ້ຳຂອງຢູ່ນອກປະຕູປ່ອງຢ້ຽມ.
-                </p>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed">{% trans "Wake up with a beautiful river view. Our guesthouse offers 11 comfortable rooms and 2 special suites designed to make you feel at home. Whether you are traveling alone, as a couple, or with family, your stay will be filled with comfort, warmth, and the unforgettable beauty of the Mekong River outside your window." %}</p>
             </div>
 
             <!-- Coffee Roasting -->
@@ -68,36 +61,28 @@
                     <div class="w-16 h-16 bg-secondary-light dark:bg-secondary-dark rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-fire text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-playfair font-bold text-primary-light dark:text-secondary-dark mb-4">
-                        ການຄົວກາເຟຂອງພວກເຮົາ
-                    </h3>
+                    <h3 class="text-xl font-playfair font-bold text-primary-light dark:text-secondary-dark mb-4">{% trans "Our Coffee Roasting" %}</h3>
                 </div>
-                <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-                    ກາເຟແມ່ນຫົວໃຈຂອງສິ່ງທີ່ພວກເຮົາເຮັດ. ກາເຟທີ່ຖືກຄົວສົດໆໃນເຮືອນ ເມັດກາເຟຖືກປຸງຢ່າງປະນີດເພື່ອຖ່າຍທອດລົດຊາດ ແລະ ກິ່ນຫອມທີ່ລະອຽດອ່ອນ ອັນເປັນເອກະລັກຂອງເຄື່ອງດື່ມຂອງພວກເຮົາ. ທຸກຖ້ວຍຂອງກາເຟສະທ້ອນໃຫ້ເຫັນຄວາມໃສ່ໃຈໃນສິນລະປະຂອງການຄົວກາເຟ ທີ່ຄວນດື່ມຄູ່ກັບທິວທັດອັນງົດງາມຂອງແມ່ນ້ຳ.
-                </p>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed">{% trans "Coffee is the heart of what we do. Freshly roasted coffee in-house, the beans are carefully processed to convey the delicate flavors and aromas that are unique to our beverages. Every cup of coffee reflects the attention to the art of coffee roasting, which should be enjoyed with the magnificent view of the river." %}</p>
             </div>
         </div>
 
         <!-- Experience Section -->
         <section class="bg-gradient-to-r from-primary-light to-primary-dark rounded-xl p-8 md:p-12 text-white text-center mt-12">
-            <h3 class="text-2xl md:text-3xl font-playfair font-bold mb-6">ພວກເຮົາເຊື່ອໃນການສ້າງປະສົບການ</h3>
-            <p class="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
-                ບໍລິໂພກອາຫານອັນຫຼາກຫຼາຍ, ພັກຜ່ອນແຄມແມ່ນ້ຳພ້ອມກາເຟຄົວສົດ, 
-                ຫຼື ນອນຢູ່ໃນບ້ານພັກທີ່ເບິ່ງອອກໄປຫາແມ່ນ້ຳຂອງ. 
-                ພວກເຮົາຂໍເຊີນຊວນທ່ານໃຫ້ຮູ້ສຶກເຫມືອນຢູ່ເຮືອນ.
-            </p>
+            <h3 class="text-2xl md:text-3xl font-playfair font-bold mb-6">{% trans "We Believe in Creating Experiences" %}</h3>
+            <p class="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">{% trans "Consume diverse food, relax by the riverside with freshly roasted coffee, or stay in a guesthouse overlooking the Mekong River. We invite you to feel at home." %}</p>
             <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="{% url 'hotel-page' %}" 
                    class="bg-white text-primary-light px-6 py-3 rounded-full hover:bg-gray-100 transition duration-300 font-medium shadow-md hover:shadow-lg transform hover:-translate-y-1">
-                    ຈອງຫ້ອງພັກ
+                    {% trans "Book a Room" %}
                 </a>
                 <a href="{% url 'menu-page' %}" 
                    class="bg-secondary-light text-white px-6 py-3 rounded-full hover:bg-secondary-dark-light transition duration-300 font-medium shadow-md hover:shadow-lg transform hover:-translate-y-1">
-                    ເບິ່ງເມນູ
+                    {% trans "View Menu" %}
                 </a>
                 <a href="{% url 'contact-page' %}" 
                    class="border-2 border-white text-white px-6 py-3 rounded-full hover:bg-white hover:text-primary-light transition duration-300 font-medium">
-                    ຕິດຕໍ່ພວກເຮົາ
+                    {% trans "Contact Us" %}
                 </a>
             </div>
         </section>

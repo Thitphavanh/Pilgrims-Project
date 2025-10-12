@@ -4,6 +4,8 @@
 
 {% load humanize %}
 
+{% load i18n %}
+
 {% block title %}Contact Us - Pilgrims Venture{% endblock %}
 
 {% block content %}
@@ -13,11 +15,10 @@
         <section class="py-16 bg-white dark:bg-primary-dark-dark">
             <div class="text-center mb-12">
                 <h2 class="text-3xl sm:text-4xl lg:text-5xl font-playfair font-bold text-primary-light dark:text-secondary-light mb-6">
-                    ສະຖານທີ່
+                    {% trans "Location" %}
                 </h2>
                 <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                    ຖະໜົນ ຄັນທະບູລີ, ບ້ານຈອມແກ້ວ, ເຮືອນເລກທີ 168
-                    ເມືອງໄກສອນພົມວິຫານ, ແຂວງສະຫວັນນະເຂດ, ສປປລາວ                
+                    {% trans "Khanthabouly Road, Ban Chomkeo, House No. 168, Kaisone Phomvihane District, Savannakhet, Lao PDR" %}
                 </p>
             </div>            
             <div class="w-full relative">
@@ -42,7 +43,7 @@
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
             <h2 class="text-3xl sm:text-4xl lg:text-5xl font-playfair font-bold mb-6">
-                ຂໍ້ມູນຕິດຕໍ່
+                {% trans "Contact Information" %}
             </h2>
         </div>
 
@@ -50,11 +51,8 @@
             <!-- WhatsApp Card -->
             <div class="bg-neutral-light dark:bg-primary-dark-dark rounded-2xl p-8 shadow-lg dark:dark-shadow-lg hover:shadow-xl dark:hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
                 <div class="text-center">
-                    <div class="inline-flex items-center justify-center w-16 h-16 bg-green-500 dark:bg-green-600 rounded-full mb-6">
-                        <i class="fab fa-whatsapp text-2xl text-white"></i>
-                    </div>
-                    <h3 class="text-xl sm:text-2xl font-playfair font-bold text-primary-light dark:text-secondary-light mb-4">
-                        ຕິດຕໍ່ພວກເຮົາ
+<h3 class="text-xl sm:text-2xl font-playfair font-bold text-primary-light dark:text-secondary-light mb-4">
+                        {% trans "Contact Us" %}
                     </h3>
                     <div class="space-y-3 text-gray-700 dark:text-gray-300">
                         <p class="text-2xl font-bold">
@@ -70,7 +68,7 @@
                         rel="noopener noreferrer"
                         class="inline-flex items-center text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-500 transition-colors duration-300 text-sm">
                             <i class="fas fa-external-link-alt mr-2"></i>
-                            ເປີດ WhatsApp
+                            {% trans "Open WhatsApp" %}
                         </a>
                     </div>
                 </div>
@@ -83,7 +81,7 @@
                         <i class="fas fa-phone-alt text-2xl text-white"></i>
                     </div>
                     <h3 class="text-xl sm:text-2xl font-playfair font-bold text-primary-light dark:text-secondary-light mb-4">
-                        ຕິດຕໍ່ພວກເຮົາ
+                        {% trans "Contact Us" %}
                     </h3>
                     <div class="space-y-3 text-gray-700 dark:text-gray-300">
                         <p class="text-2xl font-bold">
@@ -93,7 +91,7 @@
                     <div class="mt-6">
                         <a href="tel:+85620221333733" class="inline-flex items-center text-secondary-light dark:text-secondary-dark hover:text-secondary-dark-light dark:hover:text-secondary-dark-dark transition-colors duration-300">
                             <i class="fas fa-phone mr-2"></i>
-                            ໂທຕອນນີ້
+                            {% trans "Call Now" %}
                         </a>
                     </div>
                 </div>
@@ -106,7 +104,7 @@
                         <i class="fas fa-envelope text-2xl text-white"></i>
                     </div>
                     <h3 class="text-xl sm:text-2xl font-playfair font-bold text-primary-light dark:text-secondary-light mb-4">
-                        ອີເມວຂອງພວກເຮົາ
+                        {% trans "Our Email" %}
                     </h3>
                     <div class="space-y-3 text-gray-700 dark:text-gray-300">
                         <p class="text-2xl font-bold">
@@ -116,7 +114,7 @@
                     <div class="mt-6">
                         <a href="mailto:pilgrimscontact@gmail.com" class="inline-flex items-center text-blue-500 dark:text-secondary-dark hover:text-secondary-dark-light dark:hover:text-secondary-dark-dark transition-colors duration-300">
                             <i class="fas fa-paper-plane mr-2"></i>
-                            ສົ່ງອີເມວ
+                            {% trans "Send Email" %}
                         </a>
                     </div>
                 </div>
@@ -130,7 +128,7 @@
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
             <h2 class="text-3xl sm:text-4xl lg:text-5xl font-playfair font-bold mb-6">
-                ເວລາເປີດ-ປິດ
+                {% trans "Operating Hours" %}
             </h2>
         </div>
 
@@ -142,16 +140,16 @@
                     <div class="p-8 sm:p-12 bg-gradient-to-br from-secondary-light to-secondary-dark-light dark:from-secondary-dark to-secondary-dark-dark text-white lg:border-l border-gray-200 dark:border-gray-600">
                         <h3 class="text-2xl sm:text-3xl font-playfair font-bold mb-8 text-center">
                             <i class="fas fa-clock mr-3"></i>
-                            ເວລາເປີດ-ປິດ
+                            {% trans "Operating Hours" %}
                         </h3>
                         <div class="space-y-6">
                             <div class="flex justify-between items-center p-4 bg-white bg-opacity-20 rounded-xl backdrop-blur-sm">
-                                <span class="text-lg font-medium">ວັນຈັນ - ວັນເສົາ</span>
-                                <span class="text-lg font-bold">7:30 ເຊົ້າ - 9:00 ແລງ</span>
+                                <span class="text-lg font-medium">{% trans "Monday - Saturday" %}</span>
+                                <span class="text-lg font-bold">{% trans "7:30 AM - 9:00 PM" %}</span>
                             </div>
                             <div class="flex justify-between items-center p-4 bg-red-600 bg-opacity-30 rounded-xl border-l-4 border-red-300">
-                                <span class="text-lg font-medium">ວັນອາທິດ</span>
-                                <span class="text-lg font-bold">ປິດ</span>
+                                <span class="text-lg font-medium">{% trans "Sunday" %}</span>
+                                <span class="text-lg font-bold">{% trans "Closed" %}</span>
                             </div>
                         </div>
                     </div>   
@@ -159,16 +157,16 @@
                     <div class="p-8 sm:p-12 bg-white dark:bg-primary-dark-dark">
                         <h3 class="text-2xl sm:text-3xl font-playfair font-bold text-primary-light dark:text-secondary-light mb-8 text-center">
                             <i class="fas fa-clock mr-3 text-secondary-light dark:text-secondary-dark"></i>
-                            Opening and closing times
+                            {% trans "Opening and closing times" %}
                         </h3>
                         <div class="space-y-6">
                             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center p-4 bg-neutral-light dark:bg-neutral-dark rounded-xl">
-                                <span class="text-lg font-medium text-gray-800 dark:text-gray-200 mb-2 sm:mb-0">Monday - Saturday:</span>
+                                <span class="text-lg font-medium text-gray-800 dark:text-gray-200 mb-2 sm:mb-0">{% trans "Monday - Saturday:" %}</span>
                                 <span class="text-lg font-bold">7:30 AM - 9:00 PM</span>
                             </div>
                             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center p-4 bg-red-50 dark:bg-red-900 rounded-xl border-l-4 border-red-500">
-                                <span class="text-lg font-medium text-red-700 dark:text-red-200 mb-2 sm:mb-0">Sunday:</span>
-                                <span class="text-lg font-bold text-red-600 dark:text-red-300">Closed</span>
+                                <span class="text-lg font-medium text-red-700 dark:text-red-200 mb-2 sm:mb-0">{% trans "Sunday:" %}</span>
+                                <span class="text-lg font-bold text-red-600 dark:text-red-300">{% trans "Closed" %}</span>
                             </div>
                         </div>
                     </div>

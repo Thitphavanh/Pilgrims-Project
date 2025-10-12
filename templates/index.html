@@ -123,11 +123,11 @@
         <!-- Animated section header -->
         <div class="text-center mb-12 md:mb-16 animate-on-scroll opacity-0 translate-y-8">
             <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 leading-tight">
-                {% trans "ເມນູຂອງພວກເຮົາ" %}
+                {% trans "Our Menu" %}
             </h2>
             <div class="w-32 h-1.5 mx-auto mb-8 rounded-full"></div>
             <p class="max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
-                {% trans "ສຳຫຼວດເມນູອາຫານຫຼາກຫຼາຍຈາກທົ່ວໂລກ ທີ່ປຸງແຕ່ງດ້ວຍຄວາມຕັ້ງໃຈແລະວັດຖຸດິບຊັ້ນດີ" %}
+                {% trans "Explore a diverse menu from around the world, prepared with passion and fine ingredients" %}
             </p>
         </div>
         
@@ -741,8 +741,8 @@
 <section class="py-16 bg-primary bg-opacity-10">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold mb-4">{% trans "ກາເຟແນະນຳ" %}</h2>
-            <p class="">{% trans "ກາເຟຄຸນນະພາບສູງທີ່ຄັດສັນມາເປັນພິເສດ" %}</p>
+            <h2 class="text-3xl font-bold mb-4">{% trans "Featured Coffee" %}</h2>
+            <p class="">{% trans "High-quality coffee specially selected" %}</p>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -768,7 +768,7 @@
                         
                         {% if coffee.stock_quantity < 10 %}
                         <div class="bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
-                            <i class="fas fa-exclamation-triangle mr-1"></i>{% trans "ເຫຼືອໜ້ອຍ" %}
+                            <i class="fas fa-exclamation-triangle mr-1"></i>{% trans "Low Stock" %}
                         </div>
                         {% endif %}
                     </div>
@@ -776,7 +776,7 @@
                     <!-- Featured Badge -->
                     <div class="absolute top-3 right-3">
                         <div class="bg-amber-600 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
-                            <i class="fas fa-star mr-1"></i>{% trans "ແນະນຳ" %}
+                            <i class="fas fa-star mr-1"></i>{% trans "Recommended" %}
                         </div>
                     </div>
                     
@@ -831,7 +831,7 @@
                     <!-- Action Buttons -->
                      <div class="flex space-x-2">
                         <a href="{% url 'coffee_detail' coffee.slug %}" class="flex-1 bg-amber-600 text-white py-2 px-4 rounded-lg hover:bg-amber-700 transition font-medium text-center inline-flex items-center justify-center">
-                            {% trans "ເບິ່ງລາຍລະອຽດ" %}
+                            {% trans "View Details" %}
                         </a>
                     </div>
                 </div>
@@ -850,7 +850,7 @@
         <div class="text-center mt-12">
             <a href="{% url 'coffee_list' %}" 
                class="inline-flex items-center bg-amber-600 text-white px-8 py-3 rounded-lg hover:bg-amber-700 transition font-medium">
-                <span>{% trans "ເບິ່ງກາເຟທັງໝົດ" %}</span>
+                <span>{% trans "View All Coffee" %}</span>
                 <i class="fas fa-arrow-right ml-2"></i>
             </a>
         </div>
@@ -865,7 +865,7 @@
         <!-- Main Heading with Gradient and Animation -->
         <div class="relative z-10">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-4">{% trans "ຫ້ອງພັກທີ່ມີຢູ່" %}</h2>
+                <h2 class="text-3xl font-bold mb-4">{% trans "Available Rooms" %}</h2>
             </div>
         </div>
     </div>
@@ -940,7 +940,7 @@
                         <div class="text-right">
                             <div class="bg-gradient-to-r from-amber-500 to-amber-600 bg-clip-text text-transparent">
                                 <div class="text-2xl font-bold">{{ room.room_type.price_per_night|lao_currency }}</div>
-                                <div class="text-xs text-gray-500 dark:text-gray-400">{% trans "ຕໍ່ຄືນ" %}</div>
+                                <div class="text-xs text-gray-500 dark:text-gray-400">{% trans "per night" %}</div>
                             </div>
                         </div>
                     </div>
@@ -970,7 +970,7 @@
                     <div class="mb-6">
                         <h4 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3 flex items-center">
                             <i class="fas fa-sparkles text-amber-500 mr-2"></i>
-                            {% trans "ສິ່ງອຳນວຍຄວາມສະດວກ" %}
+                            {% trans "Amenities" %}
                         </h4>
                         <div class="flex flex-wrap gap-2">
                             {% for amenity in room.get_available_amenities|slice:":3" %}
@@ -994,7 +994,7 @@
                             <button class="w-full bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 hover:from-blue-700 hover:via-blue-800 hover:to-indigo-800 text-white py-3.5 px-6 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 group">
                                 <span class="flex items-center justify-center">
                                     <i class="fas fa-eye mr-2 group-hover:animate-pulse"></i>
-                                    {% trans "ເບິ່ງລາຍລະອຽດ" %}
+                                    {% trans "View Details" %}
                                     <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform duration-300"></i>
                                 </span>
                             </button>
@@ -1025,7 +1025,7 @@
  <!-- View All Rooms Button -->
  <div class="m-10 sm:mt-12 text-center">
     <a href="{% url 'rooms-list-page' %}" class="bg-blue-600 inline-flex items-center bg-transparent hover:bg-blue-700 text-white hover:text-white dark:hover:text-white px-6 py-3 rounded-lg transition duration-300 font-medium">
-        {% trans "ເບິ່ງທີ່ພັກທັງໝົດ" %}
+        {% trans "View All Accommodation" %}
         <i class="fas fa-chevron-right ml-2"></i>
     </a>
 </div>
@@ -1035,7 +1035,7 @@
 <section class="py-16 md:py-24 bg-gradient-to-br from-neutral-light">
     <div class="container mx-auto px-4">
         <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">{% trans "ສິ່ງອຳນວຍຄວາມສະດວກຂອງພວກເຮົາ" %}</h2>
+            <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">{% trans "Our Amenities" %}</h2>
             <!-- <p class=" max-w-3xl mx-auto">
                 Enhancing your stay with thoughtful services and comforts.
             </p> -->
@@ -1047,8 +1047,8 @@
                 <div class="inline-block bg-primary bg-opacity-20 p-4 rounded-full mb-4">
                     <i class="fas fa-wifi text-3xl"></i>
                 </div>
-                <h3 class="text-xl font-serif font-bold mb-2">{% trans "ອິນເຕີເນັດ Wi-Fi ຟຣີ" %}</h3>
-                <p class="">{% trans "“ມີອິນເຕີເນັດຄວາມໄວສູງ ໃຫ້ບໍລິການຄອບຄຸມທົ່ວພື້ນທີ່.”" %}</p>
+                <h3 class="text-xl font-serif font-bold mb-2">{% trans "Free Wi-Fi Internet" %}</h3>
+                <p class="">{% trans "“High-speed internet access is available throughout the property.”" %}</p>
             </div>
             
             <!-- Amenity 2 -->
@@ -1056,8 +1056,8 @@
                 <div class="inline-block bg-primary-light bg-opacity-20 p-4 rounded-full mb-4">
                     <i class="fas fa-laptop-code text-3xl"></i>
                 </div>
-                <h3 class="text-xl font-serif font-bold mb-2">{% trans "ພື້ນທີ່ Co-working" %}</h3>
-                <p class="">{% trans "ຊ່ວຍໃຫ້ພວກທ່ານມີຄວາມສະດວກໃນການເຮັດວຽກ." %}</p>
+                <h3 class="text-xl font-serif font-bold mb-2">{% trans "Co-working Space" %}</h3>
+                <p class="">{% trans "Stay productive with our convenient co-working space." %}</p>
             </div>
             
             <!-- Amenity 3 -->
@@ -1065,8 +1065,8 @@
                 <div class="inline-block bg-primary-light bg-opacity-20 p-4 rounded-full mb-4">
                     <i class="fas fa-child-reaching text-3xl"></i>
                 </div>
-                <h3 class="text-xl font-serif font-bold mb-2">{% trans "ສະໜາມເດັກຫຼິ້ນ" %}</h3>
-                <p class="">{% trans "ໃຫ້ລູກຂອງທ່ານ ເພີດເພີນກັບການຜະຈົນໄພທີ່ປອດໄພ ແລະ ເຕັມໄປດ້ວຍຄວາມມ່ວນຊື່ນ." %}</p>
+                <h3 class="text-xl font-serif font-bold mb-2">{% trans "Playground" %}</h3>
+                <p class="">{% trans "Let your kids enjoy a safe and fun-filled adventure." %}</p>
             </div>
             
             <!-- Amenity 4 -->
@@ -1074,8 +1074,8 @@
                 <div class="inline-block bg-primary bg-opacity-20 p-4 rounded-full mb-4">
                     <i class="fas fa-parking text-3xl"></i>
                 </div>
-                <h3 class="text-xl font-serif font-bold mb-2">{% trans "ຈອດລົດຟຣີ" %}</h3>
-                <p class="">{% trans "ບໍລິການຈອດລົດຟຣີ ສຳລັບແຂກທຸກຄົນ." %}</p>
+                <h3 class="text-xl font-serif font-bold mb-2">{% trans "Free Parking" %}</h3>
+                <p class="">{% trans "Free parking is available for all guests." %}</p>
             </div>
         </div>
     </div>

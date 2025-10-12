@@ -30,3 +30,185 @@ python manage.py makemessages -l lo --dry-run
 
 
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC0FbVdQp0ChXprO3jfhW8TsAo5lZIRaf/0Mlm8+UFfzdcZ+o4KBmJJi5sNji9mO5O1yJLzkxHKTtTD+Ro2V+Tj2GE9mvwmtlhAU2AyuAR9MW0xoECQmOWovq2tATal0nkoa13ACTPaGaEsCl3ceviiFIagVmp4x9cdCtK/xIoDtch7F69lEYXOllj83q+lb08UeZ773cqkLzC2e14dOvo0lp9Eg5IV3Yx8ox/U74wnVI19eoRrjJcf9G8FJaGNM2+lIizGvFuCbX3jFLsfOElOnqH4RHu/736E9kg3wen5kpsOS4UXnLE++hcoPHkK/nkwZjT+JKw2d5MUNx+LoRwCHxm7/AJTfTjUBt09A/aAYLNQZVKjJM+1kSfjpTD3WCpG/uQ5y/loRL6MkoB+e5wXsR5MtGvuTTR+3h4hqylK813M+P3R6xdlFRwH4WO7DAHvqNLyYeJVz1moo1w5H+H3wsH05tmQyFCJgyXQ2qYqnz61Rjc+Y7vTojh4HeAVW+k= pilgrimscontact@gmail.com
+
+
+docker compose exec web bash -lc '
+cd /app/locale/en/LC_MESSAGES && \
+# show duplicates (optional)
+msgattrib --only-duplicated django.po || true; \
+# keep the first occurrence of each msgid, drop later ones
+msguniq --use-first -o django.po django.po && \
+# compile to .mo to verify
+msgfmt -o django.mo django.po
+'
+
+
+ได้เลย! ผมสรุป “คำ/ประโยค” จากไฟล์ .po ของคุณให้เป็นไบลิงกวล (Lao ↔ English) เพื่อใช้อ้างอิง/ตรวจทานทันที ด้านล่างคือคำแปลหลัก ๆ แบ่งตามหมวด (ผมแก้ไขรายการที่ติด #, fuzzy และปรับถ้อยคำให้เป็นธรรมชาติขึ้นด้วย)
+
+# Navigation & Common UI
+
+* ໜ້າຫຼັກ → Home
+* ກັບໄປໜ້າຫຼັກ → Back to Home
+* ເບິ່ງລາຍລະອຽດ → View Details
+* ເບິ່ງເມນູທັງໝົດ → View Full Menu
+* ລົບຕົວກອງທັງໝົດ → Clear All Filters
+* ກ່ອນໜ້າ → Previous
+* ຕໍ່ໄປ → Next
+* ບໍ່ພົບ… → No … found
+* ວ່າງ → Available
+* ເພີ່ມເຕີມ / ເບິ່ງຕໍ່ → more / see more
+
+# Site Sections
+
+* ກ່ຽວກັບພວກເຮົາ → About Us
+* ການຈອງ → Reservation
+* ເມນູ → Menu
+* ກາເຟ → Coffee
+* ການທົບທວນ → Review / Guest Reviews
+* ຕິດຕໍ່ → Contact
+* ໂຮງແຮມ / ຫ້ອງຮັບແຂກ → Hotel / Hotel Lobby
+* ຮ້ານອາຫານ → Restaurant
+
+# Coffee / Cafe
+
+* ລາຍການກາເຟທັງໝົດ → All Coffee Items
+* ກາເຟພິເສດ → Coffee Specialty
+* ທາງເລືອກຂອງບາຣິສຕ້າ → Barista’s Choice
+* ກາເຟແນະນຳ → Featured Coffee
+* ກາເຟຄຸນນະພາບສູງທີ່ຄັດສັນ → Premium curated coffee
+* ແນວພັນຖົ່ວ → Bean Varieties
+* ປະເພດ → Categories
+* ສົດໃໝ່ → Fresh
+* ເຫຼືອໜ້ອຍ → Low stock
+
+# Restaurant / Menu
+
+* ຮ້ານອາຫານ ແລະ ການຮັບປະທານອາຫານ → Restaurant & Dining
+* ການເດີນທາງດ້ານອາຫານ → A culinary journey
+* ອາຫານແຊບໆ → Culinary Delights
+* ເມນູຂອງພວກເຮົາ → Our Menu
+* ເລື່ອນລົງເພື່ອເບິ່ງເມນູເພີ່ມເຕີມ → Scroll to see more menu
+* ອາຫານເຊົ້າ → Breakfast
+* ອາຫານອາເມລິກາ → American
+* ອາຫານອິນເດຍ → Indian
+* ອາຫານເມັກຊິໂກ → Mexican
+* ພິຊຊ່າ → Pizza
+* ອາຫານພື້ນເມືອງ → Local Specialties
+* ແກງ ແລະ ສະຫຼັດ → Soup & Salad
+* ຂອງຫວານ → Desserts
+* ເຄື່ອງດື່ມ → Drinks
+* ທາງເລືອກຂອງພໍ່ຄົວ → Chef’s Choice / Chef’s Special
+* ພິຊຊ່າເຮັດດ້ວຍມື → Handmade Pizza
+* ພິຊຊ່າລາຍເຊັນ → Signature Pizza
+* ງານລ້ຽງເມັກຊິໂກ → Mexican Fiesta
+* ສູດດັ້ງເດີມ → Traditional Recipe
+* American Classic → ອາເມລິກັນຄລາສສິກ
+* Breakfast Special → ອາຫານເຊົ້າພິເສດ
+* Coffee Specialty → ກາເຟພິເສດ
+* Local Specialty → ອາຫານພື້ນເມືອງ (รายการเด่น)
+* Healthy Choice → ທາງເລືອກເພື່ອສຸຂະພາບ
+* Fresh & Nutritious → ສົດ ແລະ ມີທາດບໍາລຸງ
+* Sweet Treat → ຂອງຫວານ
+* Signature Dessert → ຂອງຫວານລາຍເຊັນ
+* Refreshing Drink → ເຄື່ອງດື່ມທີ່ສົດຊື່ນ
+* Bartender’s Choice → ທາງເລືອກຂອງບາເທັນເດີ
+
+# Rooms / Hotel
+
+* ຫ້ອງພັກ ແລະ ຫ້ອງຊຸດທັງໝົດ → All Rooms & Suites
+* ມີທັງໝົດ %(total)s ຫ້ອງ → There are a total of %(total)s rooms
+* ຊັ້ນ → Floor
+* ແຂກ → Guests
+* ສໍາລັບ %(room.room_type.capacity)s ຄົນ → For %(room.room_type.capacity)s people
+* ຂະໜາດ → Size
+* ສິ່ງອໍານວຍຄວາມສະດວກ → Amenities
+* ຕໍ່ຄືນ / per night → ຕໍ່ຄືນ
+* ລວມພາສີ ແລະ ຄ່າທຳນຽມ → Taxes and fees included
+* ຫ້ອງພັກທີ່ກ່ຽວຂ້ອງ → Related Properties
+* ນະໂຍບາຍຂອງຫ້ອງ → Room Policies
+* ເວລາເຂົ້າພັກ ແລະ ອອກຈາກທີ່ພັກ → Check-in & Check-out
+* ເຂົ້າພັກ: / ອອກຈາກທີ່ພັກ: → Check-in: / Check-out:
+* ຕ້ອງມີບັດປະຈຳຕົວທີ່ຖືກຕ້ອງ → Valid ID required
+* ຂໍ້ຈຳກັດ → Restrictions
+* ຫ້ອງປອດຢາສູບ → Non-smoking room
+* ຮູບພາບຫ້ອງພັກຈະມາໃນໄວໆນີ້ → Room Image Coming Soon
+* ຄຸນສົມບັດ & ສິ່ງອໍານວຍຄວາມສະດວກ → Room Features & Amenities
+* ຄຸນສົມບັດພິເສດ → Premium Features
+* ຄຸນສົມບັດມາດຕະຖານ → Standard Features
+* %(counter)s ສິ່ງອໍານວຍຄວາມສະດວກທັງໝົດ → %(counter)s total amenities
+* %(counter)s ຄຸນສົມບັດພິເສດ → %(counter)s premium features
+* ຂໍ້ມູນ…ຈະຖືກອັບເດດໃນໄວໆນີ້ → Amenity information will be updated soon.
+* Up to %(room.room_type.capacity)s guests → ຮອງຮັບແຂກໄດ້ສູງສຸດ %(room.room_type.capacity)s ຄົນ *(แก้ fuzz “For … people” เป็น “Up to … guests”)*
+
+# Marketing / Descriptions (ปรับให้ลื่นไหลขึ้น)
+
+* “A Riverside Retreat for Every Traveler” → “ບ່ອນພັກຜ່ອນແຄມແມ່ນໍ້າຂອງສໍາລັບນັກເດີນທາງທຸກຄົນ”
+
+* “Discover comfort, diverse cuisine, and freshly roasted coffee at Pilgrim’s Kitchen & Inn …”
+  → “ພົບກັບຄວາມສະດວກສະບາຍ ອາຫານຫຼາກຫຼາຍ ແລະ ກາເຟຄົ້ວໃໝ່ທີ່ Pilgrim’s Kitchen & Inn …”
+
+* Welcome paragraph (room-detail.html) — **English → Lao (ที่คุณใส่มาใช้ได้ดีแล้ว)**
+
+* Index intro paragraphs — **English ↔ Lao** ตรงตามต้นฉบับ ใช้ได้
+
+# Contact & Footer
+
+* ຕິດຕໍ່ພວກເຮົາ → Contact Us
+* ສະຖານທີ່ → Location
+* ຂໍ້ມູນຕິດຕໍ່ → Contact Information
+* ເປີດ WhatsApp → Open WhatsApp
+* ໂທຕອນນີ້ → Call Now
+* ອີເມວຂອງພວກເຮົາ → Our Email
+* ສົ່ງອີເມວ → Send Email
+* ເວລາເປີດ-ປິດ → Operating Hours / Opening and closing times
+* ວັນຈັນ – ວັນເສົາ → Monday – Saturday
+* ວັນອາທິດ → Sunday
+* ປິດ → Closed
+* ໂທ → Tel
+* ອີເມວ → Email
+* ຢູ່ຕິດຕໍ່ພົວພັນ → Stay Connected
+* ຕິດຕາມພວກເຮົາ… → Follow us on social media channels
+* ເວລາ → Timings
+* ສະຫງວນລິຂະສິດທັງໝົດ → All rights reserved
+* ນະໂຍບາຍຄວາມເປັນສ່ວນຕົວ → Privacy
+* ເງື່ອນໄຂ → Terms
+* ແຜນຜັງເວັບໄຊ → Sitemap
+
+# Property & Sales Messaging
+
+* Need help with your booking? → ຕ້ອງການຊ່ວຍເຫຼືອໃນການຈອງບໍ?
+* For better rates… contact us via WhatsApp. → ສຳລັບລາຄາທີ່ດີກວ່າ… ຕິດຕໍ່ຜ່ານ WhatsApp
+
+# Amenities & Facilities (หน้า Index)
+
+* ອິນເຕີເນັດ Wi-Fi ຟຣີ → Free Wi-Fi Internet
+* “ມີອິນເຕີເນັດຄວາມໄວສູງ…” → “High-speed internet available property-wide.”
+* ພື້ນທີ່ເຮັດວຽກຮ່ວມກັນ → Co-working Space
+* ສະໜາມເດັກຫຼິ້ນ → Kids’ Playground
+* ຈອດລົດຟຣີ → Free Parking
+* Riverside Experience → ປະສົບການແຄມແມ່ນໍ້າຂອງ
+* Explore Our Menu → ສຳຫຼວດເມນູຂອງພວກເຮົາ
+
+# Miscellaneous / Counts
+
+* Based on → ອີງຕາມ
+* reviews → ການທົບທວນ *(แก้ fuzz: ใช้พหูพจน์ภาษาอังกฤษ แต่ภาษาลาว nplurals=1)*
+* %(review_count)s reviews → %(review_count)s ການທົບທວນ
+* Guests → ແຂກ
+* Size → ຂະໜາດ
+* more → ເພີ່ມເຕີມ
+
+# Address (Footer)
+
+* Khanthabouly Road, House No. 168 → ເຮືອນເລກທີ 168, ຖະໜົນຄັນທະບູລີ
+* Ban Chomkeo, Kaisone Phomvihane District → ບ້ານຈອມແກ້ວ, ເມືອງໄກສອນ ພົມວິຫານ
+* Savannakhet, Lao PDR → ສະຫວັນນະເຂດ, ສປປ ລາວ
+
+---
+
+ถ้าคุณต้องการ ผมสามารถ:
+
+1. สร้างไฟล์ .po (หรือ .xlsx glossary) แบบสองคอลัมน์ (msgid อังกฤษ ↔ msgstr ลาว) ที่สะอาด เอา #, fuzzy ออก และจัดรูปแบบให้พร้อมใช้
+2. เติมคำแปลอังกฤษให้ทุก msgid ที่เป็นภาษาลาว (เพื่อให้ระบบใช้อังกฤษเป็น source, ลาวเป็น target ตามมาตรฐาน i18n)
+
+บอกผมได้เลยว่าต้องการเป็นไฟล์ .po หรือ .xlsx ผมจะส่งไฟล์ให้ใช้งานทันทีครับ!

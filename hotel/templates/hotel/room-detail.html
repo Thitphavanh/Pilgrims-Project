@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load i18n %}
+
 {% load static %}
 
 {% load lao_filters %}
@@ -115,9 +117,9 @@
     <nav class=" shadow-sm">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <ol class="flex items-center space-x-2 text-sm">
-                <li><a href="{% url 'home-page' %}" class= hover:text-secondary-light">ໜ້າຫຼັກ</a></li>
+                <li><a href="{% url 'home-page' %}" class= hover:text-secondary-light">{% trans "Home" %}</a></li>
                 <li class="text-gray-400">/</li>
-                <li><a href="{% url 'rooms-list-page' %}" class= hover:text-secondary-light">ຫ້ອງທັງໝົດ</a></li>
+                <li><a href="{% url 'rooms-list-page' %}" class= hover:text-secondary-light">{% trans "All Rooms" %}</a></li>
                 <li class="text-gray-400">/</li>
                 <li class="text-gray-600 dark:text-gray-300">{{ room.room_type.name }}</li>
             </ol>
@@ -125,6 +127,11 @@
     </nav>
 
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="text-center mb-8">
+            <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                {% trans "Welcome to Pilgrim’s Kitchen & Inn, where food, coffee, and comfort meet on the great Mekong River. With magnificent views of Thailand, our place is not just a coffee shop — it is a riverside retreat designed for travelers, locals, and coffee lovers." %}
+            </p>
+        </div>
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
             <!-- Main Content -->
@@ -192,7 +199,7 @@
                                 <div class="w-full h-full from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center">
                                     <div class="text-center">
                                         <i class="fas fa-bed text-6xl text-gray-400 dark:text-gray-500 mb-4"></i>
-                                        <p class="text-gray-500 dark:text-gray-400">Room Image Coming Soon</p>
+                                        <p class="text-gray-500 dark:text-gray-400">{% trans "Room Image Coming Soon" %}</p>
                                     </div>
                                 </div>
                                 {% endif %}
@@ -231,7 +238,7 @@
     
                 <!-- Room Features & Amenities -->
                 <div class=" rounded-xl shadow-lg p-6">
-                    <h2 class="text-2xl font-playfair font-bold text-primary-light dark:text-white mb-6">ຄຸນສົມບັດ ແລະ ສິ່ງອໍານວຍຄວາມສະດວກຂອງຫ້ອງ</h2>
+                    <h2 class="text-2xl font-playfair font-bold text-primary-light dark:text-white mb-6">{% trans "Room Features & Amenities" %}</h2>
                     
                     {% if room_amenities_data %}
                         <!-- Premium Amenities Section -->
@@ -239,7 +246,7 @@
                         <div class="mb-8">
                             <h3 class="text-lg font-semibold mb-4 flex items-center">
                                 <i class="fas fa-crown mr-2"></i>
-                                Premium Features
+                                {% trans "Premium Features" %}
                             </h3>
                             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                                 {% for amenity_data in premium_amenities_data %}
@@ -266,7 +273,7 @@
                             {% if premium_amenities_data %}
                             <h3 class="text-lg font-semibold dark:text-gray-300 mb-4 flex items-center">
                                 <i class="fas fa-check-circle mr-2"></i>
-                                Standard Features
+                                {% trans "Standard Features" %}
                             </h3>
                             {% endif %}
                             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -290,12 +297,12 @@
                             <div class="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400">
                                 <span>
                                     <i class="fas fa-list-check mr-1"></i>
-                                    {{ room_amenities_data|length }} total amenities
+                                    {% blocktrans count counter=room_amenities_data|length %}{{ counter }} total amenity{% plural %}{{ counter }} total amenities{% endblocktrans %}
                                 </span>
                                 {% if premium_amenities_data %}
                                 <span class="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-2 py-1 rounded-full text-xs">
                                     <i class="fas fa-crown mr-1"></i>
-                                    {{ premium_amenities_data|length }} premium feature{{ premium_amenities_data|length|pluralize }}
+                                    {% blocktrans count counter=premium_amenities_data|length %}{{ counter }} premium feature{% plural %}{{ counter }} premium features{% endblocktrans %}
                                 </span>
                                 {% endif %}
                             </div>
@@ -305,7 +312,7 @@
                         <!-- Fallback for rooms without amenities -->
                         <div class="text-center py-8">
                             <i class="fas fa-info-circle text-4xl text-gray-400 dark:text-gray-500 mb-4"></i>
-                            <p class="text-gray-600 dark:text-gray-400">Amenity information will be updated soon.</p>
+                            <p class="text-gray-600 dark:text-gray-400">{% trans "Amenity information will be updated soon." %}</p>
                         </div>
                     {% endif %}
                 </div>
@@ -365,7 +372,7 @@
                 <!-- Related Hotels -->
                 {% if related_hotels %}
                 <div class=" rounded-xl shadow-lg p-6">
-                    <h2 class="text-2xl font-playfair font-bold text-primary-light dark:text-white mb-6">Related Properties</h2>
+                    <h2 class="text-2xl font-playfair font-bold text-primary-light dark:text-white mb-6">{% trans "Related Properties" %}</h2>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {% for hotel in related_hotels %}
@@ -385,7 +392,7 @@
                                     <h3 class="font-semibold text-gray-800 dark:text-gray-200 mb-1">{{ hotel.name }}</h3>
                                     <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">{{ hotel.description|truncatewords:10 }}</p>
                                     <a href="#" class= text-sm hover:underline">
-                                        View Details <i class="fas fa-arrow-right ml-1"></i>
+                                        {% trans "View Details" %} <i class="fas fa-arrow-right ml-1"></i>
                                     </a>
                                 </div>
                             </div>
@@ -405,8 +412,8 @@
                         <div class="text-3xl font-bold mb-2">
                             {{ room.room_type.price_per_night|lao_currency }}
                         </div>
-                        <div class="text-gray-600 dark:text-gray-300 text-sm">per night</div>
-                        <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Taxes and fees included</div>
+                        <div class="text-gray-600 dark:text-gray-300 text-sm">{% trans "per night" %}</div>
+                        <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">{% trans "Taxes and fees included" %}</div>
                     </div>
 
                     <div class="text-center border-b border-gray-200 dark:border-gray-700 pb-6">
@@ -414,31 +421,31 @@
                             {{ room.room_type.name }}
                         </div>
                         <div class="text-gray-600 dark:text-gray-300 text-sm"> <i class="fas fa-door-open mr-2"></i> {{ room.room_type.description }}</div>
-                        <div class="text-xs text-gray-500 dark:text-gray-400 mt-1"> <i class="fas fa-users mr-2"></i> Up to {{ room.room_type.capacity }} guests</div>
+                        <div class="text-xs text-gray-500 dark:text-gray-400 mt-1"> <i class="fas fa-users mr-2"></i> {% blocktrans %}Up to {{ room.room_type.capacity }} guests{% endblocktrans %}</div>
                     </div>
 
                     <div class="text-center border-b border-gray-200 dark:border-gray-700 pb-6">
                         <div class="text-3xl font-bold mb-2">
-                            ນະໂຍບາຍຂອງຫ້ອງ
+                            {% trans "Room Policies" %}
                         </div>
                         <div class="text-lg font-semibold text-gray-800 dark:text-gray-200"> <i class="fas fa-clock mr-2"></i>
-                            Check-in & Check-out
+                            {% trans "Check-in & Check-out" %}
                         </div>
                         <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">  <i class="fas fa-sign-in-alt text-green-500 mr-2"></i>
-                            Check-in: {{ room.check_in_date }} PM 
+                            {% trans "Check-in:" %} {{ room.check_in_date }} PM 
                         </div>
                         <div class="text-xs text-gray-500 dark:text-gray-400 mt-1"> <i class="fas fa-sign-out-alt text-red-500 mr-2"></i>
-                            Check-out: {{ room.check_out_date }} AM
+                            {% trans "Check-out:" %} {{ room.check_out_date }} AM
                         </div>
                         <div class="text-xs text-gray-500 dark:text-gray-400 mt-1"> <i class="fas fa-id-card text-blue-500 mr-2"></i>
-                            Valid ID required
+                            {% trans "Valid ID required" %}
                         </div>
 
                         <div class="text-lg font-semibold text-gray-800 dark:text-gray-200"> <i class="fas fa-ban mr-2"></i>
-                            Restrictions
+                            {% trans "Restrictions" %}
                         </div>
                         <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">   <i class="fas fa-smoking-ban text-red-500 mr-2"></i>
-                            Non-smoking room
+                            {% trans "Non-smoking room" %}
                         </div>
                     </div>
 
@@ -447,7 +454,7 @@
                     <!-- Booking Links -->
                     <div class="text-center border-b border-gray-200 dark:border-gray-700 pb-6">
                         <div class="text-xl font-bold mb-4">
-                            ຕ້ອງການຄວາມຊ່ວຍເຫຼືອໃນການຈອງຂອງທ່ານບໍ?
+                            {% trans "Need help with your booking?" %}
                         </div>
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
                             <div onclick="openReviewPlatform('agoda')">
@@ -487,8 +494,7 @@
                             </div>
                             
                         </div>
-                        <div class="text-gray-600 dark:text-gray-300 text-sm mt-4">For better rates and more information, please contact
-                            us directly through our WhatsApp.</div>
+                        <div class="text-gray-600 dark:text-gray-300 text-sm mt-4">{% trans "For better rates and more information, please contact us directly through our WhatsApp." %}</div>
                     </div>
                 </div>
             </div>
