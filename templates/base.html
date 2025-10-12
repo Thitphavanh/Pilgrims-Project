@@ -74,6 +74,13 @@
                 from { opacity: 0; }
                 to { opacity: 1; }
             }
+            /* Custom classes for mobile menu to ensure JS control */
+            .mobile-menu-open {
+                display: block !important;
+            }
+            .mobile-menu-closed {
+                display: none !important;
+            }
         }
     </style>
 
@@ -174,7 +181,7 @@
             </div>
 
             <!-- Mobile Navigation Menu -->
-            <div id="nav-content" class="hidden absolute top-full left-0 right-0 w-full bg-white dark:bg-primary-dark-dark shadow-lg border-t border-gray-200 dark:border-gray-600 z-50 md:!hidden">
+            <div id="nav-content" class="hidden mobile-menu-closed absolute top-full left-0 right-0 w-full bg-white dark:bg-primary-dark-dark shadow-lg border-t border-gray-200 dark:border-gray-600 z-50">
                 <div class="container mx-auto px-4">
                     <ul class="flex flex-col py-4 space-y-2">
                         <li><a href="{% url 'about-page' %}" class="block py-3 px-4 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light hover:bg-gray-50 dark:hover:bg-primary-dark rounded transition duration-300">{% trans "About Us" %}</a></li>
@@ -362,18 +369,18 @@
 
                     console.log('Mobile menu button clicked!');
 
-                    const isHidden = navContent.classList.contains('hidden');
-                    console.log('Is menu hidden?', isHidden);
+                    const isClosed = navContent.classList.contains('mobile-menu-closed');
+                    console.log('Is menu closed?', isClosed);
 
-                    if (isHidden) {
+                    if (isClosed) {
                         // Show menu
-                        navContent.classList.remove('hidden');
-                        navContent.classList.add('block');
+                        navContent.classList.remove('hidden', 'mobile-menu-closed');
+                        navContent.classList.add('mobile-menu-open');
                         console.log('Showing menu');
                     } else {
                         // Hide menu
-                        navContent.classList.add('hidden');
-                        navContent.classList.remove('block');
+                        navContent.classList.remove('mobile-menu-open');
+                        navContent.classList.add('mobile-menu-closed');
                         console.log('Hiding menu');
                     }
 
