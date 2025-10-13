@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MinValueValidator
 from decimal import Decimal
 from django.utils.text import slugify
+from django.utils.translation import gettext_lazy as _
 
 
 class CoffeeBean(models.Model):
@@ -44,13 +45,8 @@ class RoastLevel(models.Model):
     """ໂມເດວສຳລັບລະດັບການຄົ່ວ"""
 
     ROAST_CHOICES = [
-        ("light", "ຄົ່ວອ່ອນ"),
-        ("medium_light", "ຄົ່ວອ່ອນກາງ"),
-        ("medium", "ຄົ່ວກາງ"),
-        ("medium_dark", "ຄົ່ວເຂັ້ມກາງ"),
-        ("dark", "ຄົ່ວເຂັ້ມ"),
-        ("french", "ຄົ່ວແບບຝຣັ່ງ"),
-        ("italian", "ຄົ່ວແບບອິຕາລີ"),
+        ("medium", "Medium"),
+        ("dark", "Dark"),
     ]
 
     name = models.CharField(max_length=20, choices=ROAST_CHOICES, unique=True)
@@ -69,13 +65,8 @@ class CoffeeProduct(models.Model):
     """ໂມເດວສຳລັບຜະລິດຕະພັນກາເຟ"""
 
     GRIND_CHOICES = [
-        ("whole_bean", "ເມັດເຕັມ"),
-        ("coarse", "ບົດຫຍາບ"),
-        ("medium_coarse", "ບົດກາງຫຍາບ"),
-        ("medium", "ບົດກາງ"),
-        ("medium_fine", "ບົດກາງລະອຽດ"),
-        ("fine", "ບົດລະອຽດ"),
-        ("extra_fine", "ບົດລະອຽດພິເສດ"),
+        ("whole", "Whole"),
+        ("ground", "Ground"),
     ]
 
     WEIGHT_UNIT_CHOICES = [
@@ -86,9 +77,7 @@ class CoffeeProduct(models.Model):
     images = models.ImageField(upload_to="products/")
     coffee_bean = models.ForeignKey(CoffeeBean, on_delete=models.CASCADE)
     roast_level = models.ForeignKey(RoastLevel, on_delete=models.CASCADE)
-    grind_type = models.CharField(
-        max_length=20, choices=GRIND_CHOICES, default="whole_bean"
-    )
+    grind_type = models.CharField(max_length=20, choices=GRIND_CHOICES)
     # ຂໍ້ມູນນ້ຳໜັກແລະລາຄາ
     weight = models.DecimalField(
         max_digits=8, decimal_places=2, validators=[MinValueValidator(Decimal("0.01"))]
@@ -111,8 +100,6 @@ class CoffeeProduct(models.Model):
     expiry_date = models.DateField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-
 
     def __str__(self):
         return f"{self.name} - {self.weight}{self.weight_unit}"

@@ -4,6 +4,8 @@
 
 {% load lao_filters %}
 
+{% load coffee_filters %}
+
 {% block title %}{{ coffee.name }} - ຮ້ານກາເຟ{% endblock %}
 
 {% block extra_css %}
@@ -178,7 +180,7 @@
     </div>
         
         <!-- Coffee Details -->
-        <div class="space-y-6">
+        <div class="space-y-6" x-data="coffeeSelector()">
             <div>
                 <h1 class="text-3xl font-bold mb-2">{{ coffee.name }}</h1>
                 <p class="text-lg">{{ coffee.coffee_bean.name }} ({{ coffee.coffee_bean.get_origin_display }})</p>
@@ -207,42 +209,51 @@
                 <p class="text-sm text-gray-500 mt-1">{{ coffee.price_per_unit|lao_currency }}/100g</p>
             </div>
             
-            <!-- Specifications -->
+            <!-- Select Roast (Radio) -->
             <div class="border-t border-gray-200 pt-6">
-                <h3 class="text-lg font-semibold mb-4">{% trans "Product Details" %}</h3>
-                <div class="grid grid-cols-2 gap-4 text-sm">
-                    <div>
-                        <span class="">{% trans "Roast Level:" %}</span>
-                        <p class="font-medium">{{ coffee.roast_level }}</p>
-                    </div>
-                    <div>
-                        <span class="">{% trans "Grind Type:" %}</span>
-                        <p class="font-medium">{{ coffee.get_grind_type_display }}</p>
-                    </div>
-                    <div>
-                        <span class="">{% trans "Country of Origin:" %}</span>
-                        <p class="font-medium">{{ coffee.coffee_bean.country }}</p>
-                    </div>
-                    {% if coffee.coffee_bean.region %}
-                    <div>
-                        <span class="">{% trans "Region:" %}</span>
-                        <p class="font-medium">{{ coffee.coffee_bean.region }}</p>
-                    </div>
-                    {% endif %}
-                    {% if coffee.coffee_bean.altitude %}
-                    <div>
-                        <span class="">{% trans "Altitude:" %}</span>
-                        <p class="font-medium">{{ coffee.coffee_bean.altitude }} {% trans "meters" %}</p>
-                    </div>
-                    {% endif %}
-                    <div>
-                        <span class="">{% trans "Quantity in Stock:" %}</span>
-                        <p class="font-medium {% if coffee.stock_quantity < 10 %}text-red-600{% endif %}">
-                            {{ coffee.stock_quantity }} {% trans "bags" %}
-                        </p>
-                    </div>
-                </div>
+                <h3 class="text-lg font-semibold mb-4">{% trans "Roasting Type" %}</h3>
+                <fieldset class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {% for roast in available_roasts %}
+                    <label class="flex items-center gap-3 px-4 py-2 border text-amber-600 rounded-lg cursor-pointer transition
+                                hover:border-amber-400"
+                        :class="selectedRoastId == {{ roast.id }} ? 'bg-amber-50 border-amber-500 ring-1 ring-amber-200' : 'border-gray-300'">
+                    <input type="radio"
+                            name="roast"
+                            value="{{ roast.id }}"
+                            class="h-4 w-4 text-amber-600 focus:ring-amber-500"
+                            x-model="selectedRoastId"
+                            @change="onRoastChange()"
+                            {% if roast.id == coffee.roast_level.id %}checked{% endif %}>
+                    <span class="font-medium">{{ roast.get_name_display }}</span>
+                    </label>
+                {% endfor %}
+                </fieldset>
             </div>
+  
+            <!-- Select Grind (Radio) -->
+            <div class="border-t border-gray-200 pt-6">
+                <h3 class="text-lg font-semibold mb-4">{% trans "Beans" %}</h3>
+                <fieldset class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {% for grind in available_grinds %}
+                    {# We'll enable/disable these via Alpine based on selected roast + variants_index #}
+                    <label class="flex items-center gap-3 px-4 py-2 border text-amber-600 rounded-lg cursor-pointer transition"
+                        :class="isGrindAvailable('{{ grind }}') ? 
+                                (selectedGrind == '{{ grind }}' ? 'bg-amber-50 border-amber-500 ring-1 ring-amber-200' : 'border-gray-300 hover:border-amber-400') :
+                                'border-gray-200 opacity-50 cursor-not-allowed'">
+                    <input type="radio"
+                            name="grind"
+                            value="{{ grind }}"
+                            class="h-4 w-4 text-amber-600 focus:ring-amber-500"
+                            x-model="selectedGrind"
+                            :disabled="!isGrindAvailable('{{ grind }}')"
+                            @change="onGrindChange()"
+                            {% if grind == coffee.grind_type %}checked{% endif %}>
+                    <span class="font-medium">{{ grind|capfirst }}</span>
+                    </label>
+                {% endfor %}
+                </fieldset>
+            </div>
+
             
             <!-- Categories -->
             {% if coffee.categories.exists %}
@@ -250,7 +261,7 @@
                 <h3 class="text-lg font-semibold mb-4">{% trans "Categories" %}</h3>
                 <div class="flex flex-wrap gap-2">
                     {% for category in coffee.categories.all %}
-                    <span class="bg-amber-100 px-3 py-1 rounded-full text-sm">
+                    <span class="bg-amber-100 text-amber-600 px-3 py-1 rounded-full text-sm">
                         {{ category.name }}
                     </span>
                     {% endfor %}
@@ -299,11 +310,13 @@
             <div class="border-t border-gray-200 pt-6 space-y-4">
                 <!-- WhatsApp Order Button -->
                 <div class="space-y-3">
-                    <button onclick="orderViaWhatsApp('{{ coffee.name }}', '{{ coffee.price|floatformat:0 }}', '{{ coffee.weight }}{{ coffee.weight_unit }}')"
-                            class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2 shadow-md hover:shadow-lg transform hover:scale-105">
+                    <!-- Order via WhatsApp (uses selected variant) -->
+                        <button @click="sendWhatsAppOrder()"
+                        class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2 shadow-md hover:shadow-lg transform hover:scale-105">
                         <i class="fab fa-whatsapp text-xl"></i>
                         <span>{% trans "Order via WhatsApp" %}</span>
-                    </button>
+                        </button>
+
 
                     <!-- Secondary action buttons -->
                     <div class="grid grid-cols-2 gap-3">
@@ -421,12 +434,13 @@
                             <div>
                                 <label class="block text-sm font-medium  mb-2">{% trans "Your Name" %}</label>
                                 <input type="text" name="reviewer_name" required
+                                        placeholder="{% trans "Your Name..." %}"
                                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium  mb-2">{% trans "Rating" %}</label>
                                 <select name="rating" required
-                                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
+                                        class="w-full text-gray-400 border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
                                     <option value="">{% trans "Select Rating" %}</option>
                                     <option value="5">{% trans "5 Stars - Excellent" %}</option>
                                     <option value="4">{% trans "4 Stars - Very Good" %}</option>
@@ -443,8 +457,8 @@
                                       class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-amber-500 focus:border-amber-500"></textarea>
                         </div>
                         <button type="submit" 
-                                class="bg-amber-600 px-6 py-2 rounded-lg hover:bg-amber-700 transition">
-{% trans "Submit Review" %}
+                                class="bg-amber-600 px-6 py-2 text-white rounded-lg hover:bg-amber-700 transition">
+                            {% trans "Submit Review" %}
                         </button>
                     </form>
                 </div>
@@ -586,13 +600,78 @@
             <a href="{% url 'coffee_list' %}"
                class="inline-flex items-center px-8 py-3 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
                 <i class="fas fa-th-large mr-3"></i>
-                ເບິ່ງກາເຟທັງໝົດ
+                {% trans "View All Coffee" %}   
                 <i class="fas fa-arrow-right ml-3"></i>
             </a>
         </div>
     </div>
     {% endif %}
 </div>
+<script>
+    // ========= Variant Selection + WhatsApp =========
+    document.addEventListener('alpine:init', () => {
+      Alpine.data('coffeeSelector', () => ({
+        // server-provided variant index: { roast_id: { grind: {...} } }
+        variantsIndex: {{ variants_index_json|default:"{}"|safe }},
+    
+        // initialize from current coffee
+        selectedRoastId: {{ coffee.roast_level.id }},
+        selectedGrind: '{{ coffee.grind_type }}',
+    
+        // derived
+        get selectedVariant() {
+          const r = this.selectedRoastId;
+          const g = this.selectedGrind;
+          return (this.variantsIndex[r] && this.variantsIndex[r][g]) ? this.variantsIndex[r][g] : null;
+        },
+    
+        isGrindAvailable(grind) {
+          const r = this.selectedRoastId;
+          return !!(this.variantsIndex[r] && this.variantsIndex[r][grind]);
+        },
+    
+        onRoastChange() {
+          // If current grind isn't available for new roast, pick the first available grind
+          if (!this.isGrindAvailable(this.selectedGrind)) {
+            const map = this.variantsIndex[this.selectedRoastId] || {};
+            const first = Object.keys(map)[0];
+            this.selectedGrind = first || this.selectedGrind; // keep old if nothing exists
+          }
+        },
+    
+        onGrindChange() {
+          // no-op, but kept for symmetry / future hooks
+        },
+    
+        sendWhatsAppOrder() {
+            const variant = this.selectedVariant;
+            if (!variant) {
+              showNotification('ສິນຄ້າເລືອກໄວ້ບໍ່ມີຢູ່! (No matching variant for your selection)', 'error');
+              return;
+            }
+            const phoneNumber = '8562022133733';
+            const message = `ສະບາຍດີ! ຂ້ອຍຕ້ອງການສັ່ງກາເຟ:
+          
+          📦 ຜະລິດຕະພັນ: ${variant.name}
+          🔥 ການຄົ່ວ: ${variant.roast_label}
+          🫘 ແບບເມັດ/ບົດ: ${variant.grind_type}
+          💰 ລາຄາ: ${variant.price.toLocaleString()} LAK
+          ⚖️ ນ້ຳໜັກ: ${variant.weight}
+          🔗 ລິ້ງ: ${window.location.origin}/coffee/${variant.slug}/
+          
+          ກະລຸນາແຈ້ງວິທີຈັດສົ່ງ ແລະ ການຊຳລະເງິນ
+          ຂອບໃຈ!`;
+          
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+          
+            // Try opening in a new tab; if blocked, fall back to same-tab navigation
+            const win = window.open(url, '_blank');
+            if (!win) window.location.href = url;
+          },
+      }));
+    });
+</script>
+    
 
 <script>
 // Alpine.js Image Gallery Component - Taobao Style

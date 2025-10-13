@@ -9,14 +9,14 @@
 {% block content %}
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div class="text-center mb-8">
-        <p class="text-1xl font-bold mb-2">ກາເຟພີລກຣິມ ແມ່ນກາເຟທີ່ປູກເທິງພູສູງໃນປະເທດລາວ.<br/> ພວກເຮົາຮ່ວມງານ ແລະ ຊື້ກາເຟກັບຊາວສວນ ຜູ້ປູກກາເຟໂດຍກົງ ໃນລາຄາທີ່ເປັນກາງ. ກາເຟພີລກຣິມ ຂົ້ວຈາກເມັດກາເຟທີ່ໄດ້ຄຸນນະພາບສູງ ແລະ ກາຍມາເປັນກາເຟທີ່ມີລົດຊາດທີ່ດີເປັນທີ່ເພິ່ງພໍໃຈສຳລັບນັກດື່ມກາເຟທັງຫຼາຍ</p>
+        <p class="text-1xl font-bold mb-2"> {% trans "Pilgrim Coffee is a coffee grown in the high mountains of Laos. We work with and buy coffee directly from coffee farmers at a fair price. Pilgrim Coffee is roasted from high-quality coffee beans and becomes a great tasting coffee that is satisfying for all coffee drinkers." %} </p>
     </div>
     
     <!-- Header -->
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
         <div>
-            <h1 class="text-3xl font-bold mb-2">{% trans "ລາຍການກາເຟທັງໝົດ" %}</h1>
-            <p class="">ພົບ {{ page_obj.paginator.count }} ລາຍການ</p>
+            <h1 class="text-3xl font-bold mb-2">{% trans "All coffee items" %}</h1>
+            <p class="">{% trans "Found" %} {{ page_obj.paginator.count }} {% trans "items" %}</p>
         </div>
     </div>
     
@@ -42,14 +42,14 @@
                             <!-- Freshness Badge -->
                             {% if coffee.is_fresh %}
                             <div class="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-semibold shadow-lg">
-                                <i class="fas fa-leaf mr-1"></i>ສົດໃໝ່
+                                <i class="fas fa-leaf mr-1"></i> {% trans "Fresh" %} 
                             </div>
                             {% endif %}
                             
                             <!-- Stock Badge -->
                             {% if coffee.stock_quantity < 10 %}
                             <div class="bg-red-500 text-white px-2 py-1 rounded-full text-xs font-semibold shadow-lg">
-                                <i class="fas fa-exclamation-triangle mr-1"></i>ເຫຼືອໜ້ອຍ
+                                <i class="fas fa-exclamation-triangle mr-1"></i> {% trans "Low Stock" %}
                             </div>
                             {% endif %}
                         </div>
@@ -60,7 +60,7 @@
                         <div class="absolute top-2 right-2">
                             {% for category in coffee.categories.all|slice:":2" %}
                             <span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs font-medium shadow-sm mb-1 block">
-                                {{ category.name }}
+                               {{ category.name }}
                             </span>
                             {% endfor %}
                         </div>
@@ -74,8 +74,8 @@
                         
                         <div class="space-y-1 text-sm  mb-3">
                             <p><i class="fas fa-seedling mr-1 text-green-600"></i>{{ coffee.coffee_bean.name }}</p>
-                            <p><i class="fas fa-fire mr-1 text-orange-500"></i>{{ coffee.roast_level }}</p>
-                            <p><i class="fas fa-cogs mr-1 text-gray-500"></i>{{ coffee.get_grind_type_display }}</p>
+                            <p><i class="fas fa-coffee mr-1 text-orange-500"></i>{{ coffee.roast_level }}</p>
+                            <p><i class="fas fa-fire mr-1 text-orange-500"></i>{{ coffee.get_grind_type_display }}</p>
                             <p><i class="fas fa-weight mr-1 text-blue-500"></i>{{ coffee.weight }}{{ coffee.weight_unit }}</p>
                         </div>
                         
@@ -99,7 +99,7 @@
                                     {% endfor %}
                                 </div>
                                 <div class="text-xs text-gray-500">
-                                    {{ coffee.avg_rating|floatformat:1 }} ({{ coffee.reviews.count }} ຣີວິວ)
+                                    {{ coffee.avg_rating|floatformat:1 }} ({{ coffee.reviews.count }} {% trans "Reviews" %})
                                 </div>
                                 {% else %}
                                 <div class="flex items-center text-gray-300 justify-end mb-1">
@@ -107,7 +107,7 @@
                                     <i class="far fa-star text-xs"></i>
                                     {% endfor %}
                                 </div>
-                                <div class="text-xs text-gray-500">ຍັງບໍ່ມີຣີວິວ</div>
+                                <div class="text-xs text-gray-500">{% trans "No reviews yet." %}</div>
                                 {% endif %}
                             </div>
                         </div>
@@ -122,7 +122,7 @@
                         <!-- Action Buttons -->
                         <div class="flex space-x-2">
                             <a href="{% url 'coffee_detail' coffee.slug %}" class="flex-1 bg-amber-600 text-white py-2 px-4 rounded-lg hover:bg-amber-700 transition font-medium text-center inline-flex items-center justify-center">
-                                <i class="fas fa-eye mr-2"></i>ເບິ່ງລາຍລະອຽດ
+                                <i class="fas fa-eye mr-2"></i> {% trans "See Details" %}
                             </a>
                         </div>
                     </div>
@@ -137,7 +137,7 @@
                     {% if page_obj.has_previous %}
                     <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ page_obj.previous_page_number }}" 
                        class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                        <i class="fas fa-chevron-left mr-1"></i>ກ່ອນໜ້າ
+                        <i class="fas fa-chevron-left mr-1"></i> {% trans "Previous" %} 
                     </a>
                     {% endif %}
                     
@@ -155,7 +155,7 @@
                     {% if page_obj.has_next %}
                     <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ page_obj.next_page_number }}" 
                        class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                        ຖັດໄປ<i class="fas fa-chevron-right ml-1"></i>
+                       {% trans "Next" %} <i class="fas fa-chevron-right ml-1"></i>
                     </a>
                     {% endif %}
                 </nav>

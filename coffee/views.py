@@ -5,8 +5,9 @@ from django.db.models import Q, Avg, Count, Min, Max
 from django.contrib import messages
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
-import json
 from .models import CoffeeProduct, CoffeeBean, RoastLevel, CoffeeCategory, CoffeeReview
+import json
+from django.utils.safestring import mark_safe
 
 
 def home_view(request):
@@ -38,114 +39,6 @@ def home_view(request):
     }
 
     return render(request, "coffee/home.html", context)
-
-
-# def coffee_list_view(request):
-#     """ໜ້າລາຍການກາເຟທັງໝົດ"""
-
-#     # ຕົວກອງ
-#     category = request.GET.get("category")
-#     roast_level = request.GET.get("roast")
-#     bean_type = request.GET.get("bean")
-#     grind_type = request.GET.get("grind")
-#     min_price = request.GET.get("min_price")
-#     max_price = request.GET.get("max_price")
-#     search = request.GET.get("search")
-#     sort_by = request.GET.get("sort", "name")
-
-#     # Query ພື້ນຖານ with annotations for ratings
-#     coffees = (
-#         CoffeeProduct.objects.filter(is_available=True)
-#         .select_related("coffee_bean", "roast_level")
-#         .prefetch_related("categories", "reviews")
-#         .annotate(avg_rating=Avg("reviews__rating"), review_count=Count("reviews"))
-#     )
-
-#     # ໃຊ້ຕົວກອງ
-#     if category:
-#         coffees = coffees.filter(categories__id=category)
-
-#     if roast_level:
-#         coffees = coffees.filter(roast_level__id=roast_level)
-
-#     if bean_type:
-#         coffees = coffees.filter(coffee_bean__origin=bean_type)
-
-#     if grind_type:
-#         coffees = coffees.filter(grind_type=grind_type)
-
-#     if min_price:
-#         try:
-#             coffees = coffees.filter(price__gte=float(min_price))
-#         except ValueError:
-#             pass
-
-#     if max_price:
-#         try:
-#             coffees = coffees.filter(price__lte=float(max_price))
-#         except ValueError:
-#             pass
-
-#     if search:
-#         coffees = coffees.filter(
-#             Q(name__icontains=search)
-#             | Q(coffee_bean__name__icontains=search)
-#             | Q(description__icontains=search)
-#             | Q(coffee_bean__flavor_notes__icontains=search)
-#         )
-
-#     # ການເລຽງລຳດັບ
-#     sort_options = {
-#         "name": "name",
-#         "price_low": "price",
-#         "price_high": "-price",
-#         "newest": "-created_at",
-#         "rating": "-avg_rating",
-#     }
-
-#     if sort_by in sort_options:
-#         if sort_by == "rating":
-#             # Order by average rating, then by review count for ties
-#             coffees = coffees.order_by("-avg_rating", "-review_count")
-#         else:
-#             coffees = coffees.order_by(sort_options[sort_by])
-
-#     # Pagination
-#     paginator = Paginator(coffees, 12)
-#     page_number = request.GET.get("page")
-#     page_obj = paginator.get_page(page_number)
-
-#     # ຂໍ້ມູນສຳລັບຕົວກອງ
-#     categories = CoffeeCategory.objects.all().order_by("name")
-#     roast_levels = RoastLevel.objects.all()
-#     bean_types = CoffeeBean.ORIGIN_CHOICES
-#     grind_types = CoffeeProduct.GRIND_CHOICES
-
-#     # ຊ່ວງລາຄາ (optional - you can uncomment if you want to show price range)
-#     # price_range = CoffeeProduct.objects.filter(is_available=True).aggregate(
-#     #     min_price=Min("price"), max_price=Max("price")
-#     # )
-
-#     context = {
-#         "page_obj": page_obj,
-#         "categories": categories,
-#         "roast_levels": roast_levels,
-#         "bean_types": bean_types,
-#         "grind_types": grind_types,
-#         # "price_range": price_range,
-#         "current_filters": {
-#             "category": category,
-#             "roast": roast_level,
-#             "bean": bean_type,
-#             "grind": grind_type,
-#             "min_price": min_price,
-#             "max_price": max_price,
-#             "search": search,
-#             "sort": sort_by,
-#         },
-#     }
-
-#     return render(request, "coffee/coffee-list.html", context)
 
 
 def coffee_list_view(request):
@@ -292,38 +185,64 @@ def coffee_list_view(request):
     return render(request, "coffee/coffee-list.html", context)
 
 
-def coffee_detail_view(request, slug):
-    """ໜ້າລາຍລະອຽດກາເຟ"""
-
-    coffee = get_object_or_404(
-        CoffeeProduct.objects.select_related(
-            "coffee_bean", "roast_level"
-        ).prefetch_related("categories", "reviews", "gallery_images"),
-        slug=slug,
-    )
-
-    # ຣີວິວ
+def coffee_detail(request, slug):
+    coffee = get_object_or_404(CoffeeProduct, slug=slug)
     reviews = coffee.reviews.all().order_by("-created_at")
-    avg_rating = reviews.aggregate(Avg("rating"))["rating__avg"]
     review_count = reviews.count()
+    avg_rating = reviews.aggregate(Avg("rating"))["rating__avg"] or 0
 
-    # ກາເຟທີ່ຄ້າຍຄືກັນ
+    # Get all products with the same coffee bean
+    all_variants = CoffeeProduct.objects.filter(
+        coffee_bean=coffee.coffee_bean
+    ).select_related("roast_level")
+
+    # Extract unique roast levels and grind types available for this coffee bean
+    # Distinct roast levels and grinds *for this bean*
+    available_roasts = sorted(
+        list({v.roast_level for v in all_variants}), key=lambda r: r.name
+    )
+    available_grinds = sorted({v.grind_type for v in all_variants})
+
+    # Create a mapping for easy lookup in the template: (roast_id, grind_type) -> CoffeeProduct
+    # ✅ Build nested map: {roast_id: {grind_type: product}}
+    product_variants_map = {}
+    for v in all_variants:
+        rid = v.roast_level.id
+        product_variants_map.setdefault(rid, {})[v.grind_type] = v
+
+    # ✅ Build a compact index for the front-end: {roast_id: {grind_type: {...}}}
+    variants_index = {}
+    for v in all_variants:
+        rid = v.roast_level.id
+        variants_index.setdefault(rid, {})[v.grind_type] = {
+            "slug": v.slug,
+            "name": v.name,
+            "grind_type": v.grind_type,
+            "roast_id": rid,
+            "roast_label": v.roast_level.get_name_display(),
+            "price": float(v.price),  # for display / message
+            "weight": f"{v.weight}{v.weight_unit}",  # e.g. "250g"
+            "image": v.images.url if v.images else "",
+        }
+
+    # Similar coffees (example: same bean, different roast/grind)
     similar_coffees = (
-        CoffeeProduct.objects.filter(
-            coffee_bean__origin=coffee.coffee_bean.origin, is_available=True
-        )
-        .exclude(slug=coffee.slug)
-        .select_related("coffee_bean", "roast_level")[:4]
+        CoffeeProduct.objects.filter(coffee_bean=coffee.coffee_bean)
+        .exclude(id=coffee.id)
+        .order_by("?")[:4]
     )
 
     context = {
         "coffee": coffee,
         "reviews": reviews,
-        "avg_rating": round(avg_rating, 1) if avg_rating else 0,
         "review_count": review_count,
+        "avg_rating": avg_rating,
         "similar_coffees": similar_coffees,
+        "available_roasts": available_roasts,
+        "available_grinds": available_grinds,
+        "product_variants_map": product_variants_map,
+        "variants_index_json": mark_safe(json.dumps(variants_index)),
     }
-
     return render(request, "coffee/coffee-detail.html", context)
 
 

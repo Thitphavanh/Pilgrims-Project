@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pilgrims-Venture-Project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-13 18:00+0700\n"
+"POT-Creation-Date: 2025-10-13 21:09+0700\n"
 "PO-Revision-Date: 2025-10-11 10:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: Lao <your_email@example.com>\n"
@@ -30,10 +30,12 @@ msgid "Coffee Category"
 msgstr "ໝວດໝູ່ກາເຟ"
 
 #: coffee/templates/coffee/coffee-detail.html:154
+#: coffee/templates/coffee/coffee-list.html:45
 msgid "Fresh"
 msgstr "ສົດໃໝ່"
 
-#: coffee/templates/coffee/coffee-detail.html:160 templates/index.html:771
+#: coffee/templates/coffee/coffee-detail.html:160
+#: coffee/templates/coffee/coffee-list.html:52 templates/index.html:771
 msgid "Low Stock"
 msgstr "ເຫຼືອໜ້ອຍ"
 
@@ -41,8 +43,8 @@ msgstr "ເຫຼືອໜ້ອຍ"
 #, python-format
 msgid "%(review_count)s review"
 msgid_plural "%(review_count)s reviews"
-msgstr[0] "%(review_count)s ການທົບທວນ"
-msgstr[1] "%(review_count)s ການທົບທວນ"
+msgstr[0] "%(review_count)s ຣິວິວ"
+msgstr[1] "%(review_count)s ຣິວິວ"
 
 #: coffee/templates/coffee/coffee-detail.html:212
 msgid "Product Details"
@@ -97,12 +99,6 @@ msgstr "ຄວາມສົ້ມ"
 msgid "Body"
 msgstr "ຄວາມເຂັ້ມຂຸ້ນ"
 
-#: coffee/templates/coffee/coffee-detail.html:305
-#, fuzzy
-#| msgid "Open WhatsApp"
-msgid "Order via WhatsApp"
-msgstr "ສັ່ງຊື້ຜ່ານ WhatsApp"
-
 #: coffee/templates/coffee/coffee-detail.html:313
 msgid "Like"
 msgstr "ຖືກໃຈ"
@@ -111,9 +107,6 @@ msgstr "ຖືກໃຈ"
 msgid "Share"
 msgstr "ແຊຣ໌"
 
-#: coffee/templates/coffee/coffee-detail.html:329
-#, fuzzy
-#| msgid "Low Stock"
 msgid "In Stock"
 msgstr "ມີສິນຄ້າພ້ອມ"
 
@@ -123,9 +116,6 @@ msgstr "ມີສິນຄ້າພ້ອມ"
 msgid "Out of Stock"
 msgstr "ສິນຄ້າໝົດ"
 
-#: coffee/templates/coffee/coffee-detail.html:349
-#, fuzzy
-#| msgid "Restrictions"
 msgid "Description"
 msgstr "ຄຳອະທິບາຍ"
 
@@ -134,8 +124,13 @@ msgid "Brewing Method"
 msgstr "ວິທີການຊົງ"
 
 #: coffee/templates/coffee/coffee-detail.html:359
+#: coffee/templates/coffee/coffee-list.html:102
+#: hotel/templates/hotel/review.html:103 hotel/templates/hotel/review.html:122
+#: hotel/templates/hotel/review.html:141 hotel/templates/hotel/review.html:159
+#: hotel/templates/hotel/review.html:182 hotel/templates/hotel/review.html:200
+#: hotel/templates/hotel/review.html:218
 msgid "Reviews"
-msgstr "ການທົບທວນ"
+msgstr "ຣີວິວ"
 
 #: coffee/templates/coffee/coffee-detail.html:372
 msgid "No description for this product"
@@ -185,6 +180,9 @@ msgstr "ຂຽນຣີວິວ"
 msgid "Your Name"
 msgstr "ຊື່ຂອງທ່ານ"
 
+msgid "Your Name..."
+msgstr "ຊື່ຂອງທ່ານ..."
+
 #: coffee/templates/coffee/coffee-detail.html:427
 msgid "Rating"
 msgstr "ຄະແນນ"
@@ -221,9 +219,6 @@ msgstr "ຄຳເຫັນ"
 msgid "Tell us about your experience drinking this coffee..."
 msgstr "ບອກເລົ່າປະສົບການການດື່ມກາເຟນີ້..."
 
-#: coffee/templates/coffee/coffee-detail.html:447
-#, fuzzy
-#| msgid "Review"
 msgid "Submit Review"
 msgstr "ສົ່ງຣີວິວ"
 
@@ -260,9 +255,36 @@ msgstr "ເບິ່ງລາຍລະອຽດ"
 msgid "ລາຍການກາເຟທັງໝົດ - ຮ້ານກາເຟ"
 msgstr "ລາຍການກາເຟທັງໝົດ - ຮ້ານກາເຟ"
 
+#: coffee/templates/coffee/coffee-list.html:12
+msgid ""
+"Pilgrim Coffee is a coffee grown in the high mountains of Laos. We work with "
+"and buy coffee directly from coffee farmers at a fair price. Pilgrim Coffee "
+"is roasted from high-quality coffee beans and becomes a great tasting coffee "
+"that is satisfying for all coffee drinkers."
+msgstr ""
+"Pilgrim Coffee ແມ່ນກາເຟທີ່ປູກຢູ່ໃນພູສູງຂອງປະເທດລາວ. ພວກເຮົາເຮັດວຽກຮ່ວມກັບຊາວກະສິກອນກາເຟ "
+"ແລະ ຊື້ກາເຟໂດຍກົງຈາກພວກເຂົາໃນລາຄາທີ່ເປັນທຳ. Pilgrim Coffee "
+"ໄດ້ຮັບການຄົວຈາກເມັດກາເຟທີ່ມີຄຸນນະພາບສູງ ແລະ ກາຍເປັນກາເຟທີ່ມີລົດຊາດດີ ແລະ ຖືກໃຈຜູ້ດື່ມກາເຟທຸກຄົນ."
+
 #: coffee/templates/coffee/coffee-list.html:18
-msgid "ລາຍການກາເຟທັງໝົດ"
-msgstr "ລາຍການກາເຟທັງໝົດ"
+msgid "All coffee items"
+msgstr "ກາເຟທັງໝົດ"
+
+#: coffee/templates/coffee/coffee-list.html:19
+msgid "Found"
+msgstr "ທີ່ພົບ"
+
+#: coffee/templates/coffee/coffee-list.html:19
+msgid "items"
+msgstr "ລາຍການ"
+
+#: coffee/templates/coffee/coffee-list.html:110
+msgid "No reviews yet."
+msgstr "ຍັງບໍ່ມີການຣີວິວ."
+
+#: coffee/templates/coffee/coffee-list.html:125
+msgid "See Details"
+msgstr "ເບິ່ງລາຍລະອຽດ"
 
 #: config/settings.py:132 config/settings/base.py:91
 msgid "ລາວ"
@@ -308,7 +330,7 @@ msgstr ""
 
 #: hotel/templates/hotel/review.html:5
 msgid "Guest Reviews - Project Pilgrims"
-msgstr "ການທົບທວນຂອງແຂກ - ໂຄງການ Pilgrims"
+msgstr "ຣີວິວຂອງແຂກ - ໂຄງການ Pilgrims"
 
 #: hotel/templates/hotel/review.html:66
 msgid "Guest reviews and ratings"
@@ -503,13 +525,6 @@ msgstr "ລົບຕົວກອງທັງໝົດ"
 msgid "Back to Home"
 msgstr "ກັບໄປໜ້າຫຼັກ"
 
-#: hotel/templates/hotel/rooms-list.html:192
-msgid "Previous"
-msgstr "ກ່ອນໜ້າ"
-
-#: hotel/templates/hotel/rooms-list.html:212
-msgid "Next"
-msgstr "ຕໍ່ໄປ"
 
 #: restaurant/templates/restaurant/menu.html:9
 msgid "Restaurant & Dining - Project Pilgrims"
@@ -877,7 +892,7 @@ msgstr "ເມນູ"
 
 #: templates/base.html:120 templates/base.html:191
 msgid "Review"
-msgstr "ການທົບທວນ"
+msgstr "ຣີວິວ"
 
 #: templates/base.html:121 templates/base.html:192
 msgid "Contact"
@@ -1358,9 +1373,7 @@ msgstr "ບໍ່ມີກາເຟແນະນຳໃນຂະນະນີ້"
 msgid "ກະລຸນາກັບມາໃໝ່ໃນໄວໆນີ້"
 msgstr "ກະລຸນາກັບມາໃໝ່ໃນໄວໆນີ້"
 
-#: templates/index.html:853
-#, fuzzy
-#| msgid "View Full Menu"
+
 msgid "View All Coffee"
 msgstr "ເບິ່ງກາເຟທັງໝົດ"
 
@@ -1470,13 +1483,29 @@ msgstr "ສຳຫຼວດເມນູຂອງພວກເຮົາ"
 msgid "Restaurant"
 msgstr "ຮ້ານອາຫານ"
 
+msgid "Medium"
+msgstr "ຄົ່ວກາງ"
+
+msgid "Dark"
+msgstr "ຄົ່ວເຂັ້ມ"
+
+msgid "Whole"
+msgstr "ເມັດເຕັມ"
+
+msgid "Ground"
+msgstr "ບົດແລ້ວ"
+
+
+#~ msgid "ລາຍການກາເຟທັງໝົດ"
+#~ msgstr "ລາຍການກາເຟທັງໝົດ"
+
 #~ msgid "Based on"
 #~ msgstr "ອີງຕາມ"
 
 #, fuzzy
 #~| msgid "Previous"
 #~ msgid "reviews"
-#~ msgstr "ການທົບທວນ"
+#~ msgstr "ຣີວິວ"
 
 #~ msgid ""
 #~ "Welcome to Pilgrim’s Kitchen & Inn, where food, coffee, and comfort meet "
@@ -1489,34 +1518,31 @@ msgstr "ຮ້ານອາຫານ"
 #~ "ສະຖານທີ່ຂອງພວກເຮົາບໍ່ແມ່ນພຽງແຕ່ຮ້ານກາເຟ — ມັນແມ່ນສະຖານທີ່ພັກຜ່ອນແຄມແມ່ນ້ຳ "
 #~ "ທີ່ອອກແບບສໍາລັບນັກທ່ອງທ່ຽວ, ຄົນທ້ອງຖິ່ນ ແລະ ຄົນຮັກກາເຟ."
 
-#~ msgid "Available"
-#~ msgstr "ວ່າງ"
-
-#~ msgid "ການເດີນທາງດ້ານອາຫານ"
-#~ msgstr "ການເດີນທາງດ້ານອາຫານ"
-
 #~ msgid ""
 #~ "ສຳຜັດຄວາມລ້ຳເລີດຂອງອາຫານໃນຮ້ານອາຫານສຸດຫຼູຂອງພວກເຮົາ ໃນທຸກໆຈານເຮົາໄດ້ໃສ່ເລື່ອງລາວເຂົ້າໄປ."
 #~ msgstr ""
 #~ "ສໍາຜັດຄວາມເປັນເລີດຂອງອາຫານ ໃນຮ້ານອາຫານຫຼູຫຼາຂອງພວກເຮົາ, ໃນທຸກໆຈານພວກເຮົາໃສ່ເລື່ອງລາວ."
 
-#~ msgid "ເບິ່ງເມນູຂອງພວກເຮົາ"
-#~ msgstr "ເບິ່ງເມນູຂອງພວກເຮົາ"
+msgid "weeks ago"
+msgstr "ອາທິດກ່ອນ"
 
-#~ msgid "ເມນູຂອງພວກເຮົາ"
-#~ msgstr "ເມນູຂອງພວກເຮົາ"
+msgid "months ago"
+msgstr "ເດືອນກ່ອນ"
 
-#~ msgid "ສຳຫຼວດເມນູອາຫານຫຼາກຫຼາຍຈາກທົ່ວໂລກ ທີ່ປຸງແຕ່ງດ້ວຍຄວາມຕັ້ງໃຈແລະວັດຖຸດິບຊັ້ນດີ"
-#~ msgstr "ສໍາຫຼວດເມນູທີ່ຫຼາກຫຼາຍຈາກທົ່ວໂລກ, ປຸງແຕ່ງດ້ວຍຄວາມມັກ ແລະ ວັດຖຸດິບຊັ້ນດີ."
+msgid "Single Origin"
+msgstr "ບ່ອນຜະລິດດຽວ"
 
-#~ msgid "ເລື່ອນເບິ່ງເມນູເພີ່ມເຕີມ"
-#~ msgstr "ເລື່ອນລົງເພື່ອເບິ່ງເມນູເພີ່ມເຕີມ"
+msgid "Next"
+msgstr "ຖັດໄປ"
 
-#~ msgid "ເລີ່ມຕົ້ນວັນຂອງທ່ານດ້ວຍເມນູອາຫານເຊົ້າສຸດແຊບຂອງພວກເຮົາ"
-#~ msgstr "ເລີ່ມຕົ້ນມື້ຂອງທ່ານດ້ວຍເມນູອາຫານເຊົ້າແຊບໆຂອງພວກເຮົາ."
+msgid "Previous"
+msgstr "ກ່ອນໜ້າ"
 
-#~ msgid "weeks ago"
-#~ msgstr "ອາທິດກ່ອນ"
+msgid "Roasting Type"
+msgstr "ປະເພດການຄົ່ວ"
 
-#~ msgid "months ago"
-#~ msgstr "ເດືອນກ່ອນ"
+msgid "Beans"
+msgstr "ເມັດກາເຟ"
+
+msgid "Order via WhatsApp"
+msgstr "ສັ່ງຊື້ຜ່ານ WhatsApp"

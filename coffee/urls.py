@@ -5,7 +5,7 @@ from . import views
 urlpatterns = [
   
     path("", views.coffee_list_view, name="coffee_list"),
-    path("<slug:slug>/", views.coffee_detail_view, name="coffee_detail"),
+    path("<slug:slug>/", views.coffee_detail, name="coffee_detail"),
 
     path("category/<int:category_id>/", views.category_view, name="category"),
     path("category/<slug:slug>/", views.category_detail_view, name="category_detail"),

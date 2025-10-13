@@ -99,9 +99,6 @@ msgstr "Acidity"
 msgid "Body"
 msgstr "Body"
 
-#: coffee/templates/coffee/coffee-detail.html:305
-msgid "Order via WhatsApp"
-msgstr "Order via WhatsApp"
 
 #: coffee/templates/coffee/coffee-detail.html:313
 msgid "Like"
