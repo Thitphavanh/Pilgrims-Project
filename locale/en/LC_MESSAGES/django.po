@@ -1296,8 +1296,8 @@ msgstr "View Our Menu"
 msgid "Restaurant"
 msgstr "Restaurant"
 
-#~ msgid "Booking"
-#~ msgstr "Booking"
+msgid "Guest reviews and ratings"
+msgstr "Guest reviews and ratings"
 
 #~ msgid ""
 #~ "Pilgrim's coffee is coffee grown on high mountains in Laos. We cooperate "

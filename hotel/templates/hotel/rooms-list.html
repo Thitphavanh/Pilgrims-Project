@@ -25,7 +25,7 @@
                 <!-- <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">{% trans "Experience the perfect blend of comfort and luxury in our thoughtfully designed rooms and suites." %}</p> -->
             </div>
             {% if page_obj %}
-                <div id="roomsContainer" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-8" data-view="grid">
+                <div id="roomsContainer" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8" data-view="grid">
                     {% for room in page_obj %}
                     <div class="room-card group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 overflow-hidden border border-gray-100 dark:border-gray-700"
                         data-price="{{ room.room_type.price_per_night }}"
@@ -53,27 +53,6 @@
                                 </div>
                             {% endif %}
 
-                            <!-- Enhanced Status Badge -->
-                            <div class="absolute top-4 left-4">
-                                {% if room.availability_status == "Available" %}
-                                <span class="inline-flex items-center bg-emerald-500 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg backdrop-blur-sm">
-                                    <div class="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></div>
-                                    {% trans "Available" %}
-                                </span>
-                                {% else %}
-                                <span class="inline-flex items-center bg-red-500 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg backdrop-blur-sm">
-                                    <div class="w-2 h-2 bg-white rounded-full mr-2"></div>
-                                    {{ room.availability_status }}
-                                </span>
-                                {% endif %}
-                            </div>
-
-                            <!-- Enhanced Room Number Badge -->
-                            <div class="absolute top-4 right-4">
-                                <span class="bg-white/95 backdrop-blur-sm text-gray-800 px-3 py-1.5 rounded-full text-xs font-bold shadow-lg border border-white/50">
-                                    #{{ room.room_number }}
-                                </span>
-                            </div>
 
                             <!-- Premium Badge -->
                             {% if "Deluxe" in room.room_type.name or "Suite" in room.room_type.name %}

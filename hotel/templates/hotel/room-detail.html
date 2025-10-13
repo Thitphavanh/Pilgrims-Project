@@ -127,11 +127,6 @@
     </nav>
 
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="text-center mb-8">
-            <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                {% trans "Welcome to Pilgrim’s Kitchen & Inn, where food, coffee, and comfort meet on the great Mekong River. With magnificent views of Thailand, our place is not just a coffee shop — it is a riverside retreat designed for travelers, locals, and coffee lovers." %}
-            </p>
-        </div>
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
             <!-- Main Content -->
@@ -456,7 +451,7 @@
                         <div class="text-xl font-bold mb-4">
                             {% trans "Need help with your booking?" %}
                         </div>
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5 gap-3">
                             <div onclick="openReviewPlatform('agoda')">
                                 <button class="w-full border-2 border-gray-300 hover:border-red-500 bg-transparent hover:text-red-600 py-3 px-4 rounded-lg transition duration-300 font-medium flex flex-col items-center justify-center">
                                     <img src="https://i.pinimg.com/736x/a2/b0/5d/a2b05d6d5547345a295614f8ebe90c56.jpg"
@@ -483,7 +478,14 @@
                                     <span class="text-xs">Expedia</span>
                                 </button>
                             </div>
-
+                            <div onclick="openReviewPlatform('airbnb')">
+                                <button class="w-full border-2 border-gray-300 hover:border-red-500 bg-transparent hover:text-red-600 py-3 px-4 rounded-lg transition duration-300 font-medium flex flex-col items-center justify-center">
+                                    <img src="https://i.pinimg.com/736x/06/2d/59/062d591717da0ff4adbc8e6f442fc09a.jpg"
+                                    class="w-8 h-8 mb-2 rounded-full object-cover"
+                                    alt="Airbnb Logo">
+                                    <span class="text-xs">Airbnb</span>
+                                </button>
+                            </div>
                             <div onclick="openReviewPlatform('whatsapp')">
                                 <button class="w-full border-2 border-gray-300 hover:border-green-500 bg-transparent hover:text-green-600 py-3 px-4 rounded-lg transition duration-300 font-medium flex flex-col items-center justify-center">
                                     <img src="https://i.pinimg.com/736x/c6/09/0d/c6090df18193e2616a6a32076883b70c.jpg"
@@ -492,7 +494,6 @@
                                     <span class="text-xs">WhatsApp</span>
                                 </button>
                             </div>
-                            
                         </div>
                         <div class="text-gray-600 dark:text-gray-300 text-sm mt-4">{% trans "For better rates and more information, please contact us directly through our WhatsApp." %}</div>
                     </div>
@@ -522,6 +523,10 @@
             case 'expedia':
                 // Replace with your actual Expedia property URL
                 url = 'https://www.expedia.com/Savannakhet-Hotels-Pilgrims-Kitchen-Inn.h14986614.Hotel-Information?chkin=2025-10-26&chkout=2025-10-27&flexibility=1_DAY&searchRange=2025-09-01_2025-09-30%2C2025-10-01_2025-10-31&x_pwa=1&rfrr=HSR&pwa_ts=1758512563425&referrerUrl=aHR0cHM6Ly93d3cuZXhwZWRpYS5jb20vSG90ZWwtU2VhcmNo&useRewards=false&rm1=a2&regionId=4203&destination=Savannakhet%2C+Savannakhet+Province%2C+Laos&destType=MARKET&latLong=16.572249%2C104.770552&sort=RECOMMENDED&top_dp=23&top_cur=USD&userIntent=&selectedRoomType=201489188&selectedRatePlan=207472150&searchId=3d7caf90-437a-47b3-b17a-a1160d8ce092';
+                break;
+            case 'airbnb':
+                // Replace with your actual Airbnb property URL
+                url = 'https://www.airbnb.com/rooms/15321349?search_mode=regular_search&adults=1&check_in=2025-10-01&check_out=2025-10-06&children=0&infants=0&pets=0&source_impression_id=p3_1758513986_P3fhN2FUCqSyDT5T&previous_page_section_name=1000&federated_search_id=bdfdcda8-55df-4f81-982c-4b9d03151c0e';
                 break;
             case 'whatsapp':
                 // Dynamic WhatsApp message with room details

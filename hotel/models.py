@@ -125,15 +125,6 @@ class Room(models.Model):
                 self.slug = slug
         super().save(*args, **kwargs)
 
-    @property
-    def availability_status(self):
-        """Get human-readable availability status"""
-        if self.is_out_of_order:
-            return "Out of Order"
-        elif self.check_in_date:
-            return "Occupied"
-        else:
-            return "Available"
 
     @property
     def total_price_with_fees(self):
@@ -168,7 +159,7 @@ class Room(models.Model):
     def check_in_guest(self, check_in_date, check_out_date=None):
         """Check in a guest to this room"""
         if self.check_in_date:
-            raise ValueError("Room is already occupied")
+            raise ValueError("Room is already booked")
         if self.is_out_of_order:
             raise ValueError("Room is out of order")
 

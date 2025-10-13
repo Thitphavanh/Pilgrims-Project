@@ -75,10 +75,8 @@
                         <div class="space-y-1 text-sm  mb-3">
                             <p><i class="fas fa-seedling mr-1 text-green-600"></i>{{ coffee.coffee_bean.name }}</p>
                             <p><i class="fas fa-fire mr-1 text-orange-500"></i>{{ coffee.roast_level }}</p>
-                            <p><i class="fas fa-weight mr-1 text-blue-500"></i>{{ coffee.weight }}{{ coffee.weight_unit }}</p>
-                            {% if coffee.grind_type != 'whole_bean' %}
                             <p><i class="fas fa-cogs mr-1 text-gray-500"></i>{{ coffee.get_grind_type_display }}</p>
-                            {% endif %}
+                            <p><i class="fas fa-weight mr-1 text-blue-500"></i>{{ coffee.weight }}{{ coffee.weight_unit }}</p>
                         </div>
                         
                         <!-- Price and Rating Row -->

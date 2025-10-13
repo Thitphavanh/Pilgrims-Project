@@ -63,28 +63,11 @@
                 <i class="fas fa-star text-6xl text-white opacity-80"></i>
             </div>
             <h1 class="text-4xl md:text-6xl font-serif font-bold text-white leading-tight mb-6">
-                ຄໍາຄິດເຫັນ ແລະ ການຈັດອັນດັບຈາກແຂກ
+                {% trans "Guest reviews and ratings" %}
             </h1>
             <p class="text-xl md:text-2xl text-white mb-8 opacity-90">
-                ເບິ່ງວ່າແຂກຂອງພວກເຮົາໄດ້ກ່າວຫຍັງກ່ຽວກັບປະສົບການຂອງພວກເຂົາທີ່ Pilgrims
+                {% trans "See what our guests have said about their experience at Pilgrims" %}
             </p>
-            <div class="flex justify-center items-center space-x-4 mb-8">
-                <div class="flex items-center bg-white bg-opacity-20 rounded-full px-6 py-3">
-                    <div class="rating-stars text-2xl mr-3">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <span class="text-white font-bold text-xl">{{ review_summary.average_rating }}/10</span>
-                </div>
-                <div class="text-white">
-                    <span class="text-lg opacity-80">{% trans "Based on" %}</span>
-                    <span class="font-bold text-xl">{{ review_summary.total_reviews }}</span>
-                    <span class="text-lg opacity-80">{% trans "reviews" %}</span>
-                </div>
-            </div>
         </div>
     </div>
 </section>
@@ -94,15 +77,15 @@
     <div class="container mx-auto px-4">
         <div class="text-center mb-16">
             <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">
-                ອ່ານຄໍາຄິດເຫັນຂອງພວກເຮົາ
+                {% trans "Read our reviews" %}
             </h2>
             <p class="text-lg max-w-3xl mx-auto">
-                ບິ່ງວ່າແຂກຂອງພວກເຮົາໄດ້ກ່າວຫຍັງໃນ platforms ການທ່ອງທ່ຽວ ແລະ ການຈອງທີ່ພັກທີ່ໂດ່ງດັງຂອງໂລກ. ຄລິກເຂົ້າໄປທີ່ແຕ່ລະ platforms ເພື່ອອ່ານຄໍາຄິດເຫັນ ແລະ ການຈັດອັນດັບແບບລະອຽດ.
+                {% trans "See what our guests have to say on the world's most popular travel and accommodation booking platforms. Click on each platform to read detailed reviews and ratings." %}
             </p>
         </div>
         
         <!-- First Row: 4 Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-6xl mx-auto mb-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 max-w-6xl mx-auto mb-8">
             <!-- Agoda Card -->
             <div class="review-card glass-effect rounded-2xl p-8 text-center cursor-pointer"
                  onclick="openReviewPlatform('agoda')">
@@ -117,7 +100,7 @@
 
                 <button class="w-full bg-primary hover:bg-primary-dark text-white font-medium py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center">
                     <i class="fas fa-external-link-alt mr-2"></i>
-                    Agoda Reviews
+                    {% trans "Reviews" %} 
                 </button>
             </div>
 
@@ -136,7 +119,7 @@
 
                 <button class="w-full bg-primary hover:bg-primary-dark text-white font-medium py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center">
                     <i class="fas fa-external-link-alt mr-2"></i>
-                    Reviews
+                    {% trans "Reviews" %} 
                 </button>
             </div>
 
@@ -155,9 +138,32 @@
 
                 <button class="w-full bg-primary hover:bg-primary-dark text-white font-medium py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center">
                     <i class="fas fa-external-link-alt mr-2"></i>
-                    Reviews
+                    {% trans "Reviews" %} 
                 </button>
             </div>
+              <!-- TripAdvisor Guesthouse Card -->
+              <div class="review-card glass-effect rounded-2xl p-8 text-center cursor-pointer"
+              onclick="openReviewPlatform('tripadvisor-guesthouse')">
+             <div class="mb-6">
+                 <img src="https://i.pinimg.com/736x/1e/9c/a2/1e9ca2f9f6d7ad09d565e26c7ad0178c.jpg"
+                      alt="TripAdvisor Logo" class="platform-logo mx-auto mb-4">
+                 <h3 class="text-2xl font-bold text-primary-dark">TripAdvisor</h3>
+             </div>
+
+             <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                 <div class="text-xs text-gray-500 mt-2">Pilgrim's Kitchen & Inn Guesthouse</div>
+             </div>
+
+             <button class="w-full bg-primary hover:bg-primary-dark text-white font-medium py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center">
+                 <i class="fas fa-external-link-alt mr-2"></i>
+                 {% trans "Reviews" %} 
+             </button>
+         </div>
+
+        </div>
+
+        <!-- Second Row: 3 Centered Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
 
             <!-- Airbnb Card -->
             <div class="review-card glass-effect rounded-2xl p-8 text-center cursor-pointer"
@@ -173,29 +179,7 @@
                 </div>
                 <button class="w-full bg-primary hover:bg-primary-dark text-white font-medium py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center">
                     <i class="fas fa-external-link-alt mr-2"></i>
-                    Reviews
-                </button>
-            </div>
-        </div>
-
-        <!-- Second Row: 3 Centered Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <!-- TripAdvisor Guesthouse Card -->
-            <div class="review-card glass-effect rounded-2xl p-8 text-center cursor-pointer"
-                 onclick="openReviewPlatform('tripadvisor-guesthouse')">
-                <div class="mb-6">
-                    <img src="https://i.pinimg.com/736x/1e/9c/a2/1e9ca2f9f6d7ad09d565e26c7ad0178c.jpg"
-                         alt="TripAdvisor Logo" class="platform-logo mx-auto mb-4">
-                    <h3 class="text-2xl font-bold text-primary-dark">TripAdvisor</h3>
-                </div>
-
-                <div class="bg-gray-50 rounded-lg p-4 mb-6">
-                    <div class="text-xs text-gray-500 mt-2">Pilgrim's Kitchen & Inn Guesthouse</div>
-                </div>
-
-                <button class="w-full bg-primary hover:bg-primary-dark text-white font-medium py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center">
-                    <i class="fas fa-external-link-alt mr-2"></i>
-                    Reviews
+                    {% trans "Reviews" %} 
                 </button>
             </div>
 
@@ -213,7 +197,7 @@
                 </div>
                 <button class="w-full bg-primary hover:bg-primary-dark text-white font-medium py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center">
                     <i class="fas fa-external-link-alt mr-2"></i>
-                    Reviews
+                    {% trans "Reviews" %} 
                 </button>
             </div>
 
@@ -231,7 +215,7 @@
                 </div>
                 <button class="w-full bg-primary hover:bg-primary-dark text-white font-medium py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center">
                     <i class="fas fa-external-link-alt mr-2"></i>
-                    Reviews
+                    {% trans "Reviews" %} 
                 </button>
             </div>
         </div>
@@ -243,9 +227,9 @@
 <section class="py-16">
     <div class="container mx-auto px-4">
         <div class="text-center mb-12">
-            <h2 class="text-3xl font-serif font-bold mb-4">ຄໍາຄິດເຫັນລ່າສຸດຂອງແຂກ</h2>
+            <h2 class="text-3xl font-serif font-bold mb-4">{% trans "Latest guest comments" %}</h2>
             <p class="max-w-3xl mx-auto">
-                ນີ້ແມ່ນສິ່ງທີ່ແຂກລ່າສຸດຂອງພວກເຮົາໄດ້ກ່າວໄວ້ຜ່ານທຸກແພລດຟອມ.
+                {% trans "Here's what our latest guests have said across all platforms." %}
             </p>
         </div>
         
@@ -314,8 +298,8 @@
             <!-- No Reviews Fallback -->
             <div class="col-span-full text-center py-12">
                 <i class="fas fa-comments text-4xl text-gray-300 mb-4"></i>
-                <h3 class="text-xl font-semibold text-gray-700 mb-2">ຍັງບໍ່ມີການວິຈານລ່າສຸດ</h3>
-                <p class="text-gray-500">ກັບມາໃໝ່ໄວໆນີ້ ເພື່ອເບິ່ງຄໍາຄິດເຫັນຂອງແຂກ!</p>
+                <h3 class="text-xl font-semibold text-gray-700 mb-2">{% trans "No recent reviews yet" %}</h3>
+                <p class="text-gray-500">{% trans "Check back soon to see guest comments!" %}</p>
             </div>
             {% endfor %}
         </div>

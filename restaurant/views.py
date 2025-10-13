@@ -29,6 +29,27 @@ def menu_item(request):
     ).order_by("-created_at")[:12]
     dessert_items = MenuItem.objects.filter(category="dessert").order_by("-created_at")[:12]
 
+    for item in breakfast_items:
+        item.price_usd = item.price / 20000 # Assuming 1 USD = 20000 LAK
+    for item in coffee_items:
+        item.price_usd = item.price / 20000
+    for item in american_items:
+        item.price_usd = item.price / 20000
+    for item in indian_items:
+        item.price_usd = item.price / 20000
+    for item in drinks_items:
+        item.price_usd = item.price / 20000
+    for item in mexican_items:
+        item.price_usd = item.price / 20000
+    for item in pizza_items:
+        item.price_usd = item.price / 20000
+    for item in local_food_items:
+        item.price_usd = item.price / 20000
+    for item in soup_salad_mediterranean_items:
+        item.price_usd = item.price / 20000
+    for item in dessert_items:
+        item.price_usd = item.price / 20000
+
     context = {
         "breakfast_items": breakfast_items,
         "coffee_items": coffee_items,

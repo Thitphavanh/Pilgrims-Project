@@ -213,10 +213,10 @@ class RoomAdmin(admin.ModelAdmin):
                 '<span style="color: green; font-weight: bold;">'
                 '<i class="fas fa-check-circle"></i> Available</span>'
             )
-        elif status == "Occupied":
+        elif status == "Booked":
             return format_html(
-                '<span style="color: orange; font-weight: bold;">'
-                '<i class="fas fa-user"></i> Occupied</span>'
+                '<span style="color: blue; font-weight: bold;">'
+                '<i class="fas fa-calendar-check"></i> Booked</span>'
             )
         else:
             return format_html(
