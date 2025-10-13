@@ -549,9 +549,6 @@ msgstr "ເບິ່ງເມນູຂອງພວກເຮົາ"
 msgid "CULINARY DELIGHTS"
 msgstr "ອາຫານແຊບໆ"
 
-#: restaurant/templates/restaurant/menu.html:86 templates/index.html:126
-#, fuzzy
-#| msgid "Explore Our Menu"
 msgid "Our Menu"
 msgstr "ເມນູຂອງພວກເຮົາ"
 
@@ -608,164 +605,54 @@ msgstr "ຂອງຫວານ"
 msgid "Drinks"
 msgstr "ເຄື່ອງດື່ມ"
 
-#: restaurant/templates/restaurant/menu.html:253
-#, fuzzy
-#| msgid "Start your day with our delicious breakfast menu"
 msgid "Start your day with our delicious breakfast menu."
 msgstr "ເລີ່ມຕົ້ນມື້ຂອງທ່ານດ້ວຍເມນູອາຫານເຊົ້າແຊບໆຂອງພວກເຮົາ"
 
-#: restaurant/templates/restaurant/menu.html:256
-#, fuzzy
-#| msgid ""
-#| "Expertly crafted coffee drinks using premium beans from around the world"
 msgid "Expertly brewed coffee using premium beans from around the world."
 msgstr "ເຄື່ອງດື່ມກາເຟທີ່ສ້າງສັນຢ່າງຊ່ຽວຊານໂດຍໃຊ້ເມັດກາເຟຊັ້ນເລີດຈາກທົ່ວໂລກ"
 
-#: restaurant/templates/restaurant/menu.html:259
-#, fuzzy
-#| msgid "Classic American cuisine prepared with our chef's special touch"
-msgid "Classic American dishes with a special touch from our chef."
-msgstr "ອາຫານອາເມລິກາແບບຄລາສສິກທີ່ປຸງແຕ່ງດ້ວຍການສໍາພັດພິເສດຂອງພໍ່ຄົວຂອງພວກເຮົາ"
 
-#: restaurant/templates/restaurant/menu.html:262
-#, fuzzy
-#| msgid ""
-#| "Traditional Indian dishes filled with aromatic spices and authentic "
-#| "cooking methods"
-msgid ""
-"Authentic Indian cuisine, full of aromatic spices and traditional cooking "
-"methods."
-msgstr "ອາຫານອິນເດຍແບບດັ້ງເດີມທີ່ເຕັມໄປດ້ວຍເຄື່ອງເທດທີ່ມີກິ່ນຫອມ ແລະ ວິທີການປຸງແຕ່ງອາຫານທີ່ແທ້ຈິງ"
+msgid "Rich and flavorful Mexican dishes, using fresh ingredients and authentic recipes."
+msgstr "ອາຫານເມັກຊິກັນທີ່ອຸດົມສົມບູນ ແລະລົດຊາດເຂັ້ມຂຸ້ນ, ໃຊ້ວັດຖຸດິບສົດໆ ແລະສູດອາຫານແທ້ໆ"
 
-#: restaurant/templates/restaurant/menu.html:265
-#, fuzzy
-#| msgid ""
-#| "Bold and flavorful Mexican cuisine using fresh ingredients and authentic "
-#| "recipes"
-msgid ""
-"Rich and flavorful Mexican dishes, using fresh ingredients and authentic "
-"recipes."
-msgstr "ອາຫານເມັກຊິໂກທີ່ມີລົດຊາດເຂັ້ມຂຸ້ນໂດຍໃຊ້ສ່ວນປະກອບທີ່ສົດໃໝ່ ແລະ ສູດອາຫານທີ່ແທ້ຈິງ"
-
-#: restaurant/templates/restaurant/menu.html:268
-#, fuzzy
-#| msgid "Handmade pizzas with premium toppings"
 msgid "Handmade pizzas with quality toppings."
 msgstr "ພິຊຊ່າເຮັດດ້ວຍມືພ້ອມທັອບປິ້ງຊັ້ນເລີດ"
 
-#: restaurant/templates/restaurant/menu.html:271
-#, fuzzy
-#| msgid ""
-#| "Regional specialties showcasing unique local ingredients and traditions"
 msgid "Regional specialties that showcase local ingredients and traditions."
 msgstr "ອາຫານພື້ນເມືອງທີ່ສະແດງໃຫ້ເຫັນສ່ວນປະກອບ ແລະ ປະເພນີທ້ອງຖິ່ນທີ່ເປັນເອກະລັກ"
 
-#: restaurant/templates/restaurant/menu.html:274
-#, fuzzy
-#| msgid ""
-#| "Fresh salads and Mediterranean favorites packed with healthy goodness"
 msgid ""
 "Fresh salads and popular Mediterranean dishes, full of healthy ingredients."
 msgstr "ສະຫຼັດສົດ ແລະ ອາຫານເມດິເຕີເຣນຽນທີ່ເຕັມໄປດ້ວຍສິ່ງດີໆຕໍ່ສຸຂະພາບ"
 
-#: restaurant/templates/restaurant/menu.html:277
-#, fuzzy
-#| msgid ""
-#| "Sweet treats and delicate desserts made with high-quality ingredients"
 msgid ""
 "Sweet and fragrant desserts and secrets, made from high-quality ingredients."
 msgstr "ຂອງຫວານ ແລະ ເຄື່ອງຫວານທີ່ລະອຽດອ່ອນທີ່ເຮັດດ້ວຍສ່ວນປະກອບຄຸນນະພາບສູງ"
 
-#: restaurant/templates/restaurant/menu.html:280
-#, fuzzy
-#| msgid ""
-#| "Refreshing beverages, specialty cocktails and carefully curated selections"
 msgid "Refreshing drinks, special cocktails, and carefully selected beverages."
-msgstr "ເຄື່ອງດື່ມທີ່ສົດຊື່ນ, ຄັອກເທນພິເສດ ແລະ ການຄັດເລືອກຢ່າງລະມັດລະວັງ"
+msgstr "ເຄື່ອງດື່ມສົດຊື່ນ, ຄັອກເທລພິເສດ ແລະເຄື່ອງດື່ມທີ່ຄັດເລືອກມາເປັນພິເສດ"
 
-#: restaurant/templates/restaurant/menu.html:351
 msgid "Breakfast menu is being prepared"
-msgstr ""
+msgstr "ກຳລັງຈັດຕຽມເມນູອາຫານເຊົ້າ"
 
-#: restaurant/templates/restaurant/menu.html:353
 msgid "We are preparing a special breakfast menu, stay tuned."
-msgstr ""
+msgstr "ພວກເຮົາກຳລັງຈັດຕຽມເມນູອາຫານເຊົ້າພິເສດ, ກະລຸນາລໍຖ້າຕິດຕາມ"
 
-#: restaurant/templates/restaurant/menu.html:423
 msgid "Coffee menu is being prepared"
-msgstr ""
+msgstr "ເມນູກາເຟກຳລັງຈັດຕຽມ"
 
-#: restaurant/templates/restaurant/menu.html:425
 msgid "We are preparing a special coffee menu, stay tuned."
-msgstr ""
+msgstr "ພວກເຮົາກຳລັງຈັດຕຽມເມນູກາເຟພິເສດ, ກະລຸນາລໍຖ້າຕິດຕາມ."
 
-#: restaurant/templates/restaurant/menu.html:495
-msgid "American menu is being prepared"
-msgstr ""
+msgid "Classic American dishes with a special touch from our chef."
+msgstr "ອາຫານອາເມລິກາແບບຄລາສສິກ ດ້ວຍສູດພິເສດຈາກພໍ່ຄົວຂອງເຮົາ"
 
-#: restaurant/templates/restaurant/menu.html:497
-#, fuzzy
-#| msgid "Classic American cuisine prepared with our chef's special touch"
 msgid "Classic American dishes are being prepared, please wait."
 msgstr "ອາຫານອາເມລິກາແບບຄລາສສິກທີ່ປຸງແຕ່ງດ້ວຍການສໍາພັດພິເສດຂອງພໍ່ຄົວຂອງພວກເຮົາ"
 
-#: restaurant/templates/restaurant/menu.html:568
-#, fuzzy
-#| msgid "Indian"
-msgid "Indian menu is being prepared"
-msgstr "ອາຫານອິນເດຍ"
+msgid "Authentic Indian cuisine, full of aromatic spices and traditional cooking methods."
+msgstr "ອາຫານອິນເດຍແທ້ໆ, ເຕັມໄປດ້ວຍເຄື່ອງເທດທີ່ມີກິ່ນຫອມ ແລະວິທີການປຸງແຕ່ງແບບດັ້ງເດີມ"
 
-#: restaurant/templates/restaurant/menu.html:570
-msgid "Authentic Indian dishes are being prepared, please wait."
-msgstr ""
-
-#: restaurant/templates/restaurant/menu.html:640
-msgid "Mexican menu is being prepared"
-msgstr ""
-
-#: restaurant/templates/restaurant/menu.html:642
-msgid "Mexican dishes are being prepared, please wait."
-msgstr ""
-
-#: restaurant/templates/restaurant/menu.html:712
-msgid "Pizza menu is being prepared"
-msgstr ""
-
-#: restaurant/templates/restaurant/menu.html:714
-msgid "Specialty pizzas are being prepared, please wait."
-msgstr ""
-
-#: restaurant/templates/restaurant/menu.html:785
-msgid "Local Food menu is being prepared"
-msgstr ""
-
-#: restaurant/templates/restaurant/menu.html:787
-msgid "Local food is being prepared, please wait."
-msgstr ""
-
-#: restaurant/templates/restaurant/menu.html:858
-msgid "Soup and Salad menu is being prepared"
-msgstr ""
-
-#: restaurant/templates/restaurant/menu.html:860
-msgid "Salads and soups are being prepared, please wait."
-msgstr ""
-
-#: restaurant/templates/restaurant/menu.html:923
-msgid "Desserts menu is being prepared"
-msgstr ""
-
-#: restaurant/templates/restaurant/menu.html:925
-msgid "Sweets and sweet secrets are being prepared, please wait."
-msgstr ""
-
-#: restaurant/templates/restaurant/menu.html:996
-msgid "Drinks menu is being prepared"
-msgstr ""
-
-#: restaurant/templates/restaurant/menu.html:998
-msgid "Special drinks are being prepared, please wait."
-msgstr ""
 
 #: templates/about.html:16 templates/base.html:116 templates/base.html:187
 msgid "About Us"
@@ -775,24 +662,6 @@ msgstr "ກ່ຽວກັບພວກເຮົາ"
 msgid "Welcome to Pilgrim’s Kitchen & Inn"
 msgstr "ຍິນດີຕ້ອນຮັບສູ່ Pilgrim’s Kitchen & Inn"
 
-#: templates/about.html:30
-#, fuzzy
-#| msgid ""
-#| "Welcome to Pilgrim’s Kitchen & Inn, where food, coffee, and comfort meet "
-#| "on the great Mekong River. With magnificent views of Thailand, our place "
-#| "is not just a coffee shop — it is a riverside retreat designed for "
-#| "travelers, locals, and coffee lovers."
-msgid ""
-"Where food, coffee, and comfort meet on the great Mekong River. With "
-"magnificent views of Thailand, our place is not just a coffee shop — it is a "
-"riverside retreat designed for travelers, locals, and coffee lovers."
-msgstr ""
-"ຍິນດີຕ້ອນຮັບສູ່ Pilgrim’s Kitchen & Inn ສະຖານທີ່ທີ່ອາຫານ, ກາເຟ ແລະ ຄວາມສະດວກສະບາຍ "
-"ມາພົບກັນທີ່ຝັ່ງແມ່ນ້ຳຂອງອັນຍິ່ງໃຫຍ່. ດ້ວຍທິວທັດອັນສະງ່າງາມຂອງປະເທດໄທ "
-"ສະຖານທີ່ຂອງພວກເຮົາບໍ່ແມ່ນພຽງແຕ່ຮ້ານກາເຟ — ມັນແມ່ນສະຖານທີ່ພັກຜ່ອນແຄມແມ່ນ້ຳ "
-"ທີ່ອອກແບບສໍາລັບນັກທ່ອງທ່ຽວ, ຄົນທ້ອງຖິ່ນ ແລະ ຄົນຮັກກາເຟ."
-
-#: templates/about.html:42
 msgid "Our Coffee Shop and Restaurant"
 msgstr "ຮ້ານກາເຟ ແລະ ຮ້ານອາຫານຂອງພວກເຮົາ"
 
@@ -817,9 +686,6 @@ msgstr ""
 "ອາຫານແນວເມດິເຕີເຣນຽນ, ຊຸບ ແລະ ສະຫຼັດ, ພ້ອມກັບອາຫານທ້ອງຖິ່ນລາວແທ້ໆ. ພວກເຮົາໃຊ້ແຕ່ວັດຖຸດິບທີ່ດີທີ່ສຸດ "
 "ແລະ ຄວາມຮັກໃນການປຸງອາຫານ ເພື່ອສ້າງມື້ອາຫານທີ່ຄຸ້ມຄ່າໃຫ້ທ່ານ."
 
-#: templates/about.html:53
-#, fuzzy
-#| msgid "Guests"
 msgid "Our Guesthouse"
 msgstr "ບ້ານພັກຂອງພວກເຮົາ"
 
@@ -981,11 +847,6 @@ msgstr ""
 msgid "Book your accommodation"
 msgstr "ຈອງທີ່ພັກຂອງທ່ານ"
 
-#: templates/components/hero-section.html:48
-#, fuzzy
-#| msgid "Explore Our Menu"
-msgid "Explore our menu"
-msgstr "ສຳຫຼວດເມນູຂອງພວກເຮົາ"
 
 #: templates/contact.html:18
 msgid "Location"
@@ -1109,13 +970,10 @@ msgstr "ສຳຫຼວດເມນູອາຫານຫຼາກຫຼາຍຈ
 msgid "Scroll to see more menu"
 msgstr "ເລື່ອນລົງເພື່ອເບິ່ງເມນູເພີ່ມເຕີມ"
 
-#: templates/index.html:182
-msgid "Start your day with our delicious breakfast menu"
-msgstr "ເລີ່ມຕົ້ນມື້ຂອງທ່ານດ້ວຍເມນູອາຫານເຊົ້າແຊບໆຂອງພວກເຮົາ"
 
 #: templates/index.html:185
 msgid ""
-"Expertly crafted coffee drinks using premium beans from around the world"
+"Expertly crafted coffee drinks using premium beans from around the world."
 msgstr "ເຄື່ອງດື່ມກາເຟທີ່ສ້າງສັນຢ່າງຊ່ຽວຊານໂດຍໃຊ້ເມັດກາເຟຊັ້ນເລີດຈາກທົ່ວໂລກ"
 
 #: templates/index.html:188
@@ -1377,9 +1235,6 @@ msgstr "ກະລຸນາກັບມາໃໝ່ໃນໄວໆນີ້"
 msgid "View All Coffee"
 msgstr "ເບິ່ງກາເຟທັງໝົດ"
 
-#: templates/index.html:868
-#, fuzzy
-#| msgid "Available"
 msgid "Available Rooms"
 msgstr "ຫ້ອງພັກທີ່ມີຢູ່"
 
@@ -1401,15 +1256,9 @@ msgid ""
 "filters or search terms."
 msgstr "ພວກເຮົາບໍ່ສາມາດຊອກຫາຫ້ອງພັກທີ່ຕົງກັບເງື່ອນໄຂຂອງທ່ານ. ລອງປັບແຕ່ງຕົວກອງຂອງທ່ານ."
 
-#: templates/index.html:1028
-#, fuzzy
-#| msgid "Book your accommodation"
 msgid "View All Accommodation"
 msgstr "ເບິ່ງທີ່ພັກທັງໝົດ"
 
-#: templates/index.html:1038
-#, fuzzy
-#| msgid "Amenities"
 msgid "Our Amenities"
 msgstr "ສິ່ງອຳນວຍຄວາມສະດວກຂອງພວກເຮົາ"
 
@@ -1455,11 +1304,7 @@ msgid ""
 "complete experience by the banks of the Mekong, with sweeping views of "
 "Thailand. From freshly roasted coffee at our café to global flavors at our "
 "multi-cuisine restaurant, every detail is designed to delight your senses."
-msgstr ""
-"ບ່ອນພັກຜ່ອນແຄມແມ່ນໍ້າຂອງຂອງພວກເຮົາໃຫ້ຫຼາຍກວ່າບ່ອນພັກ — ມັນເປັນປະສົບການທີ່ສົມບູນແບບຢູ່ແຄມແມ່ນໍ້າຂອງ, "
-"ພ້ອມທິວທັດທີ່ກວ້າງໄກຂອງປະເທດໄທ. "
-"ຈາກກາເຟທີ່ຄົ້ວສົດໃໝ່ຢູ່ຮ້ານກາເຟຂອງພວກເຮົາໄປຈົນເຖິງລົດຊາດທົ່ວໂລກຢູ່ຮ້ານອາຫານຫຼາຍປະເພດຂອງພວກເຮົາ, "
-"ທຸກລາຍລະອຽດຖືກອອກແບບມາເພື່ອຄວາມເພີດເພີນຂອງประสาทສໍາຜັດຂອງທ່ານ."
+msgstr "ບ່ອນພັກຜ່ອນຂອງເຮົາຢູ່ຂ້າງແມ່ນ້ຳ ມີຫຼາຍກວ່າພຽງແຕ່ບ່ອນພັກເທົ່ານັ້ນ — ມັນແມ່ນປະສົບການທີ່ສົມບູນແບບຢູ່ເທິງຝັ່ງແມ່ນ້ຳຂອງ, ດ້ວຍທັດສະນີຍະພາບກວ້າງໄກຂອງປະເທດໄທ. ຕັ້ງແຕ່ກາເຟຄັ່ວສົດໃໝ່ຢູ່ຮ້ານກາເຟຂອງພວກເຮົາ ຈົນເຖິງລົດຊາດສາກົນຢູ່ຮ້ານອາຫານຫຼາກຫຼາຍປະເພດຂອງພວກເຮົາ, ທຸກລາຍລະອຽດຖືກອອກແບບມາເພື່ອສ້າງຄວາມພໍໃຈແກ່ປະສາດສຳຜັດຂອງທ່ານ."
 
 #: templates/index.html:1094
 msgid ""
@@ -1472,10 +1317,9 @@ msgstr ""
 "ບໍ່ວ່າທ່ານຈະມາທີ່ນີ້ເພື່ອຮັບປະທານອາຫານເຊົ້າທີ່ອີ່ມໜຳ, ອາຫານທ່ຽງແຄມແມ່ນໍ້າຂອງແບບສະບາຍໆ, ຫຼື "
 "ອາຫານຄ່ຳພາຍໃຕ້ແສງຕາເວັນຕົກດິນທີ່ໂຣແມນຕິກ, "
 "ທີມງານຂອງພວກເຮົາອຸທິດຕົນເພື່ອເຮັດໃຫ້ທຸກຊ່ວງເວລາເປັນທີ່ໜ້າຈົດຈຳ. "
-"ຄຽງຄູ່ກັບຄວາມສະດວກສະບາຍຂອງເຮືອນພັກຂອງພວກເຮົາ ແລະ ກິ່ນຫອມຂອງກາເຟທີ່ຄົ້ວເອງ, "
+"ຄຽງຄູ່ກັບຄວາມສະດວກສະບາຍຂອງເຮືອນພັກຂອງພວກເຮົາ ແລະ ກິ່ນຫອມຂອງກາເຟທີ່ຄົ່ວເອງ, "
 "ເວລາຂອງທ່ານກັບພວກເຮົາຖືກສ້າງຂຶ້ນເພື່ອໃຫ້ທັງຜ່ອນຄາຍ ແລະ ບໍ່ອາດລືມໄດ້."
 
-#: templates/index.html:1097
 msgid "Explore Our Menu"
 msgstr "ສຳຫຼວດເມນູຂອງພວກເຮົາ"
 
@@ -1507,27 +1351,12 @@ msgstr "ບົດແລ້ວ"
 #~ msgid "reviews"
 #~ msgstr "ຣີວິວ"
 
-#~ msgid ""
-#~ "Welcome to Pilgrim’s Kitchen & Inn, where food, coffee, and comfort meet "
-#~ "on the great Mekong River. With magnificent views of Thailand, our place "
-#~ "is not just a coffee shop — it is a riverside retreat designed for "
-#~ "travelers, locals, and coffee lovers."
-#~ msgstr ""
-#~ "ຍິນດີຕ້ອນຮັບສູ່ Pilgrim’s Kitchen & Inn ສະຖານທີ່ທີ່ອາຫານ, ກາເຟ ແລະ ຄວາມສະດວກສະບາຍ "
-#~ "ມາພົບກັນທີ່ຝັ່ງແມ່ນ້ຳຂອງອັນຍິ່ງໃຫຍ່. ດ້ວຍທິວທັດອັນສະງ່າງາມຂອງປະເທດໄທ "
-#~ "ສະຖານທີ່ຂອງພວກເຮົາບໍ່ແມ່ນພຽງແຕ່ຮ້ານກາເຟ — ມັນແມ່ນສະຖານທີ່ພັກຜ່ອນແຄມແມ່ນ້ຳ "
-#~ "ທີ່ອອກແບບສໍາລັບນັກທ່ອງທ່ຽວ, ຄົນທ້ອງຖິ່ນ ແລະ ຄົນຮັກກາເຟ."
 
 #~ msgid ""
 #~ "ສຳຜັດຄວາມລ້ຳເລີດຂອງອາຫານໃນຮ້ານອາຫານສຸດຫຼູຂອງພວກເຮົາ ໃນທຸກໆຈານເຮົາໄດ້ໃສ່ເລື່ອງລາວເຂົ້າໄປ."
 #~ msgstr ""
 #~ "ສໍາຜັດຄວາມເປັນເລີດຂອງອາຫານ ໃນຮ້ານອາຫານຫຼູຫຼາຂອງພວກເຮົາ, ໃນທຸກໆຈານພວກເຮົາໃສ່ເລື່ອງລາວ."
 
-msgid "weeks ago"
-msgstr "ອາທິດກ່ອນ"
-
-msgid "months ago"
-msgstr "ເດືອນກ່ອນ"
 
 msgid "Single Origin"
 msgstr "ບ່ອນຜະລິດດຽວ"
@@ -1546,3 +1375,24 @@ msgstr "ເມັດກາເຟ"
 
 msgid "Order via WhatsApp"
 msgstr "ສັ່ງຊື້ຜ່ານ WhatsApp"
+
+msgid "Where food, coffee, and comfort meet on the great Mekong River. With magnificent views of Thailand, our place is not just a coffee shop — it is a riverside retreat designed for travelers, locals, and coffee lovers."
+msgstr "ບ່ອນທີ່ອາຫານ, ກາເຟ, ແລະຄວາມສະດວກສະບາຍມາພົບກັນຢູ່ທາງແມ່ນ້ໍາຂອງໃຫຍ່. ດ້ວຍທິວທັດອັນງົດງາມຂອງປະເທດໄທ, ສະຖານທີ່ຂອງພວກເຮົາບໍ່ແມ່ນພຽງແຕ່ຮ້ານກາເຟ — ມັນແມ່ນບ່ອນພັກຜ່ອນຕິດແມ່ນ້ໍາ ທີ່ຖືກອອກແບບມາສໍາລັບນັກທ່ອງທ່ຽວ, ຊາວທ້ອງຖິ່ນ, ແລະຜູ້ຮັກກາເຟ."
+
+msgid "Discover comfort, diverse cuisine, and freshly roasted coffee at Pilgrim's Kitchen & Inn, where the beauty of the Mekong meets warm hospitality."
+msgstr "ຄົ້ນພົບຄວາມສະດວກສະບາຍ, ອາຫານທີ່ຫຼາກຫຼາຍ, ແລະກາເຟທີ່ຄັ່ວສົດໃໝ່ ຢູ່ Pilgrim's Kitchen & Inn, ບ່ອນທີ່ຄວາມງາມຂອງແມ່ນ້ຳຂອງພົບກັບການຕ້ອນຮັບທີ່ອົບອຸ່ນ."
+
+msgid "month ago"
+msgstr "ເດືອນກ່ອນນີ້"
+
+msgid "months ago"
+msgstr "ເດືອນກ່ອນ"
+
+msgid "week ago"
+msgstr "ອາທິດກ່ອນນີ້"
+
+msgid "weeks ago"
+msgstr "ອາທິດກ່ອນ"
+
+msgid "day ago"
+msgstr "ມື້ກ່ອນ"
