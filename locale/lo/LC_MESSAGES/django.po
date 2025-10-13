@@ -871,15 +871,9 @@ msgstr "ເປີດ WhatsApp"
 msgid "Call Now"
 msgstr "ໂທຕອນນີ້"
 
-#: templates/contact.html:107
-#, fuzzy
-#| msgid "Email"
 msgid "Our Email"
 msgstr "ອີເມວຂອງພວກເຮົາ"
 
-#: templates/contact.html:117
-#, fuzzy
-#| msgid "Email"
 msgid "Send Email"
 msgstr "ສົ່ງອີເມວ"
 
