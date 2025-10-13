@@ -1204,9 +1204,6 @@ msgstr "ຜະລິດຕະພັນກາເຟ"
 msgid "Bean Varieties"
 msgstr "ແນວພັນຖົ່ວ"
 
-#: templates/index.html:744
-#, fuzzy
-#| msgid "Featured"
 msgid "Featured Coffee"
 msgstr "ກາເຟແນະນຳ"
 
