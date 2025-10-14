@@ -5,6 +5,7 @@
 {% block content %}
 <div class="container mx-auto px-4 py-8">
     <h1 class="text-3xl font-bold mb-8 text-center">Gallery Categories</h1>
+    {% if categories %}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {% for category in categories %}
             <a href="{% url 'gallery_image_list' category.slug %}" class="group block bg-white rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
@@ -17,5 +18,10 @@
             </a>
         {% endfor %}
     </div>
+    {% else %}
+    <div class="text-center py-16">
+        <p class="text-xl text-gray-500">There are no gallery categories yet.</p>
+    </div>
+    {% endif %}
 </div>
 {% endblock %}

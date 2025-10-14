@@ -5,6 +5,7 @@
 {% block content %}
 <div class="container mx-auto px-4 py-8" x-data="{ showModal: false, imageUrl: '', title: '', description: '' }">
     <h1 class="text-3xl font-bold mb-8">{{ category.name }}</h1>
+    {% if images %}
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {% for image in images %}
             <div class="relative bg-white rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 cursor-pointer" 
@@ -16,6 +17,11 @@
             </div>
         {% endfor %}
     </div>
+    {% else %}
+    <div class="text-center py-16">
+        <p class="text-xl text-gray-500">There are no images in this category yet.</p>
+    </div>
+    {% endif %}
 
     <!-- Modal -->
     <div x-show="showModal" 
