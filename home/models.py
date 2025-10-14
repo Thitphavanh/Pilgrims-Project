@@ -15,3 +15,38 @@ class HeroSlide(models.Model):
 
     def __str__(self):
         return f"Slide {self.order}: {self.caption or self.image.name}"
+
+
+class Gallery(models.Model):
+    """Gallery model for storing images with categories"""
+
+    CATEGORY_CHOICES = [
+        ('savannakhet', _('Savannakhet')),
+        ('hotel', _('Hotel')),
+        ('restaurant', _('Restaurant')),
+        ('food', _('Food')),
+        ('outside_sitting', _('Outside Sitting')),
+        ('coffee', _('Coffee')),
+    ]
+
+    title = models.CharField(_("Title"), max_length=255)
+    description = models.TextField(_("Description"), blank=True, null=True)
+    image = models.ImageField(_("Image"), upload_to='gallery/')
+    category = models.CharField(
+        _("Category"),
+        max_length=50,
+        choices=CATEGORY_CHOICES,
+        default='savannakhet'
+    )
+    order = models.IntegerField(_("Order"), default=0, help_text=_("Order in which the image appears"))
+    is_active = models.BooleanField(_("Is Active"), default=True)
+    created_at = models.DateTimeField(_("Created At"), auto_now_add=True)
+    updated_at = models.DateTimeField(_("Updated At"), auto_now=True)
+
+    class Meta:
+        verbose_name = _("Gallery Image")
+        verbose_name_plural = _("Gallery Images")
+        ordering = ['order', '-created_at']
+
+    def __str__(self):
+        return f"{self.title} - {self.get_category_display()}"

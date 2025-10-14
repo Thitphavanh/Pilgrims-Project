@@ -30,8 +30,6 @@
     <!-- Breadcrumb -->
     <nav class="mb-8">
         <ol class="flex items-center space-x-2 text-sm">
-            <li><a href="{% url 'home-page' %}" class="text-amber-600 hover:text-amber-700">{% trans "Home" %}</a></li>
-            <li class="">/</li>
             <li><a href="{% url 'coffee_list' %}" class="text-amber-600 hover:text-amber-700">{% trans "All Coffee" %}</a></li>
             <li class="">/</li>
             {% if coffee.categories.exists %}

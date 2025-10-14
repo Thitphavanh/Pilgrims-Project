@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     "home",
     "hotel",
     "restaurant",
+    "gallery",
     "tailwind",
     "crispy_forms",
 ]

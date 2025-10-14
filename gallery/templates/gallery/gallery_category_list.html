@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Gallery{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-8 text-center">Gallery Categories</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for category in categories %}
+            <a href="{% url 'gallery_image_list' category.slug %}" class="group block bg-white rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+                <div class="relative h-64 bg-cover bg-center" style="background-image: url('{% if category.image %}{{ category.image.url }}{% else %}https://picsum.photos/seed/{{ category.slug }}/400/300{% endif %}');">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-20 transition-all duration-300"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <h2 class="text-2xl font-bold text-white text-center px-4">{{ category.name }}</h2>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

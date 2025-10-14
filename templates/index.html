@@ -142,11 +142,17 @@
                 <!-- Menu tabs with enhanced design -->
                 <div class="flex overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-primary scrollbar-track-transparent gap-3">
                     <div class="flex flex-nowrap gap-3 mx-auto min-w-max">
-                        <button class="category-tab active bg-primary text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl whitespace-nowrap" data-target="breakfast">
+                        <button class="category-tab active bg-primary text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl whitespace-nowrap" data-target="coffee">
+                            <i class="fas fa-mug-hot mr-3 text-lg"></i>{% trans "Coffee" %}
+                        </button>
+                        <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap" data-target="drinks">
+                            <i class="fas fa-glass-martini-alt mr-3 text-lg"></i>{% trans "Drinks" %}
+                        </button>
+                        <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap" data-target="breakfast">
                             <i class="fas fa-coffee mr-3 text-lg"></i>{% trans "Breakfast" %}
                         </button>
-                        <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap" data-target="coffee">
-                            <i class="fas fa-mug-hot mr-3 text-lg"></i>{% trans "Coffee" %}
+                        <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap" data-target="pizza">
+                            <i class="fas fa-pizza-slice mr-3 text-lg"></i>{% trans "Pizza" %}
                         </button>
                         <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap" data-target="american">
                             <i class="fas fa-hamburger mr-3 text-lg"></i>{% trans "American" %}
@@ -157,9 +163,6 @@
                         <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap" data-target="mexican">
                             <i class="fas fa-pepper-hot mr-3 text-lg"></i>{% trans "Mexican" %}
                         </button>
-                        <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap" data-target="pizza">
-                            <i class="fas fa-pizza-slice mr-3 text-lg"></i>{% trans "Pizza" %}
-                        </button>
                         <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap" data-target="local_food">
                             <i class="fas fa-utensils mr-3 text-lg"></i>{% trans "Local Specialties" %}
                         </button>
@@ -169,20 +172,23 @@
                         <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap" data-target="dessert">
                             <i class="fas fa-ice-cream mr-3 text-lg"></i>{% trans "Desserts" %}
                         </button>
-                        <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap" data-target="drinks">
-                            <i class="fas fa-glass-martini-alt mr-3 text-lg"></i>{% trans "Drinks" %}
-                        </button>
                     </div>
                 </div>
             </div>
             
             <!-- Category descriptions -->
             <div class="text-center my-8 min-h-16">
-                <div id="breakfast-description" class="category-desc active">
+                <div id="coffee-description" class="category-desc active">
+                    <p class="italic text-lg">{% trans "Expertly crafted coffee drinks using premium beans from around the world." %}</p>
+                </div>
+                <div id="drinks-description" class="category-desc hidden">
+                    <p class="italic text-lg">{% trans "Refreshing beverages, specialty cocktails and carefully curated selections" %}</p>
+                </div>
+                <div id="breakfast-description" class="category-desc hidden">
                     <p class="italic text-lg">{% trans "Start your day with our delicious breakfast menu." %}</p>
                 </div>
-                <div id="coffee-description" class="category-desc hidden">
-                    <p class="italic text-lg">{% trans "Expertly crafted coffee drinks using premium beans from around the world." %}</p>
+                <div id="pizza-description" class="category-desc hidden">
+                    <p class="italic text-lg">{% trans "Handmade pizzas with premium toppings" %}</p>
                 </div>
                 <div id="american-description" class="category-desc hidden">
                     <p class="italic text-lg">{% trans "Classic American cuisine prepared with our chef's special touch" %}</p>
@@ -193,9 +199,6 @@
                 <div id="mexican-description" class="category-desc hidden">
                     <p class="italic text-lg">{% trans "Bold and flavorful Mexican cuisine using fresh ingredients and authentic recipes" %}</p>
                 </div>
-                <div id="pizza-description" class="category-desc hidden">
-                    <p class="italic text-lg">{% trans "Handmade pizzas with premium toppings" %}</p>
-                </div>
                 <div id="local_food-description" class="category-desc hidden">
                     <p class="italic text-lg">{% trans "Regional specialties showcasing unique local ingredients and traditions" %}</p>
                 </div>
@@ -205,64 +208,12 @@
                 <div id="dessert-description" class="category-desc hidden">
                     <p class="italic text-lg">{% trans "Sweet treats and delicate desserts made with high-quality ingredients" %}</p>
                 </div>
-                <div id="drinks-description" class="category-desc hidden">
-                    <p class="italic text-lg">{% trans "Refreshing beverages, specialty cocktails and carefully curated selections" %}</p>
-                </div>
             </div>
             
             <!-- Enhanced Menu Content with Modern Grid -->
-            
-            <!-- Breakfast Menu -->
-            <div id="breakfast-menu" class="menu-content active grid grid-cols-1 gap-6">
-                {% for item in breakfast_items %}
-                <a href="{% url 'menu-item-detail-page' item.slug %}" class="group">
-                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
-                    <div class="relative overflow-hidden rounded-2xl mb-6">
-                        {% if item.image %}
-                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover menu-image">
-                        {% else %}
-                        <div class="w-full h-full bg-gradient-to-br from-primary-light to-primary flex items-center justify-center">
-                            <i class="fas fa-utensils text-4xl text-white opacity-50"></i>
-                        </div>
-                        {% endif %}
-                        
-                        {% if item.is_featured %}
-                        <div class="absolute top-4 left-4">
-                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                <i class="fas fa-star mr-1"></i>{% trans "Featured" %}
-                            </span>
-                        </div>
-                        {% endif %}
-                    </div>
-                    <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">{{ item.name }}</h3>
-                        <p class=" description-text leading-relaxed">
-                            {{ item.description }}
-                        </p>
-                        <div class="flex items-center text-sm ">
-                            <i class="fas fa-utensils mr-2"></i>
-                            <span>{% trans "Breakfast Special" %}</span>
-                            {% if item.is_featured %}
-                            <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
-                            <span>{% trans "Chef's Choice" %}</span>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-                {% empty %}
-                <div class="col-span-full border-2 border-dashed border-primary rounded-3xl p-12 text-center">
-                    <div class="text-6xl mb-6"><i class="fas fa-coffee"></i></div>
-                    <h3 class="text-2xl font-semibold  mb-4">{% trans "ເມນູອາຫານເຊົ້າກຳລັງກະກຽມ" %}</h3>
-                    <p class=" max-w-md mx-auto text-lg">
-                        {% trans "ພວກເຮົາກຳລັງກະກຽມເມນູອາຫານເຊົ້າພິເສດ ຄອຍຕິດຕາມໃນໄວໆນີ້" %}
-                    </p>
-                </div>
-                {% endfor %}
-                </a>
-            </div>
-            
+
             <!-- Coffee Menu -->
-            <div id="coffee-menu" class="menu-content grid grid-cols-1 gap-6">
+            <div id="coffee-menu" class="menu-content active grid grid-cols-1 gap-6">
                 {% for item in coffee_items %}
                 <a href="{% url 'menu-item-detail-page' item.slug %}" class="group">
                 <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
@@ -274,7 +225,7 @@
                             <i class="fas fa-mug-hot text-4xl text-white opacity-50"></i>
                         </div>
                         {% endif %}
-                        
+
                         {% if item.is_featured %}
                         <div class="absolute top-4 left-4">
                             <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
@@ -309,7 +260,154 @@
                 {% endfor %}
                 </a>
             </div>
-            
+
+            <!-- Drinks Menu -->
+            <div id="drinks-menu" class="menu-content grid grid-cols-1 gap-6">
+                {% for item in drinks_items %}
+                <a href="{% url 'menu-item-detail-page' item.slug %}" class="group">
+                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
+                    <div class="relative overflow-hidden rounded-2xl mb-6">
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover menu-image">
+                        {% else %}
+                        <div class="w-full h-full bg-gradient-to-br from-blue-200 to-purple-300 flex items-center justify-center">
+                            <i class="fas fa-glass-martini-alt text-4xl text-white opacity-50"></i>
+                        </div>
+                        {% endif %}
+
+                        {% if item.is_featured %}
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                <i class="fas fa-star mr-1"></i>{% trans "Featured" %}
+                            </span>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="space-y-4">
+                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">{{ item.name }}</h3>
+                        <p class=" description-text leading-relaxed">
+                            {{ item.description %}
+                        </p>
+                        <div class="flex items-center text-sm ">
+                            <i class="fas fa-glass-martini-alt mr-2"></i>
+                            <span>{% trans "Refreshing Drink" %}</span>
+                            {% if item.is_featured %}
+                            <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
+                            <span>{% trans "Bartender's Choice" %}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-span-full border-2 border-dashed border-primary rounded-3xl p-12 text-center">
+                    <div class="text-6xl mb-6"><i class="fas fa-glass-martini-alt"></i></div>
+                    <h3 class="text-2xl font-semibold  mb-4">{% trans "ເມນູເຄື່ອງດື່ມກຳລັງກະກຽມ" %}</h3>
+                    <p class=" max-w-md mx-auto text-lg">
+                        {% trans "ເຄື່ອງດື່ມພິເສດກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ" %}
+                    </p>
+                </div>
+                {% endfor %}
+                </a>
+            </div>
+
+            <!-- Breakfast Menu -->
+            <div id="breakfast-menu" class="menu-content grid grid-cols-1 gap-6">
+                {% for item in breakfast_items %}
+                <a href="{% url 'menu-item-detail-page' item.slug %}" class="group">
+                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
+                    <div class="relative overflow-hidden rounded-2xl mb-6">
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover menu-image">
+                        {% else %}
+                        <div class="w-full h-full bg-gradient-to-br from-primary-light to-primary flex items-center justify-center">
+                            <i class="fas fa-coffee text-4xl text-white opacity-50"></i>
+                        </div>
+                        {% endif %}
+
+                        {% if item.is_featured %}
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                <i class="fas fa-star mr-1"></i>{% trans "Featured" %}
+                            </span>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="space-y-4">
+                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">{{ item.name }}</h3>
+                        <p class=" description-text leading-relaxed">
+                            {{ item.description }}
+                        </p>
+                        <div class="flex items-center text-sm ">
+                            <i class="fas fa-coffee mr-2"></i>
+                            <span>{% trans "Breakfast Special" %}</span>
+                            {% if item.is_featured %}
+                            <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
+                            <span>{% trans "Chef's Choice" %}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-span-full border-2 border-dashed border-primary rounded-3xl p-12 text-center">
+                    <div class="text-6xl mb-6"><i class="fas fa-coffee"></i></div>
+                    <h3 class="text-2xl font-semibold  mb-4">{% trans "ເມນູອາຫານເຊົ້າກຳລັງກະກຽມ" %}</h3>
+                    <p class=" max-w-md mx-auto text-lg">
+                        {% trans "ພວກເຮົາກຳລັງກະກຽມເມນູອາຫານເຊົ້າພິເສດ ຄອຍຕິດຕາມໃນໄວໆນີ້" %}
+                    </p>
+                </div>
+                {% endfor %}
+                </a>
+            </div>
+
+            <!-- Pizza Menu -->
+            <div id="pizza-menu" class="menu-content grid grid-cols-1 gap-6">
+                {% for item in pizza_items %}
+                <a href="{% url 'menu-item-detail-page' item.slug %}" class="group">
+                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
+                    <div class="relative overflow-hidden rounded-2xl mb-6">
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover menu-image">
+                        {% else %}
+                        <div class="w-full h-full bg-gradient-to-br from-yellow-200 to-red-300 flex items-center justify-center">
+                            <i class="fas fa-pizza-slice text-4xl text-white opacity-50"></i>
+                        </div>
+                        {% endif %}
+
+                        {% if item.is_featured %}
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                <i class="fas fa-star mr-1"></i>{% trans "Featured" %}
+                            </span>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="space-y-4">
+                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">{{ item.name }}</h3>
+                        <p class=" description-text leading-relaxed">
+                            {{ item.description }}
+                        </p>
+                        <div class="flex items-center text-sm ">
+                            <i class="fas fa-pizza-slice mr-2"></i>
+                            <span>{% trans "Handmade Pizza" %}</span>
+                            {% if item.is_featured %}
+                            <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
+                            <span>{% trans "Signature Pizza" %}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-span-full border-2 border-dashed border-primary rounded-3xl p-12 text-center">
+                    <div class="text-6xl mb-6"><i class="fas fa-pizza-slice"></i></div>
+                    <h3 class="text-2xl font-semibold  mb-4">{% trans "ເມນູພິຊຊ່າກຳລັງກະກຽມ" %}</h3>
+                    <p class=" max-w-md mx-auto text-lg">
+                        {% trans "ພິຊຊ່າສະເພາະກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ" %}
+                    </p>
+                </div>
+                {% endfor %}
+                </a>
+            </div>
+
             <!-- American Menu -->
             <div id="american-menu" class="menu-content grid grid-cols-1 gap-6">
                 {% for item in american_items %}
@@ -791,7 +889,8 @@
                         
                         <div class="space-y-1 text-sm ">
                             <p><i class="fas fa-seedling mr-2 text-green-600"></i>{{ coffee.coffee_bean.name }} ({{ coffee.coffee_bean.get_origin_display }})</p>
-                            <p><i class="fas fa-fire mr-2 text-orange-500"></i>{{ coffee.roast_level }}</p>
+                            <p><i class="fas fa-coffee mr-2 text-orange-500"></i>{{ coffee.roast_level }}</p>
+                            <p><i class="fas fa-fire mr-1 text-orange-500"></i>{{ coffee.get_grind_type_display }}</p>
                             <p><i class="fas fa-weight mr-2 text-blue-500"></i>{{ coffee.weight }}{{ coffee.weight_unit }}</p>
                         </div>
                     </div>

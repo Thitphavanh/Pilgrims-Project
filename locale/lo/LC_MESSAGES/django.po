@@ -17,15 +17,11 @@ msgstr ""
 msgid "Home"
 msgstr "ໜ້າຫຼັກ"
 
-#: coffee/templates/coffee/coffee-detail.html:33
-#, fuzzy
-#| msgid "View Full Menu"
+
 msgid "All Coffee"
 msgstr "ກາເຟທັງໝົດ"
 
-#: coffee/templates/coffee/coffee-detail.html:40
-#, fuzzy
-#| msgid "Local Specialties"
+
 msgid "Coffee Category"
 msgstr "ໝວດໝູ່ກາເຟ"
 
@@ -568,10 +564,6 @@ msgstr "ເລື່ອນເພື່ອເບິ່ງເພີ່ມເຕີ
 msgid "Breakfast"
 msgstr "ອາຫານເຊົ້າ"
 
-#: restaurant/templates/restaurant/menu.html:130 templates/base.html:119
-#: templates/base.html:190 templates/index.html:149
-msgid "Coffee"
-msgstr "ກາເຟ"
 
 #: restaurant/templates/restaurant/menu.html:144 templates/index.html:161
 msgid "Pizza"
@@ -825,11 +817,12 @@ msgstr "ເງື່ອນໄຂ"
 msgid "Sitemap"
 msgstr "ແຜນຜັງເວັບໄຊ"
 
-#: templates/components/hero-section.html:38
 msgid ""
 "“A Riverside Retreat for <span class=\"text-secondary-light dark:text-"
 "secondary-dark\">Every Traveler”</span>"
-msgstr "“ບ່ອນພັກຜ່ອນແຄມແມ່ນໍ້າຂອງສໍາລັບນັກເດີນທາງທຸກຄົນ”"
+msgstr ""
+"“ບ່ອນພັກຜ່ອນແຄມແມ່ນໍ້າຂອງ <span class=\"text-secondary-light dark:text-"
+"secondary-dark\">ສໍາລັບນັກເດີນທາງທຸກຄົນ”</span>"
 
 #: templates/components/hero-section.html:41
 #, fuzzy
@@ -1314,9 +1307,6 @@ msgstr ""
 msgid "Explore Our Menu"
 msgstr "ສຳຫຼວດເມນູຂອງພວກເຮົາ"
 
-#: templates/index.html:1101
-msgid "Restaurant"
-msgstr "ຮ້ານອາຫານ"
 
 msgid "Medium"
 msgstr "ຄົ່ວກາງ"
@@ -1387,3 +1377,27 @@ msgstr "ອາທິດກ່ອນ"
 
 msgid "day ago"
 msgstr "ມື້ກ່ອນ"
+
+msgid "Gallery Categories"
+msgstr "ໝວດໝູ່ຮູບພາບ"
+
+msgid "Gallery"
+msgstr "ຄັງຮູບພາບ"
+
+msgid "Savannakhet"
+msgstr "ສະຫວັນນະເຂດ"
+
+msgid "Hotel"
+msgstr "ໂຮງແຮມ"
+
+msgid "Restaurant"
+msgstr "ຮ້ານອາຫານ"
+
+msgid "Foods"
+msgstr "ອາຫານ"
+
+msgid "Outside Sitting"
+msgstr "ບ່ອນນັ່ງພາຍນອກ"
+
+msgid "Coffee"
+msgstr "ກາເຟ"

@@ -51,7 +51,10 @@
             <!-- WhatsApp Card -->
             <div class="bg-neutral-light dark:bg-primary-dark-dark rounded-2xl p-8 shadow-lg dark:dark-shadow-lg hover:shadow-xl dark:hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
                 <div class="text-center">
-<h3 class="text-xl sm:text-2xl font-playfair font-bold text-primary-light dark:text-secondary-light mb-4">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-green-500 dark:bg-green-600 rounded-full mb-6">
+                        <i class="fab fa-whatsapp text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-playfair font-bold text-primary-light dark:text-secondary-light mb-4">
                         {% trans "Contact Us" %}
                     </h3>
                     <div class="space-y-3 text-gray-700 dark:text-gray-300">
@@ -59,15 +62,12 @@
                             +856 20 22133733
                         </p>
                     </div>
-
-                    
-                    <!-- Alternative link for quick contact -->
-                    <div class="mt-4">
-                        <a href="https://wa.me/85620221333733" 
+                    <div class="mt-6">
+                        <a href="https://wa.me/85620221333733"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="inline-flex items-center text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-500 transition-colors duration-300 text-sm">
-                            <i class="fas fa-external-link-alt mr-2"></i>
+                        class="inline-flex items-center text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-500 transition-colors duration-300">
+                            <i class="fab fa-whatsapp mr-2"></i>
                             {% trans "Open WhatsApp" %}
                         </a>
                     </div>
