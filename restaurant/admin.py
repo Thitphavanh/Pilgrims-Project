@@ -1,8 +1,16 @@
 from django.contrib import admin
-from .models import MenuItem
+from .models import MenuItem, MenuCategory
 from django.utils.html import format_html
 
 
+@admin.register(MenuCategory)
+class MenuCategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'slug', 'icon', 'order')
+    prepopulated_fields = {'slug': ('name',)}
+    search_fields = ('name', 'description')
+    fieldsets = (
+        (None, {'fields': ('name', 'slug', 'description', 'icon', 'order')}),
+    )
 
 
 @admin.register(MenuItem)

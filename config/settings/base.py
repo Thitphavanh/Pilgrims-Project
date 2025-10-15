@@ -60,6 +60,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "django.template.context_processors.i18n",
                 "hotel.context_processors.review_summary",
+                'gallery.context_processors.gallery_categories',
             ],
         },
     },

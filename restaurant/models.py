@@ -3,24 +3,32 @@ from django.urls import reverse
 from django.utils.text import slugify
 
 
-class MenuItem(models.Model):
-    CATEGORY_CHOICES = [
-        ("breakfast", "Breakfast"),
-        ("coffee", "Coffee"),
-        ("dessert", "Dessert"),
-        ("american", "American"),
-        ("indian", "Indian"),
-        ("drinks", "Drinks"),
-        ("mexican", "Mexican"),
-        ("pizza", "Pizza"),
-        ("local_food", "Local Food"),
-        ("soup_salad_mediterranean", "Soup, Salad & Mediterranean"),
-    ]
+class MenuCategory(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    slug = models.SlugField(max_length=100, unique=True, blank=True)
+    description = models.TextField(blank=True)
+    icon = models.CharField(max_length=50, blank=True, help_text="Font Awesome icon class (e.g., fas fa-mug-hot)")
+    order = models.PositiveIntegerField(default=0, blank=False, null=False)
 
+    class Meta:
+        verbose_name = "Menu Category"
+        verbose_name_plural = "Menu Categories"
+        ordering = ['order', 'name']
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+
+
+class MenuItem(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     price = models.DecimalField(max_digits=8, decimal_places=2)
-    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, null=True, blank=True)
+    category = models.ForeignKey(MenuCategory, related_name='items', on_delete=models.SET_NULL, null=True, blank=True)
     is_featured = models.BooleanField(default=False)
     image = models.ImageField(upload_to="menu_items/", null=True, blank=True)
     slug = models.SlugField(unique=True, null=True, blank=True)
@@ -33,21 +41,6 @@ class MenuItem(models.Model):
     def get_absolute_url(self):
         """Get the canonical URL for this menu item"""
         return reverse("restaurant:menu_item_detail", kwargs={"slug": self.slug})
-
-    def get_category_display_lao(self):
-        """Get category display in Lao language"""
-        category_lao = {
-            "breakfast": "ອາຫານເຊົ້າ",
-            "coffee": "ກາເຟ",
-            "american": "ອາຫານອາເມຣິກາ",
-            "indian": "ອາຫານອິນເດຍ",
-            "drinks": "ເຄື່ອງດື່ມ",
-            "mexican": "ອາຫານແມັກຊິໂກ",
-            "pizza": "ພິຊຊ່າ",
-            "local_food": "ອາຫານພື້ນເມືອງ",
-            "soup_salad_mediterranean": "ແກງ & ສະຫຼັດ",
-        }
-        return category_lao.get(self.category, self.get_category_display())
 
     def save(self, *args, **kwargs):
         """Override save to ensure slug is created"""

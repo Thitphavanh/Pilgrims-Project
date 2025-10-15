@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import MenuItem
+from .models import MenuItem, MenuCategory
 from django.http import JsonResponse
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -16,51 +16,17 @@ def restaurant(request):
 
 def menu_item(request):
     """Restaurant menu view"""
-    breakfast_items = MenuItem.objects.filter(category="breakfast").order_by("-created_at")[:12]
-    coffee_items = MenuItem.objects.filter(category="coffee").order_by("-created_at")[:12]
-    american_items = MenuItem.objects.filter(category="american").order_by("-created_at")[:12]
-    indian_items = MenuItem.objects.filter(category="indian").order_by("-created_at")[:12]
-    drinks_items = MenuItem.objects.filter(category="drinks").order_by("-created_at")[:12]
-    mexican_items = MenuItem.objects.filter(category="mexican").order_by("-created_at")[:12]
-    pizza_items = MenuItem.objects.filter(category="pizza").order_by("-created_at")[:12]
-    local_food_items = MenuItem.objects.filter(category="local_food").order_by("-created_at")[:12]
-    soup_salad_mediterranean_items = MenuItem.objects.filter(
-        category="soup_salad_mediterranean"
-    ).order_by("-created_at")[:12]
-    dessert_items = MenuItem.objects.filter(category="dessert").order_by("-created_at")[:12]
-
-    for item in breakfast_items:
-        item.price_usd = item.price / 20000 # Assuming 1 USD = 20000 LAK
-    for item in coffee_items:
-        item.price_usd = item.price / 20000
-    for item in american_items:
-        item.price_usd = item.price / 20000
-    for item in indian_items:
-        item.price_usd = item.price / 20000
-    for item in drinks_items:
-        item.price_usd = item.price / 20000
-    for item in mexican_items:
-        item.price_usd = item.price / 20000
-    for item in pizza_items:
-        item.price_usd = item.price / 20000
-    for item in local_food_items:
-        item.price_usd = item.price / 20000
-    for item in soup_salad_mediterranean_items:
-        item.price_usd = item.price / 20000
-    for item in dessert_items:
-        item.price_usd = item.price / 20000
+    menu_categories = MenuCategory.objects.all().order_by('order', 'name')
+    menu_data = []
+    for category in menu_categories:
+        items = category.items.all().order_by("-created_at")[:12]  # Limit to 12 items per category
+        menu_data.append({
+            'category': category,
+            'items': items
+        })
 
     context = {
-        "breakfast_items": breakfast_items,
-        "coffee_items": coffee_items,
-        "american_items": american_items,
-        "indian_items": indian_items,
-        "drinks_items": drinks_items,
-        "mexican_items": mexican_items,
-        "pizza_items": pizza_items,
-        "local_food_items": local_food_items,
-        "soup_salad_mediterranean_items": soup_salad_mediterranean_items,
-        "dessert_items": dessert_items,
+        "menu_data": menu_data,
     }
     return render(request, "restaurant/menu.html", context)
 
@@ -85,10 +51,7 @@ def menu_item_detail(request, slug):
     ]  # Limit to 3 featured items
 
     # Get category display name
-    category_display = dict(MenuItem.CATEGORY_CHOICES).get(
-        menu_item.category, menu_item.category
-    )
-
+    category_display = menu_item.category.name
     context = {
         "menu_item": menu_item,
         "related_items": related_items,
@@ -106,12 +69,12 @@ def menu_by_category(request, category):
     Display all menu items in a specific category
     """
     # Validate category exists in choices
-    valid_categories = [choice[0] for choice in MenuItem.CATEGORY_CHOICES]
+    valid_categories = [category.slug for category in MenuCategory.objects.all()]
     if category not in valid_categories:
         return render(request, "restaurant/404.html", status=404)
 
     # Get category display name
-    category_display = dict(MenuItem.CATEGORY_CHOICES).get(category, category)
+    category_display = get_object_or_404(MenuCategory, slug=category).name
 
     # Get all items in this category
     menu_items = MenuItem.objects.filter(category=category).order_by(
@@ -132,7 +95,7 @@ def menu_by_category(request, category):
         "menu_items": page_obj,
         "featured_items": featured_items,
         "total_items": menu_items.count(),
-        "categories": MenuItem.CATEGORY_CHOICES,
+        "categories": MenuCategory.objects.all(),
         "meta_title": f"{category_display} Menu",
         "meta_description": f"Explore our delicious {category_display.lower()} menu items.",
     }
@@ -170,7 +133,7 @@ def menu_search(request):
         "menu_items": page_obj,
         "query": query,
         "category_filter": category_filter,
-        "categories": MenuItem.CATEGORY_CHOICES,
+        "categories": MenuCategory.objects.all(),
         "total_results": menu_items.count(),
         "meta_title": f"Search Results for '{query}'" if query else "Menu Search",
     }
@@ -189,9 +152,7 @@ def featured_menu_items(request):
     # Group by category for better display
     items_by_category = {}
     for item in featured_items:
-        category_display = dict(MenuItem.CATEGORY_CHOICES).get(
-            item.category, item.category
-        )
+        category_display = item.category.name
         if category_display not in items_by_category:
             items_by_category[category_display] = []
         items_by_category[category_display].append(item)
@@ -220,7 +181,7 @@ def get_menu_item_ajax(request, slug):
                 "name": menu_item.name,
                 "description": menu_item.description,
                 "price": str(menu_item.price),
-                "category": menu_item.get_category_display(),
+                "category": menu_item.category.name,
                 "is_featured": menu_item.is_featured,
                 "image_url": menu_item.image.url if menu_item.image else None,
             }
@@ -286,9 +247,7 @@ class MenuItemDetailView(DetailView):
         )[:3]
 
         # Add category display name
-        context["category_display"] = dict(MenuItem.CATEGORY_CHOICES).get(
-            menu_item.category, menu_item.category
-        )
+        context["category_display"] = menu_item.category.name
 
         # SEO meta tags
         context["meta_title"] = f"{menu_item.name} - Our Menu"
@@ -318,9 +277,7 @@ class MenuByCategoryView(ListView):
         category = self.kwargs["category"]
 
         context["category"] = category
-        context["category_display"] = dict(MenuItem.CATEGORY_CHOICES).get(
-            category, category
-        )
+        context["category_display"] = get_object_or_404(MenuCategory, slug=category).name
         context["total_items"] = self.get_queryset().count()
 
         return context

@@ -142,87 +142,38 @@
                 <!-- Menu tabs with enhanced design -->
                 <div class="flex overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-primary scrollbar-track-transparent gap-3">
                     <div class="flex flex-nowrap gap-3 mx-auto min-w-max">
-                        <button class="category-tab active bg-primary text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl whitespace-nowrap" data-target="coffee">
-                            <i class="fas fa-mug-hot mr-3 text-lg"></i>{% trans "Coffee" %}
+                        {% for category_data_item in menu_data %}
+                        <button class="category-tab {% if forloop.first %}active bg-primary text-white{% else %}bg-white border border-gray-200 text-gray-700{% endif %} px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl whitespace-nowrap" data-target="{{ category_data_item.category.slug }}">
+                            <i class="{{ category_data_item.category.icon }} mr-3 text-lg"></i>{% trans category_data_item.category.name %}
                         </button>
-                        <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap" data-target="drinks">
-                            <i class="fas fa-glass-martini-alt mr-3 text-lg"></i>{% trans "Drinks" %}
-                        </button>
-                        <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap" data-target="breakfast">
-                            <i class="fas fa-coffee mr-3 text-lg"></i>{% trans "Breakfast" %}
-                        </button>
-                        <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap" data-target="pizza">
-                            <i class="fas fa-pizza-slice mr-3 text-lg"></i>{% trans "Pizza" %}
-                        </button>
-                        <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap" data-target="american">
-                            <i class="fas fa-hamburger mr-3 text-lg"></i>{% trans "American" %}
-                        </button>
-                        <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap" data-target="indian">
-                            <i class="fas fa-pepper-hot mr-3 text-lg"></i>{% trans "Indian" %}
-                        </button>
-                        <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap" data-target="mexican">
-                            <i class="fas fa-pepper-hot mr-3 text-lg"></i>{% trans "Mexican" %}
-                        </button>
-                        <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap" data-target="local_food">
-                            <i class="fas fa-utensils mr-3 text-lg"></i>{% trans "Local Specialties" %}
-                        </button>
-                        <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap" data-target="soup_salad_mediterranean">
-                            <i class="fas fa-leaf mr-3 text-lg"></i>{% trans "Soup & Salad" %}
-                        </button>
-                        <button class="category-tab px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap" data-target="dessert">
-                            <i class="fas fa-ice-cream mr-3 text-lg"></i>{% trans "Desserts" %}
-                        </button>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
             
             <!-- Category descriptions -->
             <div class="text-center my-8 min-h-16">
-                <div id="coffee-description" class="category-desc active">
-                    <p class="italic text-lg">{% trans "Expertly crafted coffee drinks using premium beans from around the world." %}</p>
+                {% for category_data_item in menu_data %}
+                <div id="{{ category_data_item.category.slug }}-description" class="category-desc {% if forloop.first %}active{% else %}hidden{% endif %}">
+                    <p class="italic text-lg">{% trans category_data_item.category.description %}</p>
                 </div>
-                <div id="drinks-description" class="category-desc hidden">
-                    <p class="italic text-lg">{% trans "Refreshing beverages, specialty cocktails and carefully curated selections" %}</p>
-                </div>
-                <div id="breakfast-description" class="category-desc hidden">
-                    <p class="italic text-lg">{% trans "Start your day with our delicious breakfast menu." %}</p>
-                </div>
-                <div id="pizza-description" class="category-desc hidden">
-                    <p class="italic text-lg">{% trans "Handmade pizzas with premium toppings" %}</p>
-                </div>
-                <div id="american-description" class="category-desc hidden">
-                    <p class="italic text-lg">{% trans "Classic American cuisine prepared with our chef's special touch" %}</p>
-                </div>
-                <div id="indian-description" class="category-desc hidden">
-                    <p class="italic text-lg">{% trans "Traditional Indian dishes filled with aromatic spices and authentic cooking methods" %}</p>
-                </div>
-                <div id="mexican-description" class="category-desc hidden">
-                    <p class="italic text-lg">{% trans "Bold and flavorful Mexican cuisine using fresh ingredients and authentic recipes" %}</p>
-                </div>
-                <div id="local_food-description" class="category-desc hidden">
-                    <p class="italic text-lg">{% trans "Regional specialties showcasing unique local ingredients and traditions" %}</p>
-                </div>
-                <div id="soup_salad_mediterranean-description" class="category-desc hidden">
-                    <p class="italic text-lg">{% trans "Fresh salads and Mediterranean favorites packed with healthy goodness" %}</p>
-                </div>
-                <div id="dessert-description" class="category-desc hidden">
-                    <p class="italic text-lg">{% trans "Sweet treats and delicate desserts made with high-quality ingredients" %}</p>
-                </div>
+                {% endfor %}
             </div>
             
             <!-- Enhanced Menu Content with Modern Grid -->
 
-            <!-- Coffee Menu -->
-            <div id="coffee-menu" class="menu-content active grid grid-cols-1 gap-6">
-                {% for item in coffee_items %}
+            <!-- Dynamic Menu Content with Modern Grid -->
+            {% for category_data_item in menu_data %}
+            <div id="{{ category_data_item.category.slug }}-menu" class="menu-content {% if forloop.first %}active{% endif %} grid grid-cols-1 gap-6">
+                {% for item in category_data_item.items %}
                 <a href="{% url 'menu-item-detail-page' item.slug %}" class="group">
                 <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
                     <div class="relative overflow-hidden rounded-2xl mb-6">
                         {% if item.image %}
                         <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover menu-image">
                         {% else %}
-                        <div class="w-full h-full bg-gradient-to-br from-amber-200 to-amber-400 flex items-center justify-center">
-                            <i class="fas fa-mug-hot text-4xl text-white opacity-50"></i>
+                        <div class="w-full h-full bg-gradient-to-br from-gray-200 to-gray-400 flex items-center justify-center">
+                            <i class="fas fa-utensils text-4xl text-white opacity-50"></i>
                         </div>
                         {% endif %}
 
@@ -240,204 +191,12 @@
                             {{ item.description }}
                         </p>
                         <div class="flex items-center text-sm ">
-                            <i class="fas fa-mug-hot mr-2"></i>
-                            <span>{% trans "Coffee Specialty" %}</span>
-                            {% if item.is_featured %}
-                            <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
-                            <span>{% trans "Barista's Choice" %}</span>
+                            {% if category_data_item.category.icon %}
+                            <i class="{{ category_data_item.category.icon }} mr-2"></i>
+                            {% else %}
+                            <i class="fas fa-utensils mr-2"></i>
                             {% endif %}
-                        </div>
-                    </div>
-                </div>
-                {% empty %}
-                <div class="col-span-full border-2 border-dashed border-primary rounded-3xl p-12 text-center">
-                    <div class="text-6xl mb-6"><i class="fas fa-mug-hot"></i></div>
-                    <h3 class="text-2xl font-semibold  mb-4">{% trans "ເມນູກາເຟກຳລັງກະກຽມ" %}</h3>
-                    <p class=" max-w-md mx-auto text-lg">
-                        {% trans "ເຮົາກຳລັງກະກຽມເມນູກາເຟພິເສດ ຄອຍຕິດຕາມໃນໄວໆນີ້" %}
-                    </p>
-                </div>
-                {% endfor %}
-                </a>
-            </div>
-
-            <!-- Drinks Menu -->
-            <div id="drinks-menu" class="menu-content grid grid-cols-1 gap-6">
-                {% for item in drinks_items %}
-                <a href="{% url 'menu-item-detail-page' item.slug %}" class="group">
-                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
-                    <div class="relative overflow-hidden rounded-2xl mb-6">
-                        {% if item.image %}
-                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover menu-image">
-                        {% else %}
-                        <div class="w-full h-full bg-gradient-to-br from-blue-200 to-purple-300 flex items-center justify-center">
-                            <i class="fas fa-glass-martini-alt text-4xl text-white opacity-50"></i>
-                        </div>
-                        {% endif %}
-
-                        {% if item.is_featured %}
-                        <div class="absolute top-4 left-4">
-                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                <i class="fas fa-star mr-1"></i>{% trans "Featured" %}
-                            </span>
-                        </div>
-                        {% endif %}
-                    </div>
-                    <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">{{ item.name }}</h3>
-                        <p class=" description-text leading-relaxed">
-                            {{ item.description %}
-                        </p>
-                        <div class="flex items-center text-sm ">
-                            <i class="fas fa-glass-martini-alt mr-2"></i>
-                            <span>{% trans "Refreshing Drink" %}</span>
-                            {% if item.is_featured %}
-                            <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
-                            <span>{% trans "Bartender's Choice" %}</span>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-                {% empty %}
-                <div class="col-span-full border-2 border-dashed border-primary rounded-3xl p-12 text-center">
-                    <div class="text-6xl mb-6"><i class="fas fa-glass-martini-alt"></i></div>
-                    <h3 class="text-2xl font-semibold  mb-4">{% trans "ເມນູເຄື່ອງດື່ມກຳລັງກະກຽມ" %}</h3>
-                    <p class=" max-w-md mx-auto text-lg">
-                        {% trans "ເຄື່ອງດື່ມພິເສດກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ" %}
-                    </p>
-                </div>
-                {% endfor %}
-                </a>
-            </div>
-
-            <!-- Breakfast Menu -->
-            <div id="breakfast-menu" class="menu-content grid grid-cols-1 gap-6">
-                {% for item in breakfast_items %}
-                <a href="{% url 'menu-item-detail-page' item.slug %}" class="group">
-                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
-                    <div class="relative overflow-hidden rounded-2xl mb-6">
-                        {% if item.image %}
-                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover menu-image">
-                        {% else %}
-                        <div class="w-full h-full bg-gradient-to-br from-primary-light to-primary flex items-center justify-center">
-                            <i class="fas fa-coffee text-4xl text-white opacity-50"></i>
-                        </div>
-                        {% endif %}
-
-                        {% if item.is_featured %}
-                        <div class="absolute top-4 left-4">
-                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                <i class="fas fa-star mr-1"></i>{% trans "Featured" %}
-                            </span>
-                        </div>
-                        {% endif %}
-                    </div>
-                    <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">{{ item.name }}</h3>
-                        <p class=" description-text leading-relaxed">
-                            {{ item.description }}
-                        </p>
-                        <div class="flex items-center text-sm ">
-                            <i class="fas fa-coffee mr-2"></i>
-                            <span>{% trans "Breakfast Special" %}</span>
-                            {% if item.is_featured %}
-                            <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
-                            <span>{% trans "Chef's Choice" %}</span>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-                {% empty %}
-                <div class="col-span-full border-2 border-dashed border-primary rounded-3xl p-12 text-center">
-                    <div class="text-6xl mb-6"><i class="fas fa-coffee"></i></div>
-                    <h3 class="text-2xl font-semibold  mb-4">{% trans "ເມນູອາຫານເຊົ້າກຳລັງກະກຽມ" %}</h3>
-                    <p class=" max-w-md mx-auto text-lg">
-                        {% trans "ພວກເຮົາກຳລັງກະກຽມເມນູອາຫານເຊົ້າພິເສດ ຄອຍຕິດຕາມໃນໄວໆນີ້" %}
-                    </p>
-                </div>
-                {% endfor %}
-                </a>
-            </div>
-
-            <!-- Pizza Menu -->
-            <div id="pizza-menu" class="menu-content grid grid-cols-1 gap-6">
-                {% for item in pizza_items %}
-                <a href="{% url 'menu-item-detail-page' item.slug %}" class="group">
-                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
-                    <div class="relative overflow-hidden rounded-2xl mb-6">
-                        {% if item.image %}
-                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover menu-image">
-                        {% else %}
-                        <div class="w-full h-full bg-gradient-to-br from-yellow-200 to-red-300 flex items-center justify-center">
-                            <i class="fas fa-pizza-slice text-4xl text-white opacity-50"></i>
-                        </div>
-                        {% endif %}
-
-                        {% if item.is_featured %}
-                        <div class="absolute top-4 left-4">
-                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                <i class="fas fa-star mr-1"></i>{% trans "Featured" %}
-                            </span>
-                        </div>
-                        {% endif %}
-                    </div>
-                    <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">{{ item.name }}</h3>
-                        <p class=" description-text leading-relaxed">
-                            {{ item.description }}
-                        </p>
-                        <div class="flex items-center text-sm ">
-                            <i class="fas fa-pizza-slice mr-2"></i>
-                            <span>{% trans "Handmade Pizza" %}</span>
-                            {% if item.is_featured %}
-                            <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
-                            <span>{% trans "Signature Pizza" %}</span>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-                {% empty %}
-                <div class="col-span-full border-2 border-dashed border-primary rounded-3xl p-12 text-center">
-                    <div class="text-6xl mb-6"><i class="fas fa-pizza-slice"></i></div>
-                    <h3 class="text-2xl font-semibold  mb-4">{% trans "ເມນູພິຊຊ່າກຳລັງກະກຽມ" %}</h3>
-                    <p class=" max-w-md mx-auto text-lg">
-                        {% trans "ພິຊຊ່າສະເພາະກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ" %}
-                    </p>
-                </div>
-                {% endfor %}
-                </a>
-            </div>
-
-            <!-- American Menu -->
-            <div id="american-menu" class="menu-content grid grid-cols-1 gap-6">
-                {% for item in american_items %}
-                <a href="{% url 'menu-item-detail-page' item.slug %}" class="group">
-                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
-                    <div class="relative overflow-hidden rounded-2xl mb-6">
-                        {% if item.image %}
-                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover menu-image">
-                        {% else %}
-                        <div class="w-full h-full bg-gradient-to-br from-red-200 to-blue-300 flex items-center justify-center">
-                            <i class="fas fa-hamburger text-4xl text-white opacity-50"></i>
-                        </div>
-                        {% endif %}
-                        
-                        {% if item.is_featured %}
-                        <div class="absolute top-4 left-4">
-                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                <i class="fas fa-star mr-1"></i>{% trans "Featured" %}
-                            </span>
-                        </div>
-                        {% endif %}
-                    </div>
-                    <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">{{ item.name }}</h3>
-                        <p class=" description-text leading-relaxed">
-                            {{ item.description }}
-                        </p>
-                        <div class="flex items-center text-sm ">
-                            <i class="fas fa-hamburger mr-2"></i>
-                            <span>{% trans "American Classic" %}</span>
+                            <span>{% trans category_data_item.category.name %}</span>
                             {% if item.is_featured %}
                             <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
                             <span>{% trans "Chef's Special" %}</span>
@@ -447,358 +206,22 @@
                 </div>
                 {% empty %}
                 <div class="col-span-full border-2 border-dashed border-primary rounded-3xl p-12 text-center">
-                    <div class="text-6xl mb-6"><i class="fas fa-hamburger"></i></div>
-                    <h3 class="text-2xl font-semibold  mb-4">{% trans "ເມນູອາຫານອາເມຣິກາກຳລັງກະກຽມ" %}</h3>
-                    <p class=" max-w-md mx-auto text-lg">
-                        {% trans "ອາຫານອາເມຣິກາຄລາສສິກກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ" %}
-                    </p>
-                </div>
-                {% endfor %}
-                </a>
-            </div>
-            
-            <!-- Indian Menu -->
-            <div id="indian-menu" class="menu-content grid grid-cols-1 gap-6">
-                {% for item in indian_items %}
-                <a href="{% url 'menu-item-detail-page' item.slug %}" class="group">
-                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
-                    <div class="relative overflow-hidden rounded-2xl mb-6">
-                        {% if item.image %}
-                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover menu-image">
+                    <div class="text-6xl mb-6">
+                        {% if category_data_item.category.icon %}
+                        <i class="{{ category_data_item.category.icon }}"></i>
                         {% else %}
-                        <div class="w-full h-full bg-gradient-to-br from-orange-200 to-red-300 flex items-center justify-center">
-                            <i class="fas fa-pepper-hot text-4xl text-white opacity-50"></i>
-                        </div>
-                        {% endif %}
-                        
-                        {% if item.is_featured %}
-                        <div class="absolute top-4 left-4">
-                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                <i class="fas fa-star mr-1"></i>{% trans "Featured" %}
-                            </span>
-                        </div>
+                        <i class="fas fa-utensils"></i>
                         {% endif %}
                     </div>
-                    <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">{{ item.name }}</h3>
-                        <p class=" description-text leading-relaxed">
-                            {{ item.description }}
-                        </p>
-                        <div class="flex items-center text-sm ">
-                            <i class="fas fa-pepper-hot mr-2"></i>
-                            <span>{% trans "Indian Cuisine" %}</span>
-                            {% if item.is_featured %}
-                            <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
-                            <span>{% trans "Authentic Recipe" %}</span>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-                {% empty %}
-                <div class="col-span-full border-2 border-dashed border-primary rounded-3xl p-12 text-center">
-                    <div class="text-6xl mb-6"><i class="fas fa-pepper-hot"></i></div>
-                    <h3 class="text-2xl font-semibold  mb-4">{% trans "ເມນູອາຫານອິນເດຍກຳລັງກະກຽມ" %}</h3>
+                    <h3 class="text-2xl font-semibold  mb-4">{% trans "No items yet for this category." %}</h3>
                     <p class=" max-w-md mx-auto text-lg">
-                        {% trans "ອາຫານອິນເດຍແບບດັ້ງເດີມກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ" %}
+                        {% trans "We are preparing new items for this category. Please check back soon!" %}
                     </p>
                 </div>
                 {% endfor %}
                 </a>
             </div>
-            
-            <!-- Mexican Menu -->
-            <div id="mexican-menu" class="menu-content grid grid-cols-1 gap-6">
-                {% for item in mexican_items %}
-                <a href="{% url 'menu-item-detail-page' item.slug %}" class="group">
-                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
-                    <div class="relative overflow-hidden rounded-2xl mb-6">
-                        {% if item.image %}
-                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover menu-image">
-                        {% else %}
-                        <div class="w-full h-full bg-gradient-to-br from-green-200 to-red-300 flex items-center justify-center">
-                            <i class="fas fa-pepper-hot text-4xl text-white opacity-50"></i>
-                        </div>
-                        {% endif %}
-                        
-                        {% if item.is_featured %}
-                        <div class="absolute top-4 left-4">
-                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                <i class="fas fa-star mr-1"></i>{% trans "Featured" %}
-                            </span>
-                        </div>
-                        {% endif %}
-                    </div>
-                    <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">{{ item.name }}</h3>
-                        <p class=" description-text leading-relaxed">
-                            {{ item.description }}
-                        </p>
-                        <div class="flex items-center text-sm ">
-                            <i class="fas fa-pepper-hot mr-2"></i>
-                            <span>{% trans "Mexican Fiesta" %}</span>
-                            {% if item.is_featured %}
-                            <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
-                            <span>{% trans "Traditional Recipe" %}</span>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-                {% empty %}
-                <div class="col-span-full border-2 border-dashed border-primary rounded-3xl p-12 text-center">
-                    <div class="text-6xl mb-6"><i class="fas fa-pepper-hot"></i></div>
-                    <h3 class="text-2xl font-semibold  mb-4">{% trans "ເມນູອາຫານແມັກຊິໂກກຳລັງກະກຽມ" %}</h3>
-                    <p class=" max-w-md mx-auto text-lg">
-                        {% trans "ອາຫານແມັກຊິໂກກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ" %}
-                    </p>
-                </div>
-                {% endfor %}
-                </a>
-            </div>
-            
-            <!-- Pizza Menu -->
-            <div id="pizza-menu" class="menu-content grid grid-cols-1 gap-6">
-                {% for item in pizza_items %}
-                <a href="{% url 'menu-item-detail-page' item.slug %}" class="group">
-                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
-                    <div class="relative overflow-hidden rounded-2xl mb-6">
-                        {% if item.image %}
-                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover menu-image">
-                        {% else %}
-                        <div class="w-full h-full bg-gradient-to-br from-yellow-200 to-red-300 flex items-center justify-center">
-                            <i class="fas fa-pizza-slice text-4xl text-white opacity-50"></i>
-                        </div>
-                        {% endif %}
-                        
-                        {% if item.is_featured %}
-                        <div class="absolute top-4 left-4">
-                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                <i class="fas fa-star mr-1"></i>{% trans "Featured" %}
-                            </span>
-                        </div>
-                        {% endif %}
-                    </div>
-                    <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">{{ item.name }}</h3>
-                        <p class=" description-text leading-relaxed">
-                            {{ item.description }}
-                        </p>
-                        <div class="flex items-center text-sm ">
-                            <i class="fas fa-pizza-slice mr-2"></i>
-                            <span>{% trans "Handmade Pizza" %}</span>
-                            {% if item.is_featured %}
-                            <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
-                            <span>{% trans "Signature Pizza" %}</span>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-                {% empty %}
-                <div class="col-span-full border-2 border-dashed border-primary rounded-3xl p-12 text-center">
-                    <div class="text-6xl mb-6"><i class="fas fa-pizza-slice"></i></div>
-                    <h3 class="text-2xl font-semibold  mb-4">{% trans "ເມນູພິຊຊ່າກຳລັງກະກຽມ" %}</h3>
-                    <p class=" max-w-md mx-auto text-lg">
-                        {% trans "ພິຊຊ່າສະເພາະກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ" %}
-                    </p>
-                </div>
-                {% endfor %}
-                </a>
-            </div>
-            
-            <!-- Local Food Menu -->
-            <div id="local_food-menu" class="menu-content grid grid-cols-1 gap-6">
-                {% for item in local_food_items %}
-                <a href="{% url 'menu-item-detail-page' item.slug %}" class="group">
-                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
-                    <div class="relative overflow-hidden rounded-2xl mb-6">
-                        {% if item.image %}
-                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover menu-image">
-                        {% else %}
-                        <div class="w-full h-full bg-gradient-to-br from-green-200 to-yellow-300 flex items-center justify-center">
-                            <i class="fas fa-utensils text-4xl text-white opacity-50"></i>
-                        </div>
-                        {% endif %}
-                        
-                        {% if item.is_featured %}
-                        <div class="absolute top-4 left-4">
-                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                <i class="fas fa-star mr-1"></i>{% trans "Featured" %}
-                            </span>
-                        </div>
-                        {% endif %}
-                    </div>
-                    <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">{{ item.name }}</h3>
-                        <p class=" description-text leading-relaxed">
-                            {{ item.description }}
-                        </p>
-                        <div class="flex items-center text-sm ">
-                            <i class="fas fa-utensils mr-2"></i>
-                            <span>{% trans "Local Specialty" %}</span>
-                            {% if item.is_featured %}
-                            <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
-                            <span>{% trans "Traditional" %}</span>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-                {% empty %}
-                <div class="col-span-full border-2 border-dashed border-primary rounded-3xl p-12 text-center">
-                    <div class="text-6xl mb-6"><i class="fas fa-utensils"></i></div>
-                    <h3 class="text-2xl font-semibold  mb-4">{% trans "ເມນູອາຫານພື້ນເມືອງກຳລັງກະກຽມ" %}</h3>
-                    <p class=" max-w-md mx-auto text-lg">
-                        {% trans "ອາຫານພື້ນເມືອງກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ" %}
-                    </p>
-                </div>
-                {% endfor %}
-                </a>
-            </div>
-            
-            <!-- Soup & Salad Mediterranean Menu -->
-            <div id="soup_salad_mediterranean-menu" class="menu-content grid grid-cols-1 gap-6">
-                {% for item in soup_salad_mediterranean_items %}
-                <a href="{% url 'menu-item-detail-page' item.slug %}" class="group">
-                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
-                    <div class="relative overflow-hidden rounded-2xl mb-6">
-                        {% if item.image %}
-                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover menu-image">
-                        {% else %}
-                        <div class="w-full h-full bg-gradient-to-br from-green-200 to-blue-300 flex items-center justify-center">
-                            <i class="fas fa-leaf text-4xl text-white opacity-50"></i>
-                        </div>
-                        {% endif %}
-                        
-                        {% if item.is_featured %}
-                        <div class="absolute top-4 left-4">
-                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                <i class="fas fa-star mr-1"></i>{% trans "Featured" %}
-                            </span>
-                        </div>
-                        {% endif %}
-                    </div>
-                    <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">{{ item.name }}</h3>
-                        <p class=" description-text leading-relaxed">
-                            {{ item.description }}
-                        </p>
-                        <div class="flex items-center text-sm ">
-                            <i class="fas fa-leaf mr-2"></i>
-                            <span>{% trans "Healthy Choice" %}</span>
-                            {% if item.is_featured %}
-                            <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
-                            <span>{% trans "Fresh & Nutritious" %}</span>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-                {% empty %}
-                <div class="col-span-full border-2 border-dashed border-primary rounded-3xl p-12 text-center">
-                    <div class="text-6xl mb-6"><i class="fas fa-leaf"></i></div>
-                    <h3 class="text-2xl font-semibold  mb-4">{% trans "ເມນູສະຫຼັດແລະແກງກຳລັງກະກຽມ" %}</h3>
-                    <p class=" max-w-md mx-auto text-lg">
-                        {% trans "ສະຫຼັດແລະແກງກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ" %}
-                    </p>
-                </div>
-                {% endfor %}
-                </a>
-            </div>
-
-            <!-- Desserts Menu -->
-            <div id="dessert-menu" class="menu-content grid grid-cols-1 gap-6">
-                {% for item in dessert_items %}
-                <a href="{% url 'menu-item-detail-page' item.slug %}" class="group">
-                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
-                    <div class="relative overflow-hidden rounded-2xl mb-6">
-                        {% if item.image %}
-                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover menu-image">
-                        {% else %}
-                        <div class="w-full h-full bg-gradient-to-br from-pink-200 to-purple-300 flex items-center justify-center">
-                            <i class="fas fa-ice-cream text-4xl text-white opacity-50"></i>
-                        </div>
-                        {% endif %}
-                        
-                        {% if item.is_featured %}
-                        <div class="absolute top-4 left-4">
-                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                <i class="fas fa-star mr-1"></i>{% trans "Featured" %}
-                            </span>
-                        </div>
-                        {% endif %}
-                    </div>
-                    <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">{{ item.name }}</h3>
-                        <p class=" description-text leading-relaxed">
-                            {{ item.description }}
-                        </p>
-                        <div class="flex items-center text-sm ">
-                            <i class="fas fa-ice-cream mr-2"></i>
-                            <span>{% trans "Sweet Treat" %}</span>
-                            {% if item.is_featured %}
-                            <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
-                            <span>{% trans "Signature Dessert" %}</span>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-                {% empty %}
-                <div class="col-span-full border-2 border-dashed border-primary rounded-3xl p-12 text-center">
-                    <div class="text-6xl mb-6"><i class="fas fa-ice-cream"></i></div>
-                    <h3 class="text-2xl font-semibold  mb-4">{% trans "ເມນູຂອງຫວານກຳລັງກະກຽມ" %}</h3>
-                    <p class=" max-w-md mx-auto text-lg">
-                        {% trans "ຂອງຫວານແລະເຄຼັດລັບຫວານໆກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ" %}
-                    </p>
-                </div>
-                {% endfor %}
-                </a>
-            </div>
-
-            <!-- Drinks Menu -->
-            <div id="drinks-menu" class="menu-content grid grid-cols-1 gap-6">
-                {% for item in drinks_items %}
-                <a href="{% url 'menu-item-detail-page' item.slug %}" class="group">
-                <div class="menu-card border border-primary/10 hover:border-primary/30 rounded-3xl p-6 group hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
-                    <div class="relative overflow-hidden rounded-2xl mb-6">
-                        {% if item.image %}
-                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover menu-image">
-                        {% else %}
-                        <div class="w-full h-full bg-gradient-to-br from-blue-200 to-purple-300 flex items-center justify-center">
-                            <i class="fas fa-glass-martini-alt text-4xl text-white opacity-50"></i>
-                        </div>
-                        {% endif %}
-                        
-                        {% if item.is_featured %}
-                        <div class="absolute top-4 left-4">
-                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                <i class="fas fa-star mr-1"></i>{% trans "Featured" %}
-                            </span>
-                        </div>
-                        {% endif %}
-                    </div>
-                    <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-bold group-hover:text-primary transition-colors">{{ item.name }}</h3>
-                        <p class=" description-text leading-relaxed">
-                            {{ item.description }}
-                        </p>
-                        <div class="flex items-center text-sm ">
-                            <i class="fas fa-glass-martini-alt mr-2"></i>
-                            <span>{% trans "Refreshing Drink" %}</span>
-                            {% if item.is_featured %}
-                            <i class="fas fa-star ml-4 mr-2 text-yellow-500"></i>
-                            <span>{% trans "Bartender's Choice" %}</span>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-                {% empty %}
-                <div class="col-span-full border-2 border-dashed border-primary rounded-3xl p-12 text-center">
-                    <div class="text-6xl mb-6"><i class="fas fa-glass-martini-alt"></i></div>
-                    <h3 class="text-2xl font-semibold  mb-4">{% trans "ເມນູເຄື່ອງດື່ມກຳລັງກະກຽມ" %}</h3>
-                    <p class=" max-w-md mx-auto text-lg">
-                        {% trans "ເຄື່ອງດື່ມພິເສດກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ" %}
-                    </p>
-                </div>
-                {% endfor %}
-                </a>
-            </div>
+            {% endfor %}
             
         </div>
     </div>
@@ -812,30 +235,7 @@
 </section>
 
 
-
-<!-- Stats Section -->
-<!-- <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div class="p-6">
-                <div class="text-4xl font-bold text-amber-600 mb-2">{{ stats.total_products }}</div>
-                <div class="">{% trans "Coffee Products" %}</div>
-            </div>
-            <div class="p-6">
-                <div class="text-4xl font-bold text-amber-600 mb-2">{{ stats.total_beans }}</div>
-                <div class="">{% trans "Bean Varieties" %}</div>
-            </div>
-            <div class="p-6">
-                <div class="text-4xl font-bold text-amber-600 mb-2">{{ stats.total_categories }}</div>
-                <div class="">{% trans "Categories" %}</div>
-            </div>
-        </div>
-    </div>
-</section> -->
-
-
-
-<!-- Featured Coffees -->
+<!-- Featured Coffee Section -->
 <section class="py-16 bg-primary bg-opacity-10">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
@@ -1232,12 +632,12 @@
                 categoryTabs.forEach(t => {
                     t.classList.remove('active');
                     t.classList.remove('bg-gradient-to-br', 'from-primary', 'to-primary-dark', 'text-white');
-                    t.classList.add('bg-white', 'bg-gray-700', 'border', 'border-gray-200','text-white');
+                    t.classList.add('bg-white', 'text-gray-700', 'border', 'border-gray-200');
                 });
                 
                 // Add active state to clicked tab
                 this.classList.add('active');
-                this.classList.remove('bg-white', 'bg-gray-700', 'border', 'border-gray-200,','text-white');
+                this.classList.remove('bg-white', 'text-gray-700', 'border', 'border-gray-200');
                 this.classList.add('bg-gradient-to-br', 'from-primary', 'to-primary-dark', 'text-white');
                 
                 // Hide all menu content and descriptions
@@ -1319,6 +719,6 @@
             }, 2000);
         }
     });
-    </script>
+</script>
     
 {% endblock %}

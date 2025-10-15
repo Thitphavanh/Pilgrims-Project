@@ -119,18 +119,15 @@
                         <li><a href="{% url 'coffee_list' %}" class="text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">{% trans "Coffee" %}</a></li>
                         <li><a href="{% url 'review-page' %}" class="text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">{% trans "Review" %}</a></li>
                         <li><a href="{% url 'contact-page' %}" class="text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">{% trans "Contact" %}</a></li>
-                        <li class="relative" x-data="{ open: false }">
-                            <a @click="open = !open" @click.away="open = false" href="#" class="text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">
+                        <li class="relative">
+                            <a id="gallery-link-desktop" href="#" class="text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light transition duration-300 border-b-2 border-transparent hover:border-secondary-light">
                                 {% trans "Gallery" %}
                                 <i class="fas fa-chevron-down text-xs ml-1"></i>
                             </a>
-                            <div x-show="open" class="absolute left-0 mt-2 w-48 bg-white dark:bg-primary-dark-dark rounded-lg shadow-lg dark:dark-shadow-lg border border-gray-200 dark:border-gray-600 z-50">
-                                <a href="{% url 'gallery_image_list' 'savannakhet' %}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-primary-dark"> {% trans "Savannakhet" %}</a>
-                                <a href="{% url 'gallery_image_list' 'hotel' %}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-primary-dark"> {% trans "Hotel" %}</a>
-                                <a href="{% url 'gallery_image_list' 'restaurant' %}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-primary-dark"> {% trans "Restaurant" %}</a>
-                                <a href="{% url 'gallery_image_list' 'food' %}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-primary-dark"> {% trans "Foods" %}</a>
-                                <a href="{% url 'gallery_image_list' 'outside-sitting' %}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-primary-dark"> {% trans "Outside Sitting" %}</a>
-                                <a href="{% url 'gallery_image_list' 'coffee' %}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-primary-dark"> {% trans "Coffee" %}</a>
+                            <div id="gallery-dropdown-desktop" class="hidden absolute left-0 mt-2 w-48 bg-white dark:bg-primary-dark-dark rounded-lg shadow-lg dark:dark-shadow-lg border border-gray-200 dark:border-gray-600 z-50">
+                                {% for category in gallery_categories %}
+                                <a href="{% url 'gallery_image_list' category.slug %}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-primary-dark"> {{ category.name }}</a>
+                                {% endfor %}
                             </div>
                         </li>
                     </ul>
@@ -204,18 +201,15 @@
                         <li><a href="{% url 'coffee_list' %}" class="block py-3 px-4 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light hover:bg-gray-50 dark:hover:bg-primary-dark rounded transition duration-300">{% trans "Coffee" %}</a></li>
                         <li><a href="{% url 'review-page' %}" class="block py-3 px-4 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light hover:bg-gray-50 dark:hover:bg-primary-dark rounded transition duration-300">{% trans "Review" %}</a></li>
                         <li><a href="{% url 'contact-page' %}" class="block py-3 px-4 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light hover:bg-gray-50 dark:hover:bg-primary-dark rounded transition duration-300">{% trans "Contact" %}</a></li>
-                        <li x-data="{ open: false }">
-                            <a @click="open = !open" href="#" class="block py-3 px-4 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light hover:bg-gray-50 dark:hover:bg-primary-dark rounded transition duration-300">
+                        <li>
+                            <a id="gallery-link-mobile" href="#" class="block py-3 px-4 text-primary-light dark:text-neutral-content-dark hover:text-secondary-light dark:hover:text-secondary-light hover:bg-gray-50 dark:hover:bg-primary-dark rounded transition duration-300">
                                 {% trans "Gallery" %}
                                 <i class="fas fa-chevron-down text-xs ml-1"></i>
                             </a>
-                            <div x-show="open" class="pl-4">
-                                <a href="{% url 'gallery_image_list' 'savannakhet' %}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-primary-dark"> {% trans "Savannakhet" %}</a>
-                                <a href="{% url 'gallery_image_list' 'hotel' %}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-primary-dark"> {% trans "Hotel" %}</a>
-                                <a href="{% url 'gallery_image_list' 'restaurant' %}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-primary-dark"> {% trans "Restaurant" %}</a>
-                                <a href="{% url 'gallery_image_list' 'food' %}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-primary-dark"> {% trans "Foods" %}</a>
-                                <a href="{% url 'gallery_image_list' 'outside-sitting' %}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-primary-dark"> {% trans "Outside Sitting" %}</a>
-                                <a href="{% url 'gallery_image_list' 'coffee' %}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-primary-dark"> {% trans "Coffee" %}</a>
+                            <div id="gallery-dropdown-mobile" class="hidden pl-4">
+                                {% for category in gallery_categories %}
+                                <a href="{% url 'gallery_image_list' category.slug %}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-primary-dark"> {{ category.name }}</a>
+                                {% endfor %}
                             </div>
                         </li>
                     </ul>
@@ -455,7 +449,10 @@
             // Close mobile menu when clicking a nav link
             const navLinks = document.querySelectorAll('#nav-content a');
             navLinks.forEach(link => {
-                link.addEventListener('click', () => {
+                link.addEventListener('click', (e) => {
+                    if (link.id === 'gallery-link-mobile') {
+                        return;
+                    }
                     if (navContent) {
                         navContent.classList.add('hidden');
                         navContent.classList.remove('block');
@@ -667,6 +664,37 @@
             }
         });
         </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Desktop Gallery Dropdown
+            const galleryLinkDesktop = document.getElementById('gallery-link-desktop');
+            const galleryDropdownDesktop = document.getElementById('gallery-dropdown-desktop');
+
+            if (galleryLinkDesktop && galleryDropdownDesktop) {
+                galleryLinkDesktop.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    galleryDropdownDesktop.classList.toggle('hidden');
+                });
+
+                document.addEventListener('click', function(e) {
+                    if (!galleryLinkDesktop.contains(e.target) && !galleryDropdownDesktop.contains(e.target)) {
+                        galleryDropdownDesktop.classList.add('hidden');
+                    }
+                });
+            }
+
+            // Mobile Gallery Dropdown
+            const galleryLinkMobile = document.getElementById('gallery-link-mobile');
+            const galleryDropdownMobile = document.getElementById('gallery-dropdown-mobile');
+
+            if (galleryLinkMobile && galleryDropdownMobile) {
+                galleryLinkMobile.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    galleryDropdownMobile.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
     {% block extra_js %}{% endblock %}
 </body>
 </html>
