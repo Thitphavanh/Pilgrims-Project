@@ -11,10 +11,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='menuitem',
-            name='category_temp',
-        ),
+
         migrations.AlterField(
             model_name='menuitem',
             name='category',
