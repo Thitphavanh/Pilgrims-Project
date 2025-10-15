@@ -33,18 +33,9 @@ def populate_categories_and_copy_data(apps, schema_editor):
             }
         )
 
-    # Copy data from MenuItem.category to MenuItem.category_temp
-    for item in MenuItem.objects.all():
-        item.category_temp = item.category
-        item.save()
-
 def reverse_populate_categories_and_copy_data(apps, schema_editor):
     MenuCategory = apps.get_model('restaurant', 'MenuCategory')
     MenuCategory.objects.all().delete()
-    MenuItem = apps.get_model('restaurant', 'MenuItem')
-    for item in MenuItem.objects.all():
-        item.category_temp = None
-        item.save()
 
 
 class Migration(migrations.Migration):
