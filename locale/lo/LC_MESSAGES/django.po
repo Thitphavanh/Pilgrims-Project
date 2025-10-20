@@ -1401,3 +1401,9 @@ msgstr "ບ່ອນນັ່ງພາຍນອກ"
 
 msgid "Coffee"
 msgstr "ກາເຟ"
+
+msgid "Total Visitors"
+msgstr "ຈຳນວນຜູ້ເຂົ້າຊົມທັງໝົດ"
+
+msgid "There are no images in this category yet."
+msgstr "ຍັງບໍ່ມີໝວດໝູ່ແກລເລີຣີ."

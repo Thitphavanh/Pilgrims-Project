@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ category.name }} Gallery{% endblock %}
+{% load i18n %}
+
+{% block title %}{{ category.name }} {% trans "Gallery" %}{% endblock %}
 
 {% block content %}
 <div class="container mx-auto px-4 py-8" x-data="{ showModal: false, imageUrl: '', title: '', description: '' }">
@@ -19,7 +21,7 @@
     </div>
     {% else %}
     <div class="text-center py-16">
-        <p class="text-xl text-gray-500">There are no images in this category yet.</p>
+        <p class="text-xl text-gray-500"> {% trans "There are no images in this category yet." %}</p>
     </div>
     {% endif %}
 
