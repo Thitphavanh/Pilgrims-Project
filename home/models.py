@@ -50,3 +50,31 @@ class Gallery(models.Model):
 
     def __str__(self):
         return f"{self.title} - {self.get_category_display()}"
+
+
+class VisitorCount(models.Model):
+    """Model to track website visitor count"""
+
+    count = models.PositiveIntegerField(_("Visitor Count"), default=0)
+    last_updated = models.DateTimeField(_("Last Updated"), auto_now=True)
+
+    class Meta:
+        verbose_name = _("Visitor Count")
+        verbose_name_plural = _("Visitor Counts")
+
+    def __str__(self):
+        return f"Total Visitors: {self.count}"
+
+    @classmethod
+    def increment(cls):
+        """Increment visitor count"""
+        obj, created = cls.objects.get_or_create(id=1)
+        obj.count += 1
+        obj.save()
+        return obj.count
+
+    @classmethod
+    def get_count(cls):
+        """Get current visitor count"""
+        obj, created = cls.objects.get_or_create(id=1)
+        return obj.count

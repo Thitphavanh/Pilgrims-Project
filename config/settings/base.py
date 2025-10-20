@@ -43,6 +43,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "home.middleware.VisitorCounterMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -61,6 +62,7 @@ TEMPLATES = [
                 "django.template.context_processors.i18n",
                 "hotel.context_processors.review_summary",
                 'gallery.context_processors.gallery_categories',
+                'home.context_processors.visitor_count',
             ],
         },
     },

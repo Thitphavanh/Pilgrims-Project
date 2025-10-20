@@ -353,6 +353,11 @@
                     <a href="#" class="text-gray-400 hover:text-secondary-light dark:hover:text-secondary-dark transition duration-300">{% trans "Terms" %}</a>
                     <a href="#" class="text-gray-400 hover:text-secondary-light dark:hover:text-secondary-dark transition duration-300">{% trans "Sitemap" %}</a>
                 </div>
+                <!-- Visitor Counter -->
+                <div class="mt-4 flex items-center justify-center text-gray-400">
+                    <i class="fas fa-users mr-2 text-secondary-light dark:text-secondary-dark"></i>
+                    <span>{% trans "Total Visitors" %}: <strong class="text-secondary-light dark:text-secondary-dark">{{ visitor_count|default:"0" }}</strong></span>
+                </div>
             </div>
         </div>
     </footer>
