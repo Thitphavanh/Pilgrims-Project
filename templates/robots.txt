@@ -1,0 +1,45 @@
+User-agent: *
+Allow: /
+Allow: /en/
+Allow: /hotel/
+Allow: /en/hotel/
+Allow: /menu/
+Allow: /en/menu/
+Allow: /coffee/
+Allow: /en/coffee/
+Allow: /gallery/
+Allow: /en/gallery/
+
+Disallow: /admin/
+Disallow: /i18n/
+Disallow: /static/admin/
+
+# Sitemap location
+Sitemap: https://{{ request.get_host }}/sitemap.xml
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
+# Allow Google Image Bot
+User-agent: Googlebot-Image
+Allow: /media/
+Allow: /static/images/
+
+# Allow other major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /

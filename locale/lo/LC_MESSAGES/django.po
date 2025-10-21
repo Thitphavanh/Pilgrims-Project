@@ -226,9 +226,6 @@ msgstr "ຍັງບໍ່ມີຣີວິວສຳລັບສິນຄ້າ
 msgid "Be the first to review!"
 msgstr "ເປັນຄົນທຳອິດທີ່ໃຫ້ຣີວິວ!"
 
-#: coffee/templates/coffee/coffee-detail.html:497
-#, fuzzy
-#| msgid "Featured"
 msgid "Similar Coffees"
 msgstr "ກາເຟທີ່ຄ້າຍຄືກັນ"
 
@@ -729,9 +726,6 @@ msgstr ""
 msgid "Book a Room"
 msgstr "ຈອງຫ້ອງພັກ"
 
-#: templates/about.html:81
-#, fuzzy
-#| msgid "View Full Menu"
 msgid "View Menu"
 msgstr "ເບິ່ງເມນູ"
 

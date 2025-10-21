@@ -79,13 +79,13 @@
             <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">
                 {% trans "Read our reviews" %}
             </h2>
-            <p class="text-lg max-w-3xl mx-auto">
+            <p class="text-lg max-w-9xl mx-auto">
                 {% trans "See what our guests have to say on the world's most popular travel and accommodation booking platforms. Click on each platform to read detailed reviews and ratings." %}
             </p>
         </div>
         
         <!-- First Row: 4 Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 max-w-6xl mx-auto mb-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 max-w-9xl mx-auto mb-8">
             <!-- Agoda Card -->
             <div class="review-card glass-effect rounded-2xl p-8 text-center cursor-pointer"
                  onclick="openReviewPlatform('agoda')">
@@ -163,7 +163,7 @@
         </div>
 
         <!-- Second Row: 3 Centered Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
 
             <!-- Airbnb Card -->
             <div class="review-card glass-effect rounded-2xl p-8 text-center cursor-pointer"
@@ -233,7 +233,7 @@
             </p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-9xl mx-auto">
             {% for review in recent_reviews %}
             <!-- Recent Review {{ forloop.counter }} -->
             <div class="bg-white p-6 rounded-lg shadow-md border-l-4" 

@@ -1,0 +1,330 @@
+{% load static %}
+<!-- Schema.org Structured Data for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Hotel",
+      "@id": "https://{{ request.get_host }}/#hotel",
+      "name": "{% if LANGUAGE_CODE == 'lo' %}ໂຮງແຮມ Pilgrims Kitchen & Inn ສະຫວັນນະເຂດ{% else %}Pilgrims Kitchen & Inn Savannakhet{% endif %}",
+      "alternateName": ["Pilgrims Inn", "Pilgrims Hotel Savannakhet", "ໂຮງແຮມ Pilgrims ສະຫວັນນະເຂດ", "ທີ່ພັກ Pilgrims Kitchen Inn", "Hotel near Mekong River Savannakhet", "Boutique Hotel French Quarter Savannakhet"],
+      "description": "{% if LANGUAGE_CODE == 'lo' %}ໂຮງແຮມແລະຮ້ານອາຫານຢູ່ແມ່ນ້ຳໂຂງ ມີທີ່ພັກທີ່ສະດວກສະບາຍ ຮ້ານອາຫານຫຼາກຫຼາຍລົດຊາດ ແລະຄາເຟ່ສົດຮ້ອນ ຢູ່ສະຫວັນນະເຂດ ລາວ ໃກ້ກັບຕະຫຼາດກາງຄືນ ສະຖານກົງສຸນໄທ ແລະວັດໄຊຍະພູມ{% else %}Best hotel in Savannakhet Laos - A riverside retreat offering comfortable accommodation, diverse cuisine, and freshly roasted coffee at the Mekong River. Walking distance to night market, Thai consulate, and major attractions{% endif %}",
+      "url": "https://{{ request.get_host }}",
+      "telephone": "+856-20-22133733",
+      "email": "pilgrimscontact@gmail.com",
+      "priceRange": "$$",
+      "currenciesAccepted": "LAK,USD,THB",
+      "paymentAccepted": "Cash, Credit Card",
+      "checkInTime": "14:00:00",
+      "checkOutTime": "12:00:00",
+      "starRating": {
+        "@type": "Rating",
+        "ratingValue": "9.6",
+        "bestRating": "10",
+        "worstRating": "1"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Khanthabouly Road, House No. 168, Ban Chomkeo, French Quarter",
+        "addressLocality": "Kaisone Phomvihane District, Old Town",
+        "addressRegion": "Savannakhet Province",
+        "postalCode": "",
+        "addressCountry": "LA"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Savannakhet",
+        "alternateName": ["ສະຫວັນນະເຂດ", "Savan", "Savannakhét"]
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "16.556239",
+        "longitude": "104.756638"
+      },
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": "Near Attractions",
+          "value": "That Ing Hang Stupa, Dinosaur Museum, Night Market, Wat Sainyaphum, Thai Consulate, Second Thai-Lao Friendship Bridge"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Location Type",
+          "value": "Riverside, French Quarter, Old Town, Mekong River"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Suitable For",
+          "value": "Families, Backpackers, Business travelers, Couples, Visa runners"
+        }
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "opens": "07:30",
+          "closes": "21:00"
+        }
+      ],
+      "image": [
+        "https://{{ request.get_host }}{% static 'images/pilgrims.jpg' %}",
+        "https://{{ request.get_host }}{% static 'images/logo.jpeg' %}"
+      ],
+      "amenityFeature": [
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Free WiFi",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Restaurant",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Coffee Shop",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "River View",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Air Conditioning",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Parking",
+          "value": true
+        }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "9.6",
+        "reviewCount": "{{ total_reviews|default:250 }}",
+        "bestRating": "10",
+        "worstRating": "1"
+      },
+      "potentialAction": {
+        "@type": "ReserveAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://{{ request.get_host }}{% url 'rooms-list-page' %}",
+          "actionPlatform": [
+            "http://schema.org/DesktopWebPlatform",
+            "http://schema.org/MobileWebPlatform"
+          ]
+        }
+      }
+    },
+    {
+      "@type": "Restaurant",
+      "@id": "https://{{ request.get_host }}/#restaurant",
+      "name": "{% if LANGUAGE_CODE == 'lo' %}ຮ້ານອາຫານ Pilgrims Kitchen ສະຫວັນນະເຂດ{% else %}Pilgrims Kitchen{% endif %}",
+      "alternateName": ["Pilgrims Kitchen & Inn Restaurant", "ຮ້ານອາຫານ Pilgrims ສະຫວັນນະເຂດ"],
+      "description": "{% if LANGUAGE_CODE == 'lo' %}ຮ້ານອາຫານຫຼາກຫຼາຍປະເພດ ມີອາຫານອາເມລິກາ ອິນເດຍ ເມັກຊິກັນ ພິດຊາ ອາຫານລາວ ແລະອາຫານເມດິເຕີເລເນຍນ ຢູ່ສະຫວັນນະເຂດ{% else %}Multi-cuisine restaurant serving American, Indian, Mexican, Pizza, Local Lao food, and Mediterranean dishes in Savannakhet{% endif %}",
+      "url": "https://{{ request.get_host }}{% url 'menu-page' %}",
+      "telephone": "+856-20-22133733",
+      "email": "pilgrimscontact@gmail.com",
+      "priceRange": "$$",
+      "currenciesAccepted": "LAK,USD,THB",
+      "servesCuisine": [
+        "American",
+        "Indian",
+        "Mexican",
+        "Italian",
+        "Local Lao",
+        "Mediterranean",
+        "Asian"
+      ],
+      "menu": "https://{{ request.get_host }}{% url 'menu-page' %}",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Khanthabouly Road, House No. 168, Ban Chomkeo",
+        "addressLocality": "Kaisone Phomvihane District",
+        "addressRegion": "Savannakhet",
+        "addressCountry": "LA"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "16.556239",
+        "longitude": "104.756638"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "opens": "07:30",
+          "closes": "21:00"
+        }
+      ],
+      "image": "https://{{ request.get_host }}{% static 'images/pilgrims.jpg' %}",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "9.6",
+        "reviewCount": "{{ total_reviews|default:250 }}",
+        "bestRating": "10",
+        "worstRating": "1"
+      },
+      "paymentAccepted": "Cash, Credit Card"
+    },
+    {
+      "@type": "CafeOrCoffeeShop",
+      "@id": "https://{{ request.get_host }}/#coffeeshop",
+      "name": "{% if LANGUAGE_CODE == 'lo' %}ຮ້ານກາເຟ Pilgrims ສະຫວັນນະເຂດ{% else %}Pilgrims Coffee Shop{% endif %}",
+      "alternateName": ["Pilgrims Kitchen & Inn Coffee", "ຄາເຟ່ Pilgrims", "ຮ້ານກາເຟ Pilgrims Kitchen"],
+      "description": "{% if LANGUAGE_CODE == 'lo' %}ຮ້ານກາເຟພິເສດ ເຮັດກາເຟສົດຮ້ອນ ຢູ່ແມ່ນ້ຳໂຂງ ສະຫວັນນະເຂດ ລາວ{% else %}Specialty coffee shop serving freshly roasted coffee by the Mekong River in Savannakhet, Laos{% endif %}",
+      "url": "https://{{ request.get_host }}{% url 'coffee_list' %}",
+      "telephone": "+856-20-22133733",
+      "email": "pilgrimscontact@gmail.com",
+      "priceRange": "$",
+      "servesCuisine": "Coffee & Beverages",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Khanthabouly Road, House No. 168, Ban Chomkeo",
+        "addressLocality": "Kaisone Phomvihane District",
+        "addressRegion": "Savannakhet",
+        "addressCountry": "LA"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "16.556239",
+        "longitude": "104.756638"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "opens": "07:30",
+          "closes": "21:00"
+        }
+      ],
+      "image": "https://{{ request.get_host }}{% static 'images/pilgrims.jpg' %}"
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://{{ request.get_host }}/#localbusiness",
+      "name": "Pilgrims Kitchen & Inn",
+      "image": "https://{{ request.get_host }}{% static 'images/logo.jpeg' %}",
+      "description": "Pilgrims Kitchen & Inn - A Riverside Retreat for Every Traveler. Hotel, Restaurant & Coffee Shop in Savannakhet, Laos.",
+      "url": "https://{{ request.get_host }}",
+      "telephone": "+856-20-22133733",
+      "email": "pilgrimscontact@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Khanthabouly Road, House No. 168, Ban Chomkeo",
+        "addressLocality": "Kaisone Phomvihane District",
+        "addressRegion": "Savannakhet",
+        "postalCode": "",
+        "addressCountry": "LA"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "16.556239",
+        "longitude": "104.756638"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "opens": "07:30",
+          "closes": "21:00"
+        }
+      ],
+      "sameAs": [
+        "https://www.facebook.com/pilgrimskitchenandinn/",
+        "https://www.instagram.com/pilgrimskitchenandinn/"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://{{ request.get_host }}/#website",
+      "url": "https://{{ request.get_host }}",
+      "name": "Pilgrims Kitchen & Inn",
+      "description": "Official website of Pilgrims Kitchen & Inn - Hotel, Restaurant & Coffee Shop in Savannakhet, Laos",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Pilgrims Kitchen & Inn",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://{{ request.get_host }}{% static 'images/logo.jpeg' %}"
+        }
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://{{ request.get_host }}/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "inLanguage": ["lo", "en"]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://{{ request.get_host }}/#organization",
+      "name": "Pilgrims Kitchen & Inn",
+      "url": "https://{{ request.get_host }}",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://{{ request.get_host }}{% static 'images/logo.jpeg' %}",
+        "width": 600,
+        "height": 600
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+856-20-22133733",
+        "contactType": "Customer Service",
+        "email": "pilgrimscontact@gmail.com",
+        "availableLanguage": ["English", "Lao", "Thai"]
+      },
+      "sameAs": [
+        "https://www.facebook.com/pilgrimskitchenandinn/",
+        "https://www.instagram.com/pilgrimskitchenandinn/"
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://{{ request.get_host }}/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://{{ request.get_host }}"
+        }{% block breadcrumb_items %}{% endblock %}
+      ]
+    }
+  ]
+}
+</script>

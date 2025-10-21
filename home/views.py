@@ -55,3 +55,15 @@ def about(request):
 
 def contact(request):
     return render(request, "contact.html")
+
+
+def privacy(request):
+    return render(request, "privacy.html")
+
+
+def terms(request):
+    return render(request, "terms.html")
+
+
+def sitemap_page(request):
+    return render(request, "sitemap_page.html")

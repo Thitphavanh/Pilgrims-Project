@@ -1,0 +1,343 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+{% if LANGUAGE_CODE == 'lo' %}ເງື່ອນໄຂການໃຊ້ບໍລິການ - Pilgrims Kitchen & Inn{% else %}Terms & Conditions - Pilgrims Kitchen & Inn{% endif %}
+{% endblock %}
+
+{% block meta_description %}
+{% if LANGUAGE_CODE == 'lo' %}ເງື່ອນໄຂການໃຊ້ບໍລິການຂອງ Pilgrims Kitchen & Inn - ກົດລະບຽບການຈອງ ການຍົກເລີກ ແລະນະໂຍບາຍຕ່າງໆ{% else %}Terms & Conditions for Pilgrims Kitchen & Inn - Booking rules, cancellation policy, and service guidelines{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
+    <div class="container mx-auto px-4 max-w-9xl">
+        <!-- Header -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mb-8">
+            <h1 class="text-4xl font-bold mb-4">
+                {% if LANGUAGE_CODE == 'lo' %}
+                    ເງື່ອນໄຂການໃຊ້ບໍລິການ
+                {% else %}
+                    Terms & Conditions
+                {% endif %}
+            </h1>
+            <p class="text-gray-600 dark:text-gray-400">
+                {% if LANGUAGE_CODE == 'lo' %}
+                    ອັບເດດລ່າສຸດ: 21 ຕຸລາ 2025
+                {% else %}
+                    Last Updated: October 21, 2025
+                {% endif %}
+            </p>
+        </div>
+
+        <!-- Content -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 prose prose-lg dark:prose-invert max-w-none">
+            {% if LANGUAGE_CODE == 'lo' %}
+                <!-- Lao Content -->
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">1. ການຍອມຮັບເງື່ອນໄຂ</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        ດ້ວຍການເຂົ້າເຖິງ ຫຼື ນຳໃຊ້ເວັບໄຊທ໌ຂອງ Pilgrims Kitchen & Inn, ທ່ານຕົກລົງທີ່ຈະຜູກພັນກັບເງື່ອນໄຂການໃຊ້ບໍລິການເຫຼົ່ານີ້. ຖ້າທ່ານບໍ່ເຫັນດີກັບເງື່ອນໄຂໃດໆ, ກະລຸນາຢ່ານຳໃຊ້ບໍລິການຂອງພວກເຮົາ.
+                    </p>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">2. ນະໂຍບາຍການຈອງ</h2>
+
+                    <h3 class="text-xl font-semibold mb-3">2.1 ການຈອງຫ້ອງພັກ</h3>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li>ເວລາເຊັກອິນ: 14:00 ໂມງ</li>
+                        <li>ເວລາເຊັກເອົາ: 12:00 ໂມງ</li>
+                        <li>ຕ້ອງມີບັດປະຈຳຕົວທີ່ຖືກຕ້ອງເມື່ອເຊັກອິນ</li>
+                        <li>ຕ້ອງຊຳລະເງິນຄ່າມັດຈຳ 30% ເມື່ອຈອງ</li>
+                        <li>ຊຳລະຍອດເງິນທີ່ເຫຼືອເມື່ອເຊັກອິນ ຫຼື ເຊັກເອົາ</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold mb-3">2.2 ການຈອງຮ້ານອາຫານ</h3>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li>ແນະນຳໃຫ້ຈອງລ່ວງໜ້າສຳລັບກຸ່ມ 6 ຄົນຂຶ້ນໄປ</li>
+                        <li>ກະລຸນາແຈ້ງການແພ້ອາຫານລ່ວງໜ້າ</li>
+                        <li>ເວລາເປີດ: ຈັນ-ເສົາ 07:30-21:00 (ວັນອາທິດປິດ)</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">3. ນະໂຍບາຍການຍົກເລີກ</h2>
+
+                    <h3 class="text-xl font-semibold mb-3">3.1 ຍົກເລີກຫ້ອງພັກ</h3>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li><strong>ຍົກເລີກ 7 ວັນລ່ວງໜ້າ:</strong> ຄືນເງິນມັດຈຳ 100%</li>
+                        <li><strong>ຍົກເລີກ 3-6 ວັນລ່ວງໜ້າ:</strong> ຄືນເງິນມັດຈຳ 50%</li>
+                        <li><strong>ຍົກເລີກນ້ອຍກວ່າ 3 ວັນ:</strong> ບໍ່ຄືນເງິນມັດຈຳ</li>
+                        <li><strong>No-show:</strong> ເກັບຄ່າຫ້ອງຄືນທຳອິດເຕັມຈຳນວນ</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold mb-3">3.2 ຍົກເລີກຮ້ານອາຫານ</h3>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li>ກະລຸນາແຈ້ງຍົກເລີກຢ່າງໜ້ອຍ 2 ຊົ່ວໂມງລ່ວງໜ້າ</li>
+                        <li>ສຳລັບກຸ່ມໃຫຍ່ (10+ ຄົນ): ແຈ້ງລ່ວງໜ້າ 24 ຊົ່ວໂມງ</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">4. ການຊຳລະເງິນ</h2>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li>ຮັບຊຳລະເງິນສົດ (LAK, USD, THB)</li>
+                        <li>ຮັບບັດເຄຣດິດ (Visa, Mastercard)</li>
+                        <li>ໂອນເງິນຜ່ານທະນາຄານ (ສຳລັບການຈອງລ່ວງໜ້າ)</li>
+                        <li>ລາຄາທີ່ລະບຸເປັນກີບລາວ (LAK)</li>
+                        <li>ລາຄາລວມ VAT ແລ້ວ</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">5. ກົດລະບຽບຂອງໂຮງແຮມ</h2>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li>ຫ້າມສູບບຸຫຼີ່ໃນຫ້ອງພັກ (ມີພື້ນທີ່ສູບບຸຫຼີ່ແຍກຕ່າງຫາກ)</li>
+                        <li>ຫ້າມນຳສັດລ້ຽງເຂົ້າໂຮງແຮມ (ຍົກເວັ້ນສັດຊ່ວຍເຫຼືອ)</li>
+                        <li>ກະລຸນາຮັກສາຄວາມເງຽບຫຼັງ 22:00 ໂມງ</li>
+                        <li>ຜູ້ເຂົ້າພັກມີຄວາມຮັບຜິດຊອບຕໍ່ຄວາມເສຍຫາຍທີ່ເກີດຂຶ້ນ</li>
+                        <li>ຫ້າມນຳອາຫານແລະເຄື່ອງດື່ມຈາກພາຍນອກເຂົ້າມາ</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">6. ຄວາມຮັບຜິດຊອບ</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        Pilgrims Kitchen & Inn ຈະບໍ່ຮັບຜິດຊອບຕໍ່:
+                    </p>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li>ການສູນຫາຍຂອງຂອງມີຄ່າທີ່ບໍ່ໄດ້ຝາກໄວ້ໃນຕູ້ນິລະໄພ</li>
+                        <li>ອຸປະຕິເຫດທາງທຳມະຊາດ ຫຼື ເຫດການທີ່ບໍ່ສາມາດຄວບຄຸມໄດ້</li>
+                        <li>ການບາດເຈັບສ່ວນບຸກຄົນທີ່ເກີດຈາກການບໍ່ປະຕິບັດຕາມກົດລະບຽບ</li>
+                        <li>ການຂັດຂ້ອງຂອງອຸປະກອນເທັກໂນໂລຊີ (WiFi, ໂທລະພາບ ຯລຯ)</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">7. ສິດຂອງໂຮງແຮມ</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        ໂຮງແຮມມີສິດທີ່ຈະ:
+                    </p>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li>ປະຕິເສດການບໍລິການຖ້າມີພຶດຕິກຳທີ່ບໍ່ເໝາະສົມ</li>
+                        <li>ໃຫ້ແຂກອອກຈາກໂຮງແຮມໃນກໍລະນີທີ່ລະເມີດກົດລະບຽບຮ້າຍແຮງ</li>
+                        <li>ເປ່ຍນແປງລາຄາແລະເງື່ອນໄຂໂດຍບໍ່ແຈ້ງລ່ວງໜ້າ</li>
+                        <li>ໃຊ້ຮູບພາບຂອງແຂກເພື່ອການໂຄສະນາ (ເວັ້ນເສຍແຕ່ແຈ້ງປະຕິເສດ)</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">8. ຂໍ້ຈຳກັດການນຳໃຊ້ເວັບໄຊທ໌</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        ທ່ານຕົກລົງທີ່ຈະບໍ່:
+                    </p>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li>ນຳໃຊ້ເວັບໄຊທ໌ເພື່ອຈຸດປະສົງທີ່ຜິດກົດໝາຍ</li>
+                        <li>ແຊກແຊງຫຼືທຳລາຍການເຮັດວຽກຂອງເວັບໄຊທ໌</li>
+                        <li>ລອກເນື້ອຫາໂດຍບໍ່ໄດ້ຮັບອະນຸຍາດ</li>
+                        <li>ສົ່ງ spam ຫຼື ເນື້ອຫາທີ່ບໍ່ເໝາະສົມ</li>
+                        <li>ປອມຕົວເປັນບຸກຄົນອື່ນ</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">9. ຊັບສິນທາງປັນຍາ</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        ເນື້ອຫາທັງໝົດຢູ່ເວັບໄຊທ໌ນີ້ລວມທັງຂໍ້ຄວາມ, ຮູບພາບ, ໂລໂກ້, ແລະການອອກແບບແມ່ນຊັບສິນຂອງ Pilgrims Kitchen & Inn ແລະໄດ້ຮັບການປົກປ້ອງໂດຍກົດໝາຍລິຂະສິດ.
+                    </p>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">10. ການປ່ຽນແປງເງື່ອນໄຂ</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        ພວກເຮົາສະຫງວນສິດໃນການເປ່ຍນແປງເງື່ອນໄຂການໃຊ້ບໍລິການນີ້ທຸກເວລາ. ການເປ່ຍນແປງຈະມີຜົນບັງຄັບໃຊ້ທັນທີທີ່ປະກາດຢູ່ເວັບໄຊທ໌.
+                    </p>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">11. ກົດໝາຍທີ່ໃຊ້ບັງຄັບ</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        ເງື່ອນໄຂການໃຊ້ບໍລິການນີ້ຂຶ້ນກັບກົດໝາຍຂອງ ສປປ ລາວ. ຂໍ້ຂັດແຍ່ງທີ່ເກີດຂຶ້ນຈະຖືກແກ້ໄຂໂດຍສານລາວ.
+                    </p>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">12. ຕິດຕໍ່ພວກເຮົາ</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        ຖ້າທ່ານມີຄຳຖາມກ່ຽວກັບເງື່ອນໄຂການໃຊ້ບໍລິການ, ກະລຸນາຕິດຕໍ່:
+                    </p>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg">
+                        <p class="text-gray-700 dark:text-gray-300 mb-2">
+                            <strong>Pilgrims Kitchen & Inn</strong>
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300 mb-2">
+                            ທີ່ຢູ່: Khanthabouly Road, House No. 168, Ban Chomkeo<br>
+                            Kaisone Phomvihane District, Savannakhet Province, ລາວ
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300 mb-2">
+                            ໂທ: <a href="tel:+85620221337" class="text-secondary-light hover:text-secondary-dark">+856-20-22133733</a>
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300">
+                            ອີເມລ: <a href="mailto:pilgrimscontact@gmail.com" class="text-secondary-light hover:text-secondary-dark">pilgrimscontact@gmail.com</a>
+                        </p>
+                    </div>
+                </section>
+
+            {% else %}
+                <!-- English Content -->
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">1. Acceptance of Terms</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        By accessing or using the Pilgrims Kitchen & Inn website, you agree to be bound by these Terms & Conditions. If you do not agree with any part of these terms, please do not use our services.
+                    </p>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">2. Booking Policy</h2>
+
+                    <h3 class="text-xl font-semibold mb-3">2.1 Hotel Room Booking</h3>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li>Check-in time: 14:00</li>
+                        <li>Check-out time: 12:00</li>
+                        <li>Valid identification required at check-in</li>
+                        <li>30% deposit required at time of booking</li>
+                        <li>Remaining balance due at check-in or check-out</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold mb-3">2.2 Restaurant Booking</h3>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li>Advance booking recommended for groups of 6 or more</li>
+                        <li>Please inform us of any food allergies in advance</li>
+                        <li>Opening hours: Mon-Sat 07:30-21:00 (Closed Sundays)</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">3. Cancellation Policy</h2>
+
+                    <h3 class="text-xl font-semibold mb-3">3.1 Hotel Room Cancellation</h3>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li><strong>7+ days in advance:</strong> 100% refund of deposit</li>
+                        <li><strong>3-6 days in advance:</strong> 50% refund of deposit</li>
+                        <li><strong>Less than 3 days:</strong> No refund</li>
+                        <li><strong>No-show:</strong> Full charge for first night</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold mb-3">3.2 Restaurant Cancellation</h3>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li>Please cancel at least 2 hours in advance</li>
+                        <li>For large groups (10+ people): 24 hours notice required</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">4. Payment</h2>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li>Cash accepted (LAK, USD, THB)</li>
+                        <li>Credit cards accepted (Visa, Mastercard)</li>
+                        <li>Bank transfer available (for advance bookings)</li>
+                        <li>Prices listed in Lao Kip (LAK)</li>
+                        <li>Prices include VAT</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">5. Hotel Rules</h2>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li>No smoking in rooms (designated smoking areas available)</li>
+                        <li>No pets allowed (except service animals)</li>
+                        <li>Please maintain quiet hours after 22:00</li>
+                        <li>Guests are responsible for any damages</li>
+                        <li>Outside food and beverages not permitted</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">6. Liability</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        Pilgrims Kitchen & Inn is not responsible for:
+                    </p>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li>Loss of valuables not secured in safe deposit boxes</li>
+                        <li>Acts of nature or events beyond our control</li>
+                        <li>Personal injury resulting from failure to follow rules</li>
+                        <li>Technology malfunctions (WiFi, TV, etc.)</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">7. Hotel Rights</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        The hotel reserves the right to:
+                    </p>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li>Refuse service for inappropriate behavior</li>
+                        <li>Ask guests to leave for serious violations</li>
+                        <li>Change prices and terms without notice</li>
+                        <li>Use guest photos for promotional purposes (unless objected)</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">8. Website Usage Restrictions</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        You agree not to:
+                    </p>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li>Use the website for unlawful purposes</li>
+                        <li>Interfere with or disrupt website operations</li>
+                        <li>Copy content without permission</li>
+                        <li>Send spam or inappropriate content</li>
+                        <li>Impersonate others</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">9. Intellectual Property</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        All content on this website including text, images, logos, and design are property of Pilgrims Kitchen & Inn and protected by copyright law.
+                    </p>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">10. Changes to Terms</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        We reserve the right to modify these Terms & Conditions at any time. Changes become effective immediately upon posting on the website.
+                    </p>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">11. Governing Law</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        These Terms & Conditions are governed by the laws of the Lao PDR. Any disputes will be resolved in Lao courts.
+                    </p>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">12. Contact Us</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        If you have questions about these Terms & Conditions, please contact:
+                    </p>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg">
+                        <p class="text-gray-700 dark:text-gray-300 mb-2">
+                            <strong>Pilgrims Kitchen & Inn</strong>
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300 mb-2">
+                            Address: Khanthabouly Road, House No. 168, Ban Chomkeo<br>
+                            Kaisone Phomvihane District, Savannakhet Province, Laos
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300 mb-2">
+                            Phone: <a href="tel:+85620221337" class="text-secondary-light hover:text-secondary-dark">+856-20-22133733</a>
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300">
+                            Email: <a href="mailto:pilgrimscontact@gmail.com" class="text-secondary-light hover:text-secondary-dark">pilgrimscontact@gmail.com</a>
+                        </p>
+                    </div>
+                </section>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

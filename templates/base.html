@@ -8,7 +8,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token }}">
-    <title>{% block title %}Pilgrims Hotel & Restaurant{% endblock %}</title>
+
+    <!-- SEO Meta Tags -->
+    <title>{% block title %}{% if LANGUAGE_CODE == 'lo' %}ໂຮງແຮມ ຮ້ານອາຫານ ຄາເຟ່ Pilgrims Kitchen & Inn ສະຫວັນນະເຂດ - ທີ່ພັກແລະຮ້ານອາຫານຢູ່ແມ່ນ້ຳໂຂງ{% else %}Pilgrims Kitchen & Inn - โรงแรมและร้านอาหารสุดพิเศษริมโขง ສະຫວັນນະເຂດ Savannakhet{% endif %}{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}{% if LANGUAGE_CODE == 'lo' %}ໂຮງແຮມແລະຮ້ານອາຫານ Pilgrims Kitchen & Inn ທີ່ພັກທີ່ສະດວກສະບາຍ ຮ້ານອາຫານຫຼາກຫຼາຍລົດຊາດ ແລະຄາເຟ່ສົດຮ້ອນຢູ່ແມ່ນ້ຳໂຂງ ສະຫວັນນະເຂດ ລາວ | Hotel Restaurant Coffee Shop Mekong River Savannakhet Laos{% else %}Pilgrims Kitchen & Inn - โรงแรมที่พักสะดวกสบาย ร้านอาหารหลากหลายรสชาติ และกาแฟคั่วสดริมฝั่งแม่น้ำโขง ที่สวันนะเขต ลาว | Hotel, Restaurant & Coffee Shop in Savannakhet, Laos{% endif %}{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}{% if LANGUAGE_CODE == 'lo' %}ທີ່ພັກ ສະຫວັນນະເຂດ, ໂຮງແຮມ ສະຫວັນນະເຂດ, ຮ້ານອາຫານ ສະຫວັນນະເຂດ, ຄາເຟ່ ສະຫວັນນະເຂດ, ຮ້ານກາເຟ ສະຫວັນນະເຂດ, Pilgrims Kitchen Inn, ທີ່ພັກແມ່ນ້ຳໂຂງ, ໂຮງແຮມແມ່ນ້ຳໂຂງ, ຮ້ານອາຫານແມ່ນ້ຳໂຂງ, ທີ່ພັກລາວ, ໂຮງແຮມລາວ, ອາຫານອາເມລິກາ ລາວ, ອາຫານອິນເດຍ ລາວ, ອາຫານເມັກຊິກັນ ລາວ, ພິດຊາ ສະຫວັນນະເຂດ, ອາຫານທ້ອງຖິ່ນ ສະຫວັນນະເຂດ, ຫ້ອງພັກ ສະຫວັນນະເຂດ, ຈອງຫ້ອງພັກ ສະຫວັນນະເຂດ, ທີ່ພັກເມືອງເກົ່າ ສະຫວັນນະເຂດ, ໂຮງແຮມໃກ້ຕະຫຼາດກາງຄືນ, ທີ່ພັກໃກ້ສະຖານກົງສຸນໄທ{% else %}hotel in Savannakhet Laos, best hotel Savannakhet, Savannakhet accommodation, where to stay in Savannakhet, budget hotel Savannakhet, hotel near Mekong River Savannakhet, restaurant in Savannakhet, best restaurants Savannakhet Laos, where to eat in Savannakhet, cafe in Savannakhet, best coffee Savannakhet, pilgrims kitchen inn, riverside hotel laos, mekong hotel, hotel near Thai consulate Savannakhet, boutique hotel Savannakhet old town, hotel with restaurant Savannakhet, hotel near That Ing Hang Stupa, restaurant near Dinosaur Museum Savannakhet, cafe near night market Savannakhet, French Quarter Savannakhet, authentic Lao cuisine Savannakhet, riverside dining Savannakhet, best breakfast in Savannakhet, hotel near Second Thai-Lao Friendship Bridge, accommodation French Quarter Savannakhet, hotel walking distance to Mekong River, business hotel Savannakhet, backpacker cafe Savannakhet, family friendly hotel Savannakhet{% endif %}{% endblock %}">
+    <meta name="author" content="Pilgrims Kitchen & Inn">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <link rel="canonical" href="{% block canonical_url %}{{ request.build_absolute_uri }}{% endblock %}">
+
+    <!-- Hreflang for Multi-language Support -->
+    {% block hreflang %}
+    <link rel="alternate" hreflang="lo" href="https://{{ request.get_host }}{{ request.path }}">
+    <link rel="alternate" hreflang="en" href="https://{{ request.get_host }}/en{{ request.path }}">
+    <link rel="alternate" hreflang="x-default" href="https://{{ request.get_host }}{{ request.path }}">
+    {% endblock %}
+
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:title" content="{% block og_title %}{% if LANGUAGE_CODE == 'lo' %}ໂຮງແຮມ ຮ້ານອາຫານ ຄາເຟ່ Pilgrims Kitchen & Inn ສະຫວັນນະເຂດ - ທີ່ພັກແລະຮ້ານອາຫານຢູ່ແມ່ນ້ຳໂຂງ{% else %}Pilgrims Kitchen & Inn - โรงแรมและร้านอาหารสุดพิเศษริมโขง ສະຫວັນນະເຂດ Savannakhet{% endif %}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{% if LANGUAGE_CODE == 'lo' %}ໂຮງແຮມແລະຮ້ານອາຫານ Pilgrims Kitchen & Inn ທີ່ພັກທີ່ສະດວກສະບາຍ ຮ້ານອາຫານຫຼາກຫຼາຍລົດຊາດ ແລະຄາເຟ່ສົດຮ້ອນຢູ່ແມ່ນ້ຳໂຂງ ສະຫວັນນະເຂດ{% else %}Pilgrims Kitchen & Inn - โรงแรมที่พักสะดวกสบาย ร้านอาหารหลากหลายรสชาติ และกาแฟคั่วสดริมฝั่งแม่น้ำโขง ที่สวันนะเขต ລາວ{% endif %}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{% static 'images/pilgrims.jpg' %}{% endblock %}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="{% if LANGUAGE_CODE == 'en' %}en_US{% else %}lo_LA{% endif %}">
+    <meta property="og:site_name" content="Pilgrims Kitchen & Inn">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ request.build_absolute_uri }}">
+    <meta name="twitter:title" content="{% block twitter_title %}{% if LANGUAGE_CODE == 'lo' %}ໂຮງແຮມ ຮ້ານອາຫານ ຄາເຟ່ Pilgrims Kitchen & Inn ສະຫວັນນະເຂດ{% else %}Pilgrims Kitchen & Inn - โรงแรมและร้านอาหารสุดพิเศษริมโขง ສະຫວັນນະເຂດ{% endif %}{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}{% if LANGUAGE_CODE == 'lo' %}ໂຮງແຮມແລະຮ້ານອາຫານ Pilgrims ທີ່ພັກສະດວກສະບາຍ ຮ້ານອາຫານຫຼາກຫຼາຍລົດຊາດ ຄາເຟ່ສົດ ຢູ່ແມ່ນ້ຳໂຂງ ສະຫວັນນະເຂດ{% else %}Pilgrims Kitchen & Inn - โรงแรมที่พักสะดวกสบาย ร้านอาหารหลากหลายรสชาติ และกาแฟคั่วสดริมฝั่งแม่น้ำโขง ที่สวันนະเขต{% endif %}{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{% static 'images/pilgrims.jpg' %}{% endblock %}">
+
+    <!-- Additional SEO Meta Tags -->
+    <meta name="geo.region" content="LA-SV">
+    <meta name="geo.placename" content="Savannakhet">
+    <meta name="geo.position" content="16.556239;104.756638">
+    <meta name="ICBM" content="16.556239, 104.756638">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="{% static 'images/logo.jpeg' %}">
+    <link rel="apple-touch-icon" href="{% static 'images/logo.jpeg' %}"
 
     <!-- TailwindCSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -92,6 +135,10 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+    <!-- Schema.org Structured Data -->
+    {% include "components/schema-org.html" %}
+
     {% block extra_css %}{% endblock %}
 </head>
 <body class="bg-neutral-light dark:bg-neutral-dark font-inter flex flex-col min-h-screen antialiased text-neutral-content-light dark:text-neutral-content-dark transition-colors duration-300">
@@ -244,7 +291,12 @@
     {% endif %}
 
     <!-- Main Content -->
-    <main class="flex-grow">
+    <main class="flex-grow" role="main">
+        <!-- Breadcrumbs -->
+        {% block breadcrumbs %}
+        {% include "components/breadcrumbs.html" %}
+        {% endblock %}
+
         {% block content %}
 
         {% endblock %}
@@ -349,9 +401,9 @@
             <div class="border-t border-gray-600 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center text-gray-400 text-sm">
                 <p>© {% now "Y" %} Pilgrims Kitchen & Inn. {% trans "All rights reserved" %}.</p>
                 <div class="mt-3 flex flex-wrap justify-center space-x-4 sm:space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-secondary-light dark:hover:text-secondary-dark transition duration-300">{% trans "Privacy" %}</a>
-                    <a href="#" class="text-gray-400 hover:text-secondary-light dark:hover:text-secondary-dark transition duration-300">{% trans "Terms" %}</a>
-                    <a href="#" class="text-gray-400 hover:text-secondary-light dark:hover:text-secondary-dark transition duration-300">{% trans "Sitemap" %}</a>
+                    <a href="{% url 'privacy-page' %}" class="text-gray-400 hover:text-secondary-light dark:hover:text-secondary-dark transition duration-300">{% trans "Privacy" %}</a>
+                    <a href="{% url 'terms-page' %}" class="text-gray-400 hover:text-secondary-light dark:hover:text-secondary-dark transition duration-300">{% trans "Terms" %}</a>
+                    <a href="{% url 'sitemap-page' %}" class="text-gray-400 hover:text-secondary-light dark:hover:text-secondary-dark transition duration-300">{% trans "Sitemap" %}</a>
                 </div>
                 <!-- Visitor Counter -->
                 <div class="mt-4 flex items-center justify-center text-gray-400">

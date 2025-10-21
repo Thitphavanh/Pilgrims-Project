@@ -1,0 +1,301 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+{% if LANGUAGE_CODE == 'lo' %}ນະໂຍບາຍຄວາມເປັນສ່ວນຕົວ - Pilgrims Kitchen & Inn{% else %}Privacy Policy - Pilgrims Kitchen & Inn{% endif %}
+{% endblock %}
+
+{% block meta_description %}
+{% if LANGUAGE_CODE == 'lo' %}ນະໂຍບາຍຄວາມເປັນສ່ວນຕົວຂອງ Pilgrims Kitchen & Inn - ວິທີທີ່ພວກເຮົາເກັບກຳ ໃຊ້ ແລະປົກປ້ອງຂໍ້ມູນສ່ວນຕົວຂອງທ່ານ{% else %}Privacy Policy for Pilgrims Kitchen & Inn - How we collect, use, and protect your personal information{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
+    <div class="container mx-auto px-4 max-w-9xl">
+        <!-- Header -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mb-8">
+            <h1 class="text-4xl font-bold mb-4">
+                {% if LANGUAGE_CODE == 'lo' %}
+                    ນະໂຍບາຍຄວາມເປັນສ່ວນຕົວ
+                {% else %}
+                    Privacy Policy
+                {% endif %}
+            </h1>
+            <p class="text-gray-600 dark:text-gray-400">
+                {% if LANGUAGE_CODE == 'lo' %}
+                    ອັບເດດລ່າສຸດ: 21 ຕຸລາ 2025
+                {% else %}
+                    Last Updated: October 21, 2025
+                {% endif %}
+            </p>
+        </div>
+
+        <!-- Content -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 prose prose-lg dark:prose-invert max-w-none">
+            {% if LANGUAGE_CODE == 'lo' %}
+                <!-- Lao Content -->
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">1. ຂໍ້ມູນທີ່ພວກເຮົາເກັບກຳ</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        Pilgrims Kitchen & Inn ເກັບກຳຂໍ້ມູນສ່ວນຕົວຂອງທ່ານເພື່ອໃຫ້ບໍລິການທີ່ດີທີ່ສຸດ. ຂໍ້ມູນທີ່ພວກເຮົາເກັບກຳລວມມີ:
+                    </p>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li>ຊື່ ແລະ ນາມສະກຸນ</li>
+                        <li>ທີ່ຢູ່ອີເມລ</li>
+                        <li>ເບີໂທລະສັບ</li>
+                        <li>ທີ່ຢູ່ສຳລັບຈັດສົ່ງ (ຖ້າມີ)</li>
+                        <li>ຂໍ້ມູນການຈອງ (ວັນທີ, ປະເພດຫ້ອງ, ຈຳນວນແຂກ)</li>
+                        <li>ຂໍ້ມູນການຊຳລະເງິນ (ຖືກເຂົ້າລະຫັດຢ່າງປອດໄພ)</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">2. ວິທີການນຳໃຊ້ຂໍ້ມູນ</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        ພວກເຮົານຳໃຊ້ຂໍ້ມູນສ່ວນຕົວຂອງທ່ານເພື່ອ:
+                    </p>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li>ດຳເນີນການຈອງຫ້ອງພັກ ແລະ ການຈອງຮ້ານອາຫານ</li>
+                        <li>ສ່ງການຢືນຢັນການຈອງ ແລະ ອັບເດດ</li>
+                        <li>ປັບປຸງການບໍລິການຂອງພວກເຮົາ</li>
+                        <li>ສື່ສານກັບທ່ານກ່ຽວກັບການຈອງຂອງທ່ານ</li>
+                        <li>ສົ່ງຂໍ້ມູນທາງການຕະຫຼາດ (ຖ້າທ່ານເລືອກຮັບ)</li>
+                        <li>ປະຕິບັດຕາມພັນທະທາງກົດໝາຍ</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">3. ການປົກປ້ອງຂໍ້ມູນ</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        ພວກເຮົາໃຊ້ມາດຕະການຄວາມປອດໄພທີ່ທັນສະໄໝເພື່ອປົກປ້ອງຂໍ້ມູນສ່ວນຕົວຂອງທ່ານ:
+                    </p>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li>ການເຂົ້າລະຫັດ SSL/TLS ສຳລັບການສົ່ງຂໍ້ມູນ</li>
+                        <li>ເກັບຮັກສາຂໍ້ມູນໃນເຊີຟເວີທີ່ປອດໄພ</li>
+                        <li>ຈຳກັດການເຂົ້າເຖິງຂໍ້ມູນພຽງແຕ່ພະນັກງານທີ່ໄດ້ຮັບອະນຸຍາດ</li>
+                        <li>ປະຕິບັດຕາມມາດຕະຖານອຸດສາຫະກຳສາກົນ</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">4. ການແບ່ງປັນຂໍ້ມູນ</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        ພວກເຮົາຈະບໍ່ຂາຍ ຫຼື ແບ່ງປັນຂໍ້ມູນສ່ວນຕົວຂອງທ່ານກັບບຸກຄົນທີສາມ ຍົກເວັ້ນ:
+                    </p>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li>ຜູ້ໃຫ້ບໍລິການຊຳລະເງິນທີ່ໄດ້ຮັບການອະນຸຍາດ</li>
+                        <li>ເມື່ອກົດໝາຍຮຽກຮ້ອງ</li>
+                        <li>ເພື່ອປົກປ້ອງສິດ ແລະ ຄວາມປອດໄພຂອງພວກເຮົາ ແລະ ຜູ້ອື່ນ</li>
+                        <li>ດ້ວຍການຍິນຍອມຂອງທ່ານ</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">5. ຄຸກກີ້ (Cookies)</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        ເວັບໄຊທ໌ຂອງພວກເຮົານຳໃຊ້ຄຸກກີ້ເພື່ອປັບປຸງປະສົບການການນຳໃຊ້ງານຂອງທ່ານ. ຄຸກກີ້ຊ່ວຍໃຫ້ພວກເຮົາ:
+                    </p>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li>ຈົດຈຳການຕັ້ງຄ່າຂອງທ່ານ</li>
+                        <li>ວິເຄາະການນຳໃຊ້ງານເວັບໄຊທ໌</li>
+                        <li>ປັບປຸງຄວາມປອດໄພ</li>
+                        <li>ສະແດງເນື້ອຫາທີ່ກ່ຽວຂ້ອງ</li>
+                    </ul>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        ທ່ານສາມາດປິດການນຳໃຊ້ຄຸກກີ້ໄດ້ໃນການຕັ້ງຄ່າຂອງ browser ຂອງທ່ານ.
+                    </p>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">6. ສິດຂອງທ່ານ</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        ທ່ານມີສິດທີ່ຈະ:
+                    </p>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li>ເຂົ້າເຖິງຂໍ້ມູນສ່ວນຕົວຂອງທ່ານ</li>
+                        <li>ແກ້ໄຂຂໍ້ມູນທີ່ບໍ່ຖືກຕ້ອງ</li>
+                        <li>ຂໍໃຫ້ລຶບຂໍ້ມູນຂອງທ່ານ</li>
+                        <li>ຄັດຄ້ານການປະມວນຜົນຂໍ້ມູນ</li>
+                        <li>ຖອນການຍິນຍອມທຸກເວລາ</li>
+                        <li>ຮ້ອງທຸກກັບອົງການຄຸ້ມຄອງຂໍ້ມູນ</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">7. ການເກັບຮັກສາຂໍ້ມູນ</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        ພວກເຮົາຈະເກັບຮັກສາຂໍ້ມູນສ່ວນຕົວຂອງທ່ານຕາມເວລາທີ່ຈຳເປັນເພື່ອ:
+                    </p>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li>ສະໜອງບໍລິການຂອງພວກເຮົາ</li>
+                        <li>ປະຕິບັດຕາມພັນທະທາງກົດໝາຍ</li>
+                        <li>ແກ້ໄຂຂໍ້ຂັດແຍ່ງ</li>
+                        <li>ບັງຄັບໃຊ້ຂໍ້ຕົກລົງຂອງພວກເຮົາ</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">8. ການປ່ຽນແປງນະໂຍບາຍ</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        ພວກເຮົາອາດຈະອັບເດດນະໂຍບາຍຄວາມເປັນສ່ວນຕົວນີ້ເປັນບາງຄັ້ງ. ການປ່ຽນແປງທີ່ສຳຄັນຈະຖືກແຈ້ງໃຫ້ທ່ານຮູ້ຜ່ານທາງອີເມລ ຫຼື ປະກາດຢູ່ເວັບໄຊທ໌.
+                    </p>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">9. ຕິດຕໍ່ພວກເຮົາ</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        ຖ້າທ່ານມີຄຳຖາມກ່ຽວກັບນະໂຍບາຍຄວາມເປັນສ່ວນຕົວນີ້, ກະລຸນາຕິດຕໍ່:
+                    </p>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg">
+                        <p class="text-gray-700 dark:text-gray-300 mb-2">
+                            <strong>Pilgrims Kitchen & Inn</strong>
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300 mb-2">
+                            ທີ່ຢູ່: Khanthabouly Road, House No. 168, Ban Chomkeo<br>
+                            Kaisone Phomvihane District, Savannakhet Province, ລາວ
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300 mb-2">
+                            ໂທ: <a href="tel:+85620221337" class="text-secondary-light hover:text-secondary-dark">+856-20-22133733</a>
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300">
+                            ອີເມລ: <a href="mailto:pilgrimscontact@gmail.com" class="text-secondary-light hover:text-secondary-dark">pilgrimscontact@gmail.com</a>
+                        </p>
+                    </div>
+                </section>
+
+            {% else %}
+                <!-- English Content -->
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">1. Information We Collect</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        Pilgrims Kitchen & Inn collects personal information to provide you with the best service possible. The information we collect includes:
+                    </p>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li>First and last name</li>
+                        <li>Email address</li>
+                        <li>Phone number</li>
+                        <li>Billing address (if applicable)</li>
+                        <li>Booking information (dates, room type, number of guests)</li>
+                        <li>Payment information (securely encrypted)</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">2. How We Use Your Information</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        We use your personal information to:
+                    </p>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li>Process hotel room and restaurant reservations</li>
+                        <li>Send booking confirmations and updates</li>
+                        <li>Improve our services</li>
+                        <li>Communicate with you about your bookings</li>
+                        <li>Send marketing communications (if you opt-in)</li>
+                        <li>Comply with legal obligations</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">3. Data Protection</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        We use industry-standard security measures to protect your personal information:
+                    </p>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li>SSL/TLS encryption for data transmission</li>
+                        <li>Secure server storage</li>
+                        <li>Limited access to authorized personnel only</li>
+                        <li>Compliance with international industry standards</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">4. Information Sharing</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        We will not sell or share your personal information with third parties, except:
+                    </p>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li>Authorized payment service providers</li>
+                        <li>When required by law</li>
+                        <li>To protect our rights and safety, and that of others</li>
+                        <li>With your consent</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">5. Cookies</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        Our website uses cookies to enhance your browsing experience. Cookies help us:
+                    </p>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li>Remember your preferences</li>
+                        <li>Analyze website usage</li>
+                        <li>Improve security</li>
+                        <li>Display relevant content</li>
+                    </ul>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        You can disable cookies in your browser settings.
+                    </p>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">6. Your Rights</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        You have the right to:
+                    </p>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li>Access your personal information</li>
+                        <li>Correct inaccurate information</li>
+                        <li>Request deletion of your data</li>
+                        <li>Object to data processing</li>
+                        <li>Withdraw consent at any time</li>
+                        <li>File a complaint with a data protection authority</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">7. Data Retention</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        We will retain your personal information for as long as necessary to:
+                    </p>
+                    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-4">
+                        <li>Provide our services</li>
+                        <li>Comply with legal obligations</li>
+                        <li>Resolve disputes</li>
+                        <li>Enforce our agreements</li>
+                    </ul>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">8. Policy Changes</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        We may update this Privacy Policy from time to time. Significant changes will be communicated to you via email or website notice.
+                    </p>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">9. Contact Us</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        If you have questions about this Privacy Policy, please contact:
+                    </p>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg">
+                        <p class="text-gray-700 dark:text-gray-300 mb-2">
+                            <strong>Pilgrims Kitchen & Inn</strong>
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300 mb-2">
+                            Address: Khanthabouly Road, House No. 168, Ban Chomkeo<br>
+                            Kaisone Phomvihane District, Savannakhet Province, Laos
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300 mb-2">
+                            Phone: <a href="tel:+85620221337" class="text-secondary-light hover:text-secondary-dark">+856-20-22133733</a>
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300">
+                            Email: <a href="mailto:pilgrimscontact@gmail.com" class="text-secondary-light hover:text-secondary-dark">pilgrimscontact@gmail.com</a>
+                        </p>
+                    </div>
+                </section>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

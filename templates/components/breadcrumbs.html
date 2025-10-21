@@ -1,0 +1,34 @@
+{% load i18n %}
+
+<!-- Breadcrumbs Navigation -->
+{% if breadcrumbs %}
+<nav aria-label="Breadcrumb" class="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-3">
+        <ol class="flex flex-wrap items-center space-x-2 text-sm" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <!-- Home Breadcrumb -->
+            <li class="flex items-center" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a href="{% url 'home-page' %}" class="text-primary-light dark:text-secondary-dark hover:text-secondary-light dark:hover:text-secondary-light transition-colors duration-200 flex items-center" itemprop="item" title="{% trans 'Home' %}">
+                    <i class="fas fa-home mr-1" aria-hidden="true"></i>
+                    <span itemprop="name">{% trans "Home" %}</span>
+                </a>
+                <meta itemprop="position" content="1" />
+            </li>
+
+            {% for crumb in breadcrumbs %}
+            <li class="flex items-center" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <i class="fas fa-chevron-right text-gray-400 dark:text-gray-500 mx-2 text-xs" aria-hidden="true"></i>
+                {% if crumb.url and not forloop.last %}
+                    <a href="{{ crumb.url }}" class="text-primary-light dark:text-secondary-dark hover:text-secondary-light dark:hover:text-secondary-light transition-colors duration-200" itemprop="item" title="{{ crumb.name }}">
+                        <span itemprop="name">{{ crumb.name }}</span>
+                    </a>
+                {% else %}
+                    <span class="text-gray-600 dark:text-gray-300 font-medium" aria-current="page" itemprop="name">{{ crumb.name }}</span>
+                    <link itemprop="item" href="{{ request.build_absolute_uri }}" />
+                {% endif %}
+                <meta itemprop="position" content="{{ forloop.counter|add:1 }}" />
+            </li>
+            {% endfor %}
+        </ol>
+    </div>
+</nav>
+{% endif %}
