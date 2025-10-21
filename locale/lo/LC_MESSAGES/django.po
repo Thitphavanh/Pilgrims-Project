@@ -519,8 +519,8 @@ msgstr "ກັບໄປໜ້າຫຼັກ"
 
 
 #: restaurant/templates/restaurant/menu.html:9
-msgid "Restaurant & Dining"
-msgstr "ຮ້ານອາຫານ ແລະ ການຮັບປະທານອາຫານ"
+msgid "Menu Items"
+msgstr "ລາຍການອາຫານ"
 
 #: restaurant/templates/restaurant/menu.html:66
 msgid "Culinary Journey"
@@ -894,8 +894,8 @@ msgid "Sunday:"
 msgstr "ວັນອາທິດ:"
 
 
-msgid "Pilgrims"
-msgstr "ພິລກຣິມສ"
+msgid "Pilgrims Kitchen & Inn"
+msgstr "ພິລກຣິມ ຮ້ານອາຫານ ແລະ ທີ່ພັກ"
 
 #: templates/index.html:105
 msgid "Pilgrims Kitchen & Inn ຍິນດີຕ້ອນຮັບ"

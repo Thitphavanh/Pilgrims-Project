@@ -220,11 +220,11 @@
             <div class="hidden md:flex items-center space-x-2">
                 <span class=" text-sm">ໝວດອື່ນໆ:</span>
                 <div class="flex space-x-2">
-                    {% for cat_key, cat_name in categories %}
-                    {% if cat_key != category %}
-                    <a href="{% url 'menu-by-category-page' cat_key %}" 
+                    {% for cat in categories %}
+                    {% if cat.slug != category %}
+                    <a href="{% url 'menu-by-category-page' cat.slug %}"
                        class="bg-red-100 text-gray-700 px-3 py-1 rounded-full text-sm transition-colors">
-                        {{ cat_name }}
+                        {{ cat.name }}
                     </a>
                     {% endif %}
                     {% endfor %}

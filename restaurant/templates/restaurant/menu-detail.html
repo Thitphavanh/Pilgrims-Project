@@ -4,14 +4,14 @@
 
 {% load lao_filters %}
 
-{% block title %}{{ meta_title|default:menu_item.name }}{% endblock %}
+{% block title %}{{ menu_item.name }}{% endblock %}
 
 {% block content %}
 <!-- Breadcrumb Navigation -->
 <nav class="">
     <div class="container mx-auto px-4 py-4">
         <div class="flex items-center space-x-2 text-sm ">
-            <a href="{% url 'menu-page' %}" class="transition-colors">
+            <a href="{% url 'home-page' %}" class="transition-colors">
                 <i class="fas fa-home"></i> ໜ້າຫຼັກ
             </a>
             <i class="fas fa-chevron-right text-xs"></i>

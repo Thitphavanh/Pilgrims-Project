@@ -68,16 +68,11 @@ def menu_by_category(request, category):
     """
     Display all menu items in a specific category
     """
-    # Validate category exists in choices
-    valid_categories = [category.slug for category in MenuCategory.objects.all()]
-    if category not in valid_categories:
-        return render(request, "restaurant/404.html", status=404)
-
-    # Get category display name
-    category_display = get_object_or_404(MenuCategory, slug=category).name
+    # Get the category object or return 404 (case-insensitive lookup)
+    category_obj = get_object_or_404(MenuCategory, slug__iexact=category)
 
     # Get all items in this category
-    menu_items = MenuItem.objects.filter(category=category).order_by(
+    menu_items = MenuItem.objects.filter(category=category_obj).order_by(
         "-is_featured", "name"
     )
 
@@ -91,13 +86,13 @@ def menu_by_category(request, category):
 
     context = {
         "category": category,
-        "category_display": category_display,
+        "category_display": category_obj.name,
         "menu_items": page_obj,
         "featured_items": featured_items,
         "total_items": menu_items.count(),
         "categories": MenuCategory.objects.all(),
-        "meta_title": f"{category_display} Menu",
-        "meta_description": f"Explore our delicious {category_display.lower()} menu items.",
+        "meta_title": f"{category_obj.name} Menu",
+        "meta_description": f"Explore our delicious {category_obj.name.lower()} menu items.",
     }
 
     return render(request, "restaurant/category-menu.html", context)
@@ -198,7 +193,8 @@ def get_category_items_ajax(request, category):
     """
     if request.headers.get("X-Requested-With") == "XMLHttpRequest":
         try:
-            items = MenuItem.objects.filter(category=category).order_by(
+            category_obj = MenuCategory.objects.get(slug__iexact=category)
+            items = MenuItem.objects.filter(category=category_obj).order_by(
                 "-is_featured", "name"
             )
             data = []
@@ -268,7 +264,8 @@ class MenuByCategoryView(ListView):
 
     def get_queryset(self):
         category = self.kwargs["category"]
-        return MenuItem.objects.filter(category=category).order_by(
+        category_obj = get_object_or_404(MenuCategory, slug__iexact=category)
+        return MenuItem.objects.filter(category=category_obj).order_by(
             "-is_featured", "name"
         )
 
@@ -277,7 +274,7 @@ class MenuByCategoryView(ListView):
         category = self.kwargs["category"]
 
         context["category"] = category
-        context["category_display"] = get_object_or_404(MenuCategory, slug=category).name
+        context["category_display"] = get_object_or_404(MenuCategory, slug__iexact=category).name
         context["total_items"] = self.get_queryset().count()
 
         return context

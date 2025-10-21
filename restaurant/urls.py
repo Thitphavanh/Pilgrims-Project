@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
     path("", views.menu_item, name="menu-page"),
-    path("<slug:slug>/", views.menu_item_detail, name="menu-item-detail-page"),
+    # More specific patterns must come before the generic slug pattern
     path(
         "category/<str:category>/", views.menu_by_category, name="menu-by-category-page"
     ),
@@ -23,4 +23,6 @@ urlpatterns = [
         views.get_category_items_ajax,
         name="get_category_items_ajax",
     ),
+    # Generic slug pattern must be last to avoid conflicts
+    path("<slug:slug>/", views.menu_item_detail, name="menu-item-detail-page"),
 ]
