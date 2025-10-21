@@ -245,8 +245,8 @@ msgid "View Details"
 msgstr "ເບິ່ງລາຍລະອຽດ"
 
 #: coffee/templates/coffee/coffee-list.html:7
-msgid "ລາຍການກາເຟທັງໝົດ - ຮ້ານກາເຟ"
-msgstr "ລາຍການກາເຟທັງໝົດ - ຮ້ານກາເຟ"
+msgid "All coffees"
+msgstr "ກາເຟທັງໝົດ"
 
 #: coffee/templates/coffee/coffee-list.html:12
 msgid ""
@@ -321,9 +321,8 @@ msgstr ""
 msgid "Hero Slides"
 msgstr ""
 
-#: hotel/templates/hotel/review.html:5
-msgid "Guest Reviews - Project Pilgrims"
-msgstr "ຣີວິວຂອງແຂກ - ໂຄງການ Pilgrims"
+msgid "Guest Reviews"
+msgstr "ຣີວິວຈາກແຂກ"
 
 #: hotel/templates/hotel/review.html:66
 msgid "Guest reviews and ratings"
@@ -459,8 +458,8 @@ msgstr ""
 "ສຳລັບລາຄາທີ່ດີກວ່າ ແລະ ຂໍ້ມູນເພີ່ມເຕີມ, ກະລຸນາຕິດຕໍ່ພວກເຮົາໂດຍກົງຜ່ານ WhatsApp ຂອງພວກເຮົາ."
 
 #: hotel/templates/hotel/rooms-list.html:9
-msgid "All Rooms & Suites - Hotel"
-msgstr "ຫ້ອງພັກ ແລະ ຫ້ອງຊຸດທັງໝົດ - ໂຮງແຮມ"
+msgid "All Rooms & Suites"
+msgstr "ຫ້ອງພັກ ແລະ ຫ້ອງຊຸດທັງໝົດ"
 
 #: hotel/templates/hotel/rooms-list.html:17
 #, python-format
@@ -520,8 +519,8 @@ msgstr "ກັບໄປໜ້າຫຼັກ"
 
 
 #: restaurant/templates/restaurant/menu.html:9
-msgid "Restaurant & Dining - Project Pilgrims"
-msgstr "ຮ້ານອາຫານ ແລະ ການຮັບປະທານອາຫານ - ໂຄງການ Pilgrims"
+msgid "Restaurant & Dining"
+msgstr "ຮ້ານອາຫານ ແລະ ການຮັບປະທານອາຫານ"
 
 #: restaurant/templates/restaurant/menu.html:66
 msgid "Culinary Journey"
@@ -894,9 +893,9 @@ msgstr "ວັນຈັນ - ວັນເສົາ:"
 msgid "Sunday:"
 msgstr "ວັນອາທິດ:"
 
-#: templates/index.html:9
-msgid "Pilgrims - Hotel & Fine Dining"
-msgstr "ພິລກຣິມສ - ໂຮງແຮມ ແລະ ອາຫານຫຼູ"
+
+msgid "Pilgrims"
+msgstr "ພິລກຣິມສ"
 
 #: templates/index.html:105
 msgid "Pilgrims Kitchen & Inn ຍິນດີຕ້ອນຮັບ"
