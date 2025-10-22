@@ -83,6 +83,7 @@ class CoffeeProductAdmin(admin.ModelAdmin):
                     "grind_type",
                     "categories",
                     "images",
+                    "video",
                 )
             },
         ),

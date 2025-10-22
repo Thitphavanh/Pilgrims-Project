@@ -91,6 +91,7 @@ class CoffeeProduct(models.Model):
     # ຂໍ້ມູນເພີ່ມເຕີມ
     description = models.TextField(blank=True)
     brewing_method = models.CharField(max_length=100, blank=True)
+    video = models.FileField(upload_to='products/videos/', blank=True, null=True, help_text='Upload a small video file (MP4, WebM, OGV)')
     stock_quantity = models.PositiveIntegerField(default=0)
     is_available = models.BooleanField(default=True)
     slug = models.SlugField(max_length=100, unique=True, null=True, blank=True)

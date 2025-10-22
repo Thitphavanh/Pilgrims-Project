@@ -22,6 +22,29 @@
     .scrollbar-hide {
         scroll-behavior: smooth;
     }
+
+    /* Hide volume controls and other video controls */
+    #main-video::-webkit-media-controls-volume-slider,
+    #main-video::-webkit-media-controls-mute-button {
+        display: none !important;
+    }
+
+    /* Hide fullscreen button */
+    #main-video::-webkit-media-controls-fullscreen-button {
+        display: none !important;
+    }
+
+    /* Hide playback rate */
+    #main-video::-webkit-media-controls-overflow-button {
+        display: none !important;
+    }
+
+    /* Hide timeline/seek bar and current time display */
+    #main-video::-webkit-media-controls-timeline,
+    #main-video::-webkit-media-controls-current-time-display,
+    #main-video::-webkit-media-controls-time-remaining-display {
+        display: none !important;
+    }
 </style>
 {% endblock %}
 
@@ -46,136 +69,168 @@
     
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
         
-        <!-- Coffee Image Gallery - Taobao Style -->
-        <div x-data="imageGallery()" class="flex space-x-3">
+        <!-- Taobao-style Image Gallery -->
+        <div class="flex space-x-4 p-4">
             <!-- Vertical Thumbnail Gallery (Left Side) - Taobao Style -->
-            <div class="relative flex-shrink-0" x-show="totalImages > 1">
-                <!-- Thumbnail container with smooth scroll -->
-                <div class="relative h-96 w-16 overflow-hidden">
-                    <div class="flex flex-col space-y-1 transition-transform duration-300 ease-out"
-                         id="thumbnail-container"
-                         :style="{ transform: 'translateY(-' + (scrollOffset * 68) + 'px)' }">
+            <div class="relative flex-shrink-0" id="thumbnail-section">
+                <!-- Thumbnail container with smooth scroll - Taobao Style -->
+                <div class="relative h-[420px] w-[68px] overflow-hidden">
+                    <div class="flex flex-col space-y-2 p-1 transition-transform duration-300 ease-out scrollbar-hide"
+                         id="thumbnail-container">
                         <!-- Main product image thumbnail -->
                         {% if coffee.images %}
-                        <div class="flex-shrink-0 aspect-square w-16 h-16 bg-white border border-gray-200 rounded cursor-pointer overflow-hidden transition-all duration-200 hover:border-amber-400 hover:shadow-md"
-                             :class="{ 'border-amber-500 shadow-md ring-2 ring-amber-200': activeImage === '{{ coffee.images.url }}' }"
-                             @click="setActiveImage('{{ coffee.images.url }}', 0)"
-                             @mouseenter="setActiveImage('{{ coffee.images.url }}', 0)">
+                        <div class="flex-shrink-0 aspect-square w-[60px] h-[60px] bg-white border-2 border-amber-500 shadow-md ring-2 ring-amber-100 rounded-md cursor-pointer overflow-hidden group relative active-thumbnail transform transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:border-amber-400"
+                             data-image="{{ coffee.images.url }}"
+                             onclick="setActiveImage('{{ coffee.images.url }}', this)"
+                             onmouseenter="setActiveImage('{{ coffee.images.url }}', this)">
                             <img src="{{ coffee.images.url }}"
                                  alt="{{ coffee.name }}"
-                                 class="w-full h-full object-cover">
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200">
+                            <!-- Active indicator -->
+                            <div class="absolute -top-1 -right-1 w-4 h-4 bg-amber-500 rounded-full flex items-center justify-center shadow-md active-indicator">
+                                <svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <!-- Hover overlay -->
+                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-200"></div>
                         </div>
                         {% endif %}
 
                         <!-- Gallery images thumbnails -->
                         {% for gallery_image in coffee.gallery_images.all %}
-                        <div class="flex-shrink-0 aspect-square w-16 h-16 bg-white border border-gray-200 rounded cursor-pointer overflow-hidden transition-all duration-200 hover:border-amber-400 hover:shadow-md"
-                             :class="{ 'border-amber-500 shadow-md ring-2 ring-amber-200': activeImage === '{{ gallery_image.image.url }}' }"
-                             @click="setActiveImage('{{ gallery_image.image.url }}', {{ forloop.counter }})"
-                             @mouseenter="setActiveImage('{{ gallery_image.image.url }}', {{ forloop.counter }})">
+                        <div class="flex-shrink-0 aspect-square w-[60px] h-[60px] bg-white border-2 border-gray-200 rounded-md cursor-pointer overflow-hidden group relative transform transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:border-amber-400"
+                             data-image="{{ gallery_image.image.url }}"
+                             onclick="setActiveImage('{{ gallery_image.image.url }}', this)"
+                             onmouseenter="setActiveImage('{{ gallery_image.image.url }}', this)">
                             <img src="{{ gallery_image.image.url }}"
                                  alt="{{ gallery_image.alt_text|default:coffee.name }}"
-                                 class="w-full h-full object-cover">
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200">
+                            <!-- Active indicator (hidden by default) -->
+                            <div class="absolute -top-1 -right-1 w-4 h-4 bg-amber-500 rounded-full flex items-center justify-center shadow-md active-indicator" style="display: none;">
+                                <svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <!-- Hover overlay -->
+                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-200"></div>
                         </div>
                         {% endfor %}
+
+                        <!-- Product video thumbnail (if exists) -->
+                        {% if coffee.video %}
+                        <div class="flex-shrink-0 aspect-square w-[60px] h-[60px] bg-white border-2 border-gray-200 rounded-md cursor-pointer overflow-hidden group relative transform transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:border-amber-400"
+                             data-video="{{ coffee.video.url }}"
+                             data-type="video"
+                             onclick="setActiveVideo('{{ coffee.video.url }}', this)"
+                             onmouseenter="setActiveVideo('{{ coffee.video.url }}', this)">
+                            <!-- Video preview thumbnail -->
+                            <video class="w-full h-full object-cover" muted>
+                                <source src="{{ coffee.video.url }}" type="video/mp4">
+                            </video>
+                            <!-- Video play icon overlay -->
+                            <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30">
+                                <i class="fas fa-play-circle text-white text-2xl"></i>
+                            </div>
+                            <!-- Active indicator (hidden by default) -->
+                            <div class="absolute -top-1 -right-1 w-4 h-4 bg-amber-500 rounded-full flex items-center justify-center shadow-md active-indicator" style="display: none;">
+                                <svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <!-- Hover overlay -->
+                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-200"></div>
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
 
-                <!-- Smooth scroll buttons - Taobao style -->
-                <template x-if="canScrollUp">
-                    <button @click="scrollUp()"
-                            class="absolute -top-1 left-1/2 transform -translate-x-1/2 bg-white shadow-lg border border-gray-200 rounded-full w-6 h-6 flex items-center justify-center hover:bg-gray-50 hover:shadow-xl transition-all duration-200 z-10">
-                        <i class="fas fa-chevron-up text-gray-500 text-xs"></i>
-                    </button>
-                </template>
+                <!-- Scroll buttons -->
+                <button id="scroll-up-btn"
+                        class="absolute -top-2 left-1/2 transform -translate-x-1/2 bg-white shadow-lg border border-gray-200 rounded-full w-7 h-7 flex items-center justify-center hover:bg-amber-50 hover:border-amber-300 hover:shadow-xl transition-all duration-200 z-10"
+                        style="display: none;"
+                        onclick="scrollThumbnailsUp()">
+                    <i class="fas fa-chevron-up text-gray-600 text-xs"></i>
+                </button>
 
-                <template x-if="canScrollDown">
-                    <button @click="scrollDown()"
-                            class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 bg-white shadow-lg border border-gray-200 rounded-full w-6 h-6 flex items-center justify-center hover:bg-gray-50 hover:shadow-xl transition-all duration-200 z-10">
-                        <i class="fas fa-chevron-down text-gray-500 text-xs"></i>
-                    </button>
-                </template>
+                <button id="scroll-down-btn"
+                        class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-white shadow-lg border border-gray-200 rounded-full w-7 h-7 flex items-center justify-center hover:bg-amber-50 hover:border-amber-300 hover:shadow-xl transition-all duration-200 z-10"
+                        style="display: none;"
+                        onclick="scrollThumbnailsDown()">
+                    <i class="fas fa-chevron-down text-gray-600 text-xs"></i>
+                </button>
             </div>
 
-            <!-- Single thumbnail for single image -->
-            <div x-show="totalImages === 1" class="flex-shrink-0">
-                {% if coffee.images %}
-                <div class="aspect-square w-16 h-16 bg-white border-2 border-amber-500 rounded overflow-hidden shadow-md ring-2 ring-amber-200">
-                    <img src="{{ coffee.images.url }}"
-                         alt="{{ coffee.name }}"
-                         class="w-full h-full object-cover">
-                </div>
-                {% endif %}
-            </div>
-
-            <!-- Main Image Display (Right Side) - Taobao Style -->
+            <!-- Main Image Display -->
             <div class="flex-1 relative group">
-                <div class="aspect-square bg-white border border-gray-200 rounded-lg flex items-center justify-center relative overflow-hidden shadow-sm">
-                    <!-- Show image if activeImage exists -->
-                    <template x-if="activeImage">
-                        <img :src="activeImage"
-                             alt="{{ coffee.name }}"
-                             class="w-full h-full object-cover transition-all duration-300"
-                             x-transition:enter="transition ease-out duration-300"
-                             x-transition:enter-start="opacity-0 transform scale-105"
-                             x-transition:enter-end="opacity-100 transform scale-100">
-                    </template>
+                <div id="main-media-container" class="aspect-square bg-gradient-to-br from-white to-gray-50 border border-gray-200 rounded-lg shadow-sm flex items-center justify-center relative overflow-hidden hover:shadow-lg transition-all duration-300">
+                    <!-- Main image -->
+                    <img id="main-image"
+                         src="{% if coffee.images %}{{ coffee.images.url }}{% else %}#{% endif %}"
+                         alt="{{ coffee.name }}"
+                         class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
 
-                    <!-- Fallback icon when no image -->
-                    <template x-if="!activeImage">
-                        <i class="fas fa-coffee text-8xl text-gray-300"></i>
-                    </template>
+                    <!-- Main video (initially hidden) -->
+                    <video id="main-video"
+                           src=""
+                           controls
+                           controlsList="nodownload noplaybackrate nofullscreen"
+                           disablePictureInPicture
+                           class="w-full h-full object-contain absolute inset-0 hidden bg-black"
+                           style="pointer-events: auto;"></video>
 
-                    <!-- Subtle navigation arrows - only show on hover -->
-                    <template x-if="totalImages > 1">
-                        <div class="absolute inset-0 flex items-center justify-between p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                            <button @click="previousImage()"
-                                    class="bg-white bg-opacity-90 text-gray-700 rounded-full w-8 h-8 flex items-center justify-center hover:bg-opacity-100 hover:shadow-md transition-all duration-200 backdrop-blur-sm">
-                                <i class="fas fa-chevron-left text-sm"></i>
-                            </button>
-                            <button @click="nextImage()"
-                                    class="bg-white bg-opacity-90 text-gray-700 rounded-full w-8 h-8 flex items-center justify-center hover:bg-opacity-100 hover:shadow-md transition-all duration-200 backdrop-blur-sm">
-                                <i class="fas fa-chevron-right text-sm"></i>
-                            </button>
-                        </div>
-                    </template>
+                    <!-- Fallback when no image -->
+                    {% if not coffee.images and not coffee.gallery_images.all %}
+                    <div class="flex flex-col items-center justify-center text-gray-300">
+                        <i class="fas fa-coffee text-8xl"></i>
+                        <p class="text-xs mt-2">No image available</p>
+                    </div>
+                    {% endif %}
 
-                    <!-- Clean image counter -->
-                    <template x-if="totalImages > 1">
-                        <div class="absolute bottom-3 right-3 bg-black bg-opacity-60 text-white px-2 py-1 rounded text-xs backdrop-blur-sm">
-                            <span x-text="currentImageIndex + 1"></span>/<span x-text="totalImages"></span>
-                        </div>
-                    </template>
+                    <!-- Navigation arrows -->
+                    <div class="absolute inset-y-0 left-0 right-0 flex items-center justify-between p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <button onclick="previousImage()"
+                                class="bg-white/90 backdrop-blur-sm text-gray-600 rounded-full w-10 h-10 flex items-center justify-center hover:bg-white hover:text-amber-600 hover:shadow-lg transition-all duration-200 border border-gray-200">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button onclick="nextImage()"
+                                class="bg-white/90 backdrop-blur-sm text-gray-600 rounded-full w-10 h-10 flex items-center justify-center hover:bg-white hover:text-amber-600 hover:shadow-lg transition-all duration-200 border border-gray-200">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
 
-                    <!-- Badges positioned cleanly -->
-                    <div class="absolute top-3 left-3 space-y-1">
+                    <!-- Image counter -->
+                    <div id="image-counter" class="absolute bottom-4 right-4 bg-black/70 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-sm font-medium"
+                         style="display: none;">
+                        <span id="current-index">1</span>/<span id="total-images">1</span>
+                    </div>
+
+                    <!-- Product badges -->
+                    <div class="absolute top-4 left-4 space-y-2">
                         {% if coffee.is_fresh %}
-                        <div class="bg-green-500 text-white px-2 py-1 rounded text-xs font-medium shadow-sm">
-                            <i class="fas fa-leaf mr-1"></i>{% trans "Fresh" %}
+                        <div class="bg-gradient-to-r from-green-500 to-green-600 text-white px-3 py-1.5 rounded-full text-xs font-semibold shadow-lg flex items-center space-x-1">
+                            <i class="fas fa-leaf"></i>
+                            <span>{% trans "Fresh" %}</span>
                         </div>
                         {% endif %}
 
-                        {% if coffee.stock_quantity < 10 %}
-                        <div class="bg-red-500 text-white px-2 py-1 rounded text-xs font-medium shadow-sm">
-                            <i class="fas fa-exclamation-triangle mr-1"></i>{% trans "Low Stock" %}
+                        {% if coffee.stock_quantity < 10 and coffee.stock_quantity > 0 %}
+                        <div class="bg-gradient-to-r from-red-500 to-red-600 text-white px-3 py-1.5 rounded-full text-xs font-semibold shadow-lg flex items-center space-x-1">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>{% trans "Low Stock" %}</span>
                         </div>
                         {% endif %}
                     </div>
 
                     <!-- Rating Badge -->
                     {% if avg_rating > 0 %}
-                    <div class="absolute top-3 right-3 bg-yellow-400 text-yellow-900 px-2 py-1 rounded text-xs font-medium shadow-sm">
+                    <div class="absolute top-4 right-4 bg-yellow-400 text-yellow-900 px-3 py-1.5 rounded-full text-xs font-semibold shadow-lg">
                         <i class="fas fa-star mr-1"></i>{{ avg_rating|floatformat:1 }}
                     </div>
                     {% endif %}
                 </div>
-
-                <!-- Zoom hint -->
-                <div class="absolute bottom-3 left-3 bg-black bg-opacity-60 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200 backdrop-blur-sm">
-                    <i class="fas fa-search-plus mr-1"></i>Click to zoom
-                </div>
+            </div>
         </div>
-    </div>
         
         <!-- Coffee Details -->
         <div class="space-y-6" x-data="coffeeSelector()">
@@ -494,7 +549,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Similar Coffees -->
     {% if similar_coffees %}
     <div class="border-t border-gray-200 dark:border-gray-700 pt-12 mt-12">
@@ -672,113 +727,252 @@
     
 
 <script>
-// Alpine.js Image Gallery Component - Taobao Style
-function imageGallery() {
-    const images = [
-        {% if coffee.images %}'{{ coffee.images.url }}'{% endif %}
-        {% for gallery_image in coffee.gallery_images.all %}
-        {% if coffee.images %},{% endif %}'{{ gallery_image.image.url }}'
-        {% endfor %}
-    ].filter(img => img); // Remove empty strings
+// Taobao-style Image Gallery JavaScript
+let currentImageIndex = 0;
+let images = [];
+let scrollOffset = 0;
+const maxVisibleThumbnails = 5;
 
-    return {
-        activeImage: images[0] || null,
-        images: images,
-        currentImageIndex: 0,
-        totalImages: images.length,
-        scrollOffset: 0,
-        maxVisibleThumbnails: 5, // Number of visible thumbnails (384px / 68px)
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize image gallery
+    initializeGallery();
 
-        // Computed properties for scroll buttons
-        get canScrollUp() {
-            return this.scrollOffset > 0;
-        },
-
-        get canScrollDown() {
-            return this.scrollOffset < Math.max(0, this.totalImages - this.maxVisibleThumbnails);
-        },
-
-        setActiveImage(imageUrl, index) {
-            this.activeImage = imageUrl;
-            this.currentImageIndex = index !== undefined ? index : this.images.indexOf(imageUrl);
-
-            // Auto-scroll thumbnails to keep active image visible
-            this.autoScrollToActive();
-        },
-
-
-        nextImage() {
-            if (this.currentImageIndex < this.images.length - 1) {
-                this.currentImageIndex++;
-            } else {
-                this.currentImageIndex = 0; // Loop back to first image
-            }
-            this.activeImage = this.images[this.currentImageIndex];
-            this.autoScrollToActive();
-        },
-
-        previousImage() {
-            if (this.currentImageIndex > 0) {
-                this.currentImageIndex--;
-            } else {
-                this.currentImageIndex = this.images.length - 1; // Loop to last image
-            }
-            this.activeImage = this.images[this.currentImageIndex];
-            this.autoScrollToActive();
-        },
-
-        scrollUp() {
-            if (this.canScrollUp) {
-                this.scrollOffset = Math.max(0, this.scrollOffset - 1);
-            }
-        },
-
-        scrollDown() {
-            if (this.canScrollDown) {
-                this.scrollOffset = Math.min(
-                    Math.max(0, this.totalImages - this.maxVisibleThumbnails),
-                    this.scrollOffset + 1
-                );
-            }
-        },
-
-        autoScrollToActive() {
-            const activeIndex = this.currentImageIndex;
-
-            // If active image is above visible area, scroll up
-            if (activeIndex < this.scrollOffset) {
-                this.scrollOffset = activeIndex;
-            }
-            // If active image is below visible area, scroll down
-            else if (activeIndex >= this.scrollOffset + this.maxVisibleThumbnails) {
-                this.scrollOffset = Math.max(0, activeIndex - this.maxVisibleThumbnails + 1);
-            }
-        },
-
-        // Smooth wheel scrolling for thumbnails
-        handleWheel(event) {
-            event.preventDefault();
-            if (event.deltaY > 0) {
-                this.scrollDown();
-            } else {
-                this.scrollUp();
-            }
-        },
-
-        // Initialize on component mount
-        init() {
-            console.log('Taobao-style gallery initialized with', this.totalImages, 'images');
-
-            // Add wheel event listener to thumbnail container
-            this.$nextTick(() => {
-                const container = document.getElementById('thumbnail-container');
-                if (container) {
-                    container.parentElement.addEventListener('wheel', (e) => this.handleWheel(e));
-                }
+    // Video thumbnail hover play/pause
+    document.querySelectorAll('[data-type="video"]').forEach(videoThumbnail => {
+        const videoElement = videoThumbnail.querySelector('video');
+        if (videoElement) {
+            videoThumbnail.addEventListener('mouseenter', () => {
+                videoElement.play();
+            });
+            videoThumbnail.addEventListener('mouseleave', () => {
+                videoElement.pause();
+                videoElement.currentTime = 0; // Reset video to start
             });
         }
-    };
+    });
+
+    // Mouse wheel support for thumbnail scrolling
+    const thumbnailContainer = document.getElementById('thumbnail-container');
+    if (thumbnailContainer && thumbnailContainer.parentElement) {
+        thumbnailContainer.parentElement.addEventListener('wheel', function(e) {
+            e.preventDefault();
+            if (e.deltaY > 0) {
+                scrollThumbnailsDown();
+            } else {
+                scrollThumbnailsUp();
+            }
+        });
+    }
+});
+
+function initializeGallery() {
+    // Collect all media items in DOM order to maintain correct positioning
+    const allThumbnails = document.querySelectorAll('[data-image], [data-video]');
+
+    images = [];
+    allThumbnails.forEach(thumb => {
+        if (thumb.hasAttribute('data-image')) {
+            images.push({ type: 'image', url: thumb.getAttribute('data-image') });
+        } else if (thumb.hasAttribute('data-video')) {
+            images.push({ type: 'video', url: thumb.getAttribute('data-video') });
+        }
+    });
+
+    if (images.length > 1) {
+        // Show image counter and navigation
+        const counter = document.getElementById('image-counter');
+        if (counter) {
+            counter.style.display = 'block';
+            updateImageCounter();
+        }
+
+        // Show scroll buttons if needed
+        updateScrollButtons();
+    }
+
+    // Hide thumbnail section if only one item or no items
+    const thumbnailSection = document.getElementById('thumbnail-section');
+    if (images.length <= 1 && thumbnailSection) {
+        thumbnailSection.style.display = 'none';
+    }
 }
+
+// Wrapper functions for onclick/onmouseenter
+function setActiveImage(imageUrl, thumbnailElement) {
+    setActiveMedia(imageUrl, 'image', thumbnailElement);
+}
+
+function setActiveVideo(videoUrl, thumbnailElement) {
+    setActiveMedia(videoUrl, 'video', thumbnailElement);
+}
+
+function setActiveMedia(mediaUrl, mediaType, thumbnailElement) {
+    const mainImage = document.getElementById('main-image');
+    const mainVideo = document.getElementById('main-video');
+
+    // Reset main display
+    mainImage.classList.add('hidden');
+    mainVideo.classList.add('hidden');
+    mainVideo.pause();
+    mainVideo.currentTime = 0;
+
+    if (mediaType === 'image') {
+        mainImage.src = mediaUrl;
+        mainImage.classList.remove('hidden');
+    } else if (mediaType === 'video') {
+        // Completely reset the video element
+        mainVideo.pause();
+        mainVideo.removeAttribute('src');
+
+        // Remove all child source elements
+        while (mainVideo.firstChild) {
+            mainVideo.removeChild(mainVideo.firstChild);
+        }
+
+        // Create new source element
+        const source = document.createElement('source');
+        source.src = mediaUrl;
+        source.type = 'video/mp4';
+        mainVideo.appendChild(source);
+
+        // Reset and load
+        mainVideo.currentTime = 0;
+        mainVideo.load();
+        mainVideo.classList.remove('hidden');
+
+        // Ensure controls are enabled
+        mainVideo.controls = true;
+        mainVideo.loop = false;
+
+        // Disable volume (mute the video)
+        mainVideo.muted = false;
+        mainVideo.volume = 1.0; // Set volume to max but hide controls
+
+        // Add ended event listener to disable replay
+        mainVideo.onended = function() {
+            // Remove controls when video ends to prevent replay
+            this.controls = false;
+            // Add a restart overlay or just keep it at the end frame
+            console.log('Video ended - replay disabled');
+        };
+
+        // Try to autoplay
+        const playPromise = mainVideo.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.log('Video autoplay prevented, user needs to click play button');
+            });
+        }
+    }
+
+    // Update active thumbnail styling
+    const allThumbnails = document.querySelectorAll('[data-image], [data-video]');
+    allThumbnails.forEach(thumb => {
+        thumb.classList.remove('active-thumbnail', 'border-amber-500', 'shadow-md', 'ring-2', 'ring-amber-100');
+        thumb.classList.add('border-gray-200');
+        const indicator = thumb.querySelector('.active-indicator');
+        if (indicator) {
+            indicator.style.display = 'none';
+        }
+    });
+
+    // Add active styling to selected thumbnail
+    if (thumbnailElement) {
+        thumbnailElement.classList.add('active-thumbnail', 'border-amber-500', 'shadow-md', 'ring-2', 'ring-amber-100');
+        thumbnailElement.classList.remove('border-gray-200');
+        const indicator = thumbnailElement.querySelector('.active-indicator');
+        if (indicator) {
+            indicator.style.display = 'flex';
+        }
+    }
+
+    // Update current index
+    currentImageIndex = images.findIndex(item => item.url === mediaUrl && item.type === mediaType);
+    updateImageCounter();
+    autoScrollToActiveThumbnail();
+}
+
+function nextImage() {
+    if (images.length <= 1) return;
+
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    const nextMedia = images[currentImageIndex];
+    const nextThumbnail = document.querySelector(`[data-${nextMedia.type}="${nextMedia.url}"]`);
+    setActiveMedia(nextMedia.url, nextMedia.type, nextThumbnail);
+}
+
+function previousImage() {
+    if (images.length <= 1) return;
+
+    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+    const prevMedia = images[currentImageIndex];
+    const prevThumbnail = document.querySelector(`[data-${prevMedia.type}="${prevMedia.url}"]`);
+    setActiveMedia(prevMedia.url, prevMedia.type, prevThumbnail);
+}
+
+function updateImageCounter() {
+    const currentIndexEl = document.getElementById('current-index');
+    const totalImagesEl = document.getElementById('total-images');
+
+    if (currentIndexEl && totalImagesEl) {
+        currentIndexEl.textContent = currentImageIndex + 1;
+        totalImagesEl.textContent = images.length;
+    }
+}
+
+function scrollThumbnailsUp() {
+    if (scrollOffset > 0) {
+        scrollOffset--;
+        updateThumbnailScroll();
+        updateScrollButtons();
+    }
+}
+
+function scrollThumbnailsDown() {
+    const maxOffset = Math.max(0, images.length - maxVisibleThumbnails);
+    if (scrollOffset < maxOffset) {
+        scrollOffset++;
+        updateThumbnailScroll();
+        updateScrollButtons();
+    }
+}
+
+function updateThumbnailScroll() {
+    const container = document.getElementById('thumbnail-container');
+    if (container) {
+        const translateY = scrollOffset * 72; // 60px thumbnail + 12px gap
+        container.style.transform = `translateY(-${translateY}px)`;
+    }
+}
+
+function updateScrollButtons() {
+    const upBtn = document.getElementById('scroll-up-btn');
+    const downBtn = document.getElementById('scroll-down-btn');
+    const maxOffset = Math.max(0, images.length - maxVisibleThumbnails);
+
+    if (upBtn) {
+        upBtn.style.display = scrollOffset > 0 ? 'flex' : 'none';
+    }
+
+    if (downBtn) {
+        downBtn.style.display = scrollOffset < maxOffset ? 'flex' : 'none';
+    }
+}
+
+function autoScrollToActiveThumbnail() {
+    const activeIndex = currentImageIndex;
+
+    // Auto-scroll to show active thumbnail
+    if (activeIndex < scrollOffset) {
+        scrollOffset = activeIndex;
+    } else if (activeIndex >= scrollOffset + maxVisibleThumbnails) {
+        scrollOffset = Math.max(0, activeIndex - maxVisibleThumbnails + 1);
+    }
+
+    updateThumbnailScroll();
+    updateScrollButtons();
+}
+
 
 // WhatsApp Order functionality
 function orderViaWhatsApp(coffeeName, price, weight) {
