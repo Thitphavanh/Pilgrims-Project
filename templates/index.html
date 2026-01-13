@@ -347,9 +347,104 @@
         <!-- View All Button -->
         {% if featured_coffees %}
         <div class="text-center mt-12">
-            <a href="{% url 'coffee_list' %}" 
+            <a href="{% url 'coffee_list' %}"
                class="inline-flex items-center bg-amber-600 text-white px-8 py-3 rounded-lg hover:bg-amber-700 transition font-medium">
                 <span>{% trans "View All Coffee" %}</span>
+                <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Featured Products Section -->
+<section class="py-16 bg-gradient-to-br from-neutral-light">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4">{% trans "Featured Products" %}</h2>
+            <p class="">{% trans "Discover our handpicked collection of quality products" %}</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for product in featured_products %}
+            <div class="rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
+                <!-- Product Image -->
+                <div class="h-96 bg-gradient-to-br from-amber-200 to-amber-400 flex items-center justify-center relative overflow-hidden">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}"
+                             alt="{{ product.name }}"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    {% elif product.product_images.first %}
+                        <img src="{{ product.product_images.first.image.url }}"
+                             alt="{{ product.product_images.first.alt_text|default:product.name }}"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    {% else %}
+                        <i class="fas fa-box-open text-6xl text-amber-800 opacity-30"></i>
+                    {% endif %}
+
+                    <!-- Badges -->
+                    <div class="absolute top-3 left-3 space-y-2">
+                        {% if product.is_available %}
+                        <div class="bg-green-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
+                            <i class="fas fa-check-circle mr-1"></i>{% trans "Available" %}
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Category Badge -->
+                    {% if product.category %}
+                    <div class="absolute top-3 right-3">
+                        <div class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
+                            {{ product.category.name }}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="p-6">
+                    <div class="mb-4">
+                        <h3 class="text-xl font-semibold mb-2 hover:text-amber-600 transition-colors">
+                            <a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a>
+                        </h3>
+
+                        <!-- Description -->
+                        {% if product.description %}
+                        <p class="text-sm  mb-4 line-clamp-2 italic">
+                            "{{ product.description|truncatewords:15 }}"
+                        </p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Price -->
+                    <div class="flex justify-between items-center mb-4">
+                        <div>
+                            <span class="text-2xl font-bold text-amber-600">{{ product.price|lao_currency }} ກີບ</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                     <div class="flex space-x-2">
+                        <a href="{% url 'product_detail' product.slug %}" class="flex-1 bg-amber-600 text-white py-2 px-4 rounded-lg hover:bg-amber-700 transition font-medium text-center inline-flex items-center justify-center">
+                            <i class="fas fa-eye mr-2"></i>{% trans "View Details" %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-full text-center py-12">
+                <i class="fas fa-box-open text-4xl text-gray-300 mb-4"></i>
+                <p class=" text-lg">{% trans "No featured products available at the moment" %}</p>
+                <p class="text-gray-400 text-sm mt-2">{% trans "Check back soon for new arrivals" %}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- View All Button -->
+        {% if featured_products %}
+        <div class="text-center mt-12">
+            <a href="{% url 'product_list' %}"
+               class="inline-flex items-center bg-amber-600 text-white px-8 py-3 rounded-lg hover:bg-amber-700 transition font-medium">
+                <span>{% trans "View All Products" %}</span>
                 <i class="fas fa-arrow-right ml-2"></i>
             </a>
         </div>

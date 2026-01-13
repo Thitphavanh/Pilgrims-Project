@@ -3,6 +3,7 @@ from .models import HeroSlide
 from coffee.models import CoffeeProduct, CoffeeCategory, CoffeeBean
 from restaurant.models import MenuItem, MenuCategory
 from hotel.models import Room
+from product.models import Product
 
 
 def home(request):
@@ -33,11 +34,20 @@ def home(request):
     total_beans = CoffeeBean.objects.count()
     total_categories = CoffeeCategory.objects.count()
 
+    # Fetch featured products
+    featured_products = (
+        Product.objects.filter(is_available=True)
+        .select_related("category")
+        .prefetch_related("product_images")
+        .order_by("-created_at")[:6]
+    )
+
     context = {
         "rooms": rooms,
         "featured_rooms": featured_rooms,
         "menu_data": menu_data,  # Pass the structured menu data
         "featured_coffees": featured_coffees,
+        "featured_products": featured_products,
         "categories": categories,
         "stats": {
             "total_products": total_products,

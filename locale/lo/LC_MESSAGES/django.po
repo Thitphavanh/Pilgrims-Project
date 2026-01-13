@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pilgrims-Venture-Project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-13 22:22+0700\n"
+"POT-Creation-Date: 2026-01-13 22:49+0700\n"
 "PO-Revision-Date: 2025-10-11 10:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: Lao <your_email@example.com>\n"
@@ -62,17 +62,17 @@ msgid "Body"
 msgstr "ຄວາມເຂັ້ມຂຸ້ນ"
 
 #: coffee/templates/coffee/coffee-detail.html:370
-#: product/templates/product/product_detail.html:198
+#: product/templates/product/product_detail.html:199
 msgid "Order via WhatsApp"
 msgstr "ສັ່ງຊື້ຜ່ານ WhatsApp"
 
 #: coffee/templates/coffee/coffee-detail.html:379
-#: product/templates/product/product_detail.html:205
+#: product/templates/product/product_detail.html:206
 msgid "Like"
 msgstr "ຖືກໃຈ"
 
 #: coffee/templates/coffee/coffee-detail.html:385
-#: product/templates/product/product_detail.html:211
+#: product/templates/product/product_detail.html:212
 msgid "Share"
 msgstr "ແຊຣ໌"
 
@@ -91,7 +91,7 @@ msgid "Out of Stock"
 msgstr "ສິນຄ້າໝົດ"
 
 #: coffee/templates/coffee/coffee-detail.html:415 home/models.py:33
-#: product/templates/product/product_detail.html:170
+#: product/templates/product/product_detail.html:171
 msgid "Description"
 msgstr "ຄຳອະທິບາຍ"
 
@@ -217,15 +217,15 @@ msgid "Discover coffees with similar flavors"
 msgstr "ຄົ້ນພົບກາເຟທີ່ມີລົດຊາດໃກ້ຄຽງກັນ"
 
 #: coffee/templates/coffee/coffee-detail.html:574
-#: product/templates/product/product_detail.html:239 templates/index.html:277
+#: product/templates/product/product_detail.html:240 templates/index.html:277
 msgid "Recommended"
 msgstr "ແນະນຳ"
 
 #: coffee/templates/coffee/coffee-detail.html:639
 #: hotel/templates/hotel/room-detail.html:390
 #: hotel/templates/hotel/rooms-list.html:134
-#: product/templates/product/product_detail.html:269 templates/index.html:333
-#: templates/index.html:496
+#: product/templates/product/product_detail.html:270 templates/index.html:333
+#: templates/index.html:428 templates/index.html:591
 msgid "View Details"
 msgstr "ເບິ່ງລາຍລະອຽດ"
 
@@ -253,12 +253,12 @@ msgid "All coffee items"
 msgstr "ກາເຟທັງໝົດ"
 
 #: coffee/templates/coffee/coffee-list.html:19
-#: product/templates/product/product_list.html:23
+#: product/templates/product/product_list.html:24
 msgid "Found"
 msgstr "ທີ່ພົບ"
 
 #: coffee/templates/coffee/coffee-list.html:19
-#: product/templates/product/product_list.html:23
+#: product/templates/product/product_list.html:24
 msgid "items"
 msgstr "ລາຍການ"
 
@@ -267,19 +267,19 @@ msgid "No reviews yet."
 msgstr "ຍັງບໍ່ມີການຣີວິວ."
 
 #: coffee/templates/coffee/coffee-list.html:125
-#: product/templates/product/product_list.html:110
+#: product/templates/product/product_list.html:111
 msgid "See Details"
 msgstr "ເບິ່ງລາຍລະອຽດ"
 
 #: coffee/templates/coffee/coffee-list.html:140
 #: hotel/templates/hotel/rooms-list.html:192
-#: product/templates/product/product_list.html:125
+#: product/templates/product/product_list.html:126
 msgid "Previous"
 msgstr "ກ່ອນໜ້າ"
 
 #: coffee/templates/coffee/coffee-list.html:158
 #: hotel/templates/hotel/rooms-list.html:212
-#: product/templates/product/product_list.html:143
+#: product/templates/product/product_list.html:144
 msgid "Next"
 msgstr "ຖັດໄປ"
 
@@ -353,7 +353,7 @@ msgstr "ສະຫວັນນະເຂດ"
 msgid "Hotel"
 msgstr "ໂຮງແຮມ"
 
-#: home/models.py:26 templates/index.html:600
+#: home/models.py:26 templates/index.html:695
 msgid "Restaurant"
 msgstr "ຮ້ານອາຫານ"
 
@@ -375,7 +375,7 @@ msgstr "ກາເຟ"
 msgid "Title"
 msgstr ""
 
-#: home/models.py:36 product/templates/product/product_detail.html:186
+#: home/models.py:36 product/templates/product/product_detail.html:187
 #, fuzzy
 #| msgid "Categories"
 msgid "Category"
@@ -507,7 +507,7 @@ msgid "Related Properties"
 msgstr "ທີ່ພັກທີ່ກ່ຽວຂ້ອງ"
 
 #: hotel/templates/hotel/room-detail.html:410
-#: hotel/templates/hotel/rooms-list.html:84 templates/index.html:442
+#: hotel/templates/hotel/rooms-list.html:84 templates/index.html:537
 msgid "per night"
 msgstr "ຕໍ່ຄືນ"
 
@@ -581,7 +581,7 @@ msgstr ""
 msgid "Floor"
 msgstr "ຊັ້ນ"
 
-#: hotel/templates/hotel/rooms-list.html:97 templates/index.html:457
+#: hotel/templates/hotel/rooms-list.html:97 templates/index.html:552
 msgid "Guests"
 msgstr "ແຂກ"
 
@@ -590,19 +590,19 @@ msgstr "ແຂກ"
 msgid "For %(room.room_type.capacity)s people"
 msgstr "ສໍາລັບ %(room.room_type.capacity)s ຄົນ"
 
-#: hotel/templates/hotel/rooms-list.html:102 templates/index.html:464
+#: hotel/templates/hotel/rooms-list.html:102 templates/index.html:559
 msgid "Size"
 msgstr "ຂະໜາດ"
 
-#: hotel/templates/hotel/rooms-list.html:111 templates/index.html:472
+#: hotel/templates/hotel/rooms-list.html:111 templates/index.html:567
 msgid "Amenities"
 msgstr "ສິ່ງອໍານວຍຄວາມສະດວກ"
 
-#: hotel/templates/hotel/rooms-list.html:122 templates/index.html:484
+#: hotel/templates/hotel/rooms-list.html:122 templates/index.html:579
 msgid "more"
 msgstr "ເພີ່ມເຕີມ"
 
-#: hotel/templates/hotel/rooms-list.html:163 templates/index.html:516
+#: hotel/templates/hotel/rooms-list.html:163 templates/index.html:611
 msgid "No rooms found"
 msgstr "ບໍ່ພົບຫ້ອງພັກ"
 
@@ -612,7 +612,7 @@ msgid ""
 "filters."
 msgstr "ພວກເຮົາບໍ່ສາມາດຊອກຫາຫ້ອງພັກທີ່ຕົງກັບເງື່ອນໄຂຂອງທ່ານ. ລອງປັບແຕ່ງຕົວກອງຂອງທ່ານ."
 
-#: hotel/templates/hotel/rooms-list.html:172 templates/index.html:519
+#: hotel/templates/hotel/rooms-list.html:172 templates/index.html:614
 msgid "Clear All Filters"
 msgstr "ລົບຕົວກອງທັງໝົດ"
 
@@ -620,79 +620,77 @@ msgstr "ລົບຕົວກອງທັງໝົດ"
 msgid "Back to Home"
 msgstr "ກັບໄປໜ້າຫຼັກ"
 
-#: product/templates/product/product_detail.html:27
-#: product/templates/product/product_list.html:5
+#: product/templates/product/product_detail.html:28
+#: product/templates/product/product_list.html:6
 #, fuzzy
 #| msgid "Coffee Products"
 msgid "All Products"
 msgstr "ຜະລິດຕະພັນກາເຟ"
 
-#: product/templates/product/product_detail.html:32
+#: product/templates/product/product_detail.html:33
 #, fuzzy
 #| msgid "Coffee Category"
 msgid "Product Category"
 msgstr "ໝວດໝູ່ກາເຟ"
 
-#: product/templates/product/product_detail.html:140
-#: product/templates/product/product_list.html:73
+#: product/templates/product/product_detail.html:141
+#: product/templates/product/product_list.html:74 templates/index.html:389
 #, fuzzy
 #| msgid "Available Rooms"
 msgid "Available"
 msgstr "ຫ້ອງພັກທີ່ມີຢູ່"
 
-#: product/templates/product/product_detail.html:177
+#: product/templates/product/product_detail.html:178
 msgid "Product Information"
 msgstr "ຂໍ້ມູນສິນຄ້າ"
 
-#: product/templates/product/product_detail.html:181
+#: product/templates/product/product_detail.html:182
 #, fuzzy
 #| msgid "Available Rooms"
 msgid "Available for purchase"
 msgstr "ຫ້ອງພັກທີ່ມີຢູ່"
 
-#: product/templates/product/product_detail.html:230
+#: product/templates/product/product_detail.html:231
 #, fuzzy
 #| msgid "Related Properties"
 msgid "Related Products"
 msgstr "ທີ່ພັກທີ່ກ່ຽວຂ້ອງ"
 
-#: product/templates/product/product_detail.html:231
+#: product/templates/product/product_detail.html:232
 #, fuzzy
 #| msgid "Discover coffees with similar flavors"
 msgid "Discover similar products"
 msgstr "ຄົ້ນພົບກາເຟທີ່ມີລົດຊາດໃກ້ຄຽງກັນ"
 
-#: product/templates/product/product_detail.html:284
-#, fuzzy
-#| msgid "Coffee Products"
+#: product/templates/product/product_detail.html:285 templates/index.html:447
 msgid "View All Products"
-msgstr "ຜະລິດຕະພັນກາເຟ"
+msgstr "ເບິ່ງສິນຄ້າທັງໝົດ"
 
-#: product/templates/product/product_list.html:10
+#: product/templates/product/product_list.html:11
 msgid ""
 "Discover our carefully curated collection of quality products, handpicked to "
 "bring you the best experience."
 msgstr ""
 
-#: product/templates/product/product_list.html:20
+#: product/templates/product/product_list.html:21
 msgid "All product items"
 msgstr "ສິນຄ້າທັງໝົດ"
 
-#: product/templates/product/product_list.html:34
+#: product/templates/product/product_list.html:35
 msgid "All"
 msgstr ""
 
-#: product/templates/product/product_list.html:153
+#: product/templates/product/product_list.html:154
 #, fuzzy
 #| msgid "No rooms found"
 msgid "No products found"
 msgstr "ບໍ່ພົບຫ້ອງພັກ"
 
-#: product/templates/product/product_list.html:154
+#: product/templates/product/product_list.html:155
 msgid "Try changing your search criteria or clear filters"
 msgstr ""
 
-#: product/templates/product/product_list.html:157
+#: product/templates/product/product_list.html:158
 #, fuzzy
 #| msgid "Clear All Filters"
 msgid "Clear Filters"
@@ -973,7 +971,7 @@ msgstr "ຈອງທີ່ພັກຂອງທ່ານ"
 msgid "View restaurant menu at Pilgrims Kitchen"
 msgstr ""
 
-#: templates/components/hero-section.html:48 templates/index.html:596
+#: templates/components/hero-section.html:48 templates/index.html:691
 msgid "Explore Our Menu"
 msgstr "ສຳຫຼວດເມນູຂອງພວກເຮົາ"
 
@@ -1110,19 +1108,37 @@ msgstr "ບໍ່ມີກາເຟແນະນຳໃນຂະນະນີ້"
 msgid "ກະລຸນາກັບມາໃໝ່ໃນໄວໆນີ້"
 msgstr "ກະລຸນາກັບມາໃໝ່ໃນໄວໆນີ້"
 
-#: templates/index.html:367
+#: templates/index.html:364
+msgid "Featured Products"
+msgstr "ສິນຄ້າແນະນຳ"
+
+#: templates/index.html:365
+msgid "Discover our handpicked collection of quality products"
+msgstr "ຄົ້ນພົບຜະລິດຕະພັນຄຸນນະພາບ ທີ່ພວກເຮົາຄັດສັນມາເປັນພິເສດ"
+
+#: templates/index.html:436
+msgid "No featured products available at the moment"
+msgstr ""
+
+#: templates/index.html:437
+#, fuzzy
+#| msgid "Check back soon to see guest comments!"
+msgid "Check back soon for new arrivals"
+msgstr "ກັບມາໃໝ່ໄວໆນີ້ ເພື່ອເບິ່ງຄໍາຄິດເຫັນຂອງແຂກ!"
+
+#: templates/index.html:462
 msgid "Available Rooms"
 msgstr "ຫ້ອງພັກທີ່ມີຢູ່"
 
-#: templates/index.html:416
+#: templates/index.html:511
 msgid "Room"
 msgstr "ຫ້ອງ"
 
-#: templates/index.html:436
+#: templates/index.html:531
 msgid "4.8"
 msgstr "4.8"
 
-#: templates/index.html:517
+#: templates/index.html:612
 #, fuzzy
 #| msgid ""
 #| "We couldn't find any rooms matching your criteria. Try adjusting your "
@@ -1132,51 +1148,51 @@ msgid ""
 "filters or search terms."
 msgstr "ພວກເຮົາບໍ່ສາມາດຊອກຫາຫ້ອງພັກທີ່ຕົງກັບເງື່ອນໄຂຂອງທ່ານ. ລອງປັບແຕ່ງຕົວກອງຂອງທ່ານ."
 
-#: templates/index.html:527
+#: templates/index.html:622
 msgid "View All Accommodation"
 msgstr "ເບິ່ງທີ່ພັກທັງໝົດ"
 
-#: templates/index.html:537
+#: templates/index.html:632
 msgid "Our Amenities"
 msgstr "ສິ່ງອຳນວຍຄວາມສະດວກຂອງພວກເຮົາ"
 
-#: templates/index.html:549
+#: templates/index.html:644
 msgid "Free Wi-Fi Internet"
 msgstr "ອິນເຕີເນັດ Wi-Fi ຟຣີ"
 
-#: templates/index.html:550
+#: templates/index.html:645
 msgid "“High-speed internet access is available throughout the property.”"
 msgstr "“ມີອິນເຕີເນັດຄວາມໄວສູງ ໃຫ້ບໍລິການຄອບຄຸມທົ່ວພື້ນທີ່.”"
 
-#: templates/index.html:558
+#: templates/index.html:653
 msgid "Co-working Space"
 msgstr "ພື້ນທີ່ Co-working"
 
-#: templates/index.html:559
+#: templates/index.html:654
 msgid "Stay productive with our convenient co-working space."
 msgstr "ຊ່ວຍໃຫ້ພວກທ່ານມີຄວາມສະດວກໃນການເຮັດວຽກ."
 
-#: templates/index.html:567
+#: templates/index.html:662
 msgid "Playground"
 msgstr "ສະໜາມເດັກຫຼິ້ນ"
 
-#: templates/index.html:568
+#: templates/index.html:663
 msgid "Let your kids enjoy a safe and fun-filled adventure."
 msgstr "ໃຫ້ລູກຂອງທ່ານ ເພີດເພີນກັບການຜະຈົນໄພທີ່ປອດໄພ ແລະ ເຕັມໄປດ້ວຍຄວາມມ່ວນຊື່ນ."
 
-#: templates/index.html:576
+#: templates/index.html:671
 msgid "Free Parking"
 msgstr "ຈອດລົດຟຣີ"
 
-#: templates/index.html:577
+#: templates/index.html:672
 msgid "Free parking is available for all guests."
 msgstr "ບໍລິການຈອດລົດຟຣີ ສຳລັບແຂກທຸກຄົນ."
 
-#: templates/index.html:588
+#: templates/index.html:683
 msgid "Riverside Experience"
 msgstr "ປະສົບການແຄມແມ່ນໍ້າຂອງ"
 
-#: templates/index.html:590
+#: templates/index.html:685
 msgid ""
 "Our riverside retreat offers more than just a place to stay — it’s a "
 "complete experience by the banks of the Mekong, with sweeping views of "
@@ -1188,7 +1204,7 @@ msgstr ""
 "ຕັ້ງແຕ່ກາເຟຄັ່ວສົດໃໝ່ຢູ່ຮ້ານກາເຟຂອງພວກເຮົາ ຈົນເຖິງລົດຊາດສາກົນຢູ່ຮ້ານອາຫານຫຼາກຫຼາຍປະເພດຂອງພວກເຮົາ, "
 "ທຸກລາຍລະອຽດຖືກອອກແບບມາເພື່ອສ້າງຄວາມພໍໃຈແກ່ປະສາດສຳຜັດຂອງທ່ານ."
 
-#: templates/index.html:593
+#: templates/index.html:688
 msgid ""
 "Whether you’re here for a hearty breakfast, a leisurely riverside lunch, or "
 "a romantic sunset dinner, our team is dedicated to making every moment "
@@ -1216,11 +1232,6 @@ msgstr ""
 #~| msgid "View Menu"
 #~ msgid "View"
 #~ msgstr "ເບິ່ງເມນູ"
-
-#, fuzzy
-#~| msgid "Check back soon to see guest comments!"
-#~ msgid "Check back soon for new products!"
-#~ msgstr "ກັບມາໃໝ່ໄວໆນີ້ ເພື່ອເບິ່ງຄໍາຄິດເຫັນຂອງແຂກ!"
 
 #~ msgid "Product Details"
 #~ msgstr "ລາຍລະອຽດຜະລິດຕະພັນ"

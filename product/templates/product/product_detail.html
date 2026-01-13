@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load i18n %}
+{% load lao_filters %}
 
 {% block title %}{{ product.name }}{% endblock %}
 
@@ -160,7 +161,7 @@
             <!-- Price -->
             <div class="border-t border-gray-200 pt-6">
                 <div class="flex items-baseline space-x-4">
-                    <span class="text-4xl font-bold text-amber-600">{{ product.price|floatformat:0 }} ກີບ</span>
+                    <span class="text-4xl font-bold text-amber-600">{{ product.price|lao_currency }} ກີບ</span>
                 </div>
             </div>
 
@@ -192,7 +193,7 @@
             <!-- Actions -->
             <div class="border-t border-gray-200 pt-6 space-y-4">
                 <div class="space-y-3">
-                    <button onclick="orderViaWhatsApp('{{ product.name }}', '{{ product.price|floatformat:0 }}')"
+                    <button onclick="orderViaWhatsApp('{{ product.name }}', '{{ product.price|lao_currency }}')"
                             class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2 shadow-md hover:shadow-lg transform hover:scale-105">
                         <i class="fab fa-whatsapp text-xl"></i>
                         <span>{% trans "Order via WhatsApp" %}</span>
@@ -261,7 +262,7 @@
                     <div class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700">
                         <div>
                             <span class="text-xl font-bold text-amber-600 dark:text-amber-400">
-                                {{ related_product.price|floatformat:0 }} ກີບ
+                                {{ related_product.price|lao_currency }} ກີບ
                             </span>
                         </div>
                         <a href="{% url 'product_detail' related_product.slug %}"

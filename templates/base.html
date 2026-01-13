@@ -430,6 +430,16 @@
     <script src="{% static 'js/main.js' %}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Restore scroll position after language change
+            const savedScrollPosition = sessionStorage.getItem('scrollPosition');
+            if (savedScrollPosition !== null) {
+                window.scrollTo({
+                    top: parseInt(savedScrollPosition, 10),
+                    behavior: 'instant'
+                });
+                sessionStorage.removeItem('scrollPosition');
+            }
+
             // Theme toggle
             const themeToggleBtn = document.getElementById('theme-toggle');
             if (themeToggleBtn) {
@@ -650,6 +660,10 @@
 
             // Language switching function
             window.switchLanguage = function(language) {
+                // Save current scroll position
+                const scrollY = window.scrollY || window.pageYOffset;
+                sessionStorage.setItem('scrollPosition', scrollY);
+
                 const currentPath = window.location.pathname;
                 let targetUrl;
 

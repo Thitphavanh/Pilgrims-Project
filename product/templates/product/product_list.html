@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load i18n %}
+{% load lao_filters %}
 
 {% block title %}{% trans "All Products" %}{% endblock %}
 
@@ -100,7 +101,7 @@
                         <!-- Price -->
                         <div class="flex justify-between items-center mb-4">
                             <div>
-                                <span class="text-2xl font-bold text-amber-600">{{ product.price|floatformat:0 }} ກີບ</span>
+                                <span class="text-2xl font-bold text-amber-600">{{ product.price|lao_currency }} ກີບ</span>
                             </div>
                         </div>
 
