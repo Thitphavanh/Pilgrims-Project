@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "All Products" %}{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="text-center mb-8">
+        <!-- <p class="text-1xl font-bold mb-2">{% trans "Discover our carefully curated collection of quality products, handpicked to bring you the best experience." %}</p> -->
+    </div>
+
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+        <div>
+            <h1 class="text-3xl font-bold mb-2">
+                {% if current_category %}
+                    {{ current_category.name }}
+                {% else %}
+                    {% trans "All product items" %}
+                {% endif %}
+            </h1>
+            <p class="">{% trans "Found" %} {{ page_obj.paginator.count }} {% trans "items" %}</p>
+        </div>
+    </div>
+
+    <!-- Category Filter -->
+    {% if categories %}
+    <div class="mb-8 overflow-x-auto">
+        <div class="flex flex-wrap gap-3 justify-center">
+            <a href="{% url 'product_list' %}"
+               class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300
+                      {% if not current_category %}bg-amber-600 text-white{% else %}bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600{% endif %}">
+                {% trans "All" %}
+            </a>
+            {% for category in categories %}
+            <a href="{% url 'product_list_by_category' category.slug %}"
+               class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300
+                      {% if current_category.slug == category.slug %}bg-amber-600 text-white{% else %}bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600{% endif %}">
+                {{ category.name }}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Product Grid -->
+        <div class="lg:col-span-3">
+            {% if page_obj %}
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                {% for product in page_obj %}
+                <div class="rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
+                    <!-- Product Image -->
+                    <div class="h-96 bg-gradient-to-br from-amber-200 to-amber-400 flex items-center justify-center relative overflow-hidden">
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}"
+                                 alt="{{ product.name }}"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        {% elif product.product_images.first %}
+                            <img src="{{ product.product_images.first.image.url }}"
+                                 alt="{{ product.product_images.first.alt_text|default:product.name }}"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        {% else %}
+                            <i class="fas fa-box-open text-6xl opacity-30"></i>
+                        {% endif %}
+
+                        <!-- Badges -->
+                        <div class="absolute top-2 left-2 space-y-1">
+                            <!-- Available Badge -->
+                            {% if product.is_available %}
+                            <div class="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-semibold shadow-lg">
+                                <i class="fas fa-check-circle mr-1"></i> {% trans "Available" %}
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Category -->
+                        {% if product.category %}
+                        <div class="absolute top-2 right-2">
+                            <span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs font-medium shadow-sm mb-1 block">
+                               {{ product.category.name }}
+                            </span>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 line-clamp-2 transition-colors">
+                            <a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a>
+                        </h3>
+
+                        <!-- Description -->
+                        {% if product.description %}
+                        <p class="text-sm mb-4 line-clamp-2 italic">
+                            "{{ product.description|truncatewords:15 }}"
+                        </p>
+                        {% endif %}
+
+                        <!-- Price -->
+                        <div class="flex justify-between items-center mb-4">
+                            <div>
+                                <span class="text-2xl font-bold text-amber-600">{{ product.price|floatformat:0 }} ກີບ</span>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="flex space-x-2">
+                            <a href="{% url 'product_detail' product.slug %}" class="flex-1 bg-amber-600 text-white py-2 px-4 rounded-lg hover:bg-amber-700 transition font-medium text-center inline-flex items-center justify-center">
+                                <i class="fas fa-eye mr-2"></i> {% trans "See Details" %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Pagination -->
+            {% if page_obj.has_other_pages %}
+            <div class="flex justify-center mt-8">
+                <nav class="flex space-x-2">
+                    {% if page_obj.has_previous %}
+                    <a href="?{% if current_category %}category={{ current_category.slug }}&{% endif %}page={{ page_obj.previous_page_number }}"
+                       class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                        <i class="fas fa-chevron-left mr-1"></i> {% trans "Previous" %}
+                    </a>
+                    {% endif %}
+
+                    {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                    <span class="px-3 py-2 bg-amber-600 text-white rounded-lg font-medium">{{ num }}</span>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <a href="?{% if current_category %}category={{ current_category.slug }}&{% endif %}page={{ num }}"
+                       class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                        {{ num }}
+                    </a>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                    <a href="?{% if current_category %}category={{ current_category.slug }}&{% endif %}page={{ page_obj.next_page_number }}"
+                       class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                       {% trans "Next" %} <i class="fas fa-chevron-right ml-1"></i>
+                    </a>
+                    {% endif %}
+                </nav>
+            </div>
+            {% endif %}
+
+            {% else %}
+            <div class="text-center py-12">
+                <i class="fas fa-search text-6xl text-gray-300 mb-4"></i>
+                <h3 class="text-xl font-semibold text-gray-700 mb-2">{% trans "No products found" %}</h3>
+                <p class="text-gray-500 mb-6">{% trans "Try changing your search criteria or clear filters" %}</p>
+                <a href="{% url 'product_list' %}"
+                   class="bg-amber-600 text-white px-6 py-3 rounded-lg hover:bg-amber-700 transition inline-block">
+                    {% trans "Clear Filters" %}
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

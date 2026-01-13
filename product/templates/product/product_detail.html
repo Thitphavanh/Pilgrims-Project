@@ -1,0 +1,501 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+    .scrollbar-hide {
+        scroll-behavior: smooth;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Breadcrumb -->
+    <nav class="mb-8">
+        <ol class="flex items-center space-x-2 text-sm">
+            <li><a href="{% url 'product_list' %}" class="text-amber-600 hover:text-amber-700">{% trans "All Products" %}</a></li>
+            <li class="">/</li>
+            {% if product.category %}
+                <li><a href="{% url 'product_list_by_category' product.category.slug %}" class="text-amber-600 hover:text-amber-700">{{ product.category.name }}</a></li>
+            {% else %}
+                <li class="text-gray-500">{% trans "Product Category" %}</li>
+            {% endif %}
+            <li class="">/</li>
+            <li class="">{{ product.name }}</li>
+        </ol>
+    </nav>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+
+        <!-- Taobao-style Image Gallery -->
+        <div class="flex space-x-4 p-4">
+            <!-- Vertical Thumbnail Gallery (Left Side) -->
+            <div class="relative flex-shrink-0" id="thumbnail-section">
+                <div class="relative h-[420px] w-[68px] overflow-hidden">
+                    <div class="flex flex-col space-y-2 p-1 transition-transform duration-300 ease-out scrollbar-hide"
+                         id="thumbnail-container">
+                        <!-- Main product image thumbnail -->
+                        {% if product.image %}
+                        <div class="flex-shrink-0 aspect-square w-[60px] h-[60px] bg-white border-2 border-amber-500 shadow-md ring-2 ring-amber-100 rounded-md cursor-pointer overflow-hidden group relative active-thumbnail transform transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:border-amber-400"
+                             data-image="{{ product.image.url }}"
+                             onclick="setActiveImage('{{ product.image.url }}', this)"
+                             onmouseenter="setActiveImage('{{ product.image.url }}', this)">
+                            <img src="{{ product.image.url }}"
+                                 alt="{{ product.name }}"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200">
+                            <div class="absolute -top-1 -right-1 w-4 h-4 bg-amber-500 rounded-full flex items-center justify-center shadow-md active-indicator">
+                                <svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-200"></div>
+                        </div>
+                        {% endif %}
+
+                        <!-- Gallery images thumbnails -->
+                        {% for gallery_image in product.product_images.all %}
+                        <div class="flex-shrink-0 aspect-square w-[60px] h-[60px] bg-white border-2 border-gray-200 rounded-md cursor-pointer overflow-hidden group relative transform transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:border-amber-400"
+                             data-image="{{ gallery_image.image.url }}"
+                             onclick="setActiveImage('{{ gallery_image.image.url }}', this)"
+                             onmouseenter="setActiveImage('{{ gallery_image.image.url }}', this)">
+                            <img src="{{ gallery_image.image.url }}"
+                                 alt="{{ gallery_image.alt_text|default:product.name }}"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200">
+                            <div class="absolute -top-1 -right-1 w-4 h-4 bg-amber-500 rounded-full flex items-center justify-center shadow-md active-indicator" style="display: none;">
+                                <svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-200"></div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Scroll buttons -->
+                <button id="scroll-up-btn"
+                        class="absolute -top-2 left-1/2 transform -translate-x-1/2 bg-white shadow-lg border border-gray-200 rounded-full w-7 h-7 flex items-center justify-center hover:bg-amber-50 hover:border-amber-300 hover:shadow-xl transition-all duration-200 z-10"
+                        style="display: none;"
+                        onclick="scrollThumbnailsUp()">
+                    <i class="fas fa-chevron-up text-gray-600 text-xs"></i>
+                </button>
+
+                <button id="scroll-down-btn"
+                        class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-white shadow-lg border border-gray-200 rounded-full w-7 h-7 flex items-center justify-center hover:bg-amber-50 hover:border-amber-300 hover:shadow-xl transition-all duration-200 z-10"
+                        style="display: none;"
+                        onclick="scrollThumbnailsDown()">
+                    <i class="fas fa-chevron-down text-gray-600 text-xs"></i>
+                </button>
+            </div>
+
+            <!-- Main Image Display -->
+            <div class="flex-1 relative group">
+                <div id="main-media-container" class="aspect-square bg-gradient-to-br from-white to-gray-50 border border-gray-200 rounded-lg shadow-sm flex items-center justify-center relative overflow-hidden hover:shadow-lg transition-all duration-300">
+                    <img id="main-image"
+                         src="{% if product.image %}{{ product.image.url }}{% else %}#{% endif %}"
+                         alt="{{ product.name }}"
+                         class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+
+                    {% if not product.image and not product.product_images.all %}
+                    <div class="flex flex-col items-center justify-center text-gray-300">
+                        <i class="fas fa-box-open text-8xl"></i>
+                        <p class="text-xs mt-2">No image available</p>
+                    </div>
+                    {% endif %}
+
+                    <!-- Navigation arrows -->
+                    <div class="absolute inset-y-0 left-0 right-0 flex items-center justify-between p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <button onclick="previousImage()"
+                                class="bg-white/90 backdrop-blur-sm text-gray-600 rounded-full w-10 h-10 flex items-center justify-center hover:bg-white hover:text-amber-600 hover:shadow-lg transition-all duration-200 border border-gray-200">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button onclick="nextImage()"
+                                class="bg-white/90 backdrop-blur-sm text-gray-600 rounded-full w-10 h-10 flex items-center justify-center hover:bg-white hover:text-amber-600 hover:shadow-lg transition-all duration-200 border border-gray-200">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Image counter -->
+                    <div id="image-counter" class="absolute bottom-4 right-4 bg-black/70 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-sm font-medium"
+                         style="display: none;">
+                        <span id="current-index">1</span>/<span id="total-images">1</span>
+                    </div>
+
+                    <!-- Product badges -->
+                    {% if product.is_available %}
+                    <div class="absolute top-4 left-4">
+                        <div class="bg-gradient-to-r from-green-500 to-green-600 text-white px-3 py-1.5 rounded-full text-xs font-semibold shadow-lg flex items-center space-x-1">
+                            <i class="fas fa-check-circle"></i>
+                            <span>{% trans "Available" %}</span>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Details -->
+        <div class="space-y-6">
+            <div>
+                {% if product.category %}
+                <a href="{% url 'product_list_by_category' product.category.slug %}"
+                   class="inline-block bg-amber-100 text-amber-600 px-3 py-1 rounded-full text-sm mb-2">
+                    {{ product.category.name }}
+                </a>
+                {% endif %}
+                <h1 class="text-3xl font-bold mb-2">{{ product.name }}</h1>
+            </div>
+
+            <!-- Price -->
+            <div class="border-t border-gray-200 pt-6">
+                <div class="flex items-baseline space-x-4">
+                    <span class="text-4xl font-bold text-amber-600">{{ product.price|floatformat:0 }} ກີບ</span>
+                </div>
+            </div>
+
+            <!-- Description -->
+            {% if product.description %}
+            <div class="border-t border-gray-200 pt-6">
+                <h3 class="text-lg font-semibold mb-4">{% trans "Description" %}</h3>
+                <p class="leading-relaxed">{{ product.description|linebreaks }}</p>
+            </div>
+            {% endif %}
+
+            <!-- Product Information -->
+            <div class="border-t border-gray-200 pt-6">
+                <h3 class="text-lg font-semibold mb-4">{% trans "Product Information" %}</h3>
+                <ul class="space-y-2">
+                    <li class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                        {% trans "Available for purchase" %}
+                    </li>
+                    {% if product.category %}
+                    <li class="flex items-center">
+                        <i class="fas fa-tag text-amber-600 mr-3"></i>
+                        {% trans "Category" %}: {{ product.category.name }}
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+
+            <!-- Actions -->
+            <div class="border-t border-gray-200 pt-6 space-y-4">
+                <div class="space-y-3">
+                    <button onclick="orderViaWhatsApp('{{ product.name }}', '{{ product.price|floatformat:0 }}')"
+                            class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2 shadow-md hover:shadow-lg transform hover:scale-105">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                        <span>{% trans "Order via WhatsApp" %}</span>
+                    </button>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <button class="flex items-center justify-center space-x-2 border-2 border-amber-500 text-amber-600 hover:bg-amber-500 hover:text-white font-medium py-2 px-4 rounded-lg transition-all duration-200"
+                                onclick="addToWishlist('{{ product.slug }}')">
+                            <i class="fas fa-heart text-sm"></i>
+                            <span>{% trans "Like" %}</span>
+                        </button>
+
+                        <button class="flex items-center justify-center space-x-2 border-2 border-gray-300 text-gray-600 hover:bg-gray-100 font-medium py-2 px-4 rounded-lg transition-all duration-200"
+                                onclick="shareProduct()">
+                            <i class="fas fa-share-alt text-sm"></i>
+                            <span>{% trans "Share" %}</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Related Products -->
+    {% if related_products %}
+    <div class="border-t border-gray-200 dark:border-gray-700 pt-12 mt-12">
+        <div class="text-center mb-12">
+            <div class="flex items-center justify-center mb-4">
+                <div class="h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent flex-1"></div>
+                <div class="px-6">
+                    <i class="fas fa-box-open text-3xl text-amber-600 mb-2"></i>
+                </div>
+                <div class="h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent flex-1"></div>
+            </div>
+            <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">{% trans "Related Products" %}</h3>
+            <p class="text-gray-600 dark:text-gray-400">{% trans "Discover similar products" %}</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {% for related_product in related_products %}
+            <div class="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700">
+                <div class="absolute top-4 left-4 z-10">
+                    <span class="bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                        {% trans "Recommended" %}
+                    </span>
+                </div>
+
+                <div class="relative h-64 bg-gradient-to-br from-amber-100 via-amber-200 to-amber-300 dark:from-amber-800 dark:via-amber-700 dark:to-amber-600 overflow-hidden">
+                    {% if related_product.image %}
+                        <img src="{{ related_product.image.url }}"
+                             alt="{{ related_product.name }}"
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    {% else %}
+                        <div class="flex items-center justify-center h-full">
+                            <i class="fas fa-box-open text-6xl text-amber-600 dark:text-amber-300 opacity-60"></i>
+                        </div>
+                    {% endif %}
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+
+                <div class="p-6">
+                    <h4 class="font-bold text-lg text-gray-900 dark:text-white mb-2 line-clamp-2 group-hover:text-amber-600 transition-colors duration-300">
+                        {{ related_product.name }}
+                    </h4>
+
+                    <div class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700">
+                        <div>
+                            <span class="text-xl font-bold text-amber-600 dark:text-amber-400">
+                                {{ related_product.price|floatformat:0 }} ກີບ
+                            </span>
+                        </div>
+                        <a href="{% url 'product_detail' related_product.slug %}"
+                           class="inline-flex items-center px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white text-sm font-medium rounded-lg transition-colors duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">
+                            <span>{% trans "View Details" %}</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="absolute inset-0 bg-gradient-to-r from-amber-400/0 via-amber-400/5 to-amber-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="text-center mt-12">
+            <a href="{% url 'product_list' %}"
+               class="inline-flex items-center px-8 py-3 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                <i class="fas fa-th-large mr-3"></i>
+                {% trans "View All Products" %}
+                <i class="fas fa-arrow-right ml-3"></i>
+            </a>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+// Taobao-style Image Gallery JavaScript
+let currentImageIndex = 0;
+let images = [];
+let scrollOffset = 0;
+const maxVisibleThumbnails = 5;
+
+document.addEventListener('DOMContentLoaded', function() {
+    initializeGallery();
+
+    const thumbnailContainer = document.getElementById('thumbnail-container');
+    if (thumbnailContainer && thumbnailContainer.parentElement) {
+        thumbnailContainer.parentElement.addEventListener('wheel', function(e) {
+            e.preventDefault();
+            if (e.deltaY > 0) {
+                scrollThumbnailsDown();
+            } else {
+                scrollThumbnailsUp();
+            }
+        });
+    }
+});
+
+function initializeGallery() {
+    const allThumbnails = document.querySelectorAll('[data-image]');
+    images = [];
+    allThumbnails.forEach(thumb => {
+        images.push({ type: 'image', url: thumb.getAttribute('data-image') });
+    });
+
+    if (images.length > 1) {
+        const counter = document.getElementById('image-counter');
+        if (counter) {
+            counter.style.display = 'block';
+            updateImageCounter();
+        }
+        updateScrollButtons();
+    }
+
+    const thumbnailSection = document.getElementById('thumbnail-section');
+    if (images.length <= 1 && thumbnailSection) {
+        thumbnailSection.style.display = 'none';
+    }
+}
+
+function setActiveImage(imageUrl, thumbnailElement) {
+    const mainImage = document.getElementById('main-image');
+    mainImage.src = imageUrl;
+
+    const allThumbnails = document.querySelectorAll('[data-image]');
+    allThumbnails.forEach(thumb => {
+        thumb.classList.remove('active-thumbnail', 'border-amber-500', 'shadow-md', 'ring-2', 'ring-amber-100');
+        thumb.classList.add('border-gray-200');
+        const indicator = thumb.querySelector('.active-indicator');
+        if (indicator) indicator.style.display = 'none';
+    });
+
+    if (thumbnailElement) {
+        thumbnailElement.classList.add('active-thumbnail', 'border-amber-500', 'shadow-md', 'ring-2', 'ring-amber-100');
+        thumbnailElement.classList.remove('border-gray-200');
+        const indicator = thumbnailElement.querySelector('.active-indicator');
+        if (indicator) indicator.style.display = 'flex';
+    }
+
+    currentImageIndex = images.findIndex(item => item.url === imageUrl);
+    updateImageCounter();
+    autoScrollToActiveThumbnail();
+}
+
+function nextImage() {
+    if (images.length <= 1) return;
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    const nextMedia = images[currentImageIndex];
+    const nextThumbnail = document.querySelector(`[data-image="${nextMedia.url}"]`);
+    setActiveImage(nextMedia.url, nextThumbnail);
+}
+
+function previousImage() {
+    if (images.length <= 1) return;
+    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+    const prevMedia = images[currentImageIndex];
+    const prevThumbnail = document.querySelector(`[data-image="${prevMedia.url}"]`);
+    setActiveImage(prevMedia.url, prevThumbnail);
+}
+
+function updateImageCounter() {
+    const currentIndexEl = document.getElementById('current-index');
+    const totalImagesEl = document.getElementById('total-images');
+    if (currentIndexEl && totalImagesEl) {
+        currentIndexEl.textContent = currentImageIndex + 1;
+        totalImagesEl.textContent = images.length;
+    }
+}
+
+function scrollThumbnailsUp() {
+    if (scrollOffset > 0) {
+        scrollOffset--;
+        updateThumbnailScroll();
+        updateScrollButtons();
+    }
+}
+
+function scrollThumbnailsDown() {
+    const maxOffset = Math.max(0, images.length - maxVisibleThumbnails);
+    if (scrollOffset < maxOffset) {
+        scrollOffset++;
+        updateThumbnailScroll();
+        updateScrollButtons();
+    }
+}
+
+function updateThumbnailScroll() {
+    const container = document.getElementById('thumbnail-container');
+    if (container) {
+        const translateY = scrollOffset * 72;
+        container.style.transform = `translateY(-${translateY}px)`;
+    }
+}
+
+function updateScrollButtons() {
+    const upBtn = document.getElementById('scroll-up-btn');
+    const downBtn = document.getElementById('scroll-down-btn');
+    const maxOffset = Math.max(0, images.length - maxVisibleThumbnails);
+
+    if (upBtn) upBtn.style.display = scrollOffset > 0 ? 'flex' : 'none';
+    if (downBtn) downBtn.style.display = scrollOffset < maxOffset ? 'flex' : 'none';
+}
+
+function autoScrollToActiveThumbnail() {
+    const activeIndex = currentImageIndex;
+    if (activeIndex < scrollOffset) {
+        scrollOffset = activeIndex;
+    } else if (activeIndex >= scrollOffset + maxVisibleThumbnails) {
+        scrollOffset = Math.max(0, activeIndex - maxVisibleThumbnails + 1);
+    }
+    updateThumbnailScroll();
+    updateScrollButtons();
+}
+
+function orderViaWhatsApp(productName, price) {
+    const phoneNumber = '8562022133733';
+    const message = `ສະບາຍດີ! ຂ້ອຍຕ້ອງການສັ່ງສິນຄ້າ:
+
+📦 ຜະລິດຕະພັນ: ${productName}
+💰 ລາຄາ: ${price} LAK
+🔗 ລິ້ງ: ${window.location.href}
+
+ກະລຸນາແຈ້ງລາຍລະອຽດການຈັດສົ່ງ ແລະ ການຊຳລະເງິນ
+
+ຂອບໃຈ!`;
+
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    const win = window.open(url, '_blank');
+    if (!win) window.location.href = url;
+}
+
+function addToWishlist(productSlug) {
+    let wishlist = JSON.parse(localStorage.getItem('product_wishlist') || '[]');
+
+    if (wishlist.includes(productSlug)) {
+        wishlist = wishlist.filter(slug => slug !== productSlug);
+        localStorage.setItem('product_wishlist', JSON.stringify(wishlist));
+        showNotification('ລຶບອອກຈາກລາຍການທີ່ຖືກໃຈແລ້ວ', 'info');
+    } else {
+        wishlist.push(productSlug);
+        localStorage.setItem('product_wishlist', JSON.stringify(wishlist));
+        showNotification('ເພີ່ມໃສ່ລາຍການທີ່ຖືກໃຈແລ້ວ', 'success');
+    }
+}
+
+function shareProduct() {
+    if (navigator.share) {
+        navigator.share({
+            title: '{{ product.name }}',
+            text: '{{ product.description|truncatewords:20|default:"Check out this product!" }}',
+            url: window.location.href
+        }).catch(console.error);
+    } else {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+            showNotification('ລິ້ງໄດ້ຖືກຄັດລອກແລ້ວ!', 'success');
+        }).catch(() => {
+            showNotification('ບໍ່ສາມາດຄັດລອກລິ້ງໄດ້', 'error');
+        });
+    }
+}
+
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 transition-all duration-300 transform translate-x-full ${
+        type === 'success' ? 'bg-green-500 text-white' :
+        type === 'error' ? 'bg-red-500 text-white' :
+        'bg-blue-500 text-white'
+    }`;
+    notification.innerHTML = `
+        <div class="flex items-center space-x-2">
+            <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-times-circle' : 'fa-info-circle'}"></i>
+            <span>${message}</span>
+        </div>
+    `;
+
+    document.body.appendChild(notification);
+    setTimeout(() => notification.classList.remove('translate-x-full'), 100);
+    setTimeout(() => {
+        notification.classList.add('translate-x-full');
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
+}
+</script>
+
+{% endblock %}

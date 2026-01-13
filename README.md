@@ -5,6 +5,9 @@ A complete Django website for Project Pilgrims Hotel and Restaurant with a beaut
 Got it. Here is the clean version of the project tree without the comments, ready to be added to your `README.md`.
 
 -----
+admin
+pilgrims1234
+
 
 ##  Project Structure
 

@@ -42,6 +42,7 @@ urlpatterns += i18n_patterns(
     path("menu/", include("restaurant.urls")),
     path("coffee/", include("coffee.urls")),
     path("gallery/", include("gallery.urls")),
+    path("products/", include("product.urls")),
     prefix_default_language=False,  # Don't add /lo/ prefix for default language (Lao)
 )
 

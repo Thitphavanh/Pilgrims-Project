@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pilgrims-Venture-Project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-13 21:09+0700\n"
+"POT-Creation-Date: 2026-01-13 22:22+0700\n"
 "PO-Revision-Date: 2025-10-11 10:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: Lao <your_email@example.com>\n"
@@ -12,114 +12,94 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: coffee/templates/coffee/coffee-detail.html:31
-#: hotel/templates/hotel/room-detail.html:120
-msgid "Home"
-msgstr "ໜ້າຫຼັກ"
-
-
+#: coffee/templates/coffee/coffee-detail.html:56
 msgid "All Coffee"
 msgstr "ກາເຟທັງໝົດ"
 
-
+#: coffee/templates/coffee/coffee-detail.html:63
 msgid "Coffee Category"
 msgstr "ໝວດໝູ່ກາເຟ"
 
-#: coffee/templates/coffee/coffee-detail.html:154
+#: coffee/templates/coffee/coffee-detail.html:213
 #: coffee/templates/coffee/coffee-list.html:45
 msgid "Fresh"
 msgstr "ສົດໃໝ່"
 
-#: coffee/templates/coffee/coffee-detail.html:160
-#: coffee/templates/coffee/coffee-list.html:52 templates/index.html:771
+#: coffee/templates/coffee/coffee-detail.html:220
+#: coffee/templates/coffee/coffee-list.html:52 templates/index.html:269
 msgid "Low Stock"
 msgstr "ເຫຼືອໜ້ອຍ"
 
-#: coffee/templates/coffee/coffee-detail.html:198 templates/index.html:811
+#: coffee/templates/coffee/coffee-detail.html:253 templates/index.html:310
 #, python-format
 msgid "%(review_count)s review"
 msgid_plural "%(review_count)s reviews"
 msgstr[0] "%(review_count)s ຣິວິວ"
 msgstr[1] "%(review_count)s ຣິວິວ"
 
-#: coffee/templates/coffee/coffee-detail.html:212
-msgid "Product Details"
-msgstr "ລາຍລະອຽດຜະລິດຕະພັນ"
+#: coffee/templates/coffee/coffee-detail.html:267
+msgid "Roasting Type"
+msgstr "ປະເພດການຄົ່ວ"
 
-#: coffee/templates/coffee/coffee-detail.html:215
-msgid "Roast Level:"
-msgstr "ລະດັບການຄົ່ວ:"
+#: coffee/templates/coffee/coffee-detail.html:288
+msgid "Beans"
+msgstr "ເມັດກາເຟ"
 
-#: coffee/templates/coffee/coffee-detail.html:219
-msgid "Grind Type:"
-msgstr "ປະເພດການບົດ:"
-
-#: coffee/templates/coffee/coffee-detail.html:223
-msgid "Country of Origin:"
-msgstr "ປະເທດຕົ້ນກຳເນີດ:"
-
-#: coffee/templates/coffee/coffee-detail.html:228
-msgid "Region:"
-msgstr "ພາກພື້ນ:"
-
-#: coffee/templates/coffee/coffee-detail.html:234
-msgid "Altitude:"
-msgstr "ຄວາມສູງ:"
-
-#: coffee/templates/coffee/coffee-detail.html:235
-msgid "meters"
-msgstr "ແມັດ"
-
-#: coffee/templates/coffee/coffee-detail.html:239
-msgid "Quantity in Stock:"
-msgstr "ຈຳນວນໃນສະຕັອກ:"
-
-#: coffee/templates/coffee/coffee-detail.html:241
-#: coffee/templates/coffee/coffee-detail.html:329
-msgid "bags"
-msgstr "ຖົງ"
-
-#: coffee/templates/coffee/coffee-detail.html:250 templates/index.html:732
+#: coffee/templates/coffee/coffee-detail.html:314
 msgid "Categories"
 msgstr "ປະເພດ"
 
-#: coffee/templates/coffee/coffee-detail.html:263
+#: coffee/templates/coffee/coffee-detail.html:327
 msgid "Flavor and Aroma"
 msgstr "ລົດຊາດແລະກິ່ນ"
 
-#: coffee/templates/coffee/coffee-detail.html:270
+#: coffee/templates/coffee/coffee-detail.html:334
 msgid "Acidity"
 msgstr "ຄວາມສົ້ມ"
 
-#: coffee/templates/coffee/coffee-detail.html:283
+#: coffee/templates/coffee/coffee-detail.html:347
 msgid "Body"
 msgstr "ຄວາມເຂັ້ມຂຸ້ນ"
 
-#: coffee/templates/coffee/coffee-detail.html:313
+#: coffee/templates/coffee/coffee-detail.html:370
+#: product/templates/product/product_detail.html:198
+msgid "Order via WhatsApp"
+msgstr "ສັ່ງຊື້ຜ່ານ WhatsApp"
+
+#: coffee/templates/coffee/coffee-detail.html:379
+#: product/templates/product/product_detail.html:205
 msgid "Like"
 msgstr "ຖືກໃຈ"
 
-#: coffee/templates/coffee/coffee-detail.html:319
+#: coffee/templates/coffee/coffee-detail.html:385
+#: product/templates/product/product_detail.html:211
 msgid "Share"
 msgstr "ແຊຣ໌"
 
+#: coffee/templates/coffee/coffee-detail.html:395
 msgid "In Stock"
 msgstr "ມີສິນຄ້າພ້ອມ"
 
-#: coffee/templates/coffee/coffee-detail.html:334
+#: coffee/templates/coffee/coffee-detail.html:395
+msgid "bags"
+msgstr "ຖົງ"
+
+#: coffee/templates/coffee/coffee-detail.html:400
 #, fuzzy
 #| msgid "Low Stock"
 msgid "Out of Stock"
 msgstr "ສິນຄ້າໝົດ"
 
+#: coffee/templates/coffee/coffee-detail.html:415 home/models.py:33
+#: product/templates/product/product_detail.html:170
 msgid "Description"
 msgstr "ຄຳອະທິບາຍ"
 
-#: coffee/templates/coffee/coffee-detail.html:354
+#: coffee/templates/coffee/coffee-detail.html:420
 msgid "Brewing Method"
 msgstr "ວິທີການຊົງ"
 
-#: coffee/templates/coffee/coffee-detail.html:359
+#: coffee/templates/coffee/coffee-detail.html:425
 #: coffee/templates/coffee/coffee-list.html:102
 #: hotel/templates/hotel/review.html:103 hotel/templates/hotel/review.html:122
 #: hotel/templates/hotel/review.html:141 hotel/templates/hotel/review.html:159
@@ -128,121 +108,130 @@ msgstr "ວິທີການຊົງ"
 msgid "Reviews"
 msgstr "ຣີວິວ"
 
-#: coffee/templates/coffee/coffee-detail.html:372
+#: coffee/templates/coffee/coffee-detail.html:438
 msgid "No description for this product"
 msgstr "ບໍ່ມີຄຳອະທິບາຍສຳລັບຜະລິດຕະພັນນີ້"
 
-#: coffee/templates/coffee/coffee-detail.html:383
+#: coffee/templates/coffee/coffee-detail.html:449
 msgid "General brewing instructions for coffee"
 msgstr "ຄຳແນະນຳທົ່ວໄປສຳລັບການຊົງກາເຟ"
 
-#: coffee/templates/coffee/coffee-detail.html:386
+#: coffee/templates/coffee/coffee-detail.html:452
 msgid "For Drip brewing"
 msgstr "ສຳລັບການຊົງແບບດ້ຽງ (Drip)"
 
-#: coffee/templates/coffee/coffee-detail.html:388
+#: coffee/templates/coffee/coffee-detail.html:454
 msgid "Ratio:"
 msgstr "ອັດຕາສ່ວນ:"
 
-#: coffee/templates/coffee/coffee-detail.html:389
+#: coffee/templates/coffee/coffee-detail.html:455
 #, fuzzy
 #| msgid "Featured"
 msgid "Temperature:"
 msgstr "ອຸນຫະພູມ:"
 
-#: coffee/templates/coffee/coffee-detail.html:390
+#: coffee/templates/coffee/coffee-detail.html:456
 msgid "Time:"
 msgstr "ເວລາ:"
 
-#: coffee/templates/coffee/coffee-detail.html:394
+#: coffee/templates/coffee/coffee-detail.html:460
 msgid "For Espresso"
 msgstr "ສຳລັບເອສເປຣເຊົ"
 
-#: coffee/templates/coffee/coffee-detail.html:398
+#: coffee/templates/coffee/coffee-detail.html:464
 msgid "seconds"
 msgstr "ວິນາທີ"
 
-#: coffee/templates/coffee/coffee-detail.html:405
+#: coffee/templates/coffee/coffee-detail.html:471
 msgid ""
 "Recommended to use good quality clean water and freshly ground coffee before "
 "brewing"
 msgstr "ແນະນຳໃຫ້ໃຊ້ນ້ຳສະອາດຄຸນນະພາບດີ ແລະ ບົດກາເຟໃໝ່ໆ ກ່ອນການຊົງ"
 
-#: coffee/templates/coffee/coffee-detail.html:417
+#: coffee/templates/coffee/coffee-detail.html:483
 msgid "Write a review"
 msgstr "ຂຽນຣີວິວ"
 
-#: coffee/templates/coffee/coffee-detail.html:422
+#: coffee/templates/coffee/coffee-detail.html:488
 msgid "Your Name"
 msgstr "ຊື່ຂອງທ່ານ"
 
+#: coffee/templates/coffee/coffee-detail.html:490
 msgid "Your Name..."
 msgstr "ຊື່ຂອງທ່ານ..."
 
-#: coffee/templates/coffee/coffee-detail.html:427
+#: coffee/templates/coffee/coffee-detail.html:494
 msgid "Rating"
 msgstr "ຄະແນນ"
 
-#: coffee/templates/coffee/coffee-detail.html:430
+#: coffee/templates/coffee/coffee-detail.html:497
 msgid "Select Rating"
 msgstr "ເລືອກຄະແນນ"
 
-#: coffee/templates/coffee/coffee-detail.html:431
+#: coffee/templates/coffee/coffee-detail.html:498
 msgid "5 Stars - Excellent"
 msgstr "5 ດາວ - ຢອດຢ້ຽມ"
 
-#: coffee/templates/coffee/coffee-detail.html:432
+#: coffee/templates/coffee/coffee-detail.html:499
 msgid "4 Stars - Very Good"
 msgstr "4 ດາວ - ດີຫຼາຍ"
 
-#: coffee/templates/coffee/coffee-detail.html:433
+#: coffee/templates/coffee/coffee-detail.html:500
 msgid "3 Stars - Good"
 msgstr "3 ດາວ - ດີ"
 
-#: coffee/templates/coffee/coffee-detail.html:434
+#: coffee/templates/coffee/coffee-detail.html:501
 msgid "2 Stars - Fair"
 msgstr "2 ດາວ - ພໍດີ"
 
-#: coffee/templates/coffee/coffee-detail.html:435
+#: coffee/templates/coffee/coffee-detail.html:502
 msgid "1 Star - Poor"
 msgstr "1 ດາວ - ພໍໃຊ້"
 
-#: coffee/templates/coffee/coffee-detail.html:440
+#: coffee/templates/coffee/coffee-detail.html:507
 msgid "Comment"
 msgstr "ຄຳເຫັນ"
 
-#: coffee/templates/coffee/coffee-detail.html:442
+#: coffee/templates/coffee/coffee-detail.html:509
 msgid "Tell us about your experience drinking this coffee..."
 msgstr "ບອກເລົ່າປະສົບການການດື່ມກາເຟນີ້..."
 
+#: coffee/templates/coffee/coffee-detail.html:514
 msgid "Submit Review"
 msgstr "ສົ່ງຣີວິວ"
 
-#: coffee/templates/coffee/coffee-detail.html:477
+#: coffee/templates/coffee/coffee-detail.html:544
 msgid "No reviews yet for this product"
 msgstr "ຍັງບໍ່ມີຣີວິວສຳລັບສິນຄ້ານີ້"
 
-#: coffee/templates/coffee/coffee-detail.html:478
+#: coffee/templates/coffee/coffee-detail.html:545
 msgid "Be the first to review!"
 msgstr "ເປັນຄົນທຳອິດທີ່ໃຫ້ຣີວິວ!"
 
+#: coffee/templates/coffee/coffee-detail.html:564
 msgid "Similar Coffees"
 msgstr "ກາເຟທີ່ຄ້າຍຄືກັນ"
 
-#: coffee/templates/coffee/coffee-detail.html:498
+#: coffee/templates/coffee/coffee-detail.html:565
 msgid "Discover coffees with similar flavors"
 msgstr "ຄົ້ນພົບກາເຟທີ່ມີລົດຊາດໃກ້ຄຽງກັນ"
 
-#: coffee/templates/coffee/coffee-detail.html:507 templates/index.html:779
+#: coffee/templates/coffee/coffee-detail.html:574
+#: product/templates/product/product_detail.html:239 templates/index.html:277
 msgid "Recommended"
 msgstr "ແນະນຳ"
 
-#: coffee/templates/coffee/coffee-detail.html:572
+#: coffee/templates/coffee/coffee-detail.html:639
 #: hotel/templates/hotel/room-detail.html:390
-#: hotel/templates/hotel/rooms-list.html:134 templates/index.html:834
-#: templates/index.html:997
+#: hotel/templates/hotel/rooms-list.html:134
+#: product/templates/product/product_detail.html:269 templates/index.html:333
+#: templates/index.html:496
 msgid "View Details"
 msgstr "ເບິ່ງລາຍລະອຽດ"
+
+#: coffee/templates/coffee/coffee-detail.html:656 templates/index.html:352
+msgid "View All Coffee"
+msgstr "ເບິ່ງກາເຟທັງໝົດ"
 
 #: coffee/templates/coffee/coffee-list.html:7
 msgid "All coffees"
@@ -264,10 +253,12 @@ msgid "All coffee items"
 msgstr "ກາເຟທັງໝົດ"
 
 #: coffee/templates/coffee/coffee-list.html:19
+#: product/templates/product/product_list.html:23
 msgid "Found"
 msgstr "ທີ່ພົບ"
 
 #: coffee/templates/coffee/coffee-list.html:19
+#: product/templates/product/product_list.html:23
 msgid "items"
 msgstr "ລາຍການ"
 
@@ -276,18 +267,51 @@ msgid "No reviews yet."
 msgstr "ຍັງບໍ່ມີການຣີວິວ."
 
 #: coffee/templates/coffee/coffee-list.html:125
+#: product/templates/product/product_list.html:110
 msgid "See Details"
 msgstr "ເບິ່ງລາຍລະອຽດ"
 
-#: config/settings.py:132 config/settings/base.py:91
+#: coffee/templates/coffee/coffee-list.html:140
+#: hotel/templates/hotel/rooms-list.html:192
+#: product/templates/product/product_list.html:125
+msgid "Previous"
+msgstr "ກ່ອນໜ້າ"
+
+#: coffee/templates/coffee/coffee-list.html:158
+#: hotel/templates/hotel/rooms-list.html:212
+#: product/templates/product/product_list.html:143
+msgid "Next"
+msgstr "ຖັດໄປ"
+
+#: config/settings.py:132 config/settings/base.py:97
 msgid "ລາວ"
 msgstr "ລາວ"
 
-#: config/settings.py:133 config/settings/base.py:91
+#: config/settings.py:133 config/settings/base.py:97
 msgid "English"
 msgstr "ອັງກິດ"
 
-#: home/models.py:5
+#: gallery/templates/gallery/gallery_category_list.html:5
+#: gallery/templates/gallery/gallery_category_list.html:9
+msgid "Gallery Categories"
+msgstr "ໝວດໝູ່ຮູບພາບ"
+
+#: gallery/templates/gallery/gallery_category_list.html:17
+#, python-format
+msgid "%(name)s"
+msgstr ""
+
+#: gallery/templates/gallery/gallery_category_list.html:25
+#, fuzzy
+#| msgid "There are no images in this category yet."
+msgid "There are no gallery categories yet."
+msgstr "ຍັງບໍ່ມີໝວດໝູ່ແກລເລີຣີ."
+
+#: gallery/templates/gallery/gallery_image_list.html:36
+msgid "There are no images in this category yet."
+msgstr "ຍັງບໍ່ມີໝວດໝູ່ແກລເລີຣີ."
+
+#: home/models.py:5 home/models.py:34
 msgid "Image"
 msgstr ""
 
@@ -301,7 +325,7 @@ msgstr "ສະຖານທີ່"
 msgid "Link URL"
 msgstr ""
 
-#: home/models.py:8
+#: home/models.py:8 home/models.py:41
 msgid "Order"
 msgstr ""
 
@@ -309,7 +333,7 @@ msgstr ""
 msgid "Order in which the slide appears"
 msgstr ""
 
-#: home/models.py:9
+#: home/models.py:9 home/models.py:42
 msgid "Is Active"
 msgstr ""
 
@@ -321,6 +345,79 @@ msgstr ""
 msgid "Hero Slides"
 msgstr ""
 
+#: home/models.py:24
+msgid "Savannakhet"
+msgstr "ສະຫວັນນະເຂດ"
+
+#: home/models.py:25
+msgid "Hotel"
+msgstr "ໂຮງແຮມ"
+
+#: home/models.py:26 templates/index.html:600
+msgid "Restaurant"
+msgstr "ຮ້ານອາຫານ"
+
+#: home/models.py:27
+#, fuzzy
+#| msgid "Foods"
+msgid "Food"
+msgstr "ອາຫານ"
+
+#: home/models.py:28
+msgid "Outside Sitting"
+msgstr "ບ່ອນນັ່ງພາຍນອກ"
+
+#: home/models.py:29 templates/base.html:166 templates/base.html:254
+msgid "Coffee"
+msgstr "ກາເຟ"
+
+#: home/models.py:32
+msgid "Title"
+msgstr ""
+
+#: home/models.py:36 product/templates/product/product_detail.html:186
+#, fuzzy
+#| msgid "Categories"
+msgid "Category"
+msgstr "ປະເພດ"
+
+#: home/models.py:41
+msgid "Order in which the image appears"
+msgstr ""
+
+#: home/models.py:43
+msgid "Created At"
+msgstr ""
+
+#: home/models.py:44
+msgid "Updated At"
+msgstr ""
+
+#: home/models.py:47
+#, fuzzy
+#| msgid "Gallery Categories"
+msgid "Gallery Image"
+msgstr "ໝວດໝູ່ຮູບພາບ"
+
+#: home/models.py:48
+#, fuzzy
+#| msgid "Gallery Categories"
+msgid "Gallery Images"
+msgstr "ໝວດໝູ່ຮູບພາບ"
+
+#: home/models.py:58 home/models.py:62
+msgid "Visitor Count"
+msgstr ""
+
+#: home/models.py:59
+msgid "Last Updated"
+msgstr ""
+
+#: home/models.py:63
+msgid "Visitor Counts"
+msgstr ""
+
+#: hotel/templates/hotel/review.html:5
 msgid "Guest Reviews"
 msgstr "ຣີວິວຈາກແຂກ"
 
@@ -360,6 +457,12 @@ msgstr "ຍັງບໍ່ມີການວິຈານລ່າສຸດ"
 #: hotel/templates/hotel/review.html:302
 msgid "Check back soon to see guest comments!"
 msgstr "ກັບມາໃໝ່ໄວໆນີ້ ເພື່ອເບິ່ງຄໍາຄິດເຫັນຂອງແຂກ!"
+
+#: hotel/templates/hotel/room-detail.html:120
+#: templates/components/breadcrumbs.html:10
+#: templates/components/breadcrumbs.html:12
+msgid "Home"
+msgstr "ໜ້າຫຼັກ"
 
 #: hotel/templates/hotel/room-detail.html:122
 #, fuzzy
@@ -404,7 +507,7 @@ msgid "Related Properties"
 msgstr "ທີ່ພັກທີ່ກ່ຽວຂ້ອງ"
 
 #: hotel/templates/hotel/room-detail.html:410
-#: hotel/templates/hotel/rooms-list.html:84 templates/index.html:943
+#: hotel/templates/hotel/rooms-list.html:84 templates/index.html:442
 msgid "per night"
 msgstr "ຕໍ່ຄືນ"
 
@@ -478,7 +581,7 @@ msgstr ""
 msgid "Floor"
 msgstr "ຊັ້ນ"
 
-#: hotel/templates/hotel/rooms-list.html:97 templates/index.html:958
+#: hotel/templates/hotel/rooms-list.html:97 templates/index.html:457
 msgid "Guests"
 msgstr "ແຂກ"
 
@@ -487,19 +590,19 @@ msgstr "ແຂກ"
 msgid "For %(room.room_type.capacity)s people"
 msgstr "ສໍາລັບ %(room.room_type.capacity)s ຄົນ"
 
-#: hotel/templates/hotel/rooms-list.html:102 templates/index.html:965
+#: hotel/templates/hotel/rooms-list.html:102 templates/index.html:464
 msgid "Size"
 msgstr "ຂະໜາດ"
 
-#: hotel/templates/hotel/rooms-list.html:111 templates/index.html:973
+#: hotel/templates/hotel/rooms-list.html:111 templates/index.html:472
 msgid "Amenities"
 msgstr "ສິ່ງອໍານວຍຄວາມສະດວກ"
 
-#: hotel/templates/hotel/rooms-list.html:122 templates/index.html:985
+#: hotel/templates/hotel/rooms-list.html:122 templates/index.html:484
 msgid "more"
 msgstr "ເພີ່ມເຕີມ"
 
-#: hotel/templates/hotel/rooms-list.html:163 templates/index.html:1017
+#: hotel/templates/hotel/rooms-list.html:163 templates/index.html:516
 msgid "No rooms found"
 msgstr "ບໍ່ພົບຫ້ອງພັກ"
 
@@ -509,7 +612,7 @@ msgid ""
 "filters."
 msgstr "ພວກເຮົາບໍ່ສາມາດຊອກຫາຫ້ອງພັກທີ່ຕົງກັບເງື່ອນໄຂຂອງທ່ານ. ລອງປັບແຕ່ງຕົວກອງຂອງທ່ານ."
 
-#: hotel/templates/hotel/rooms-list.html:172 templates/index.html:1020
+#: hotel/templates/hotel/rooms-list.html:172 templates/index.html:519
 msgid "Clear All Filters"
 msgstr "ລົບຕົວກອງທັງໝົດ"
 
@@ -517,132 +620,141 @@ msgstr "ລົບຕົວກອງທັງໝົດ"
 msgid "Back to Home"
 msgstr "ກັບໄປໜ້າຫຼັກ"
 
+#: product/templates/product/product_detail.html:27
+#: product/templates/product/product_list.html:5
+#, fuzzy
+#| msgid "Coffee Products"
+msgid "All Products"
+msgstr "ຜະລິດຕະພັນກາເຟ"
+
+#: product/templates/product/product_detail.html:32
+#, fuzzy
+#| msgid "Coffee Category"
+msgid "Product Category"
+msgstr "ໝວດໝູ່ກາເຟ"
+
+#: product/templates/product/product_detail.html:140
+#: product/templates/product/product_list.html:73
+#, fuzzy
+#| msgid "Available Rooms"
+msgid "Available"
+msgstr "ຫ້ອງພັກທີ່ມີຢູ່"
+
+#: product/templates/product/product_detail.html:177
+msgid "Product Information"
+msgstr "ຂໍ້ມູນສິນຄ້າ"
+
+#: product/templates/product/product_detail.html:181
+#, fuzzy
+#| msgid "Available Rooms"
+msgid "Available for purchase"
+msgstr "ຫ້ອງພັກທີ່ມີຢູ່"
+
+#: product/templates/product/product_detail.html:230
+#, fuzzy
+#| msgid "Related Properties"
+msgid "Related Products"
+msgstr "ທີ່ພັກທີ່ກ່ຽວຂ້ອງ"
+
+#: product/templates/product/product_detail.html:231
+#, fuzzy
+#| msgid "Discover coffees with similar flavors"
+msgid "Discover similar products"
+msgstr "ຄົ້ນພົບກາເຟທີ່ມີລົດຊາດໃກ້ຄຽງກັນ"
+
+#: product/templates/product/product_detail.html:284
+#, fuzzy
+#| msgid "Coffee Products"
+msgid "View All Products"
+msgstr "ຜະລິດຕະພັນກາເຟ"
+
+#: product/templates/product/product_list.html:10
+msgid ""
+"Discover our carefully curated collection of quality products, handpicked to "
+"bring you the best experience."
+msgstr ""
+
+#: product/templates/product/product_list.html:20
+msgid "All product items"
+msgstr "ສິນຄ້າທັງໝົດ"
+
+#: product/templates/product/product_list.html:34
+msgid "All"
+msgstr ""
+
+#: product/templates/product/product_list.html:153
+#, fuzzy
+#| msgid "No rooms found"
+msgid "No products found"
+msgstr "ບໍ່ພົບຫ້ອງພັກ"
+
+#: product/templates/product/product_list.html:154
+msgid "Try changing your search criteria or clear filters"
+msgstr ""
+
+#: product/templates/product/product_list.html:157
+#, fuzzy
+#| msgid "Clear All Filters"
+msgid "Clear Filters"
+msgstr "ລົບຕົວກອງທັງໝົດ"
 
 #: restaurant/templates/restaurant/menu.html:9
 msgid "Menu Items"
 msgstr "ລາຍການອາຫານ"
 
-#: restaurant/templates/restaurant/menu.html:66
+#: restaurant/templates/restaurant/menu.html:105
 msgid "Culinary Journey"
 msgstr "ການເດີນທາງຂອງການເຮັດອາຫານ"
 
-#: restaurant/templates/restaurant/menu.html:69
+#: restaurant/templates/restaurant/menu.html:108
 msgid ""
 "Experience culinary excellence at our luxurious restaurant, where every dish "
 "tells a story."
 msgstr ""
 "ສຳຜັດປະສົບການອາຫານຊັ້ນເລີດທີ່ຮ້ານອາຫານຫຼູຫຼາຂອງພວກເຮົາ ໃນທີ່ແຕ່ລະຈານເລົ່າເລື່ອງຮາວອັນເປັນເອກະລັກ."
 
-#: restaurant/templates/restaurant/menu.html:72
+#: restaurant/templates/restaurant/menu.html:111
 msgid "View Our Menu"
 msgstr "ເບິ່ງເມນູຂອງພວກເຮົາ"
 
-#: restaurant/templates/restaurant/menu.html:85
-msgid "CULINARY DELIGHTS"
-msgstr "ອາຫານແຊບໆ"
-
+#: restaurant/templates/restaurant/menu.html:124 templates/index.html:126
 msgid "Our Menu"
 msgstr "ເມນູຂອງພວກເຮົາ"
 
-#: restaurant/templates/restaurant/menu.html:89
+#: restaurant/templates/restaurant/menu.html:128 templates/index.html:130
 msgid ""
-"Explore a diverse menu from around the world, prepared with passion and the "
-"finest ingredients."
-msgstr "ສຳຫຼວດເມນູອາຫານຫຼາກຫຼາຍຈາກທົ່ວໂລກ ທີ່ຖືກຈັດເຮັດດ້ວຍໃຈຮັກ ແລະ ວັດຖຸດິບທີ່ດີທີ່ສຸດ."
+"Explore a diverse menu from around the world, prepared with passion and fine "
+"ingredients"
+msgstr "ສຳຫຼວດເມນູອາຫານຫຼາກຫຼາຍຈາກທົ່ວໂລກ ທີ່ປຸງແຕ່ງດ້ວຍຄວາມຕັ້ງໃຈແລະວັດຖຸດິບຊັ້ນດີ"
 
-#: restaurant/templates/restaurant/menu.html:99
+#: restaurant/templates/restaurant/menu.html:137 templates/index.html:139
+msgid "Scroll to see more menu"
+msgstr "ເລື່ອນລົງເພື່ອເບິ່ງເມນູເພີ່ມເຕີມ"
+
+#: restaurant/templates/restaurant/menu.html:181 templates/index.html:183
+msgid "Featured"
+msgstr "ແນະນຳ"
+
+#: restaurant/templates/restaurant/menu.html:200 templates/index.html:202
+msgid "Chef's Special"
+msgstr "ພິເສດຂອງພໍ່ຄົວ"
+
+#: restaurant/templates/restaurant/menu.html:214 templates/index.html:216
 #, fuzzy
-#| msgid "Scroll for more "
-msgid "Scroll for more"
-msgstr "ເລື່ອນເພື່ອເບິ່ງເພີ່ມເຕີມ"
+#| msgid "No reviews yet for this product"
+msgid "No items yet for this category."
+msgstr "ຍັງບໍ່ມີຣີວິວສຳລັບສິນຄ້ານີ້"
 
-#: restaurant/templates/restaurant/menu.html:116 templates/index.html:146
-msgid "Breakfast"
-msgstr "ອາຫານເຊົ້າ"
+#: restaurant/templates/restaurant/menu.html:216 templates/index.html:218
+msgid "We are preparing new items for this category. Please check back soon!"
+msgstr ""
 
+#: restaurant/templates/restaurant/menu.html:229 templates/index.html:231
+msgid "View Full Menu"
+msgstr "ເບິ່ງເມນູທັງໝົດ"
 
-#: restaurant/templates/restaurant/menu.html:144 templates/index.html:161
-msgid "Pizza"
-msgstr "ພິຊຊ່າ"
-
-#: restaurant/templates/restaurant/menu.html:158 templates/index.html:152
-msgid "American"
-msgstr "ອາຫານອາເມລິກາ"
-
-#: restaurant/templates/restaurant/menu.html:172 templates/index.html:155
-msgid "Indian"
-msgstr "ອາຫານອິນເດຍ"
-
-#: restaurant/templates/restaurant/menu.html:186 templates/index.html:158
-msgid "Mexican"
-msgstr "ອາຫານເມັກຊິໂກ"
-
-#: restaurant/templates/restaurant/menu.html:200 templates/index.html:164
-msgid "Local Specialties"
-msgstr "ອາຫານພື້ນເມືອງ"
-
-#: restaurant/templates/restaurant/menu.html:214 templates/index.html:167
-msgid "Soup & Salad"
-msgstr "ແກງ ແລະ ສະຫຼັດ"
-
-#: restaurant/templates/restaurant/menu.html:228 templates/index.html:170
-msgid "Desserts"
-msgstr "ຂອງຫວານ"
-
-#: restaurant/templates/restaurant/menu.html:242 templates/index.html:173
-msgid "Drinks"
-msgstr "ເຄື່ອງດື່ມ"
-
-msgid "Start your day with our delicious breakfast menu."
-msgstr "ເລີ່ມຕົ້ນມື້ຂອງທ່ານດ້ວຍເມນູອາຫານເຊົ້າແຊບໆຂອງພວກເຮົາ"
-
-msgid "Expertly brewed coffee using premium beans from around the world."
-msgstr "ເຄື່ອງດື່ມກາເຟທີ່ສ້າງສັນຢ່າງຊ່ຽວຊານໂດຍໃຊ້ເມັດກາເຟຊັ້ນເລີດຈາກທົ່ວໂລກ"
-
-
-msgid "Rich and flavorful Mexican dishes, using fresh ingredients and authentic recipes."
-msgstr "ອາຫານເມັກຊິກັນທີ່ອຸດົມສົມບູນ ແລະລົດຊາດເຂັ້ມຂຸ້ນ, ໃຊ້ວັດຖຸດິບສົດໆ ແລະສູດອາຫານແທ້ໆ"
-
-msgid "Handmade pizzas with quality toppings."
-msgstr "ພິຊຊ່າເຮັດດ້ວຍມືພ້ອມທັອບປິ້ງຊັ້ນເລີດ"
-
-msgid "Regional specialties that showcase local ingredients and traditions."
-msgstr "ອາຫານພື້ນເມືອງທີ່ສະແດງໃຫ້ເຫັນສ່ວນປະກອບ ແລະ ປະເພນີທ້ອງຖິ່ນທີ່ເປັນເອກະລັກ"
-
-msgid ""
-"Fresh salads and popular Mediterranean dishes, full of healthy ingredients."
-msgstr "ສະຫຼັດສົດ ແລະ ອາຫານເມດິເຕີເຣນຽນທີ່ເຕັມໄປດ້ວຍສິ່ງດີໆຕໍ່ສຸຂະພາບ"
-
-msgid ""
-"Sweet and fragrant desserts and secrets, made from high-quality ingredients."
-msgstr "ຂອງຫວານ ແລະ ເຄື່ອງຫວານທີ່ລະອຽດອ່ອນທີ່ເຮັດດ້ວຍສ່ວນປະກອບຄຸນນະພາບສູງ"
-
-msgid "Refreshing drinks, special cocktails, and carefully selected beverages."
-msgstr "ເຄື່ອງດື່ມສົດຊື່ນ, ຄັອກເທລພິເສດ ແລະເຄື່ອງດື່ມທີ່ຄັດເລືອກມາເປັນພິເສດ"
-
-msgid "Breakfast menu is being prepared"
-msgstr "ກຳລັງຈັດຕຽມເມນູອາຫານເຊົ້າ"
-
-msgid "We are preparing a special breakfast menu, stay tuned."
-msgstr "ພວກເຮົາກຳລັງຈັດຕຽມເມນູອາຫານເຊົ້າພິເສດ, ກະລຸນາລໍຖ້າຕິດຕາມ"
-
-msgid "Coffee menu is being prepared"
-msgstr "ເມນູກາເຟກຳລັງຈັດຕຽມ"
-
-msgid "We are preparing a special coffee menu, stay tuned."
-msgstr "ພວກເຮົາກຳລັງຈັດຕຽມເມນູກາເຟພິເສດ, ກະລຸນາລໍຖ້າຕິດຕາມ."
-
-msgid "Classic American dishes with a special touch from our chef."
-msgstr "ອາຫານອາເມລິກາແບບຄລາສສິກ ດ້ວຍສູດພິເສດຈາກພໍ່ຄົວຂອງເຮົາ"
-
-msgid "Classic American dishes are being prepared, please wait."
-msgstr "ອາຫານອາເມລິກາແບບຄລາສສິກທີ່ປຸງແຕ່ງດ້ວຍການສໍາພັດພິເສດຂອງພໍ່ຄົວຂອງພວກເຮົາ"
-
-msgid "Authentic Indian cuisine, full of aromatic spices and traditional cooking methods."
-msgstr "ອາຫານອິນເດຍແທ້ໆ, ເຕັມໄປດ້ວຍເຄື່ອງເທດທີ່ມີກິ່ນຫອມ ແລະວິທີການປຸງແຕ່ງແບບດັ້ງເດີມ"
-
-
-#: templates/about.html:16 templates/base.html:116 templates/base.html:187
+#: templates/about.html:9 templates/about.html:16 templates/base.html:163
+#: templates/base.html:251
 msgid "About Us"
 msgstr "ກ່ຽວກັບພວກເຮົາ"
 
@@ -650,6 +762,17 @@ msgstr "ກ່ຽວກັບພວກເຮົາ"
 msgid "Welcome to Pilgrim’s Kitchen & Inn"
 msgstr "ຍິນດີຕ້ອນຮັບສູ່ Pilgrim’s Kitchen & Inn"
 
+#: templates/about.html:30
+msgid ""
+"Where food, coffee, and comfort meet on the great Mekong River. With "
+"magnificent views of Thailand, our place is not just a coffee shop — it is a "
+"riverside retreat designed for travelers, locals, and coffee lovers."
+msgstr ""
+"ບ່ອນທີ່ອາຫານ, ກາເຟ, ແລະຄວາມສະດວກສະບາຍມາພົບກັນຢູ່ທາງແມ່ນ້ໍາຂອງໃຫຍ່. "
+"ດ້ວຍທິວທັດອັນງົດງາມຂອງປະເທດໄທ, ສະຖານທີ່ຂອງພວກເຮົາບໍ່ແມ່ນພຽງແຕ່ຮ້ານກາເຟ — "
+"ມັນແມ່ນບ່ອນພັກຜ່ອນຕິດແມ່ນ້ໍາ ທີ່ຖືກອອກແບບມາສໍາລັບນັກທ່ອງທ່ຽວ, ຊາວທ້ອງຖິ່ນ, ແລະຜູ້ຮັກກາເຟ."
+
+#: templates/about.html:42
 msgid "Our Coffee Shop and Restaurant"
 msgstr "ຮ້ານກາເຟ ແລະ ຮ້ານອາຫານຂອງພວກເຮົາ"
 
@@ -674,6 +797,7 @@ msgstr ""
 "ອາຫານແນວເມດິເຕີເຣນຽນ, ຊຸບ ແລະ ສະຫຼັດ, ພ້ອມກັບອາຫານທ້ອງຖິ່ນລາວແທ້ໆ. ພວກເຮົາໃຊ້ແຕ່ວັດຖຸດິບທີ່ດີທີ່ສຸດ "
 "ແລະ ຄວາມຮັກໃນການປຸງອາຫານ ເພື່ອສ້າງມື້ອາຫານທີ່ຄຸ້ມຄ່າໃຫ້ທ່ານ."
 
+#: templates/about.html:53
 msgid "Our Guesthouse"
 msgstr "ບ້ານພັກຂອງພວກເຮົາ"
 
@@ -725,114 +849,133 @@ msgstr ""
 msgid "Book a Room"
 msgstr "ຈອງຫ້ອງພັກ"
 
+#: templates/about.html:81
 msgid "View Menu"
 msgstr "ເບິ່ງເມນູ"
 
-#: templates/about.html:85 templates/base.html:237 templates/contact.html:55
-#: templates/contact.html:84
+#: templates/about.html:85 templates/base.html:323 templates/contact.html:9
+#: templates/contact.html:58 templates/contact.html:84
 msgid "Contact Us"
 msgstr "ຕິດຕໍ່ພວກເຮົາ"
 
-#: templates/base.html:117 templates/base.html:188
+#: templates/base.html:164 templates/base.html:252
 msgid "Reservation"
 msgstr "ການຈອງ"
 
-#: templates/base.html:118 templates/base.html:189
+#: templates/base.html:165 templates/base.html:253
 msgid "Menu"
 msgstr "ເມນູ"
 
-#: templates/base.html:120 templates/base.html:191
+#: templates/base.html:167 templates/base.html:255
 msgid "Review"
 msgstr "ຣີວິວ"
 
-#: templates/base.html:121 templates/base.html:192
+#: templates/base.html:168 templates/base.html:256
 msgid "Contact"
 msgstr "ຕິດຕໍ່"
 
-#: templates/base.html:242
+#: templates/base.html:171 templates/base.html:259
+msgid "Gallery"
+msgstr "ຄັງຮູບພາບ"
+
+#: templates/base.html:328
 msgid "Khanthabouly Road, House No. 168"
 msgstr "ເຮືອນເລກທີ 168, ຖະໜົນຄັນທະບູລີ"
 
-#: templates/base.html:243
+#: templates/base.html:329
 msgid "Ban Chomkeo, Kaisone Phomvihane District"
 msgstr "ບ້ານຈອມແກ້ວ, ເມືອງໄກສອນ ພົມວິຫານ"
 
-#: templates/base.html:244
+#: templates/base.html:330
 msgid "Savannakhet, Lao PDR"
 msgstr "ສະຫວັນນະເຂດ, ສປປ ລາວ"
 
-#: templates/base.html:250
+#: templates/base.html:336
 msgid "Tel"
 msgstr "ໂທ"
 
-#: templates/base.html:261
+#: templates/base.html:347
 msgid "Email"
 msgstr "ອີເມວ"
 
-#: templates/base.html:275
+#: templates/base.html:361
 msgid "Stay Connected"
 msgstr "ຕິດຕໍ່ພົວພັນ"
 
-#: templates/base.html:280
+#: templates/base.html:366
 msgid "Follow us on social media channels"
 msgstr "ຕິດຕາມພວກເຮົາໃນຊ່ອງທາງສື່ສັງຄົມ"
 
-#: templates/base.html:306
+#: templates/base.html:392
 msgid "Timings"
 msgstr "ເວລາ"
 
-#: templates/base.html:311
+#: templates/base.html:397
 msgid "Monday – Saturday"
 msgstr "ວັນຈັນ – ວັນເສົາ"
 
-#: templates/base.html:318 templates/contact.html:151
+#: templates/base.html:404 templates/contact.html:151
 msgid "Sunday"
 msgstr "ວັນອາທິດ"
 
-#: templates/base.html:319 templates/contact.html:152
+#: templates/base.html:405 templates/contact.html:152
 #: templates/contact.html:169
 msgid "Closed"
 msgstr "ປິດ"
 
-#: templates/base.html:328
+#: templates/base.html:414
 msgid "All rights reserved"
 msgstr "ສະຫງວນລິຂະສິດທັງໝົດ"
 
-#: templates/base.html:330
+#: templates/base.html:416
 msgid "Privacy"
 msgstr "ນະໂຍບາຍຄວາມເປັນສ່ວນຕົວ"
 
-#: templates/base.html:331
+#: templates/base.html:417
 msgid "Terms"
 msgstr "ເງື່ອນໄຂ"
 
-#: templates/base.html:332
+#: templates/base.html:418
 msgid "Sitemap"
 msgstr "ແຜນຜັງເວັບໄຊ"
 
+#: templates/base.html:423
+msgid "Total Visitors"
+msgstr "ຈຳນວນຜູ້ເຂົ້າຊົມທັງໝົດ"
+
+#: templates/components/hero-section.html:38
 msgid ""
 "“A Riverside Retreat for <span class=\"text-secondary-light dark:text-"
 "secondary-dark\">Every Traveler”</span>"
 msgstr ""
-"“ບ່ອນພັກຜ່ອນແຄມແມ່ນໍ້າຂອງ <span class=\"text-secondary-light dark:text-"
-"secondary-dark\">ສໍາລັບນັກເດີນທາງທຸກຄົນ”</span>"
+"“ບ່ອນພັກຜ່ອນແຄມແມ່ນໍ້າຂອງ <span class=\"text-secondary-light dark:text-secondary-"
+"dark\">ສໍາລັບນັກເດີນທາງທຸກຄົນ”</span>"
 
 #: templates/components/hero-section.html:41
-#, fuzzy
-#| msgid ""
-#| "“Discover comfort, diverse cuisine, and freshly roasted coffee at Pilgrim"
-#| "\\"
 msgid ""
-"“Discover comfort, diverse cuisine, and freshly roasted coffee at Pilgrim's "
-"Kitchen & Inn, where the beauty of the Mekong meets warm hospitality.”"
+"Discover comfort, diverse cuisine, and freshly roasted coffee at Pilgrim's "
+"Kitchen & Inn, where the beauty of the Mekong meets warm hospitality."
 msgstr ""
-"“ພົບກັບຄວາມສະດວກສະບາຍ, ອາຫານທີ່ຫຼາກຫຼາຍ, ແລະ ກາເຟທີ່ຄົ້ວສົດໃໝ່ທີ່ Pilgrim's Kitchen & Inn, "
-"ບ່ອນທີ່ຄວາມງາມຂອງແມ່ນໍ້າຂອງພົບກັບການຕ້ອນຮັບທີ່ອົບອຸ່ນ.”"
+"ຄົ້ນພົບຄວາມສະດວກສະບາຍ, ອາຫານທີ່ຫຼາກຫຼາຍ, ແລະກາເຟທີ່ຄັ່ວສົດໃໝ່ ຢູ່ Pilgrim's Kitchen & Inn, "
+"ບ່ອນທີ່ຄວາມງາມຂອງແມ່ນ້ຳຂອງພົບກັບການຕ້ອນຮັບທີ່ອົບອຸ່ນ."
+
+#: templates/components/hero-section.html:44
+#, fuzzy
+#| msgid "Welcome to Pilgrim’s Kitchen & Inn"
+msgid "Book accommodation at Pilgrims Kitchen Inn"
+msgstr "ຍິນດີຕ້ອນຮັບສູ່ Pilgrim’s Kitchen & Inn"
 
 #: templates/components/hero-section.html:45
 msgid "Book your accommodation"
 msgstr "ຈອງທີ່ພັກຂອງທ່ານ"
 
+#: templates/components/hero-section.html:47
+msgid "View restaurant menu at Pilgrims Kitchen"
+msgstr ""
+
+#: templates/components/hero-section.html:48 templates/index.html:596
+msgid "Explore Our Menu"
+msgstr "ສຳຫຼວດເມນູຂອງພວກເຮົາ"
 
 #: templates/contact.html:18
 msgid "Location"
@@ -857,9 +1000,11 @@ msgstr "ເປີດ WhatsApp"
 msgid "Call Now"
 msgstr "ໂທຕອນນີ້"
 
+#: templates/contact.html:107
 msgid "Our Email"
 msgstr "ອີເມວຂອງພວກເຮົາ"
 
+#: templates/contact.html:117
 msgid "Send Email"
 msgstr "ສົ່ງອີເມວ"
 
@@ -893,7 +1038,7 @@ msgstr "ວັນຈັນ - ວັນເສົາ:"
 msgid "Sunday:"
 msgstr "ວັນອາທິດ:"
 
-
+#: templates/index.html:9
 msgid "Pilgrims Kitchen & Inn"
 msgstr "ພິລກຣິມ ຮ້ານອາຫານ ແລະ ທີ່ພັກ"
 
@@ -940,290 +1085,44 @@ msgstr ""
 msgid "Hotel Lobby"
 msgstr "ຫ້ອງຮັບແຂກໂຮງແຮມ"
 
-#: templates/index.html:130
-msgid ""
-"Explore a diverse menu from around the world, prepared with passion and fine "
-"ingredients"
-msgstr "ສຳຫຼວດເມນູອາຫານຫຼາກຫຼາຍຈາກທົ່ວໂລກ ທີ່ປຸງແຕ່ງດ້ວຍຄວາມຕັ້ງໃຈແລະວັດຖຸດິບຊັ້ນດີ"
-
-#: templates/index.html:139
-msgid "Scroll to see more menu"
-msgstr "ເລື່ອນລົງເພື່ອເບິ່ງເມນູເພີ່ມເຕີມ"
-
-
-#: templates/index.html:185
-msgid ""
-"Expertly crafted coffee drinks using premium beans from around the world."
-msgstr "ເຄື່ອງດື່ມກາເຟທີ່ສ້າງສັນຢ່າງຊ່ຽວຊານໂດຍໃຊ້ເມັດກາເຟຊັ້ນເລີດຈາກທົ່ວໂລກ"
-
-#: templates/index.html:188
-msgid "Classic American cuisine prepared with our chef's special touch"
-msgstr "ອາຫານອາເມລິກາແບບຄລາສສິກທີ່ປຸງແຕ່ງດ້ວຍການສໍາພັດພິເສດຂອງພໍ່ຄົວຂອງພວກເຮົາ"
-
-#: templates/index.html:191
-msgid ""
-"Traditional Indian dishes filled with aromatic spices and authentic cooking "
-"methods"
-msgstr "ອາຫານອິນເດຍແບບດັ້ງເດີມທີ່ເຕັມໄປດ້ວຍເຄື່ອງເທດທີ່ມີກິ່ນຫອມ ແລະ ວິທີການປຸງແຕ່ງອາຫານທີ່ແທ້ຈິງ"
-
-#: templates/index.html:194
-msgid ""
-"Bold and flavorful Mexican cuisine using fresh ingredients and authentic "
-"recipes"
-msgstr "ອາຫານເມັກຊິໂກທີ່ມີລົດຊາດເຂັ້ມຂຸ້ນໂດຍໃຊ້ສ່ວນປະກອບທີ່ສົດໃໝ່ ແລະ ສູດອາຫານທີ່ແທ້ຈິງ"
-
-#: templates/index.html:197
-msgid "Handmade pizzas with premium toppings"
-msgstr "ພິຊຊ່າເຮັດດ້ວຍມືພ້ອມທັອບປິ້ງຊັ້ນເລີດ"
-
-#: templates/index.html:200
-msgid "Regional specialties showcasing unique local ingredients and traditions"
-msgstr "ອາຫານພື້ນເມືອງທີ່ສະແດງໃຫ້ເຫັນສ່ວນປະກອບ ແລະ ປະເພນີທ້ອງຖິ່ນທີ່ເປັນເອກະລັກ"
-
-#: templates/index.html:203
-msgid "Fresh salads and Mediterranean favorites packed with healthy goodness"
-msgstr "ສະຫຼັດສົດ ແລະ ອາຫານເມດິເຕີເຣນຽນທີ່ເຕັມໄປດ້ວຍສິ່ງດີໆຕໍ່ສຸຂະພາບ"
-
-#: templates/index.html:206
-msgid "Sweet treats and delicate desserts made with high-quality ingredients"
-msgstr "ຂອງຫວານ ແລະ ເຄື່ອງຫວານທີ່ລະອຽດອ່ອນທີ່ເຮັດດ້ວຍສ່ວນປະກອບຄຸນນະພາບສູງ"
-
-#: templates/index.html:209
-msgid ""
-"Refreshing beverages, specialty cocktails and carefully curated selections"
-msgstr "ເຄື່ອງດື່ມທີ່ສົດຊື່ນ, ຄັອກເທນພິເສດ ແລະ ການຄັດເລືອກຢ່າງລະມັດລະວັງ"
-
-#: templates/index.html:232 templates/index.html:281 templates/index.html:330
-#: templates/index.html:379 templates/index.html:428 templates/index.html:477
-#: templates/index.html:526 templates/index.html:575 templates/index.html:624
-#: templates/index.html:673
-msgid "Featured"
-msgstr "ແນະນຳ"
-
-#: templates/index.html:244
-#, fuzzy
-#| msgid "Breakfast"
-msgid "Breakfast Special"
-msgstr "ອາຫານເຊົ້າ"
-
-#: templates/index.html:247
-msgid "Chef's Choice"
-msgstr "ທາງເລືອກຂອງພໍ່ຄົວ"
-
-#: templates/index.html:255
-msgid "ເມນູອາຫານເຊົ້າກຳລັງກະກຽມ"
-msgstr "ເມນູອາຫານເຊົ້າກຳລັງກະກຽມ"
-
-#: templates/index.html:257
-msgid "ພວກເຮົາກຳລັງກະກຽມເມນູອາຫານເຊົ້າພິເສດ ຄອຍຕິດຕາມໃນໄວໆນີ້"
-msgstr "ພວກເຮົາກຳລັງກະກຽມເມນູອາຫານເຊົ້າພິເສດ ຄອຍຕິດຕາມໃນໄວໆນີ້"
-
-#: templates/index.html:293
-#, fuzzy
-#| msgid "Local Specialties"
-msgid "Coffee Specialty"
-msgstr "ກາເຟພິເສດ"
-
-#: templates/index.html:296
-msgid "Barista's Choice"
-msgstr "ທາງເລືອກຂອງບາຣິສຕ້າ"
-
-#: templates/index.html:304
-msgid "ເມນູກາເຟກຳລັງກະກຽມ"
-msgstr "ເມນູກາເຟກຳລັງກະກຽມ"
-
-#: templates/index.html:306
-msgid "ເຮົາກຳລັງກະກຽມເມນູກາເຟພິເສດ ຄອຍຕິດຕາມໃນໄວໆນີ້"
-msgstr "ເຮົາກຳລັງກະກຽມເມນູກາເຟພິເສດ ຄອຍຕິດຕາມໃນໄວໆນີ້"
-
-#: templates/index.html:342
-#, fuzzy
-#| msgid "American"
-msgid "American Classic"
-msgstr "ອາເມລິກັນຄລາສສິກ"
-
-#: templates/index.html:345
-msgid "Chef's Special"
-msgstr "ພິເສດຂອງພໍ່ຄົວ"
-
-#: templates/index.html:353
-msgid "ເມນູອາຫານອາເມຣິກາກຳລັງກະກຽມ"
-msgstr "ເມນູອາຫານອາເມຣິກາກຳລັງກະກຽມ"
-
-#: templates/index.html:355
-msgid "ອາຫານອາເມຣິກາຄລາສສິກກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
-msgstr "ອາຫານອາເມຣິກາຄລາສສິກກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
-
-#: templates/index.html:391
-#, fuzzy
-#| msgid "Indian"
-msgid "Indian Cuisine"
-msgstr "ອາຫານອິນເດຍ"
-
-#: templates/index.html:394
-msgid "Authentic Recipe"
-msgstr "ສູດດັ້ງເດີມ"
-
-#: templates/index.html:402
-msgid "ເມນູອາຫານອິນເດຍກຳລັງກະກຽມ"
-msgstr "ເມນູອາຫານອິນເດຍກຳລັງກະກຽມ"
-
-#: templates/index.html:404
-msgid "ອາຫານອິນເດຍແບບດັ້ງເດີມກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
-msgstr "ອາຫານອິນເດຍແບບດັ້ງເດີມກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
-
-#: templates/index.html:440
-#, fuzzy
-#| msgid "Mexican"
-msgid "Mexican Fiesta"
-msgstr "ງານລ້ຽງເມັກຊິໂກ"
-
-#: templates/index.html:443
-msgid "Traditional Recipe"
-msgstr "ສູດດັ້ງເດີມ"
-
-#: templates/index.html:451
-msgid "ເມນູອາຫານແມັກຊິໂກກຳລັງກະກຽມ"
-msgstr "ເມນູອາຫານແມັກຊິໂກກຳລັງກະກຽມ"
-
-#: templates/index.html:453
-msgid "ອາຫານແມັກຊິໂກກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
-msgstr "ອາຫານແມັກຊິໂກກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
-
-#: templates/index.html:489
-msgid "Handmade Pizza"
-msgstr "ພິຊຊ່າເຮັດດ້ວຍມື"
-
-#: templates/index.html:492
-msgid "Signature Pizza"
-msgstr "ພິຊຊ່າລາຍເຊັນ"
-
-#: templates/index.html:500
-msgid "ເມນູພິຊຊ່າກຳລັງກະກຽມ"
-msgstr "ເມນູພິຊຊ່າກຳລັງກະກຽມ"
-
-#: templates/index.html:502
-msgid "ພິຊຊ່າສະເພາະກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
-msgstr "ພິຊຊ່າສະເພາະກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
-
-#: templates/index.html:538
-#, fuzzy
-#| msgid "Local Specialties"
-msgid "Local Specialty"
-msgstr "ອາຫານພື້ນເມືອງ"
-
-#: templates/index.html:541
-msgid "Traditional"
-msgstr "ດັ້ງເດີມ"
-
-#: templates/index.html:549
-msgid "ເມນູອາຫານພື້ນເມືອງກຳລັງກະກຽມ"
-msgstr "ເມນູອາຫານພື້ນເມືອງກຳລັງກະກຽມ"
-
-#: templates/index.html:551
-msgid "ອາຫານພື້ນເມືອງກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
-msgstr "ອາຫານພື້ນເມືອງກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
-
-#: templates/index.html:587
-msgid "Healthy Choice"
-msgstr "ທາງເລືອກເພື່ອສຸຂະພາບ"
-
-#: templates/index.html:590
-msgid "Fresh & Nutritious"
-msgstr "ສົດ ແລະ ມີທາດບໍາລຸງ"
-
-#: templates/index.html:598
-msgid "ເມນູສະຫຼັດແລະແກງກຳລັງກະກຽມ"
-msgstr "ເມນູສະຫຼັດແລະແກງກຳລັງກະກຽມ"
-
-#: templates/index.html:600
-msgid "ສະຫຼັດແລະແກງກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
-msgstr "ສະຫຼັດແລະແກງກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
-
-#: templates/index.html:636
-msgid "Sweet Treat"
-msgstr "ຂອງຫວານ"
-
-#: templates/index.html:639
-msgid "Signature Dessert"
-msgstr "ຂອງຫວານລາຍເຊັນ"
-
-#: templates/index.html:647
-msgid "ເມນູຂອງຫວານກຳລັງກະກຽມ"
-msgstr "ເມນູຂອງຫວານກຳລັງກະກຽມ"
-
-#: templates/index.html:649
-msgid "ຂອງຫວານແລະເຄຼັດລັບຫວານໆກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
-msgstr "ຂອງຫວານແລະເຄຼັດລັບຫວານໆກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
-
-#: templates/index.html:685
-msgid "Refreshing Drink"
-msgstr "ເຄື່ອງດື່ມທີ່ສົດຊື່ນ"
-
-#: templates/index.html:688
-msgid "Bartender's Choice"
-msgstr "ທາງເລືອກຂອງບາເທັນເດີ"
-
-#: templates/index.html:696
-msgid "ເມນູເຄື່ອງດື່ມກຳລັງກະກຽມ"
-msgstr "ເມນູເຄື່ອງດື່ມກຳລັງກະກຽມ"
-
-#: templates/index.html:698
-msgid "ເຄື່ອງດື່ມພິເສດກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
-msgstr "ເຄື່ອງດື່ມພິເສດກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
-
-#: templates/index.html:710
-msgid "View Full Menu"
-msgstr "ເບິ່ງເມນູທັງໝົດ"
-
-#: templates/index.html:724
-msgid "Coffee Products"
-msgstr "ຜະລິດຕະພັນກາເຟ"
-
-#: templates/index.html:728
-msgid "Bean Varieties"
-msgstr "ແນວພັນຖົ່ວ"
-
+#: templates/index.html:242
 msgid "Featured Coffee"
 msgstr "ກາເຟແນະນຳ"
 
-#: templates/index.html:745
+#: templates/index.html:243
 msgid "High-quality coffee specially selected"
 msgstr "ກາເຟຄຸນນະພາບສູງທີ່ຄັດສັນມາເປັນພິເສດ"
 
-#: templates/index.html:765
+#: templates/index.html:263
 msgid "ສົດໃໝ່"
 msgstr "ສົດໃໝ່"
 
-#: templates/index.html:826
+#: templates/index.html:325
 #, python-format
 msgid "%(coffee.price_per_unit|lao_currency)s/100g"
 msgstr "%(coffee.price_per_unit|lao_currency)s/100g"
 
-#: templates/index.html:842
+#: templates/index.html:341
 msgid "ບໍ່ມີກາເຟແນະນຳໃນຂະນະນີ້"
 msgstr "ບໍ່ມີກາເຟແນະນຳໃນຂະນະນີ້"
 
-#: templates/index.html:843
+#: templates/index.html:342
 msgid "ກະລຸນາກັບມາໃໝ່ໃນໄວໆນີ້"
 msgstr "ກະລຸນາກັບມາໃໝ່ໃນໄວໆນີ້"
 
-
-msgid "View All Coffee"
-msgstr "ເບິ່ງກາເຟທັງໝົດ"
-
+#: templates/index.html:367
 msgid "Available Rooms"
 msgstr "ຫ້ອງພັກທີ່ມີຢູ່"
 
-#: templates/index.html:917
+#: templates/index.html:416
 msgid "Room"
 msgstr "ຫ້ອງ"
 
-#: templates/index.html:937
+#: templates/index.html:436
 msgid "4.8"
 msgstr "4.8"
 
-#: templates/index.html:1018
+#: templates/index.html:517
 #, fuzzy
 #| msgid ""
 #| "We couldn't find any rooms matching your criteria. Try adjusting your "
@@ -1233,57 +1132,63 @@ msgid ""
 "filters or search terms."
 msgstr "ພວກເຮົາບໍ່ສາມາດຊອກຫາຫ້ອງພັກທີ່ຕົງກັບເງື່ອນໄຂຂອງທ່ານ. ລອງປັບແຕ່ງຕົວກອງຂອງທ່ານ."
 
+#: templates/index.html:527
 msgid "View All Accommodation"
 msgstr "ເບິ່ງທີ່ພັກທັງໝົດ"
 
+#: templates/index.html:537
 msgid "Our Amenities"
 msgstr "ສິ່ງອຳນວຍຄວາມສະດວກຂອງພວກເຮົາ"
 
-#: templates/index.html:1050
+#: templates/index.html:549
 msgid "Free Wi-Fi Internet"
 msgstr "ອິນເຕີເນັດ Wi-Fi ຟຣີ"
 
-#: templates/index.html:1051
+#: templates/index.html:550
 msgid "“High-speed internet access is available throughout the property.”"
 msgstr "“ມີອິນເຕີເນັດຄວາມໄວສູງ ໃຫ້ບໍລິການຄອບຄຸມທົ່ວພື້ນທີ່.”"
 
-#: templates/index.html:1059
+#: templates/index.html:558
 msgid "Co-working Space"
 msgstr "ພື້ນທີ່ Co-working"
 
-#: templates/index.html:1060
+#: templates/index.html:559
 msgid "Stay productive with our convenient co-working space."
 msgstr "ຊ່ວຍໃຫ້ພວກທ່ານມີຄວາມສະດວກໃນການເຮັດວຽກ."
 
-#: templates/index.html:1068
+#: templates/index.html:567
 msgid "Playground"
 msgstr "ສະໜາມເດັກຫຼິ້ນ"
 
-#: templates/index.html:1069
+#: templates/index.html:568
 msgid "Let your kids enjoy a safe and fun-filled adventure."
 msgstr "ໃຫ້ລູກຂອງທ່ານ ເພີດເພີນກັບການຜະຈົນໄພທີ່ປອດໄພ ແລະ ເຕັມໄປດ້ວຍຄວາມມ່ວນຊື່ນ."
 
-#: templates/index.html:1077
+#: templates/index.html:576
 msgid "Free Parking"
 msgstr "ຈອດລົດຟຣີ"
 
-#: templates/index.html:1078
+#: templates/index.html:577
 msgid "Free parking is available for all guests."
 msgstr "ບໍລິການຈອດລົດຟຣີ ສຳລັບແຂກທຸກຄົນ."
 
-#: templates/index.html:1089
+#: templates/index.html:588
 msgid "Riverside Experience"
 msgstr "ປະສົບການແຄມແມ່ນໍ້າຂອງ"
 
-#: templates/index.html:1091
+#: templates/index.html:590
 msgid ""
 "Our riverside retreat offers more than just a place to stay — it’s a "
 "complete experience by the banks of the Mekong, with sweeping views of "
 "Thailand. From freshly roasted coffee at our café to global flavors at our "
 "multi-cuisine restaurant, every detail is designed to delight your senses."
-msgstr "ບ່ອນພັກຜ່ອນຂອງເຮົາຢູ່ຂ້າງແມ່ນ້ຳ ມີຫຼາຍກວ່າພຽງແຕ່ບ່ອນພັກເທົ່ານັ້ນ — ມັນແມ່ນປະສົບການທີ່ສົມບູນແບບຢູ່ເທິງຝັ່ງແມ່ນ້ຳຂອງ, ດ້ວຍທັດສະນີຍະພາບກວ້າງໄກຂອງປະເທດໄທ. ຕັ້ງແຕ່ກາເຟຄັ່ວສົດໃໝ່ຢູ່ຮ້ານກາເຟຂອງພວກເຮົາ ຈົນເຖິງລົດຊາດສາກົນຢູ່ຮ້ານອາຫານຫຼາກຫຼາຍປະເພດຂອງພວກເຮົາ, ທຸກລາຍລະອຽດຖືກອອກແບບມາເພື່ອສ້າງຄວາມພໍໃຈແກ່ປະສາດສຳຜັດຂອງທ່ານ."
+msgstr ""
+"ບ່ອນພັກຜ່ອນຂອງເຮົາຢູ່ຂ້າງແມ່ນ້ຳ ມີຫຼາຍກວ່າພຽງແຕ່ບ່ອນພັກເທົ່ານັ້ນ — "
+"ມັນແມ່ນປະສົບການທີ່ສົມບູນແບບຢູ່ເທິງຝັ່ງແມ່ນ້ຳຂອງ, ດ້ວຍທັດສະນີຍະພາບກວ້າງໄກຂອງປະເທດໄທ. "
+"ຕັ້ງແຕ່ກາເຟຄັ່ວສົດໃໝ່ຢູ່ຮ້ານກາເຟຂອງພວກເຮົາ ຈົນເຖິງລົດຊາດສາກົນຢູ່ຮ້ານອາຫານຫຼາກຫຼາຍປະເພດຂອງພວກເຮົາ, "
+"ທຸກລາຍລະອຽດຖືກອອກແບບມາເພື່ອສ້າງຄວາມພໍໃຈແກ່ປະສາດສຳຜັດຂອງທ່ານ."
 
-#: templates/index.html:1094
+#: templates/index.html:593
 msgid ""
 "Whether you’re here for a hearty breakfast, a leisurely riverside lunch, or "
 "a romantic sunset dinner, our team is dedicated to making every moment "
@@ -1297,22 +1202,335 @@ msgstr ""
 "ຄຽງຄູ່ກັບຄວາມສະດວກສະບາຍຂອງເຮືອນພັກຂອງພວກເຮົາ ແລະ ກິ່ນຫອມຂອງກາເຟທີ່ຄົ່ວເອງ, "
 "ເວລາຂອງທ່ານກັບພວກເຮົາຖືກສ້າງຂຶ້ນເພື່ອໃຫ້ທັງຜ່ອນຄາຍ ແລະ ບໍ່ອາດລືມໄດ້."
 
-msgid "Explore Our Menu"
-msgstr "ສຳຫຼວດເມນູຂອງພວກເຮົາ"
+#, fuzzy
+#~| msgid "Coffee Products"
+#~ msgid "Products"
+#~ msgstr "ຜະລິດຕະພັນກາເຟ"
 
+#, fuzzy
+#~| msgid "Coffee Products"
+#~ msgid "Our Products"
+#~ msgstr "ຜະລິດຕະພັນກາເຟ"
 
-msgid "Medium"
-msgstr "ຄົ່ວກາງ"
+#, fuzzy
+#~| msgid "View Menu"
+#~ msgid "View"
+#~ msgstr "ເບິ່ງເມນູ"
 
-msgid "Dark"
-msgstr "ຄົ່ວເຂັ້ມ"
+#, fuzzy
+#~| msgid "Check back soon to see guest comments!"
+#~ msgid "Check back soon for new products!"
+#~ msgstr "ກັບມາໃໝ່ໄວໆນີ້ ເພື່ອເບິ່ງຄໍາຄິດເຫັນຂອງແຂກ!"
 
-msgid "Whole"
-msgstr "ເມັດເຕັມ"
+#~ msgid "Product Details"
+#~ msgstr "ລາຍລະອຽດຜະລິດຕະພັນ"
 
-msgid "Ground"
-msgstr "ບົດແລ້ວ"
+#~ msgid "Roast Level:"
+#~ msgstr "ລະດັບການຄົ່ວ:"
 
+#~ msgid "Grind Type:"
+#~ msgstr "ປະເພດການບົດ:"
+
+#~ msgid "Country of Origin:"
+#~ msgstr "ປະເທດຕົ້ນກຳເນີດ:"
+
+#~ msgid "Region:"
+#~ msgstr "ພາກພື້ນ:"
+
+#~ msgid "Altitude:"
+#~ msgstr "ຄວາມສູງ:"
+
+#~ msgid "meters"
+#~ msgstr "ແມັດ"
+
+#~ msgid "Quantity in Stock:"
+#~ msgstr "ຈຳນວນໃນສະຕັອກ:"
+
+#~ msgid "CULINARY DELIGHTS"
+#~ msgstr "ອາຫານແຊບໆ"
+
+#~ msgid ""
+#~ "Explore a diverse menu from around the world, prepared with passion and "
+#~ "the finest ingredients."
+#~ msgstr "ສຳຫຼວດເມນູອາຫານຫຼາກຫຼາຍຈາກທົ່ວໂລກ ທີ່ຖືກຈັດເຮັດດ້ວຍໃຈຮັກ ແລະ ວັດຖຸດິບທີ່ດີທີ່ສຸດ."
+
+#, fuzzy
+#~| msgid "Scroll for more "
+#~ msgid "Scroll for more"
+#~ msgstr "ເລື່ອນເພື່ອເບິ່ງເພີ່ມເຕີມ"
+
+#~ msgid "Breakfast"
+#~ msgstr "ອາຫານເຊົ້າ"
+
+#~ msgid "Pizza"
+#~ msgstr "ພິຊຊ່າ"
+
+#~ msgid "American"
+#~ msgstr "ອາຫານອາເມລິກາ"
+
+#~ msgid "Indian"
+#~ msgstr "ອາຫານອິນເດຍ"
+
+#~ msgid "Mexican"
+#~ msgstr "ອາຫານເມັກຊິໂກ"
+
+#~ msgid "Local Specialties"
+#~ msgstr "ອາຫານພື້ນເມືອງ"
+
+#~ msgid "Soup & Salad"
+#~ msgstr "ແກງ ແລະ ສະຫຼັດ"
+
+#~ msgid "Desserts"
+#~ msgstr "ຂອງຫວານ"
+
+#~ msgid "Drinks"
+#~ msgstr "ເຄື່ອງດື່ມ"
+
+#~ msgid "Start your day with our delicious breakfast menu."
+#~ msgstr "ເລີ່ມຕົ້ນມື້ຂອງທ່ານດ້ວຍເມນູອາຫານເຊົ້າແຊບໆຂອງພວກເຮົາ"
+
+#~ msgid "Expertly brewed coffee using premium beans from around the world."
+#~ msgstr "ເຄື່ອງດື່ມກາເຟທີ່ສ້າງສັນຢ່າງຊ່ຽວຊານໂດຍໃຊ້ເມັດກາເຟຊັ້ນເລີດຈາກທົ່ວໂລກ"
+
+#~ msgid ""
+#~ "Rich and flavorful Mexican dishes, using fresh ingredients and authentic "
+#~ "recipes."
+#~ msgstr "ອາຫານເມັກຊິກັນທີ່ອຸດົມສົມບູນ ແລະລົດຊາດເຂັ້ມຂຸ້ນ, ໃຊ້ວັດຖຸດິບສົດໆ ແລະສູດອາຫານແທ້ໆ"
+
+#~ msgid "Handmade pizzas with quality toppings."
+#~ msgstr "ພິຊຊ່າເຮັດດ້ວຍມືພ້ອມທັອບປິ້ງຊັ້ນເລີດ"
+
+#~ msgid "Regional specialties that showcase local ingredients and traditions."
+#~ msgstr "ອາຫານພື້ນເມືອງທີ່ສະແດງໃຫ້ເຫັນສ່ວນປະກອບ ແລະ ປະເພນີທ້ອງຖິ່ນທີ່ເປັນເອກະລັກ"
+
+#~ msgid ""
+#~ "Fresh salads and popular Mediterranean dishes, full of healthy "
+#~ "ingredients."
+#~ msgstr "ສະຫຼັດສົດ ແລະ ອາຫານເມດິເຕີເຣນຽນທີ່ເຕັມໄປດ້ວຍສິ່ງດີໆຕໍ່ສຸຂະພາບ"
+
+#~ msgid ""
+#~ "Sweet and fragrant desserts and secrets, made from high-quality "
+#~ "ingredients."
+#~ msgstr "ຂອງຫວານ ແລະ ເຄື່ອງຫວານທີ່ລະອຽດອ່ອນທີ່ເຮັດດ້ວຍສ່ວນປະກອບຄຸນນະພາບສູງ"
+
+#~ msgid ""
+#~ "Refreshing drinks, special cocktails, and carefully selected beverages."
+#~ msgstr "ເຄື່ອງດື່ມສົດຊື່ນ, ຄັອກເທລພິເສດ ແລະເຄື່ອງດື່ມທີ່ຄັດເລືອກມາເປັນພິເສດ"
+
+#~ msgid "Breakfast menu is being prepared"
+#~ msgstr "ກຳລັງຈັດຕຽມເມນູອາຫານເຊົ້າ"
+
+#~ msgid "We are preparing a special breakfast menu, stay tuned."
+#~ msgstr "ພວກເຮົາກຳລັງຈັດຕຽມເມນູອາຫານເຊົ້າພິເສດ, ກະລຸນາລໍຖ້າຕິດຕາມ"
+
+#~ msgid "Coffee menu is being prepared"
+#~ msgstr "ເມນູກາເຟກຳລັງຈັດຕຽມ"
+
+#~ msgid "We are preparing a special coffee menu, stay tuned."
+#~ msgstr "ພວກເຮົາກຳລັງຈັດຕຽມເມນູກາເຟພິເສດ, ກະລຸນາລໍຖ້າຕິດຕາມ."
+
+#~ msgid "Classic American dishes with a special touch from our chef."
+#~ msgstr "ອາຫານອາເມລິກາແບບຄລາສສິກ ດ້ວຍສູດພິເສດຈາກພໍ່ຄົວຂອງເຮົາ"
+
+#~ msgid "Classic American dishes are being prepared, please wait."
+#~ msgstr "ອາຫານອາເມລິກາແບບຄລາສສິກທີ່ປຸງແຕ່ງດ້ວຍການສໍາພັດພິເສດຂອງພໍ່ຄົວຂອງພວກເຮົາ"
+
+#~ msgid ""
+#~ "Authentic Indian cuisine, full of aromatic spices and traditional cooking "
+#~ "methods."
+#~ msgstr "ອາຫານອິນເດຍແທ້ໆ, ເຕັມໄປດ້ວຍເຄື່ອງເທດທີ່ມີກິ່ນຫອມ ແລະວິທີການປຸງແຕ່ງແບບດັ້ງເດີມ"
+
+#, fuzzy
+#~| msgid ""
+#~| "“Discover comfort, diverse cuisine, and freshly roasted coffee at Pilgrim"
+#~| "\\"
+#~ msgid ""
+#~ "“Discover comfort, diverse cuisine, and freshly roasted coffee at "
+#~ "Pilgrim's Kitchen & Inn, where the beauty of the Mekong meets warm "
+#~ "hospitality.”"
+#~ msgstr ""
+#~ "“ພົບກັບຄວາມສະດວກສະບາຍ, ອາຫານທີ່ຫຼາກຫຼາຍ, ແລະ ກາເຟທີ່ຄົ້ວສົດໃໝ່ທີ່ Pilgrim's Kitchen & "
+#~ "Inn, ບ່ອນທີ່ຄວາມງາມຂອງແມ່ນໍ້າຂອງພົບກັບການຕ້ອນຮັບທີ່ອົບອຸ່ນ.”"
+
+#~ msgid ""
+#~ "Expertly crafted coffee drinks using premium beans from around the world."
+#~ msgstr "ເຄື່ອງດື່ມກາເຟທີ່ສ້າງສັນຢ່າງຊ່ຽວຊານໂດຍໃຊ້ເມັດກາເຟຊັ້ນເລີດຈາກທົ່ວໂລກ"
+
+#~ msgid "Classic American cuisine prepared with our chef's special touch"
+#~ msgstr "ອາຫານອາເມລິກາແບບຄລາສສິກທີ່ປຸງແຕ່ງດ້ວຍການສໍາພັດພິເສດຂອງພໍ່ຄົວຂອງພວກເຮົາ"
+
+#~ msgid ""
+#~ "Traditional Indian dishes filled with aromatic spices and authentic "
+#~ "cooking methods"
+#~ msgstr "ອາຫານອິນເດຍແບບດັ້ງເດີມທີ່ເຕັມໄປດ້ວຍເຄື່ອງເທດທີ່ມີກິ່ນຫອມ ແລະ ວິທີການປຸງແຕ່ງອາຫານທີ່ແທ້ຈິງ"
+
+#~ msgid ""
+#~ "Bold and flavorful Mexican cuisine using fresh ingredients and authentic "
+#~ "recipes"
+#~ msgstr "ອາຫານເມັກຊິໂກທີ່ມີລົດຊາດເຂັ້ມຂຸ້ນໂດຍໃຊ້ສ່ວນປະກອບທີ່ສົດໃໝ່ ແລະ ສູດອາຫານທີ່ແທ້ຈິງ"
+
+#~ msgid "Handmade pizzas with premium toppings"
+#~ msgstr "ພິຊຊ່າເຮັດດ້ວຍມືພ້ອມທັອບປິ້ງຊັ້ນເລີດ"
+
+#~ msgid ""
+#~ "Regional specialties showcasing unique local ingredients and traditions"
+#~ msgstr "ອາຫານພື້ນເມືອງທີ່ສະແດງໃຫ້ເຫັນສ່ວນປະກອບ ແລະ ປະເພນີທ້ອງຖິ່ນທີ່ເປັນເອກະລັກ"
+
+#~ msgid ""
+#~ "Fresh salads and Mediterranean favorites packed with healthy goodness"
+#~ msgstr "ສະຫຼັດສົດ ແລະ ອາຫານເມດິເຕີເຣນຽນທີ່ເຕັມໄປດ້ວຍສິ່ງດີໆຕໍ່ສຸຂະພາບ"
+
+#~ msgid ""
+#~ "Sweet treats and delicate desserts made with high-quality ingredients"
+#~ msgstr "ຂອງຫວານ ແລະ ເຄື່ອງຫວານທີ່ລະອຽດອ່ອນທີ່ເຮັດດ້ວຍສ່ວນປະກອບຄຸນນະພາບສູງ"
+
+#~ msgid ""
+#~ "Refreshing beverages, specialty cocktails and carefully curated selections"
+#~ msgstr "ເຄື່ອງດື່ມທີ່ສົດຊື່ນ, ຄັອກເທນພິເສດ ແລະ ການຄັດເລືອກຢ່າງລະມັດລະວັງ"
+
+#, fuzzy
+#~| msgid "Breakfast"
+#~ msgid "Breakfast Special"
+#~ msgstr "ອາຫານເຊົ້າ"
+
+#~ msgid "Chef's Choice"
+#~ msgstr "ທາງເລືອກຂອງພໍ່ຄົວ"
+
+#~ msgid "ເມນູອາຫານເຊົ້າກຳລັງກະກຽມ"
+#~ msgstr "ເມນູອາຫານເຊົ້າກຳລັງກະກຽມ"
+
+#~ msgid "ພວກເຮົາກຳລັງກະກຽມເມນູອາຫານເຊົ້າພິເສດ ຄອຍຕິດຕາມໃນໄວໆນີ້"
+#~ msgstr "ພວກເຮົາກຳລັງກະກຽມເມນູອາຫານເຊົ້າພິເສດ ຄອຍຕິດຕາມໃນໄວໆນີ້"
+
+#, fuzzy
+#~| msgid "Local Specialties"
+#~ msgid "Coffee Specialty"
+#~ msgstr "ກາເຟພິເສດ"
+
+#~ msgid "Barista's Choice"
+#~ msgstr "ທາງເລືອກຂອງບາຣິສຕ້າ"
+
+#~ msgid "ເມນູກາເຟກຳລັງກະກຽມ"
+#~ msgstr "ເມນູກາເຟກຳລັງກະກຽມ"
+
+#~ msgid "ເຮົາກຳລັງກະກຽມເມນູກາເຟພິເສດ ຄອຍຕິດຕາມໃນໄວໆນີ້"
+#~ msgstr "ເຮົາກຳລັງກະກຽມເມນູກາເຟພິເສດ ຄອຍຕິດຕາມໃນໄວໆນີ້"
+
+#, fuzzy
+#~| msgid "American"
+#~ msgid "American Classic"
+#~ msgstr "ອາເມລິກັນຄລາສສິກ"
+
+#~ msgid "ເມນູອາຫານອາເມຣິກາກຳລັງກະກຽມ"
+#~ msgstr "ເມນູອາຫານອາເມຣິກາກຳລັງກະກຽມ"
+
+#~ msgid "ອາຫານອາເມຣິກາຄລາສສິກກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+#~ msgstr "ອາຫານອາເມຣິກາຄລາສສິກກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+
+#, fuzzy
+#~| msgid "Indian"
+#~ msgid "Indian Cuisine"
+#~ msgstr "ອາຫານອິນເດຍ"
+
+#~ msgid "Authentic Recipe"
+#~ msgstr "ສູດດັ້ງເດີມ"
+
+#~ msgid "ເມນູອາຫານອິນເດຍກຳລັງກະກຽມ"
+#~ msgstr "ເມນູອາຫານອິນເດຍກຳລັງກະກຽມ"
+
+#~ msgid "ອາຫານອິນເດຍແບບດັ້ງເດີມກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+#~ msgstr "ອາຫານອິນເດຍແບບດັ້ງເດີມກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+
+#, fuzzy
+#~| msgid "Mexican"
+#~ msgid "Mexican Fiesta"
+#~ msgstr "ງານລ້ຽງເມັກຊິໂກ"
+
+#~ msgid "Traditional Recipe"
+#~ msgstr "ສູດດັ້ງເດີມ"
+
+#~ msgid "ເມນູອາຫານແມັກຊິໂກກຳລັງກະກຽມ"
+#~ msgstr "ເມນູອາຫານແມັກຊິໂກກຳລັງກະກຽມ"
+
+#~ msgid "ອາຫານແມັກຊິໂກກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+#~ msgstr "ອາຫານແມັກຊິໂກກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+
+#~ msgid "Handmade Pizza"
+#~ msgstr "ພິຊຊ່າເຮັດດ້ວຍມື"
+
+#~ msgid "Signature Pizza"
+#~ msgstr "ພິຊຊ່າລາຍເຊັນ"
+
+#~ msgid "ເມນູພິຊຊ່າກຳລັງກະກຽມ"
+#~ msgstr "ເມນູພິຊຊ່າກຳລັງກະກຽມ"
+
+#~ msgid "ພິຊຊ່າສະເພາະກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+#~ msgstr "ພິຊຊ່າສະເພາະກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+
+#, fuzzy
+#~| msgid "Local Specialties"
+#~ msgid "Local Specialty"
+#~ msgstr "ອາຫານພື້ນເມືອງ"
+
+#~ msgid "Traditional"
+#~ msgstr "ດັ້ງເດີມ"
+
+#~ msgid "ເມນູອາຫານພື້ນເມືອງກຳລັງກະກຽມ"
+#~ msgstr "ເມນູອາຫານພື້ນເມືອງກຳລັງກະກຽມ"
+
+#~ msgid "ອາຫານພື້ນເມືອງກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+#~ msgstr "ອາຫານພື້ນເມືອງກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+
+#~ msgid "Healthy Choice"
+#~ msgstr "ທາງເລືອກເພື່ອສຸຂະພາບ"
+
+#~ msgid "Fresh & Nutritious"
+#~ msgstr "ສົດ ແລະ ມີທາດບໍາລຸງ"
+
+#~ msgid "ເມນູສະຫຼັດແລະແກງກຳລັງກະກຽມ"
+#~ msgstr "ເມນູສະຫຼັດແລະແກງກຳລັງກະກຽມ"
+
+#~ msgid "ສະຫຼັດແລະແກງກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+#~ msgstr "ສະຫຼັດແລະແກງກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+
+#~ msgid "Sweet Treat"
+#~ msgstr "ຂອງຫວານ"
+
+#~ msgid "Signature Dessert"
+#~ msgstr "ຂອງຫວານລາຍເຊັນ"
+
+#~ msgid "ເມນູຂອງຫວານກຳລັງກະກຽມ"
+#~ msgstr "ເມນູຂອງຫວານກຳລັງກະກຽມ"
+
+#~ msgid "ຂອງຫວານແລະເຄຼັດລັບຫວານໆກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+#~ msgstr "ຂອງຫວານແລະເຄຼັດລັບຫວານໆກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+
+#~ msgid "Refreshing Drink"
+#~ msgstr "ເຄື່ອງດື່ມທີ່ສົດຊື່ນ"
+
+#~ msgid "Bartender's Choice"
+#~ msgstr "ທາງເລືອກຂອງບາເທັນເດີ"
+
+#~ msgid "ເມນູເຄື່ອງດື່ມກຳລັງກະກຽມ"
+#~ msgstr "ເມນູເຄື່ອງດື່ມກຳລັງກະກຽມ"
+
+#~ msgid "ເຄື່ອງດື່ມພິເສດກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+#~ msgstr "ເຄື່ອງດື່ມພິເສດກຳລັງກະກຽມ ລໍຖ້າຕິດຕາມ"
+
+#~ msgid "Bean Varieties"
+#~ msgstr "ແນວພັນຖົ່ວ"
+
+#~ msgid "Medium"
+#~ msgstr "ຄົ່ວກາງ"
+
+#~ msgid "Dark"
+#~ msgstr "ຄົ່ວເຂັ້ມ"
+
+#~ msgid "Whole"
+#~ msgstr "ເມັດເຕັມ"
+
+#~ msgid "Ground"
+#~ msgstr "ບົດແລ້ວ"
 
 #~ msgid "ລາຍການກາເຟທັງໝົດ"
 #~ msgstr "ລາຍການກາເຟທັງໝົດ"
@@ -1325,78 +1543,25 @@ msgstr "ບົດແລ້ວ"
 #~ msgid "reviews"
 #~ msgstr "ຣີວິວ"
 
-
 #~ msgid ""
 #~ "ສຳຜັດຄວາມລ້ຳເລີດຂອງອາຫານໃນຮ້ານອາຫານສຸດຫຼູຂອງພວກເຮົາ ໃນທຸກໆຈານເຮົາໄດ້ໃສ່ເລື່ອງລາວເຂົ້າໄປ."
 #~ msgstr ""
 #~ "ສໍາຜັດຄວາມເປັນເລີດຂອງອາຫານ ໃນຮ້ານອາຫານຫຼູຫຼາຂອງພວກເຮົາ, ໃນທຸກໆຈານພວກເຮົາໃສ່ເລື່ອງລາວ."
 
+#~ msgid "Single Origin"
+#~ msgstr "ບ່ອນຜະລິດດຽວ"
 
-msgid "Single Origin"
-msgstr "ບ່ອນຜະລິດດຽວ"
+#~ msgid "month ago"
+#~ msgstr "ເດືອນກ່ອນນີ້"
 
-msgid "Next"
-msgstr "ຖັດໄປ"
+#~ msgid "months ago"
+#~ msgstr "ເດືອນກ່ອນ"
 
-msgid "Previous"
-msgstr "ກ່ອນໜ້າ"
+#~ msgid "week ago"
+#~ msgstr "ອາທິດກ່ອນນີ້"
 
-msgid "Roasting Type"
-msgstr "ປະເພດການຄົ່ວ"
+#~ msgid "weeks ago"
+#~ msgstr "ອາທິດກ່ອນ"
 
-msgid "Beans"
-msgstr "ເມັດກາເຟ"
-
-msgid "Order via WhatsApp"
-msgstr "ສັ່ງຊື້ຜ່ານ WhatsApp"
-
-msgid "Where food, coffee, and comfort meet on the great Mekong River. With magnificent views of Thailand, our place is not just a coffee shop — it is a riverside retreat designed for travelers, locals, and coffee lovers."
-msgstr "ບ່ອນທີ່ອາຫານ, ກາເຟ, ແລະຄວາມສະດວກສະບາຍມາພົບກັນຢູ່ທາງແມ່ນ້ໍາຂອງໃຫຍ່. ດ້ວຍທິວທັດອັນງົດງາມຂອງປະເທດໄທ, ສະຖານທີ່ຂອງພວກເຮົາບໍ່ແມ່ນພຽງແຕ່ຮ້ານກາເຟ — ມັນແມ່ນບ່ອນພັກຜ່ອນຕິດແມ່ນ້ໍາ ທີ່ຖືກອອກແບບມາສໍາລັບນັກທ່ອງທ່ຽວ, ຊາວທ້ອງຖິ່ນ, ແລະຜູ້ຮັກກາເຟ."
-
-msgid "Discover comfort, diverse cuisine, and freshly roasted coffee at Pilgrim's Kitchen & Inn, where the beauty of the Mekong meets warm hospitality."
-msgstr "ຄົ້ນພົບຄວາມສະດວກສະບາຍ, ອາຫານທີ່ຫຼາກຫຼາຍ, ແລະກາເຟທີ່ຄັ່ວສົດໃໝ່ ຢູ່ Pilgrim's Kitchen & Inn, ບ່ອນທີ່ຄວາມງາມຂອງແມ່ນ້ຳຂອງພົບກັບການຕ້ອນຮັບທີ່ອົບອຸ່ນ."
-
-msgid "month ago"
-msgstr "ເດືອນກ່ອນນີ້"
-
-msgid "months ago"
-msgstr "ເດືອນກ່ອນ"
-
-msgid "week ago"
-msgstr "ອາທິດກ່ອນນີ້"
-
-msgid "weeks ago"
-msgstr "ອາທິດກ່ອນ"
-
-msgid "day ago"
-msgstr "ມື້ກ່ອນ"
-
-msgid "Gallery Categories"
-msgstr "ໝວດໝູ່ຮູບພາບ"
-
-msgid "Gallery"
-msgstr "ຄັງຮູບພາບ"
-
-msgid "Savannakhet"
-msgstr "ສະຫວັນນະເຂດ"
-
-msgid "Hotel"
-msgstr "ໂຮງແຮມ"
-
-msgid "Restaurant"
-msgstr "ຮ້ານອາຫານ"
-
-msgid "Foods"
-msgstr "ອາຫານ"
-
-msgid "Outside Sitting"
-msgstr "ບ່ອນນັ່ງພາຍນອກ"
-
-msgid "Coffee"
-msgstr "ກາເຟ"
-
-msgid "Total Visitors"
-msgstr "ຈຳນວນຜູ້ເຂົ້າຊົມທັງໝົດ"
-
-msgid "There are no images in this category yet."
-msgstr "ຍັງບໍ່ມີໝວດໝູ່ແກລເລີຣີ."
+#~ msgid "day ago"
+#~ msgstr "ມື້ກ່ອນ"

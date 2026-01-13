@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "hotel",
     "restaurant",
     "gallery",
+    "product",
     "tailwind",
     "crispy_forms",
 ]
